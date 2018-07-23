@@ -1,0 +1,132 @@
+<?php
+include '../models/invoiceModels.php';
+include '../models/catalogoModels.php';
+include '../models/supplierInvoiceModels.php';
+include '../models/shippingInvoiceModels.php';
+include '../models/invoicesServicesTempModels.php';
+include '../models/invoicesServicesModels.php';
+session_start();
+date_default_timezone_set("America/Caracas");
+$fecha_registro=date("Y-m-d");
+
+
+if(isset($_POST['enviar_invoice'])){
+
+    $codigo_documento=$_POST['codigo_documento'];
+    $quien=$_POST['quien_paga'];
+    //Usuario que se encuentra en sesion
+    $usuario=$_SESSION['id_usuario'];
+    /*generar el correlativo*/
+    $tipoDocumento='F';
+    $correlativo = new Catalogo('','',$tipoDocumento,'','');
+    $array = $correlativo->SelectCodigo();
+    $cantidad=$array->fetch_assoc();
+    $digito=$cantidad['correlativo']+1;
+    $codigo="F-".str_pad($digito,8,"0",STR_PAD_LEFT);
+    $actualizar= new Catalogo($cantidad['id'],$digito,$tipoDocumento,'','');
+    $actualizar->UpdateCorrelativo();
+    /*fin generando el correlativo*/
+    /*Se guardan los proveedores de esta factura*/
+    $cantidad_Supli=count($_POST['supplier']);
+    for ($i=1; $i <= $cantidad_Supli ; $i++) { 
+        if (!empty($_POST['supplier'][$i])) {
+            $supplier=$_POST['supplier'][$i];
+            $insert_supl = new SupplierInvoice($codigo,$supplier,$usuario,$fecha_registro,'','');
+            $insert_supl->InsertProvedorInvoice();
+        }
+    }
+    /*Se guardan los proveedores de esta factura*/
+    /*buscar en la tabla invoices_services_temp para verificar si tiene servicios el documento de la factura para transladarlos a la tabla de servicos por facturas*/
+    $consulta_serv = new invoicesServicesTemp($codigo_documento,'','','','',$usuario,'','');
+    $array1=$consulta_serv->SelectServicosTablaTemp();
+    while ($resServi=$array1->fetch_assoc()) {
+        $id_tabla = $resServi['id'];
+        $id_servico = $resServi['id_servico'];
+        $pago_us = $resServi['pago_us'];
+        $pago_can = $resServi['pago_can'];
+        $fecha_registro = $resServi['fecha_registro'];
+        $nota = $resServi['nota'];
+        # code...
+        //guardar los registros guardados de la tabla temporal
+        $insert_servicios = new invoicesServices($codigo,$id_servico,$pago_us,$pago_can,$nota,$usuario,$fecha_registro,'','');
+        $insert_servicios->InsertServiceInvoice();
+        //elinarlos de la tabla temporal
+        $eliminar = new invoicesServicesTemp('','','','','','','',$id_tabla);
+        $array=$eliminar->EliminarServicioTablaTemp();
+    }
+    
+    /*FIN*/
+    /*registrar el metodo de envio*/
+    $cantidad_envio=count($_POST['envio']);
+    for ($i=0; $i <$cantidad_envio; $i++) { 
+        $id_envio=$_POST['envio'][$i];
+        $otro = ($id_envio==6) ? $_POST['otro'] : null ;
+        $insert_envi = new ShippingInvoice($codigo,$id_envio,$otro,$usuario,$fecha_registro,'','');
+        $insert_envi->InsertfactipoEnvio();
+    }
+    /*FIN*/
+    /*registrar en la tabla de invoice por fin*/
+    $insert_invoice = new Invoice($codigo,$codigo_documento,$quien,'',$usuario,$fecha_registro,'','');
+    $insert_invoice->InsertInvoice();
+    
+    echo"<meta http-equiv='refresh' content='0;URL=../view/detail_invoice.php?invoice=".base64_encode($codigo)."'>";
+}
+if(isset($_POST['servicio'])){
+    $servicio = $_POST['servicio'];
+    $dinero_us = $_POST['dinero_us'];
+    $dinero_cad = $_POST['dinero_cad'];
+    $nota = $_POST['nota'];
+    $codigo = $_POST['codigo'];
+    $usuario = $_POST['usuario'];
+
+    $insert = new invoicesServicesTemp($codigo,$servicio,$dinero_us,$dinero_cad,$nota,$usuario,$fecha_registro,'');
+    $insert->InsertTablaTempServi();
+    //llamar al monmento de resgistar
+    $consulta = new invoicesServicesTemp($codigo,'','','','',$usuario,'','');
+    $array=$consulta->SelectServicosTablaTemp();
+    if($array->num_rows!=0){
+        while($resultado = $array->fetch_assoc()) { 
+          $data []= array('id' => $resultado['id'], 
+                          'codigo_ser' => $resultado['codigo_ser'],
+                          'descripcion' => $resultado['descripcion'],
+                          'dolar_us' => $resultado['pago_us'],
+                          'dolar_cad' => $resultado['pago_can'],
+                          'nota' => $resultado['nota'],
+                        ); 
+        } 
+    }else{
+        $data=0;
+    }
+    echo json_encode($data);
+}
+//llama cuando se habre la pagina
+if(isset($_GET['tabla']) && $_GET['tabla']==1){
+    $codigo = $_GET['codigo'];
+    $usuario = $_GET['usuario'];
+    $consulta = new invoicesServicesTemp($codigo,'','','','',$usuario,'','');
+    $array=$consulta->SelectServicosTablaTemp();
+    if($array->num_rows!=0){
+        while($resultado = $array->fetch_assoc()) { 
+          $data []= array('id' => $resultado['id'],
+                          'codigo_ser' => $resultado['codigo_ser'], 
+                          'descripcion' => $resultado['descripcion'],
+                          'dolar_us' => $resultado['pago_us'],
+                          'dolar_cad' => $resultado['pago_can'],
+                          'nota' => $resultado['nota'],
+                        ); 
+        } 
+    }else{
+        $data=0;
+    }
+    echo json_encode($data);
+}
+//eliminar registro
+if(isset($_POST['id'])){
+    $id=$_POST['id'];
+    $eliminar = new invoicesServicesTemp('','','','','','','',$id);
+    $array=$eliminar->EliminarServicioTablaTemp();
+
+    echo json_encode(3);
+}
+
+?>
