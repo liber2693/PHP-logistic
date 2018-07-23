@@ -45,7 +45,7 @@ if(isset($_POST['enviar_documento'])){
         $array = $correlativo->SelectCodigo();
         $cantidad=$array->fetch_assoc();
         $digito=$cantidad['correlativo']+1;
-        $codigo="E-".str_pad($digito,1,"0",STR_PAD_LEFT).'-'.$date;
+        $codigo="E-".str_pad($digito,2,"0",STR_PAD_LEFT).'-'.$date;
         $actualizar= new Catalogo($cantidad['id'],$digito,$tipoDocumento,'','');
         $actualizar->UpdateCorrelativo();
     }
