@@ -62,5 +62,4 @@ if(!empty($_SESSION['user']))
 </html>
 <?php
 }
-
 ?>
