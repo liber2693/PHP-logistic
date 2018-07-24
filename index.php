@@ -2,7 +2,9 @@
 session_start();
 if(!empty($_SESSION['user']))
 {
+  
   echo"<meta http-equiv='refresh' content='0;URL=view/create_docket.php'>";
+
 }else{
 ?>
 <!DOCTYPE html>
