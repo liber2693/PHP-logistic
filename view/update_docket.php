@@ -146,10 +146,11 @@ if(empty($_SESSION['user']))
                     </div>
                     <label class="col-sm-1 control-label"><strong>TYPE</strong></label>
                     <div class="col-sm-2">
-                       <select class="form-control m-bot15 round-input" autocomplete='tel-country-code' name="medida">
+                       <input type="text" name="medida" value="<?php echo $datos['tipo_dimension'];?>" class="form-control round-input">
+                       <!--<select class="form-control m-bot15 round-input" autocomplete='tel-country-code' name="medida">
                         <option value=" ">SELECT</option>
-                        <option value="CENTIMETERS" <?php if ($datos['tipo_dimension']=='CENTIMETERS') { echo 'selected="selected"';}?> >CENTIMETERS</option>
-                        <option value="INCHES" <?php if ($datos['tipo_dimension']=='INCHES') { echo 'selected="selected"';}?> >INCHES</option>
+                        <option value="CENTIMETERS" <?php //if ($datos['tipo_dimension']=='CENTIMETERS') { echo 'selected="selected"';}?> >CENTIMETERS</option>
+                        <option value="INCHES" <?php //if ($datos['tipo_dimension']=='INCHES') { echo 'selected="selected"';}?> >INCHES</option>-->
                       </select>
                     </div>
                   </div>

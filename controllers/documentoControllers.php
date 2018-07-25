@@ -96,9 +96,11 @@ if(isset($_POST['actualizar_documento'])){
     $medida = $_POST['medida'];
     $descripcion = $_POST['descripcion'];
 
+    $usuario=$_SESSION['id_usuario'];
 
 
-    $documento = new Docket($codigo_docu,$expedidor,'',$telefono,$codigo_zip,$fecha,$id_origen,$lugar_origen,$id_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$medida,$descripcion,'','',$fecha_registro,'','','');
+
+    $documento = new Docket($codigo_docu,$expedidor,$telefono,$codigo_zip,$fecha,$id_origen,$lugar_origen,$id_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$medida,$descripcion,'','',$fecha_registro,$usuario,'','');
     $documento->UpdateDocumento();
 
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_docket.php?docket=".base64_encode($codigo_docu)."'>";
