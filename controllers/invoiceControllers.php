@@ -22,7 +22,7 @@ if(isset($_POST['enviar_invoice'])){
     $array = $correlativo->SelectCodigo();
     $cantidad=$array->fetch_assoc();
     $digito=$cantidad['correlativo']+1;
-    $codigo="F-".str_pad($digito,8,"0",STR_PAD_LEFT);
+    $codigo="F-".str_pad($digito,1,"0",STR_PAD_LEFT);
     $actualizar= new Catalogo($cantidad['id'],$digito,$tipo,'','');
     $actualizar->UpdateCorrelativo();
     /*fin generando el correlativo*/
