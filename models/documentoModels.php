@@ -1,12 +1,12 @@
-<?php
+<?php 
 include '../config/conexion.php';
 /***docket***/
 class Docket{
-
+	
 	protected $id;
 	protected $codigo;
 	protected $shipper; //vendedor
-	protected $supplier; //provedor
+	 //provedor
 	protected $telefono;
 	protected $codigo_zip;
 	protected $fecha;
@@ -28,15 +28,14 @@ class Docket{
 	protected $fecha_modificacion;
 	protected $usuario;
 	protected $estatus;
-
-	public function __construct($codigo,$shipper,$supplier,$telefono,$codigo_zip,$fecha,$id_origen_pais,$lugar_origen,$id_destino_pais,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$tipo_dimension,$descripcion,$tipo,$fecha_creacion,$fecha_modificacion,$usuario,$estatus,$id = ''){
-
+	
+	public function __construct($codigo,$shipper,$telefono,$codigo_zip,$fecha,$id_origen_pais,$lugar_origen,$id_destino_pais,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$tipo_dimension,$descripcion,$tipo,$fecha_creacion,$fecha_modificacion,$usuario,$estatus,$id = ''){
+		
 		$db = new Conexion();
 
 		$this->id = $id;
 		$this->codigo = $codigo;
 		$this->shipper = $shipper;
-		$this->supplier = $supplier;
 		$this->telefono = $telefono;
 		$this->codigo_zip = $codigo_zip;
 		$this->fecha = $fecha;
@@ -58,15 +57,15 @@ class Docket{
 		$this->fecha_modificacion = $fecha_modificacion;
 		$this->usuario = $usuario;
 		$this->estatus = $estatus;
-
+		
 	}
 
 	static function contar(){
-		return new self('','','','','','','','','','','','','','','','','','','','','','','','','');
-	}
+		return new self('','','','','','','','','','','','','','','','','','','','','','','','');
+	} 
 
 	static function soloCodigo($codigo){
-		return new self($codigo,'','','','','','','','','','','','','','','','','','','','','','','','');
+		return new self($codigo,'','','','','','','','','','','','','','','','','','','','','','','');
 	}
 	public function selectContar(){
 		$db = new Conexion();
@@ -80,18 +79,18 @@ class Docket{
 	public function crearDocumento()
 	{
 		$db = new Conexion();
-		$sql="INSERT INTO docket(codigo,shipper,supplier,telefono,codigo_zip,fecha, id_origen_pais, lugar_origen, id_destino_pais, lugar_destino, pieza, tipo_pieza, peso, tipo_peso, alto, ancho, largo, tipo_dimension, descripcion, tipo, fecha_creacion, usuario, estatus)
-			VALUES ('$this->codigo','$this->shipper','$this->supplier','$this->telefono','$this->codigo_zip','$this->fecha','$this->id_origen_pais','$this->lugar_origen','$this->id_destino_pais','$this->lugar_destino','$this->pieza','$this->tipo_pieza','$this->peso','$this->tipo_peso','$this->alto','$this->ancho','$this->largo','$this->tipo_dimension','$this->descripcion','$this->tipo','$this->fecha_creacion','$this->usuario',1)";
+		$sql="INSERT INTO docket(codigo,shipper,telefono,codigo_zip,fecha, id_origen_pais, lugar_origen, id_destino_pais, lugar_destino, pieza, tipo_pieza, peso, tipo_peso, alto, ancho, largo, tipo_dimension, descripcion, tipo, fecha_creacion, usuario, estatus)
+			VALUES ('$this->codigo','$this->shipper','$this->telefono','$this->codigo_zip','$this->fecha','$this->id_origen_pais','$this->lugar_origen','$this->id_destino_pais','$this->lugar_destino','$this->pieza','$this->tipo_pieza','$this->peso','$this->tipo_peso','$this->alto','$this->ancho','$this->largo','$this->tipo_dimension','$this->descripcion','$this->tipo','$this->fecha_creacion','$this->usuario',1)";
 		$db->query($sql) or trigger_error("ERROR insertando codigo de documento");
 	}
 	public function selectDocket(){
 		$db = new Conexion();
-		$sql="SELECT a.codigo,a.shipper,a.supplier,a.fecha,a.telefono,a.codigo_zip,a.id_origen_pais,a.lugar_origen,
+		$sql="SELECT a.codigo,a.shipper,a.fecha,a.telefono,a.codigo_zip,a.id_origen_pais,a.lugar_origen,
 					 a.id_destino_pais,a.lugar_destino, a.pieza,a.tipo_pieza,a.peso,a.tipo_peso,a.alto,a.ancho,a.largo,
-					 a.tipo_dimension,a.descripcion, b.pais AS origen,c.pais AS destino
-					 FROM docket a
-					 JOIN paises b ON b.codigo=a.id_origen_pais
-					 JOIN paises c ON c.codigo=a.id_destino_pais
+					 a.tipo_dimension,a.descripcion, b.pais AS origen,c.pais AS destino 
+					 FROM docket a 
+					 JOIN paises b ON b.codigo=a.id_origen_pais 
+					 JOIN paises c ON c.codigo=a.id_destino_pais 
 					 WHERE a.codigo='$this->codigo' AND a.estatus=1";
 					//print_r($sql);die();
 		$resultado = $db->query($sql);
@@ -99,7 +98,7 @@ class Docket{
 	}
 	public function selectDocketAll(){
 		$db = new Conexion();
-		$sql="SELECT a.id,a.codigo,a.shipper,a.supplier,a.fecha,b.pais AS origen, c.pais AS destino,a.tipo, a.lugar_origen, a.lugar_destino FROM docket a
+		$sql="SELECT a.id,a.codigo,a.shipper,a.fecha, a.lugar_origen, a.lugar_destino, b.pais AS origen, c.pais AS destino,a.tipo FROM docket a
 				JOIN  paises b ON b.codigo=a.id_origen_pais
 				JOIN  paises c ON c.codigo=a.id_destino_pais
 				WHERE a.estatus='1'";

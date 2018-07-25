@@ -12,7 +12,6 @@ $date=substr(date("Y"),2);
 if(isset($_POST['enviar_documento'])){
     $tipoDocumento=$_POST['tipoDocumento'];
     $shipper=$_POST['shipper'];
-    $supplier=$_POST['proveedor'];
     $telefono=$_POST['telefono'];
     $codigo_zip=$_POST['codigo_zip'];
     $fecha=$_POST['fecha'];
@@ -37,7 +36,7 @@ if(isset($_POST['enviar_documento'])){
         $array = $correlativo->SelectCodigo();
         $cantidad=$array->fetch_assoc();
         $digito=$cantidad['correlativo']+1;
-        $codigo="I-".str_pad($digito,1,"0",STR_PAD_LEFT).'-'.$date;
+        $codigo="I-".str_pad($digito,6,"0",STR_PAD_LEFT).'-'.$date;
         $actualizar= new Catalogo($cantidad['id'],$digito,$tipoDocumento,'','');
         $actualizar->UpdateCorrelativo();
     }
@@ -45,24 +44,24 @@ if(isset($_POST['enviar_documento'])){
         $array = $correlativo->SelectCodigo();
         $cantidad=$array->fetch_assoc();
         $digito=$cantidad['correlativo']+1;
-        $codigo="E-".str_pad($digito,2,"0",STR_PAD_LEFT).'-'.$date;
+        $codigo="E-".str_pad($digito,6,"0",STR_PAD_LEFT).'-'.$date;
         $actualizar= new Catalogo($cantidad['id'],$digito,$tipoDocumento,'','');
         $actualizar->UpdateCorrelativo();
     }
 
-    $documento = new Docket($codigo,$shipper,$supplier,$telefono,$codigo_zip,$fecha,$pais_origen,$lugar_origen,$pais_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$tipo_dimension,$descripcion,$tipoDocumento,$fecha_registro,'',$usuario,'','');
+    $documento = new Docket($codigo,$shipper,$telefono,$codigo_zip,$fecha,$pais_origen,$lugar_origen,$pais_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$tipo_dimension,$descripcion,$tipoDocumento,$fecha_registro,'',$usuario,'','');
     $documento->crearDocumento();
-
+    
     if(!empty($_FILES['archivo'])){
         $cantidad=count($_FILES['archivo']['tmp_name']);
-        for ($i=0; $i < $cantidad; $i++) {
-
+        for ($i=0; $i < $cantidad; $i++) { 
+            
             $nombreArchivo=str_replace(" ","_",$_FILES['archivo']['name'][$i]);
             $rutaArchivo="../img/documentos/".$codigo."_".$i."_".$nombreArchivo;
             $foto=$_FILES['archivo']['tmp_name'][$i];
-
+            
             if (is_uploaded_file($foto)) {
-
+            
                 copy($foto,$rutaArchivo);
                 $tipo=$_FILES['archivo']['type'][$i];
                 $error=$_FILES['archivo']['error'][$i];
@@ -77,7 +76,7 @@ if(isset($_POST['enviar_documento'])){
     echo"<meta http-equiv='refresh' content='0;URL=../view/create_invoice.php?docket=".base64_encode($codigo)."'>";
 }
 if(isset($_POST['actualizar_documento'])){
-
+    
     $codigo_docu = $_POST['codigo_docu'];
     $expedidor = $_POST['expedidor'];
     $fecha = $_POST['fecha'];

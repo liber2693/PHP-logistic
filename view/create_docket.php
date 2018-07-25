@@ -69,10 +69,6 @@ if(empty($_SESSION['user']))
                       <label for="shipper">Shipper <b style="color: red">*</b></label>
                       <input name="shipper" type="text" class="form-control round-input" id="shipper" placeholder="Enter Shipper" >
                     </div>
-                     <div class="form-group">
-                      <label for="supplier">Supplier</label>
-                      <input name="proveedor" type="text" class="form-control round-input" placeholder="Enter Supplier">
-                    </div>
                     <div class="form-group">
                       <label for="fecha">Date <b style="color: red;">*</b></label>
                       <input name="fecha" type="text" class="form-control round-input fecha" id="fecha"  placeholder="Enter Date">
@@ -151,11 +147,12 @@ if(empty($_SESSION['user']))
                         <div class="form-group col-lg-3">
                           <label class="control-label col-lg-6" for="inputSuccess">Type</label>
                           <div class="col-lg-14">
-                            <select class="form-control m-bot15 round-input" autocomplete='tel-country-code' name="medida">
-                              <option value=" " selected="selected">SELECT</option>
+                            <input type="text"  class="form-control m-bot15 round-input" autocomplete='tel-country-code' name="medida" placeholder="type measure">
+                            <!--<select class="form-control m-bot15 round-input" autocomplete='tel-country-code' id="medida" name="medida">
+                              <option value="0" selected="selected">SELECT</option>
                               <option value="CENTIMETERS">CENTIMETERS</option>
                               <option value="INCHES">INCHES</option>
-                            </select>
+                            </select>-->
                           </div>
                         </div>
                         <div class="form-group">
@@ -193,10 +190,6 @@ if(empty($_SESSION['user']))
                 <div class="form-group">
                   <label for="shipper">Shipper <b style="color: red">*</b></label>
                   <input name="shipper" type="text" class="form-control round-input" id="shipperE" placeholder="Enter Shipper" >
-                </div>
-                <div class="form-group">
-                  <label for="supplier">Supplier</label>
-                  <input name="proveedor" type="text" class="form-control round-input" placeholder="Enter Supplier">
                 </div>
                 <div class="form-group">
                   <label for="fecha">Date <b style="color: red;">*</b></label>
@@ -276,11 +269,12 @@ if(empty($_SESSION['user']))
                       <div class="form-group col-lg-3">
                         <label class="control-label col-lg-6" for="inputSuccess">Type</label>
                         <div class="col-lg-14">
-                          <select class="form-control m-bot15 round-input" autocomplete='tel-country-code' name="medida">
+                          <input type="text"  class="form-control m-bot15 round-input" autocomplete='tel-country-code' name="medida" placeholder="type measure">
+                          <!--<select class="form-control m-bot15 round-input" autocomplete='tel-country-code' name="medida">
                             <option value=" " selected="selected">SELECT</option>
                             <option value="CENTIMETERS">CENTIMETERS</option>
                             <option value="INCHES">INCHES</option>
-                          </select>
+                          </select>-->
                         </div>
                       </div>
                       <div class="form-group">

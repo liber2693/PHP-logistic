@@ -154,11 +154,11 @@ if(empty($_SESSION['user']))
                         <td><strong><?php echo $datos['fecha_creacion'];?></strong></td>
                         <td>
                           <div class="btn-group">
-                            <!--<a class="btn btn-primary" style="font-size:16px" href="create_invoice.php?docket=<?php //echo base64_encode($datos['codigo']);?>" data-toggle="tooltip" title="Add Invoice"><i class="fa fa-plus"></i></a>
-                            <a class="btn btn-success" style="font-size:16px" href="#" data-toggle="tooltip" title="Edit Docket"><i class="fa fa-pencil"></i></a>
-                            <a class="btn btn-danger" style="font-size:16px" href="#" data-toggle="tooltip" title="Delete Docket"><i class="fa fa-trash-o"></i></a>-->
-                            <a class="btn btn-warning" style="font-size:16px" href="detail_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Invoice Detals"><i class="fa fa-eye"></i></a>
-                            <!--<a class="btn btn-info" style="font-size:16px" href="#" data-toggle="tooltip" title="Docket Report"><i class="fa fa-file-pdf-o"></i></a>-->
+                            <!--<a class="btn btn-primary" style="font-size:16px" href="create_invoice.php?docket=<?php //echo base64_encode($datos['codigo']);?>" data-toggle="tooltip" title="Add Invoice"><i class="fa fa-plus"></i></a>-->
+                            <a class="btn btn-success" style="font-size:16px" href="update_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Edit Invoice"><i class="fa fa-pencil"></i></a>
+                            <!--<a class="btn btn-danger" style="font-size:16px" href="#" data-toggle="tooltip" title="Delete Docket"><i class="fa fa-trash-o"></i></a>-->
+                            <a class="btn btn-warning" style="font-size:16px" href="detail_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="See Invoice"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-info" style="font-size:16px" href="#" data-toggle="tooltip" title="Download Detail"><i class="fa fa-file-pdf-o"></i></a>
                           </div>
                         </td>
                       </tr>

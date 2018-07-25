@@ -38,20 +38,20 @@ class invoicesServices{
 	public function InsertServiceInvoice(){
 		$db = new Conexion();
 		$sql="INSERT INTO invoices_services(codigo_invoice,id_servico,precio_us,precio_ca,nota,usuario,fecha_registro,estatus)
-			VALUES ('$this->codigo_invoice','$this->id_servico','$this->precio_us','$this->precio_ca','$this->nota','$this->usuario','$this->fecha_registro','ACTIVO')";
+			VALUES ('$this->codigo_invoice','$this->id_servico','$this->precio_us','$this->precio_ca','$this->nota','$this->usuario','$this->fecha_registro',1)";
 		$db->query($sql);
 
 	}
 	public function SelectServicosInvoice(){
 		$db = new Conexion();
-		$sql="SELECT b.id as codigo_ser, a.id as id,a.id_servico,a.precio_us,a.precio_ca,a.nota,b.descripcion FROM invoices_services a JOIN servicios_catalogo b ON b.id=a.id_servico WHERE a.codigo_invoice='$this->codigo_invoice'";
+		$sql="SELECT b.id as codigo_ser, a.id as id_servico,a.precio_us,a.precio_ca,a.nota,b.descripcion FROM invoices_services a JOIN servicios_catalogo b ON b.id=a.id_servico WHERE a.codigo_invoice='$this->codigo_invoice'";
 		$result = $db->query($sql);
 		return $result;
 	}
-	/*public function EliminarServicioTablaTemp(){
+	public function DeleteServicio(){
 		$db = new Conexion();
-		$sql="DELETE FROM invoices_services_temp WHERE id=$this->id";
+		$sql="DELETE FROM invoices_services WHERE id=$this->id";
 		$result = $db->query($sql);
-	}*/
+	}
 }
 ?>

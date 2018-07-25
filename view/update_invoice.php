@@ -1,7 +1,8 @@
 <?php
-include '../models/documentoModels.php';
-//include '../models/serviciosCatalogoModels.php';
+include '../models/invoiceModels.php';
+include '../models/supplierInvoiceModels.php';
 include '../models/envioViaModels.php';
+include '../models/shippingInvoiceModels.php';
 session_start();
 if(empty($_SESSION['user']))
 {
@@ -9,12 +10,12 @@ if(empty($_SESSION['user']))
 }
 else
 {
-	if(isset($_GET['docket']) && !empty($_GET['docket'])) {
-		$codigo = base64_decode($_GET['docket']);
-    $tipo = substr($codigo, 0,1);
-		$buscarDocket = Docket::soloCodigo($codigo);
-		$array = $buscarDocket->selectDocket();
-		if ($array->num_rows==0) {
+	if(isset($_GET['invoice']) && !empty($_GET['invoice'])) {
+		$codigo =base64_decode($_GET['invoice']);
+    
+		$buscarIvoice = Invoice::soloCodigo($codigo);
+		$array = $buscarIvoice->SelectInvoice();
+    if ($array->num_rows==0) {
 		echo "no existe";
 		}else{
 		$datos = $array->fetch_array();
@@ -44,7 +45,7 @@ else
             <h3 class="page-header"><i class="fa fa-file-text-o"></i> Form elements</h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="create_docket.php">Home</a></li>
-              <li><i class="icon_document_alt"></i>Forms</li>
+              <li><i class="icon_document_alt"></i><a href="detail_docket.php?docket=<?php echo base64_encode($datos['codigo_docket']);?>"><?php echo $datos['codigo_docket'];?></a></li>
               <li><i class="fa fa-file-text-o"></i>Form elements</li>
             </ol>
           </div>
@@ -56,54 +57,53 @@ else
                 INVOICE
               </header>
               <div class="panel-body">
-                <form class="form-horizontal" id="crear_invoice" method="post" action="../controllers/invoiceControllers.php">
+                <form class="form-horizontal" id="update_invoice" method="post" action="../controllers/invoiceControllers.php">
                 	<div class="form-group">
-	                    <label class="col-lg-2 control-label">Docket Code</label>
+	                    <label class="col-lg-2 control-label">Invoice Code</label>
 	                    <div class="col-lg-10">
-	                      <p class="form-control-static"><strong><?php echo $datos['codigo'];?></strong></p>
-                        <input type="hidden" name="codigo_documento" id="codigo_documento" value="<?php echo $datos['codigo'];?>">
+	                      <p class="form-control-static"><strong><?php echo $datos['codigo_invoice'];?></strong></p>
+                        <input type="hidden" name="codigo_invoice" id="codigo_invoice" value="<?php echo $datos['codigo_invoice'];?>">
                         <input type="hidden" name="usuario_documento" id="usuario_documento" value="<?php echo $_SESSION['id_usuario'];?>">
-                        <input type="hidden" value="<?php echo $tipo;?>" name="tipo" id="tipo">
-                    	</div>
+                        <input type="hidden" name="tipo" id="tipo" value="<?php echo $datos['tipo_documento'];?>">
+                      </div>
                   	</div>
         					<div class="form-group">
-        						<label class="col-sm-2 control-label">Supplier</label>
+        						<label class="col-sm-2 control-label"><strong>Supplier</strong></label>
         					</div>
-        					<?php
-        					for ($i=1; $i<7; $i++) {
-        						# code...
-        					?>
-        					<div class="form-group <?php if($i!=1){echo"ocultar";}?>" id='campoSupplier<?php echo $i;?>'>
-        						<label class="col-sm-2 control-label"><?php echo "#".$i;?></label>
-        						<div class="col-sm-3">
-        							<input type="text" id="supplier<?php echo $i;?>" name="supplier[<?php echo $i;?>]" placeholder="Supplier <?php echo "#".$i;?>"  class="form-control">
-        						</div>
+                  <div id="mensaje_actulaizacion_invoice_supplier">
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">New Supplier </label>
                     <div class="col-sm-3">
-                      <input type="text" id="dinero<?php echo $i;?>" name="dinero[<?php echo $i;?>]" placeholder="Price <?php echo "#".$i;?>" data-thousands="," data-decimal="." data-prefix="$. "  class="form-control">
+                      <input type="text" id="supplierActualizar" placeholder="New Supplier"  class="form-control round-input limpiar">
                     </div>
-        						<div class="col-sm-4">
-        							<?php
-        							if($i!=6){
-        							?>
-        							<button type="button" id="mas[<?php echo $i;?>]" name="mas[<?php echo $i;?>]" class="btn btn-primary" title="Bootstrap 3 themes generator" onclick="visible(<?php echo $i;?>)"><i class="fa fa-plus" aria-hidden="true"></i></button>
-        							<?php
-        							}
-        							if ($i!=1) {
-        								# code...
-        							?>
-        							<button type="button" id="menos[<?php echo $i;?>]" name="menos[<?php echo $i;?>]" class="btn btn-danger" title="Bootstrap 3 themes generator" onclick="invisible(<?php echo $i;?>)"><i class="fa fa-minus" aria-hidden="true"></i></button>
-        							<?php
-        							}
-        							?>
-        						</div>
-        					</div>
-        					<?php
-        					}
-        					?>
+                    <div class="col-sm-3">
+                      <input type="text" id="pago_supplier" placeholder="Price" data-thousands="," data-decimal="." data-prefix="$. " name="pago_supplier" class="form-control round-input limpiar">
+                    </div>
+                    <div class="col-sm-3">
+                      <button type="button" id="masActualizar" class="btn btn-primary" title="New Supplier" onclick="registrarSupplier()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    </div>
+                  </div>
+                  <section class="panel">
+                    <header class="panel-heading">
+                      SUPPLIER 
+                    </header>
+                    <table class="table table-condensed"  id="seleccion_supplier">
+                      <thead>
+                        <tr>
+                          <th>supplier</th>
+                          <th>dinero</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </section>
                   <div class="form-group">
                     <label class="col-sm-2 control-label">Bill to</label>
                     <div class="col-sm-10">
-                      <input type="text" id="quien_paga" name="quien_paga" class="form-control round-input">
+                      <input type="text" id="quien_paga" value="<?php echo $datos['cliente'];?>" name="quien_paga" class="form-control round-input">
                     </div>
                   </div>
                   <!-- probando -->
@@ -111,7 +111,8 @@ else
                     ADD SERVICE
                   </header>
                   <br>
-                  <div id="mensaje_servicios_selec"></div>
+                  <div id="mensaje_actulaizacion_servicios">
+                  </div>
                   <div class="form-group">
                     <label class="col-sm-2 control-label">Service</label>
                     <div class="col-sm-6">
@@ -124,20 +125,20 @@ else
                     <label class="col-sm-2 control-label">$ US</label>
                     <input type="radio" id="us_dolar" name="bill_to" >
                     <div class="col-sm-4 ocultar" id="campo_us">
-                      <input type="text" id="dinero_us" data-thousands="," data-decimal="." data-prefix="$. " name="dinero_us" class="form-control round-input limpiar">
+                      <input type="text" id="dinero_us" data-thousands="." data-decimal="," data-prefix="$. " name="dinero_us" class="form-control round-input">
                     </div>
                   </div>
                   <div class="form-group" id="radio2">
                     <label class="col-sm-2 control-label">$ CAD</label>
                     <input type="radio" id="cad_dolar" name="bill_to" >
                     <div class="col-sm-4 ocultar" id="campo_cad">
-                      <input type="text" id="dinero_cad" data-thousands="," data-decimal="." data-prefix="$. " name="dinero_cad" class="form-control round-input limpiar">
+                      <input type="text" id="dinero_cad" data-thousands="." data-decimal="," data-prefix="$. " name="dinero_cad" class="form-control round-input">
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-2 control-label">Note</label>
                     <div class="col-sm-8">
-                      <textarea name="nota" id="nota" class="form-control round-input limpiar" placeholder="Note"></textarea>
+                      <textarea name="nota" id="nota" class="form-control round-input" placeholder="Note"></textarea>
                     </div>
                   </div>
                   <center>
@@ -179,27 +180,34 @@ else
                     <label class="control-label col-lg-2" for="inputSuccess">Ship Via:</label>
                     <div class="col-lg-10">
                     <?php
-                      while($envios = $resultadosEnvio->fetch_array()){
+                      while($envios = $resultadosEnvio->fetch_assoc()){
+                        $id_envio = $envios['id'];
+                        $buscarShippingEnvios=ShippingInvoice::CodigoIdSelecc($codigo,$id_envio);
+                        $resultEnvio=$buscarShippingEnvios->EditViaEnvio();
+                        $chek = ($resultEnvio->num_rows!=0) ? 'checked="checked"' : '' ;
+                        $datoNota=$resultEnvio->fetch_assoc();
                     ?>
                       <label class="checkbox-inline">
-                        <input type="checkbox" id="envio<?php echo $envios['id'];?>"  name="envio[]" value="<?php echo $envios['id'];?>"> <?php echo $envios['descripcion'];?>
+                        <input type="hidden" name="id_envio_seleccionado[]" value="<?php echo $datoNota['id'];?>">
+                        <input type="checkbox" id="envio" name="envio[]" <?php echo $chek;?>  value="<?php echo $envios['id'];?>"> <?php echo $envios['descripcion'];?>
                       </label>
                     <?php
                       }
+                      $mostrarClase = ($datoNota['id_envio']==6) ? "" : "ocultar" ;
                     ?>
                     </div>
                   </div>
-                  <div class="form-group ocultar" id="campo_otro">
+                  <div class="form-group <?php echo $mostrarClase;?>"  id="campo_otro">
                     <label class="control-label col-lg-2" for="inputSuccess">Other</label>
                     <div class="col-sm-6">
-                        <input type="text" name="otro" id="otro" class="form-control round-input">
+                        <input type="text" name="otro" id="otro" value="<?php echo $datoNota['nota'];?>" class="form-control round-input">
                     </div>
                   </div>
                   <?php
                   }
                   ?>
                   <center>
-                    <button type="submit" id="enviar_invoice" name="enviar_invoice" class="btn btn-primary"><b>Save</b></button>
+                    <button type="submit" id="enviar_update_invoice" name="enviar_update_invoice" class="btn btn-primary"><b>UPDATE INVOICE</b></button>
                     <!--button type="reset" class="btn btn-info"><b>Reset</b></button>-->
                   </center>
                 </form>
@@ -215,16 +223,17 @@ else
   <!-- container section end -->
   <!-- javascripts -->
   <?php include('pie.php');?>
-  <script type="text/javascript" src="../js/invoice.js"></script>
+  
   <script type="text/javascript" src="../js/jquery.maskMoney.min.js"></script>
+  <script type="text/javascript" src="../js/invoice_update.js"></script>
 
 
   </body>
 
 </html>
 <?php
-		}
-	}
+    }   
+  }
 	else{
 		echo"<meta http-equiv='refresh' content='0;URL=create_docket.php'>";
 	}
