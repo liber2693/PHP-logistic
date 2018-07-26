@@ -190,53 +190,7 @@ if ($array->num_rows==0) {
 
 
 }
-/*$html='<style>
 
-      p{
-        text-align: center;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 12px;
-        line-height: 18px;
-      }
-
-      table th{color: #ffffff; background-color: #3692cd;}
-      .table-striped > tbody > tr > td{border:2px solid #ffffff; background-color: #d1f1fc;}
-
-      .di{
-        text-align:center
-      }
-
-      #menu p {
-        margin: 1px 0;
-        font-family: Arial, Helvetica, sans-serif;
-      }
-
-      #codigo{
-        float: right;
-      }
-
-      #header{
-        font-size: 15px;
-        line-height: normal;
-      }
-      </style>
-
-                  <div id="menu">
-                        <h4 id="header"><p id="rep" >REPÚBLICA BOLIVARIANA DE VENEZUELA <br>
-                        SUPERINTENDENCIA NACIONAL PARA LA DEFENSA DE LOS DERECHOS SOCIO ECONÓMICOS (SUNDDE)<br><br>
-                       FECHA: <strong></strong></p></h4>
-                        ';
-           $html.= '
-                <h3><p>ACTA DE INSTRUCCIÓN DEL INICIO DEL PROCEDIMIENTO DE DETERMINACION DE CUMPLIMIENTO</p></h3></div>
-                
-                <div>
-                    <p style="text-align: justify;">Tal mandato recaerá en la Intendencia de Protección de los Derechos Socioeconómicos adscrita a la Superintendencia Nacional Para La Defensa De Los Derechos
-                    Socioeconómicos, quien queda expresamente facultada para la realización de todas las actuaciones materiales que se correspondan con tal procedimiento así como, para levantar la verificación de la
-                    conformidad de las actuaciones del sujeto de aplicación de conformidad con el artículo 68, o, la imposición de las sanciones por el incumplimiento del Decreto, con Rango, Valor y Fuerza de Ley
-                    Orgánica de Precios Justos. Así como adoptar y ejecutar las medidas preventivas a que hubiese lugar si los extremos del artículo 70 del texto legal se presentasen. Este documento se levanta en dos
-                    originales, uno de los cuales reposará en el expediente y el otro será entregado al representante o responsable del sujeto de aplicación a los fines consiguientes.</p>
-                    <p style="text-align: justify;">Se ordena NOTIFICAR al sujeto de aplicación por vía electrónica de conformidad con la Ley sobre Mensajes de Datos y Firmas Electrónicas Es todo.</p>
-                </div>';*/
       
 //==============================================================
 //==============================================================
