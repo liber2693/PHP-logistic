@@ -80,7 +80,7 @@ class Docket{
 	{
 		$db = new Conexion();
 		$sql="INSERT INTO docket(codigo,shipper,telefono,codigo_zip,fecha, id_origen_pais, lugar_origen, id_destino_pais, lugar_destino, pieza, tipo_pieza, peso, tipo_peso, alto, ancho, largo, tipo_dimension, descripcion, tipo, fecha_creacion, usuario, estatus)
-			VALUES ('$this->codigo','$this->shipper','$this->telefono','$this->codigo_zip','$this->fecha','$this->id_origen_pais','$this->lugar_origen','$this->id_destino_pais','$this->lugar_destino','$this->pieza','$this->tipo_pieza','$this->peso','$this->tipo_peso','$this->alto','$this->ancho','$this->largo','$this->tipo_dimension','$this->descripcion','$this->tipo','$this->fecha_creacion','$this->usuario',1)";
+			VALUES ('$this->codigo','$this->shipper','$this->telefono','$this->codigo_zip','$this->fecha','$this->id_origen_pais','$this->lugar_origen','$this->id_destino_pais','$this->lugar_destino','$this->pieza','$this->tipo_pieza','$this->peso','$this->tipo_peso','$this->alto','$this->ancho','$this->largo','$this->tipo_dimension','$this->descripcion','$this->tipo','$this->fecha_creacion','$this->usuario','1')";
 		$db->query($sql) or trigger_error("ERROR insertando codigo de documento");
 	}
 	public function selectDocket(){
@@ -91,7 +91,7 @@ class Docket{
 					 FROM docket a 
 					 JOIN paises b ON b.codigo=a.id_origen_pais 
 					 JOIN paises c ON c.codigo=a.id_destino_pais 
-					 WHERE a.codigo='$this->codigo' AND a.estatus=1";
+					 WHERE a.codigo='$this->codigo' AND a.estatus='1'";
 					//print_r($sql);die();
 		$resultado = $db->query($sql);
 		return $resultado;
@@ -107,7 +107,7 @@ class Docket{
 	}
 	public function selectDocketInvoice(){
 		$db = new Conexion();
-		$sql="SELECT * FROM invoice WHERE codigo_docket='$this->codigo' ";
+		$sql="SELECT * FROM invoice WHERE codigo_docket='$this->codigo' AND estatus='1'";
 		$resultado = $db->query($sql);
 		return $resultado;
 	}

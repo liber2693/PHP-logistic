@@ -138,7 +138,7 @@ $(document).ready(function() {
         }else{
             $("#codigo_zip").css({"border":"0"});
         }
-         if (descripcion=='') {
+        if (descripcion=='') {
             $("#descripcion").css({"border":"2px solid #ff3333"});
             event.preventDefault();
         }else{

@@ -46,7 +46,7 @@ class Invoice{
 	}
 	public function SelectInvoice(){
 		$db = new Conexion();
-		$sql="SELECT * FROM invoice WHERE codigo_invoice = '$this->codigo_invoice'";
+		$sql="SELECT * FROM invoice WHERE codigo_invoice = '$this->codigo_invoice' AND estatus = '1'";
 		$result = $db->query($sql);
 		return $result;
 	}
@@ -54,7 +54,7 @@ class Invoice{
 	//actualizar una factura 
 	public function UpdateInvoice(){
 		$db = new Conexion();
-		$sql="UPDATE invoice SET cliente='$this->cliente', usuario='$this->usuario', fecha_modificacion = '$this->fecha_modificacion' WHERE codigo_invoice='$this->codigo_invoice'";
+		$sql="UPDATE invoice SET cliente='$this->cliente', usuario='$this->usuario', fecha_modificacion = '$this->fecha_modificacion' WHERE codigo_invoice='$this->codigo_invoice' AND estatus = '1'";
 		$result = $db->query($sql);
 	}
 
@@ -72,6 +72,20 @@ class Invoice{
 		$result = $db->query($sql);
 		return $result;
 	}
-
+	public function DeleteInvoice(){
+		$db = new Conexion();
+		//eliminar de la tabla factura una factura
+		$sql1="UPDATE invoice SET fecha_modificacion='$this->fecha_modificacion', estatus='5' WHERE codigo_invoice='$this->codigo_invoice'";
+		$db->query($sql1);
+		//eliminar de la tabla servicios una factura
+		$sql2="UPDATE invoices_services SET estatus='5' WHERE codigo_invoice='$this->codigo_invoice'";
+		$db->query($sql2);
+		//eliminar de la tabla envios una factura
+		$sql3="UPDATE shipping_invoice SET estatus='5' WHERE codigo_invoice = '$this->codigo_invoice'";
+		$db->query($sql3);
+		//eliminar de la tabla proveedores una factura
+		$sql4="UPDATE supplier_invoice SET estatus='5' WHERE codigo_invoice = '$this->codigo_invoice'";
+		$db->query($sql4);
+	}
 }
 ?>

@@ -42,9 +42,6 @@ if(empty($_SESSION['user']))
             </ol>
           </div>
         </div>
-        <a href="#myModal-2" data-toggle="modal" class="btn  btn-danger">
-                                  Form in Modal 3
-                              </a>
         <div class="row">
           <div class="col-lg-12">
             <section class="panel">
@@ -54,6 +51,7 @@ if(empty($_SESSION['user']))
               <div class="panel-body">
                 <div class="checkboxes">
                   <label class="label_check" for="checkbox-01">
+                    <input type="hidden" name="id_codigo_docket" id="id_codigo_docket" value="<?php echo $codigo;?>">
                     <strong>DOCKET # : <?php echo $codigo;?></strong>
                   </label>
                   <label class="label_check" for="checkbox-02">
@@ -154,7 +152,7 @@ if(empty($_SESSION['user']))
                         $i++;
                       ?>
                       <tr>
-                        <td><strong><?php echo $datos['codigo_invoice'];?></strong><input type="text" id="codigo_factura<?php echo $i;?>" value="<?php echo $datos['codigo_invoice'];?>"></td>
+                        <td><strong><?php echo $datos['codigo_invoice'];?></strong><input type="hidden" id="codigo_factura<?php echo $i;?>" value="<?php echo $datos['codigo_invoice'];?>"></td>
                         <td><strong><?php echo ucwords($datos['cliente']);?></strong></td>
                         <td><strong><?php echo $datos['fecha_creacion'];?></strong></td>
                         <td>
@@ -163,7 +161,8 @@ if(empty($_SESSION['user']))
                             <a class="btn btn-success" style="font-size:16px" href="update_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Edit Invoice"><i class="fa fa-pencil"></i></a>
                             <a class="btn btn-warning" style="font-size:16px" href="detail_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="See Invoice"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-info" style="font-size:16px" target="_blank" href="invoice_pdf.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Download Detail"><i class="fa fa-file-pdf-o"></i></a>
-                            <a class="btn btn-danger" style="font-size:16px" onclick="eliminar(document.getElementById('codigo_factura<?php echo $i;?>').value)" data-toggle="tooltip" title="Delete Docket"><i class="fa fa-trash-o"></i></a>
+                            <button class="btn btn-danger" style="font-size:16px" onclick="eliminar(document.getElementById('codigo_factura<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="Delete Docket"><i class="fa fa-trash-o"></i></button>
+                            
                              
                           </div>
                         </td>
@@ -176,13 +175,16 @@ if(empty($_SESSION['user']))
                 </div>
               </section>
               <center>
-
-                <a href="create_invoice.php?docket=<?php echo base64_encode($codigo);?>">
-                <button type="button" class="btn btn-primary"><strong>ADD INVOICE </strong></button>
-                  <a href="docket_list.php">
-                  <button type="button" class="btn btn-danger"><strong>GO BACK</strong></button>
+                <!-- Trigger the modal with a button -->
+                <a href="create_invoice.php?docket=<?php echo base64_encode($codigo);?>" class="btn btn-primary">
+                  <strong>ADD INVOICE </strong>
+                </a>
+                <a href="docket_list.php" class="btn btn-danger">
+                  <strong>GO BACK</strong>
+                </a>
               </center>
             </div>
+          </div>
             <!-- <div class="form-group">
               <div class="col-lg-offset-2 col-lg-10">
                 <a href="create_invoice.php?docket=<?php //echo base64_encode($codigo);?>"><center><button class="btn btn-primary">ADD INVOICE AT THIS DOCKET</button><center></a>
@@ -194,36 +196,30 @@ if(empty($_SESSION['user']))
     <!--main content end-->
   </section>
   <!-- container section start -->
-  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal-2" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-          <h4 class="modal-title">Form Tittle</h4>
+      <!-- Modal -->
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+        <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Elimnar Factura</h4>
+            </div>
+            <form class="form-inline" role="form" method="post" id="formulario_eliminar_factura" action="../controllers/invoiceControllers.php">
+              <div class="modal-body">
+                <input type="hidden"  class="form-control m-bot15 round-input"  name="codigo_factura_elimanar" id="codigo_factura_elimanar">
+                <input type="hidden"  class="form-control m-bot15 round-input"  name="codigo_factura_documento" id="codigo_factura_documento">
+                <label for="origin">Description </label>
+                <textarea class="form-control round-input" id="descripcion_eliminar" name="descripcion_eliminar" ></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" name="boton_eliminar" class="btn btn-success">Confirmar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class="modal-body">
-          <form class="form-inline" role="form">
-            <div class="form-group">
-              <label class="sr-only" for="exampleInputEmail2">Email address</label>
-              <input type="email" class="form-control sm-input" id="exampleInputEmail5" placeholder="Enter email">
-            </div>
-            <div class="form-group">
-              <label class="sr-only" for="exampleInputPassword2">Password</label>
-              <input type="password" class="form-control sm-input" id="exampleInputPassword5" placeholder="Password">
-            </div>
-            <div class="checkbox">
-              <label>
-                                            <input type="checkbox"> Remember me
-                                        </label>
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
-
-        </div>
-
       </div>
-    </div>
-  </div>
 
   <!-- javascripts -->
   <?php include('pie.php');?>
@@ -236,6 +232,18 @@ if(empty($_SESSION['user']))
 
     function eliminar(id){
       console.log(id);
+      $("#codigo_factura_elimanar").val(id);
+      $("#codigo_factura_documento").val($("#id_codigo_docket").val());
+      $("#formulario_eliminar_factura").submit(function(event) {
+        var codigo = $("#codigo_factura_elimanar").val();
+        var descripcion = $("#descripcion_eliminar").val();
+        if (descripcion.length==0) {
+            $("#descripcion_eliminar").css({"border":"2px solid #ff3333"});
+            event.preventDefault();
+        }else{
+            $("#descripcion_eliminar").css({"border":"0"});
+        }
+      });
     }
 
   </script>

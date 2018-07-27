@@ -283,5 +283,15 @@ if(isset($_POST['enviar_update_invoice'])){
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_invoice.php?invoice=".base64_encode($codigo_invoice)."'>";
     
 }
+if (isset($_POST['boton_eliminar'])) {
+    $codigo_docket = $_POST['codigo_factura_documento'];
+    $codigo_invoice = $_POST['codigo_factura_elimanar']; 
+    $descripcion = $_POST['descripcion_eliminar']; 
+
+    $delete_invoice = new Invoice($codigo_invoice,'','','','','','',$fecha_registro,'','');
+    $delete_invoice->DeleteInvoice();
+   
+    echo"<meta http-equiv='refresh' content='0;URL=../view/detail_docket.php?docket=".base64_encode($codigo_docket)."'>";
+}
 
 ?>
