@@ -53,7 +53,7 @@
   <script type="text/javascript" src="../theme/assets/ckeditor/ckeditor.js"></script>
   <!--<script src="../theme/js/form-component.js"></script>-->
 
-  <script src="../js/documento.js"></script>
+  
 
 
   <script>
