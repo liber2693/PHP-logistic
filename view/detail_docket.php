@@ -42,6 +42,9 @@ if(empty($_SESSION['user']))
             </ol>
           </div>
         </div>
+        <a href="#myModal-2" data-toggle="modal" class="btn  btn-danger">
+                                  Form in Modal 3
+                              </a>
         <div class="row">
           <div class="col-lg-12">
             <section class="panel">
@@ -145,20 +148,23 @@ if(empty($_SESSION['user']))
                     </thead>
                     <tbody>
                       <?php
+                      $i=0;
                       while($datos=$array1->fetch_assoc())
                       {
+                        $i++;
                       ?>
                       <tr>
-                        <td><strong><?php echo $datos['codigo_invoice'];?></strong></td>
+                        <td><strong><?php echo $datos['codigo_invoice'];?></strong><input type="text" id="codigo_factura<?php echo $i;?>" value="<?php echo $datos['codigo_invoice'];?>"></td>
                         <td><strong><?php echo ucwords($datos['cliente']);?></strong></td>
                         <td><strong><?php echo $datos['fecha_creacion'];?></strong></td>
                         <td>
                           <div class="btn-group">
                             <!--<a class="btn btn-primary" style="font-size:16px" href="create_invoice.php?docket=<?php //echo base64_encode($datos['codigo']);?>" data-toggle="tooltip" title="Add Invoice"><i class="fa fa-plus"></i></a>-->
                             <a class="btn btn-success" style="font-size:16px" href="update_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Edit Invoice"><i class="fa fa-pencil"></i></a>
-                            <!--<a class="btn btn-danger" style="font-size:16px" href="#" data-toggle="tooltip" title="Delete Docket"><i class="fa fa-trash-o"></i></a>-->
                             <a class="btn btn-warning" style="font-size:16px" href="detail_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="See Invoice"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-info" style="font-size:16px" target="_blank" href="invoice_pdf.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Download Detail"><i class="fa fa-file-pdf-o"></i></a>
+                            <a class="btn btn-danger" style="font-size:16px" onclick="eliminar(document.getElementById('codigo_factura<?php echo $i;?>').value)" data-toggle="tooltip" title="Delete Docket"><i class="fa fa-trash-o"></i></a>
+                             
                           </div>
                         </td>
                       </tr>
@@ -170,6 +176,7 @@ if(empty($_SESSION['user']))
                 </div>
               </section>
               <center>
+
                 <a href="create_invoice.php?docket=<?php echo base64_encode($codigo);?>">
                 <button type="button" class="btn btn-primary"><strong>ADD INVOICE </strong></button>
                   <a href="docket_list.php">
@@ -187,6 +194,36 @@ if(empty($_SESSION['user']))
     <!--main content end-->
   </section>
   <!-- container section start -->
+  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal-2" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+          <h4 class="modal-title">Form Tittle</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-inline" role="form">
+            <div class="form-group">
+              <label class="sr-only" for="exampleInputEmail2">Email address</label>
+              <input type="email" class="form-control sm-input" id="exampleInputEmail5" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="exampleInputPassword2">Password</label>
+              <input type="password" class="form-control sm-input" id="exampleInputPassword5" placeholder="Password">
+            </div>
+            <div class="checkbox">
+              <label>
+                                            <input type="checkbox"> Remember me
+                                        </label>
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <!-- javascripts -->
   <?php include('pie.php');?>
@@ -196,6 +233,11 @@ if(empty($_SESSION['user']))
     $(document).ready( function () {
       $('#table_id').DataTable();
     });
+
+    function eliminar(id){
+      console.log(id);
+    }
+
   </script>
 
 
