@@ -161,7 +161,7 @@ if(empty($_SESSION['user']))
                             <a class="btn btn-success" style="font-size:16px" href="update_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Edit Invoice"><i class="fa fa-pencil"></i></a>
                             <a class="btn btn-warning" style="font-size:16px" href="detail_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="See Invoice"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-info" style="font-size:16px" target="_blank" href="invoice_pdf.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Download Detail"><i class="fa fa-file-pdf-o"></i></a>
-                            <button class="btn btn-danger" style="font-size:16px" onclick="eliminar(document.getElementById('codigo_factura<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="Delete Docket"><i class="fa fa-trash-o"></i></button>
+                            <button class="btn btn-danger" style="font-size:16px" onclick="eliminar(document.getElementById('codigo_factura<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="Delete Invoice"><i class="fa fa-trash-o"></i></button>
                             
                              
                           </div>
@@ -231,7 +231,7 @@ if(empty($_SESSION['user']))
     });
 
     function eliminar(id){
-      console.log(id);
+      //console.log(id);
       $("#codigo_factura_elimanar").val(id);
       $("#codigo_factura_documento").val($("#id_codigo_docket").val());
       $("#formulario_eliminar_factura").submit(function(event) {

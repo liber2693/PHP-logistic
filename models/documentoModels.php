@@ -118,5 +118,28 @@ class Docket{
 		;
 		$db->query($sql) or trigger_error("ERROR actualizando el documento");
 	}
+
+	//eliminar primero todo de invoice de un docket
+	public function DeleteInvoiceDocket(){
+		$db = new Conexion();
+		//eliminar de la tabla factura una factura
+		$sql1="UPDATE invoice SET fecha_modificacion='$this->fecha_modificacion', estatus='5' WHERE codigo_invoice='$this->codigo'";
+		$db->query($sql1);
+		//eliminar de la tabla servicios una factura
+		$sql2="UPDATE invoices_services SET estatus='5' WHERE codigo_invoice='$this->codigo'";
+		$db->query($sql2);
+		//eliminar de la tabla envios una factura
+		$sql3="UPDATE shipping_invoice SET estatus='5' WHERE codigo_invoice = '$this->codigo'";
+		$db->query($sql3);
+		//eliminar de la tabla proveedores una factura
+		$sql4="UPDATE supplier_invoice SET estatus='5' WHERE codigo_invoice = '$this->codigo'";
+		$db->query($sql4);
+	}
+	//elimnar el documento
+	public function DeleteDocket(){
+		$db = new Conexion();
+		$sql="UPDATE docket SET fecha_modificacion='$this->fecha_modificacion', usuario='$this->usuario', estatus = '5' WHERE codigo='$this->codigo'";
+		$db->query($sql);
+	}
 }
 ?>

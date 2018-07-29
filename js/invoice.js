@@ -7,23 +7,24 @@ $(document).ready(function() {
     }
     //busca los servicios
     var tipo = $('#tipo').val();
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "../controllers/serviciosControllers.php",
-        "metdod": "GET",
-        "dataType" : "json",
-        "data" : {
-            "tipo": tipo
-        } 
-    }
-    $.ajax(settings).done(function (response) {
-        var lista = response;
-        lista.forEach( function(data, indice, array) {
-          $("#lista_servicios").append("<option value="+data.id+">"+data.descripcion+"</option> ")
-          //$("#Actualizar_benf_tipo_articulo").append("<option value="+data.id+">"+data.business_name+"</option> ")
-        });
-    });
+    $.ajax({
+    //async: true,
+        type: "GET",
+        dataType: "json",
+        url: "../controllers/serviciosControllers.php",
+        data: {'tipo' : tipo },
+        success: function(data){
+        var option = data;
+            if (option==0) {
+                 $("#lista_servicios").append("<option value='0'>No service available</option>");
+            }else{
+                option.forEach( function(data, indice, array) {
+                  $("#lista_servicios").append("<option value="+data.id+">"+data.descripcion+"</option>");
+                        //$("#Actualizar_benf_tipo_articulo").append("<option value="+data.id+">"+data.business_name+"</option> ")
+                });
+            }
+        }
+    })
 
     mostarLista();
 
@@ -69,7 +70,6 @@ $(document).ready(function() {
             $("#radio2").css({"border":"2px solid #ff3333"});
             event.preventDefault();
         }
-
         if((servicio!=0) && (dinero_us.length>0) || (dinero_cad.length>0)){
             $("#seleccion_servicios_tabla > tbody:last").children().remove();
             $.ajax({

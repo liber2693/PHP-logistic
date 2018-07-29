@@ -42,22 +42,22 @@ else
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-file-text-o"></i> Form elements</h3>
+            <h3 class="page-header"><i class="fa fa-file-text-o"></i> Update Invoice of Docket: <?php echo $datos['codigo_docket'];?></h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="create_docket.php">Home</a></li>
-              <li><i class="icon_document_alt"></i><a href="detail_docket.php?docket=<?php echo base64_encode($datos['codigo_docket']);?>"><?php echo $datos['codigo_docket'];?></a></li>
-              <li><i class="fa fa-file-text-o"></i>Form elements</li>
+              <li><a href="create_docket.php"><i class="fa fa-home"></i>Home</a></li>
+              <li><a href="detail_docket.php?docket=<?php echo base64_encode($datos['codigo_docket']);?>"><i class="icon_document_alt"></i>Docket: <?php echo $datos['codigo_docket'];?></a></li>
+              <li><i class="fa fa-file-text-o"></i>Update Invoice</li>
             </ol>
           </div>
         </div>
         <div class="row">
           <div class="col-lg-12">
+            <form class="form-horizontal" id="update_invoice" method="post" action="../controllers/invoiceControllers.php">
             <section class="panel">
               <header class="panel-heading">
                 INVOICE
               </header>
               <div class="panel-body">
-                <form class="form-horizontal" id="update_invoice" method="post" action="../controllers/invoiceControllers.php">
                 	<div class="form-group">
 	                    <label class="col-lg-2 control-label">Invoice Code</label>
 	                    <div class="col-lg-10">
@@ -206,13 +206,13 @@ else
                   <?php
                   }
                   ?>
-                  <center>
-                    <button type="submit" id="enviar_update_invoice" name="enviar_update_invoice" class="btn btn-primary"><b>UPDATE INVOICE</b></button>
-                    <!--button type="reset" class="btn btn-info"><b>Reset</b></button>-->
-                  </center>
-                </form>
               </div>
             </section>
+            <center>
+              <button type="submit" id="enviar_update_invoice" name="enviar_update_invoice" class="btn btn-primary"><b>UPDATE INVOICE</b></button>
+              <!--button type="reset" class="btn btn-info"><b>Reset</b></button>-->
+            </center>
+          </form>
           </div>
         </div>
         <!-- page end-->

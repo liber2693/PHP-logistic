@@ -120,6 +120,7 @@ if(isset($_GET['tabla']) && $_GET['tabla']==1){
     }else{
         $data=0;
     }
+    //echo "<pre>";print_r($data);die();
     echo json_encode($data);
 }
 //eliminar registro de la tabla temporal de servicos
