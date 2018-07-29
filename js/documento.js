@@ -6,12 +6,12 @@ $(document).ready(function() {
     $("#pais_destinoE").load(url_paise);
 	$("#importacion").submit(function(event) {
 		//event.preventDefault();
-		var shipper = $('#shipper').val(); 
+		var shipper = $('#shipper').val();
 		var fecha = $('#fecha').val();
-        var pais_origen = $("#pais_origen").val();
-        var origen = $('#origen').val();
-        var pais_destino = $("#pais_destino").val();
-        var destino = $('#destino').val();
+    var pais_origen = $("#pais_origen").val();
+    var origen = $('#origen').val();
+    var pais_destino = $("#pais_destino").val();
+    var destino = $('#destino').val();
 		var proveedor = $('#proveedor').val();
 		var pieza = $('#pieza').val();
 		var tipo_pieza = $('#tipo_pieza').val();
@@ -22,14 +22,14 @@ $(document).ready(function() {
 		var largo = $('#largo').val();
 		var medida = $('#medida').val();
 		var archivo = $('#archivo').val();
-        var telefono = $('#telefono').val();
-        var codigo_zip = $('#codigo_zip').val();
-        var descripcion = $('#descripcion').val();
+    var telefono = $('#telefono').val();
+    var codigo_zip = $('#codigo_zip').val();
+    var descripcion = $('#descripcion').val();
 		//archivo
-		
+
     	//alert(archivo);
 		//event.preventDefault();
-		
+
 		if (shipper=='') {
     		$("#shipper").css({"border":"2px solid #ff3333"});
 	       event.preventDefault();
@@ -146,10 +146,10 @@ $(document).ready(function() {
         }
         //alert(password);
     });
-    
+
     $("#exportacion").submit(function(event) {
         //event.preventDefault();
-        var shipper = $('#shipperE').val(); 
+        var shipper = $('#shipperE').val();
         var fecha = $('#fechaE').val();
         var pais_origen = $("#pais_origenE").val();
         var origen = $('#origenE').val();
@@ -169,10 +169,10 @@ $(document).ready(function() {
         var codigo_zip = $('#codigo_zipE').val();
         var descripcion = $('#descripcionE').val();
         //archivo
-        
+
         //alert(archivo);
         //event.preventDefault();
-        
+
         if (shipper=='') {
             $("#shipperE").css({"border":"2px solid #ff3333"});
            event.preventDefault();
@@ -289,7 +289,7 @@ $(document).ready(function() {
         }
         //alert(password);
     });
-    
+
     $("#enviar_actualizacion").submit(function(){
         var expedidor = $("#expedidor").val().trim();
         var fecha = $("#fecha").val().trim();
@@ -308,7 +308,7 @@ $(document).ready(function() {
         var largo = $("#largo").val().trim();
         var medida = $("#medida").val().trim();
         var descripcion = $("#descripcion").val().trim();
-        
+
         if (expedidor.length=='') {
             $("#expedidor").css({"border":"2px solid #ff3333"});
             return false;
@@ -413,8 +413,8 @@ $(document).ready(function() {
         }else{
             $("#descripcion").css({"border":"1px solid #c7c7cc"});
         }
-        
-        
+
+
     });
 });
 
@@ -425,7 +425,5 @@ function llenar_paises(idO,idD){
     $("#pais_origen_Actualizacion").load(url_origen);
     $("#pais_destino_Actualizacion").load(url_destino);
 
-    
-}
 
-					
+}

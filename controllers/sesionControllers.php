@@ -8,12 +8,12 @@ if(!empty($_POST['usuario']) && !empty($_POST['password']))
 {
 	$usuario=$_POST['usuario'];
 	$password=md5($_POST['password']);
-	
-	
+
+
 	$consulta_usuario = Sesion::soloUsuario($usuario);
 	$array1 = $consulta_usuario->selectUsuario();
 	if ($array1->num_rows!=0) {
-		
+
 		$valida_usuario = Sesion::usuarioContrasena($usuario,$password);
 		$array2 = $valida_usuario->validarUsuario();
 		if($array2->num_rows!=0){
@@ -27,21 +27,21 @@ if(!empty($_POST['usuario']) && !empty($_POST['password']))
 			$maquina_ip = recibirIPReal();
 			$actualizar = new Sesion('','','','','',$fecha,$hora,'',$maquina_ip,'',$id_usuario);
 			$actualizar->actualizarDatos();
-			
+
 			//Variables SESSION
 			$_SESSION['id_usuario']=$id_usuario;
 			$_SESSION['nombre']=$nombre;
 			$_SESSION['apellido']=$apellido;
 			$_SESSION['user']=$user;
 			$_SESSION['tipo_usuario']=$tipo_usuario;
-			$_SESSION['acceso']='loco1234';   
+			$_SESSION['acceso']='loco1234';
 			$array2->free();
-			
-			echo json_encode(3); //LOGEADO con exito	
+
+			echo json_encode(3); //LOGEADO con exito
 			//	echo "<meta http-equiv='refresh' content='0;URL=../inicio.php'>";
 		}
 		else{
-		echo json_encode(2); //contraseña invalidad	
+		echo json_encode(2); //contraseña invalidad
 		// 	echo"<meta http-equiv='refresh' content='0;URL=../index.php?error=u'>";
 		}
 	}else{

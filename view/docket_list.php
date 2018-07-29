@@ -102,19 +102,20 @@ if(empty($_SESSION['user']))
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Elimnar Factura</h4>
+          <h4 class="modal-title"><center><b>DELETE DOCKET</b></center></h4>
         </div>
-        <label>Esta seguro de eliminar el documento esto eliminara todas las facturas asociadas a este documento </label>
+        <br>
+        <center><b>ARE YOU SURE DO YOU WANT DELETE THIS DOCKET?</b></center>
         <form class="form-inline" role="form" method="post" id="formulario_eliminar_documento" action="../controllers/documentoControllers.php">
           <div class="modal-body">
             <input type="hidden"  class="form-control m-bot15 round-input"  name="codigo_documento_elimanar" id="codigo_documento_elimanar">
             <input type="hidden"  class="form-control m-bot15 round-input"  name="tipo_documento_eliminar" id="tipo_documento_eliminar">
-            <label for="origin">Description </label>
+            <label for="origin"><b>Reason:</b></label>
             <textarea class="form-control round-input" id="descripcion_eliminar" name="descripcion_eliminar" ></textarea>
           </div>
           <div class="modal-footer">
-            <button type="submit" name="boton_eliminar" class="btn btn-success">Confirmar</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <button type="submit" name="boton_eliminar" class="btn btn-success"><b>Confirm</b></button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><b>Cancel</b></button>
           </div>
         </form>
       </div>

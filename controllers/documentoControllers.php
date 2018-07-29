@@ -52,17 +52,17 @@ if(isset($_POST['enviar_documento'])){
 
     $documento = new Docket($codigo,$shipper,$telefono,$codigo_zip,$fecha,$pais_origen,$lugar_origen,$pais_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$tipo_dimension,$descripcion,$tipoDocumento,$fecha_registro,'',$usuario,'','');
     $documento->crearDocumento();
-    
+
     if(!empty($_FILES['archivo'])){
         $cantidad=count($_FILES['archivo']['tmp_name']);
-        for ($i=0; $i < $cantidad; $i++) { 
-            
+        for ($i=0; $i < $cantidad; $i++) {
+
             $nombreArchivo=str_replace(" ","_",$_FILES['archivo']['name'][$i]);
             $rutaArchivo="../img/documentos/".$codigo."_".$i."_".$nombreArchivo;
             $foto=$_FILES['archivo']['tmp_name'][$i];
-            
+
             if (is_uploaded_file($foto)) {
-            
+
                 copy($foto,$rutaArchivo);
                 $tipo=$_FILES['archivo']['type'][$i];
                 $error=$_FILES['archivo']['error'][$i];
@@ -77,7 +77,7 @@ if(isset($_POST['enviar_documento'])){
     echo"<meta http-equiv='refresh' content='0;URL=../view/create_invoice.php?docket=".base64_encode($codigo)."'>";
 }
 if(isset($_POST['actualizar_documento'])){
-    
+
     $codigo_docu = $_POST['codigo_docu'];
     $expedidor = $_POST['expedidor'];
     $fecha = $_POST['fecha'];
@@ -128,7 +128,7 @@ if(isset($_POST['boton_eliminar'])){
             //guardar regsitros de las facturas eliminadas
             $delete_register = new DocketInvoiceDelete($codigo_documento,$codigo_factura_eliminar,$tipo_factura,$descripcion,$usuario,$fecha_registro,'','');
             $delete_register->InsertDocketInvoice();
-            
+
         }
     }
     //eliminar el registro del documento
@@ -137,7 +137,7 @@ if(isset($_POST['boton_eliminar'])){
     //eliminar el documento ponerlo en la tabla eliminados
     $delete_register_d = new DocketInvoiceDelete($codigo_documento,'',$tipo_documento,$descripcion,$usuario,$fecha_registro,'','');
     $delete_register_d->InsertDocketInvoice();
-    
+
     echo"<meta http-equiv='refresh' content='0;URL=../view/docket_list.php'>";
 
 }
