@@ -12,7 +12,7 @@ if ($array->num_rows==0) {
   echo "NO EXIST";
 }else{
   $datos = $array->fetch_array();
-  
+
   $html = '<style>
 
       h2{
@@ -45,7 +45,7 @@ if ($array->num_rows==0) {
         line-height: normal;
       }
       </style>';
-  
+
   $html.='<h2>FACTURA</h2>
           <h3>
             <p>
@@ -55,7 +55,7 @@ if ($array->num_rows==0) {
               Origin: &nbsp;'.$datos['pais_origen'].', '.$datos['lugar_origen'].'<br>
               Destino: &nbsp;'.$datos['pais_destino'].', '.$datos['lugar_destino'].'<br>
               SUB BILL: &nbsp;'.$datos['cliente'].'<br>
-             
+
               pieza: &nbsp;'.$datos['pieza'].' tipo_pieza: &nbsp;'.$datos['tipo_pieza'].'<br>
               peso: &nbsp;'.$datos['peso'].' tipo_peso: &nbsp;'.$datos['tipo_peso'].'<br>
               alto: &nbsp;'.$datos['alto'].' ancho: &nbsp;'.$datos['ancho'].' largo: &nbsp;'.$datos['largo'].'
@@ -67,7 +67,7 @@ if ($array->num_rows==0) {
 
   $buscarServInvoice = invoicesServices::soloCodigo($codigo_factura);
   $array1 = $buscarServInvoice->SelectServicosInvoice();
-                
+
   $html.='
   <h2>Service</h2>
   <table border="1" width="100%">
@@ -133,7 +133,7 @@ if ($array->num_rows==0) {
       <tr>
         <td colspan="5" class="text-center">NO SERVICES</td>
       </tr>
-    </tbody>';  
+    </tbody>';
     }else{
       $i=0;
       while($datos_supli=$array3->fetch_assoc()){
@@ -191,12 +191,12 @@ if ($array->num_rows==0) {
 
 }
 
-      
+
 //==============================================================
 //==============================================================
 //==============================================================
 
-$mpdf=new mPDF('c','A4','','l',10,10,10,10,16,13); 
+$mpdf=new mPDF('c','A4','','l',10,10,10,10,16,13);
 $mpdf->SetTitle('Invoice - '.$datos['codigo_invoice']);
 
 //$mpdf->SetDisplayMode('fullpage');
@@ -250,7 +250,7 @@ exit;
   $mpdf->WriteHTML($html);
   $mpdf->Output($file,'D');
 
-  
+
 
 
 */
