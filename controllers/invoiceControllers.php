@@ -5,6 +5,7 @@ include '../models/supplierInvoiceModels.php';
 include '../models/shippingInvoiceModels.php';
 include '../models/invoicesServicesTempModels.php';
 include '../models/invoicesServicesModels.php';
+include '../models/docketInvoiceDelete.php';
 session_start();
 date_default_timezone_set("America/Caracas");
 $fecha_registro=date("Y-m-d");
@@ -284,13 +285,21 @@ if(isset($_POST['enviar_update_invoice'])){
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_invoice.php?invoice=".base64_encode($codigo_invoice)."'>";
     
 }
+//eliminar factura
 if (isset($_POST['boton_eliminar'])) {
     $codigo_docket = $_POST['codigo_factura_documento'];
     $codigo_invoice = $_POST['codigo_factura_elimanar']; 
     $descripcion = $_POST['descripcion_eliminar']; 
 
+    $usuario=$_SESSION['id_usuario'];
+    $tipo_factura = 'F';
+
     $delete_invoice = new Invoice($codigo_invoice,'','','','','','',$fecha_registro,'','');
     $delete_invoice->DeleteInvoice();
+
+    //guardar regsitros de las facturas eliminadas
+    $delete_register = new DocketInvoiceDelete($codigo_docket,$codigo_invoice,$tipo_factura,$descripcion,$usuario,$fecha_registro,'','');
+    $delete_register->InsertDocketInvoice();
    
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_docket.php?docket=".base64_encode($codigo_docket)."'>";
 }

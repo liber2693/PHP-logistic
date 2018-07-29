@@ -14,6 +14,12 @@
               <span>Docket list</span>
             </a>
           </li>
+          <li class="active">
+            <a class="" href="delete_list.php">
+              <i class="icon_house_alt"></i>
+              <span>Registros eliminados</span>
+            </a>
+          </li>
         </ul>
       </div>
     </aside>
