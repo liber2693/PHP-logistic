@@ -16,13 +16,21 @@
       <li class="dropdown">
         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
               <span class="profile-ava">
-                  <img alt="" src="../theme/img/liber.jpg">
+                <?php
+                /*$idusuario=$_SESSION['id_usuario'];
+                $etiqueta = '<img alt="" src="';
+                $ruta = '../theme/img/';
+                $tipo = '.jpg';
+                $cierre = '">';
+                echo $etiqueta.$ruta.$idusuario.$tipo.$cierre;*/
+                ?>
+                  <img alt="" src="../theme/img/sidebar_usuario-corporativo.jpg">
               </span>
               <?php
               $nombre=$_SESSION['nombre'];
               $apellido=$_SESSION['apellido'];
               ?>
-              <span class="username"><?php echo ucfirst($nombre).' '.ucfirst($apellido);?></span>
+              <span class="username"><b><?php echo ucfirst($nombre).' '.ucfirst($apellido);?></b></span>
               <b class="caret"></b>
         </a>
         <ul class="dropdown-menu extended logout">
