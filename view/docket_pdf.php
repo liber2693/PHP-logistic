@@ -1,7 +1,7 @@
 <?php
 include '../extenciones/mpdf60/mpdf.php';
 include '../models/documentoModels.php';
-include '../models/invoiceModels.php';
+//include '../models/invoiceModels.php';
 include '../models/invoicesServicesModels.php';
 include '../models/supplierInvoiceModels.php';
 include '../models/shippingInvoiceModels.php';
