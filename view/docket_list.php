@@ -79,7 +79,7 @@ if(empty($_SESSION['user']))
                           <a class="btn btn-primary" style="font-size:15px" href="create_invoice.php?docket=<?php echo base64_encode($datos['codigo']);?>" data-toggle="tooltip" title="Add Invoice"><i class="fa fa-plus"></i></a>
                           <a class="btn btn-success" style="font-size:15px" href="update_docket.php?docket=<?php echo base64_encode($datos['codigo']);?>" data-toggle="tooltip" title="Edit Docket"><i class="fa fa-pencil"></i></a>
                           <a class="btn btn-warning" style="font-size:15px" href="detail_docket.php?docket=<?php echo base64_encode($datos['codigo']);?>" data-toggle="tooltip" title="Docket Details"><i class="fa fa-eye"></i></a>
-                          <a class="btn btn-info" style="font-size:15px" href="#" data-toggle="tooltip" title="Docket Report"><i class="fa fa-file-pdf-o"></i></a>
+                          <a class="btn btn-info" style="font-size:15px" href="docket_pdf.php?docket=<?php echo base64_encode($datos['codigo']);?>" data-toggle="tooltip" title="Docket Report"><i class="fa fa-file-pdf-o"></i></a>
                           <button class="btn btn-danger" style="font-size:16px" onclick="eliminar_documento(document.getElementById('codigo_documento<?php echo $i;?>').value,document.getElementById('tipo_documento<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="Delete Docket"><i class="fa fa-trash-o"></i></button>
                         </div>
                       </td>

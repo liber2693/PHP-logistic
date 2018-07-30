@@ -1,5 +1,5 @@
 <?php 
-include '../config/conexion.php';
+//include '../config/conexion.php';
 /***invoice***/
 class Invoice{
 	

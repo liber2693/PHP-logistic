@@ -311,7 +311,7 @@ if(empty($_SESSION['user']))
   <?php include('pie.php');?>
 
 
-  <script src="../js/documento.js"></script>
+  <script src="../js/documento.js" type="text/javascript"></script>
 
 
 </body>

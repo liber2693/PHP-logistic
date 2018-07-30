@@ -5,9 +5,16 @@ include '../models/invoiceModels.php';
 include '../models/invoicesServicesModels.php';
 include '../models/supplierInvoiceModels.php';
 include '../models/shippingInvoiceModels.php';
-$codigo_factura=base64_decode($_GET['invoice']);
-//print_r($codigo_factura);die();
-$buscarInvoice = Invoice::soloCodigo($codigo_factura);
+$codigo_documento=base64_decode($_GET['docket']);
+$buscardocumento = Docket::soloCodigo($codigo_documento);
+$array_d = $buscardocumento->selectDocket();
+if ($array_d->num_rows==0) {
+  echo "NO EXIST";
+}else{
+  $datos_d = $array_d->fetch_array();
+  echo "<pre>";print_r($datos_d);die();
+}
+/*$buscarInvoice = Invoice::soloCodigo($codigo_factura);
 $array = $buscarInvoice->SelectInvoiceDocket();
 if ($array->num_rows==0) {
   echo "NO EXIST";

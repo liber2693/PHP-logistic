@@ -182,7 +182,8 @@ if(empty($_SESSION['user']))
   </section>
   <!-- container section start -->
   <!-- javascripts -->
-<?php include('pie.php');?>
+  <?php include('pie.php');?>
+  <script src="../js/documento.js" type="text/javascript"></script>
 </body>
 </html>
 <?php
