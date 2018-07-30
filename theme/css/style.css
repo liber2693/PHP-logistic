@@ -168,7 +168,7 @@ table tr th { color: #688a7e;}
 
 .login-img3-body{
 
-  background: url('../img/imagenes_login/1') no-repeat center center fixed;
+  background: url('../img/imagenes_login/1.jpg') no-repeat center center fixed;
 
   -webkit-background-size: cover;
 
@@ -2390,7 +2390,6 @@ div[data-role="editor-toolbar"] {
 
 }
 
-}
 
 .panel.panel-default.panel-heading {
 
