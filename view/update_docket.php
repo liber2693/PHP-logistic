@@ -36,10 +36,10 @@ if(empty($_SESSION['user']))
         <!--overview start-->
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-laptop"></i> EDIT DOCKET</h3>
+            <h3 class="page-header"><i class="fa fa-laptop"></i><b>EDIT DOCKET</b></h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="index.php">Home</a></li>
-              <li><i class="fa fa-folder-open"></i>Update Docket</li>
+              <li><i class="fa fa-folder-open"></i><b>Update Docket</b></li>
             </ol>
           </div>
         </div>

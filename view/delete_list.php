@@ -30,7 +30,7 @@ if(empty($_SESSION['user']))
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-archive"></i> Deleted Docket</h3>
+            <h3 class="page-header"><i class="fa fa-archive"></i> <b>Deleted Docket</b></h3>
             <ol class="breadcrumb">
               <li><a href="create_docket.php"><i class="fa fa-home"></i>Home</a></li>
               <li><i class="fa fa-archive"></i>Deleted Docket</li>
@@ -82,7 +82,7 @@ if(empty($_SESSION['user']))
                       <td>
                         <b>
                         <?php if($datos['tipo']=="F"){
-                          echo "IVOICE";
+                          echo "INVOICE";
                         }else if ($datos['tipo']=="E") {
                           echo "EXPORT";
                         } else if($datos['tipo']=="I") {

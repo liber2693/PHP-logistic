@@ -88,18 +88,18 @@ $(document).ready(function() {
                     if(lista==0){
                         $("#seleccion_servicios_tabla").append(
                         '<tr>'+
-                        '<td colspan="5" class="text-center">Services are not available yet</td>'+
+                        '<td colspan="5" class="text-center"><b>Services are not available yet</b></td>'+
                         '</tr>');
                         $('#enviar_invoice').attr("disabled", true);
                     }else{
                         lista.forEach( function(data, indice, array) {
                             $("#seleccion_servicios_tabla").append(
                             '<tr>'+
-                            '<td>'+data.codigo_ser+'</td>'+
-                            '<td>'+data.descripcion+'</td>'+
-                            '<td>'+data.nota+'</td>'+
-                            '<td>'+data.dolar_us+'</td>'+
-                            '<td>'+data.dolar_cad+'</td>'+
+                            '<td>'+'<b>'+data.codigo_ser+'</b>'+'</td>'+
+                            '<td>'+'<b>'+data.descripcion+'</b>'+'</td>'+
+                            '<td>'+'<b>'+data.nota+'</b>'+'</td>'+
+                            '<td>'+'<b>'+data.dolar_us+'</b>'+'</td>'+
+                            '<td>'+'<b>'+data.dolar_cad+'</b>'+'</td>'+
                             '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminar('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                             '</tr>');
                             $('#enviar_invoice').attr("disabled", false);
@@ -202,18 +202,18 @@ function mostarLista(){
             if(lista==0){
                 $("#seleccion_servicios_tabla").append(
                 '<tr>'+
-                '<td colspan="5" class="text-center">Services are not available yet</td>'+
+                '<td colspan="5" class="text-center"><b>Services are not available yet</b></td>'+
                 '</tr>');
                 $('#enviar_invoice').attr("disabled", true);
             }else{
                 lista.forEach( function(data, indice, array) {
                     $("#seleccion_servicios_tabla").append(
                     '<tr>'+
-                    '<td>'+data.codigo_ser+'</td>'+
-                    '<td>'+data.descripcion+'</td>'+
-                    '<td>'+data.nota+'</td>'+
-                    '<td>'+data.dolar_us+'</td>'+
-                    '<td>'+data.dolar_cad+'</td>'+
+                    '<td>'+'<b>'+data.codigo_ser+'</b>'+'</td>'+
+                    '<td>'+'<b>'+data.descripcion+'</b>'+'</td>'+
+                    '<td>'+'<b>'+data.nota+'</b>'+'</td>'+
+                    '<td>'+'<b>'+data.dolar_us+'</b>'+'</td>'+
+                    '<td>'+'<b>'+data.dolar_cad+'</b>'+'</td>'+
                     '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminar('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                     '</tr>');
                     $('#enviar_invoice').attr("disabled", false);

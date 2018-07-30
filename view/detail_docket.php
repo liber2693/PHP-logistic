@@ -34,7 +34,7 @@ if(empty($_SESSION['user']))
         <!--overview start-->
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-laptop"></i> DOCKET</h3>
+            <h3 class="page-header"><i class="fa fa-laptop"></i> <b>DOCKET</b></h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="../index.php">Home</a></li>
               <li><i class="fa fa-archive"></i><a href="docket_list.php">Docket List</a></li>
@@ -46,7 +46,7 @@ if(empty($_SESSION['user']))
           <div class="col-lg-12">
             <section class="panel">
               <header class="panel-heading">
-              DOCKET
+              <b>DOCKET</b>
               </header>
               <div class="panel-body">
                 <div class="checkboxes">
@@ -94,7 +94,7 @@ if(empty($_SESSION['user']))
           <div class="col-lg-12">
             <section class="panel">
               <header class="panel-heading">
-                ATTACHMENTS:
+                <b>ATTACHMENTS:</b>
               </header>
               <?php
               $archivos = ArchivoAdjuntos::soloCodigo($codigo);
@@ -103,7 +103,7 @@ if(empty($_SESSION['user']))
               ?>
               <div class="panel-body">
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">NO ATTACHMENTS</label>
+                  <label class="col-sm-2 control-label"><b>NO ATTACHMENTS</b></label>
                 </div>
               </div>
               <?php

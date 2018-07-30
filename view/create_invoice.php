@@ -41,11 +41,11 @@ else
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-file-text-o"></i> Create Invoice of Docket: <?php echo $codigo;?></h3>
+            <h3 class="page-header"><i class="fa fa-file-text-o"></i> <b>Create Invoice of Docket: <?php echo $codigo;?></b></h3>
             <ol class="breadcrumb">
               <li><a href="create_docket.php"><i class="fa fa-home"></i>Home</a></li>
               <li><a href="detail_docket.php?docket=<?php echo base64_encode($codigo);?>"><i class="icon_document_alt"></i>Docket: <?php echo $codigo;?></a></li>
-              <li><i class="fa fa-file-text-o"></i>Create Invoice</li>
+              <li><i class="fa fa-file-text-o"></i><b>Create Invoice</b></li>
             </ol>
           </div>
         </div>
@@ -168,7 +168,7 @@ else
                   if ($resultadosEnvio->num_rows==0) {
                   ?>
                     <div class="form-group">
-                        <label class="col-sm-10 control-label">There is no shipping way available</label>
+                        <label class="col-sm-10 control-label">No ship via available</label>
                     </div>
                   <?php
                   }

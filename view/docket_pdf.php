@@ -6,7 +6,7 @@ include '../models/invoicesServicesModels.php';
 include '../models/supplierInvoiceModels.php';
 include '../models/shippingInvoiceModels.php';
 
-$mpdf=new mPDF('c','A4','','l',10,10,10,10,16,13); 
+$mpdf=new mPDF('c','A4','','l',10,10,10,10,16,13);
 
 $codigo_documento=base64_decode($_GET['docket']);
 $buscardocumento = Docket::soloCodigo($codigo_documento);
@@ -47,7 +47,7 @@ if ($array_d->num_rows==0) {
         line-height: normal;
       }
       </style>';
-  
+
   $html.='<h2>Titulo del Docuemnto</h2>
           <h3>
             <p>
@@ -57,8 +57,8 @@ if ($array_d->num_rows==0) {
               Code ZIP: &nbsp;'.$datos_d['codigo_zip'].'<br>
               Origin: &nbsp;'.$datos_d['origen'].', '.$datos_d['lugar_origen'].'<br>
               Destino: &nbsp;'.$datos_d['destino'].', '.$datos_d['lugar_destino'].'<br>
-   
- 
+
+
               pieza: &nbsp;'.$datos_d['pieza'].' tipo_pieza: &nbsp;'.$datos_d['tipo_pieza'].'<br>
               peso: &nbsp;'.$datos_d['peso'].' tipo_peso: &nbsp;'.$datos_d['tipo_peso'].'<br>
               alto: &nbsp;'.$datos_d['alto'].' ancho: &nbsp;'.$datos_d['ancho'].' largo: &nbsp;'.$datos_d['largo'].'
@@ -75,7 +75,7 @@ if ($array_d->num_rows==0) {
   $buscarInvoice = Docket::soloCodigo($codigo_documento);
   $array_i = $buscarInvoice->SelectInvoiceDocket();
   if ($array_i->num_rows!=0) {
-    
+
     $con=0;
     while ($datos_i = $array_i->fetch_array()) {
       $con++;
@@ -89,19 +89,19 @@ if ($array_d->num_rows==0) {
             Origin: &nbsp;'.$datos_i['pais_origen'].', '.$datos_i['lugar_origen'].'<br>
             Destino: &nbsp;'.$datos_i['pais_destino'].', '.$datos_i['lugar_destino'].'<br>
             SUB BILL: &nbsp;'.$datos_i['cliente'].'<br>
-           
+
             pieza: &nbsp;'.$datos_i['pieza'].' tipo_pieza: &nbsp;'.$datos_i['tipo_pieza'].'<br>
             peso: &nbsp;'.$datos_i['peso'].' tipo_peso: &nbsp;'.$datos_i['tipo_peso'].'<br>
             alto: &nbsp;'.$datos['alto'].' ancho: &nbsp;'.$datos_i['ancho'].' largo: &nbsp;'.$datos_i['largo'].'
             tipo_dimension: &nbsp;'.$datos_i['tipo<br>_dimension'].'<br>
             descripcion: &nbsp;'.$datos_i['descripcion'].'<br>
-              
+
             </p>
           </h3>';
 
       $buscarServInvoice = invoicesServices::soloCodigo($codigo_factura);
       $array1 = $buscarServInvoice->SelectServicosInvoice();
-                    
+
       $paginas.$con.='
       <h2>Service</h2>
       <table border="1" width="100%">
@@ -167,7 +167,7 @@ if ($array_d->num_rows==0) {
           <tr>
             <td colspan="5" class="text-center">NO SERVICES</td>
           </tr>
-        </tbody>';  
+        </tbody>';
         }else{
           $i=0;
           while($datos_supli=$array3->fetch_assoc()){
@@ -226,10 +226,10 @@ if ($array_d->num_rows==0) {
     //echo "<pre>";print_r($datos_i);
     }
     //die();
-    
+
   }
 
-  
+
 
   //$mpdf->SetDisplayMode('fullpage');
 
@@ -238,7 +238,7 @@ if ($array_d->num_rows==0) {
   // LOAD a stylesheet
   //$stylesheet = file_get_contents('mpdfstyletables.css');
   //$mpdf->WriteHTML($stylesheet,1);  // The parameter 1 tells that this is css/style only and no body/html/text
-  
+
 
   $mpdf->SetTitle('DocKet - '.$datos_d['codigo']);
   $mpdf->Output('DocKet - '.$datos['codigo'].'.pdf','I');
@@ -249,7 +249,7 @@ if ($array->num_rows==0) {
   echo "NO EXIST";
 }else{
   $datos = $array->fetch_array();
-  
+
   $html = '<style>
 
       h2{
@@ -282,7 +282,7 @@ if ($array->num_rows==0) {
         line-height: normal;
       }
       </style>';
-  
+
   $html.='<h2>FACTURA</h2>
           <h3>
             <p>
@@ -292,7 +292,7 @@ if ($array->num_rows==0) {
               Origin: &nbsp;'.$datos['pais_origen'].', '.$datos['lugar_origen'].'<br>
               Destino: &nbsp;'.$datos['pais_destino'].', '.$datos['lugar_destino'].'<br>
               SUB BILL: &nbsp;'.$datos['cliente'].'<br>
-             
+
               pieza: &nbsp;'.$datos['pieza'].' tipo_pieza: &nbsp;'.$datos['tipo_pieza'].'<br>
               peso: &nbsp;'.$datos['peso'].' tipo_peso: &nbsp;'.$datos['tipo_peso'].'<br>
               alto: &nbsp;'.$datos['alto'].' ancho: &nbsp;'.$datos['ancho'].' largo: &nbsp;'.$datos['largo'].'
@@ -302,17 +302,17 @@ if ($array->num_rows==0) {
             </p>
           </h3>';
 
-  
+
 
 
 }*/
 
-      
+
 //==============================================================
 //==============================================================
 //==============================================================
 
-//$mpdf=new mPDF('c','A4','','l',10,10,10,10,16,13); 
+//$mpdf=new mPDF('c','A4','','l',10,10,10,10,16,13);
 //$mpdf->SetTitle('Invoice - '.$datos['codigo_invoice']);
 
 //$mpdf->SetDisplayMode('fullpage');
@@ -366,7 +366,7 @@ if ($array->num_rows==0) {
   $mpdf->WriteHTML($html);
   $mpdf->Output($file,'D');
 
-  
+
 
 
 */

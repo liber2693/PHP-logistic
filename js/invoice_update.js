@@ -88,18 +88,18 @@ $(document).ready(function() {
                 	if(lista==0){
                 		$("#seleccion_servicios_tabla").append(
                   		'<tr>'+
-                    	'<td colspan="5" class="text-center">Services are not available yet</td>'+
+                    	'<td colspan="5" class="text-center"><b>Services are not available yet</b></td>'+
                     	'</tr>');
                     	$('#enviar_update_invoice').attr("disabled", true);
                 	}else{
 	                	lista.forEach( function(data, indice, array) {
 				        	$("#seleccion_servicios_tabla").append(
 	                  		'<tr>'+
-	                    	'<td>'+data.codigo_ser+'</td>'+
-	                    	'<td>'+data.descripcion+'</td>'+
-	                    	'<td>'+data.nota+'</td>'+
-	                    	'<td>'+data.precio_us+'</td>'+
-	                    	'<td>'+data.precio_ca+'</td>'+
+	                    	'<td>'+'<b>'+data.codigo_ser+'</b>'+'</td>'+
+	                    	'<td>'+'<b>'+data.descripcion+'</b>'+'</td>'+
+	                    	'<td>'+'<b>'+data.nota+'</b>'+'</td>'+
+	                    	'<td>'+'<b>'+data.precio_us+'</b>'+'</td>'+
+	                    	'<td>'+'<b>'+data.precio_ca+'</b>'+'</td>'+
 	                    	'<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminar('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
 	                  		'</tr>');
 	                  		$('#enviar_update_invoice').attr("disabled", false);
@@ -173,18 +173,18 @@ function mostarLista(){
         	if(lista==0){
         		$("#seleccion_servicios_tabla").append(
           		'<tr>'+
-            	'<td colspan="5" class="text-center">Services are not available yet</td>'+
+            	'<td colspan="5" class="text-center"><b>Services are not available yet</b></td>'+
             	'</tr>');
             	$('#enviar_update_invoice').attr("disabled", true);
         	}else{
             	lista.forEach( function(data, indice, array) {
 		        	$("#seleccion_servicios_tabla").append(
               		'<tr>'+
-                	'<td>'+data.codigo_ser+'</td>'+
-                	'<td>'+data.descripcion+'</td>'+
-                	'<td>'+data.nota+'</td>'+
-                	'<td>'+data.precio_us+'</td>'+
-                	'<td>'+data.precio_ca+'</td>'+
+                	'<td>'+'<b>'+data.codigo_ser+'</td>'+
+                	'<td>'+'<b>'+data.descripcion+'</b>'+'</td>'+
+                	'<td>'+'<b>'+data.nota+'</b>'+'</td>'+
+                	'<td>'+'<b>'+data.precio_us+'</b>'+'</td>'+
+                	'<td>'+'<b>'+data.precio_ca+'</b>'+'</td>'+
                 	'<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminar('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
               		'</tr>');
 		        	$('#enviar_update_invoice').attr("disabled", false);
@@ -255,15 +255,15 @@ function registrarSupplier(){
                 if(lista==0){
                     $("#seleccion_supplier").append(
                     '<tr>'+
-                    '<td colspan="3" class="text-center">Supplier are not available yet</td>'+
+                    '<td colspan="3" class="text-center"><b>Supplier are not available yet</b></td>'+
                     '</tr>');
                     $('#enviar_update_invoice').attr("disabled", true);
                 }else{
                     lista.forEach( function(data, indice, array) {
                         $("#seleccion_supplier").append(
                         '<tr>'+
-                        '<td>'+data.supplier+'</td>'+
-                        '<td>'+data.dinero+'</td>'+
+                        '<td>'+'<b>'+data.supplier+'</b>'+'</td>'+
+                        '<td>'+'<b>'+data.dinero+'</b>'+'</td>'+
                         '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminarSupplier('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                         '</tr>');
                         $('#enviar_update_invoice').attr("disabled", false);
@@ -302,15 +302,15 @@ function listaSupplier(){
             if(lista==0){
                 $("#seleccion_supplier").append(
                 '<tr>'+
-                '<td colspan="3" class="text-center">Supplier are not available yet</td>'+
+                '<td colspan="3" class="text-center"><b>Supplier are not available yet<b></td>'+
                 '</tr>');
                 $('#enviar_update_invoice').attr("disabled", true);
             }else{
                 lista.forEach( function(data, indice, array) {
                     $("#seleccion_supplier").append(
                     '<tr>'+
-                    '<td>'+data.supplier+'</td>'+
-                    '<td>'+data.dinero+'</td>'+
+                    '<td>'+'<b>'+data.supplier+'</b>'+'</td>'+
+                    '<td>'+'<b>'+data.dinero+'</b>'+'</td>'+
                     '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminarSupplier('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                     '</tr>');
                     $('#enviar_update_invoice').attr("disabled", false);
