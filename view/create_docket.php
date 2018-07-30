@@ -76,8 +76,16 @@ if(empty($_SESSION['user']))
                       <input name="telefono" type="text" class="form-control round-input" placeholder="Enter Phone"  autocomplete='tel'>
                     </div>
                     <div class="form-group">
+                      <label for="origin">CC #</label>
+                      <input name="cc" id="cc" type="text" class="form-control round-input" placeholder="Enter CC #" autocomplete='cc'>
+                    </div>
+                    <div class="form-group">
+                      <label for="origin">Consignee</label>
+                      <input name="condgnee" id="condgnee" type="text" class="form-control round-input" placeholder="Enter Consignee" autocomplete='condgnee'>
+                    </div>
+                    <div class="form-group">
                       <label for="origin">PO #</label>
-                      <input name="codigo_zip" type="text" class="form-control round-input" placeholder="Enter ZIP code" autocomplete='postal-code'>
+                      <input name="po" id="po" type="text" class="form-control round-input" placeholder="Enter PO #" autocomplete='po'>
                     </div>
                     <div class="form-group">
                       <label for="origin">Country of origin <b style="color: red;">*</b></label>
@@ -198,8 +206,16 @@ if(empty($_SESSION['user']))
                   <input name="telefono" type="text" class="form-control round-input" placeholder="Enter Phone"  autocomplete='tel'>
                 </div>
                 <div class="form-group">
+                  <label for="origin">CC #</label>
+                  <input name="cc" id="cc" type="text" class="form-control round-input" placeholder="Enter CC #" autocomplete='cc'>
+                </div>
+                <div class="form-group">
+                  <label for="origin">Consignee</label>
+                  <input name="condgnee" id="condgnee" type="text" class="form-control round-input" placeholder="Enter Consignee" autocomplete='condgnee'>
+                </div>
+                <div class="form-group">
                   <label for="origin">PO #</label>
-                  <input name="codigo_zip" type="text" class="form-control round-input" placeholder="Enter ZIP code" autocomplete='postal-code'>
+                  <input name="po" id="po" type="text" class="form-control round-input" placeholder="Enter PO #" autocomplete='po'>
                 </div>
                 <div class="form-group">
                   <label for="origin">Country of origin <b style="color: red;">*</b></label>

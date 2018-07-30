@@ -14,7 +14,7 @@ if(isset($_POST['enviar_documento'])){
     $tipoDocumento=$_POST['tipoDocumento'];
     $shipper=$_POST['shipper'];
     $telefono=$_POST['telefono'];
-    $codigo_zip=$_POST['codigo_zip'];
+    $po=$_POST['po'];
     $fecha=$_POST['fecha'];
     $pais_origen=$_POST['pais_origen'];
     $lugar_origen=$_POST['origen'];
@@ -50,7 +50,7 @@ if(isset($_POST['enviar_documento'])){
         $actualizar->UpdateCorrelativo();
     }
 
-    $documento = new Docket($codigo,$shipper,$telefono,$codigo_zip,$fecha,$pais_origen,$lugar_origen,$pais_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$tipo_dimension,$descripcion,$tipoDocumento,$fecha_registro,'',$usuario,'','');
+    $documento = new Docket($codigo,$shipper,$telefono,$po,$fecha,$pais_origen,$lugar_origen,$pais_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$tipo_dimension,$descripcion,$tipoDocumento,$fecha_registro,'',$usuario,'','');
     $documento->crearDocumento();
 
     if(!empty($_FILES['archivo'])){
