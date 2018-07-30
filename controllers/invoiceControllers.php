@@ -1,5 +1,5 @@
 <?php
-include '../models/documentoModels.php';
+//include '../models/documentoModels.php';
 include '../models/invoiceModels.php';
 include '../models/catalogoModels.php';
 include '../models/supplierInvoiceModels.php';
