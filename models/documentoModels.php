@@ -141,5 +141,20 @@ class Docket{
 		$sql="UPDATE docket SET fecha_modificacion='$this->fecha_modificacion', usuario='$this->usuario', estatus = '5' WHERE codigo='$this->codigo'";
 		$db->query($sql);
 	}
+
+	public function SelectInvoiceDocket(){
+		$db = new Conexion();
+		$sql="SELECT a.codigo_invoice,a.codigo_docket,a.cliente,a.fecha_creacion,b.shipper,b.telefono,
+					 b.lugar_origen,b.lugar_destino,b.pieza,b.tipo_pieza,b.peso,b.tipo_peso,b.alto,b.ancho,
+					 b.largo,b.tipo_dimension,b.descripcion,c.pais AS pais_origen,d.pais AS pais_destino
+					 FROM invoice a
+					 JOIN docket b ON b.codigo=a.codigo_docket
+					 JOIN paises c ON c.codigo=b.id_origen_pais 
+					 JOIN paises d ON d.codigo=b.id_destino_pais 
+					 WHERE 
+					 codigo_docket='$this->codigo'";
+		$result = $db->query($sql);
+		return $result;
+	}
 }
 ?>

@@ -12,10 +12,92 @@ if ($array_d->num_rows==0) {
   echo "NO EXIST";
 }else{
   $datos_d = $array_d->fetch_array();
-  echo "<pre>";print_r($datos_d);die();
+  $html = '<style>
+
+      h2{
+        text-align:center
+      }
+      p{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        line-height: 18px;
+      }
+
+      table th{color: #ffffff; background-color: #3692cd;}
+      .table-striped > tbody > tr > td{border:2px solid #ffffff; background-color: #d1f1fc;}
+
+      .di{
+        text-align:center
+      }
+
+      #menu p {
+        margin: 1px 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      #codigo{
+        float: right;
+      }
+
+      #header{
+        font-size: 15px;
+        line-height: normal;
+      }
+      </style>';
+  
+  $html.='<h2>Titulo del Docuemnto</h2>
+          <h3>
+            <p>
+              Docket: &nbsp;'.$datos_d['codigo'].'<br>
+              Date: &nbsp;'.$datos_d['fecha'].'<br>
+              Phone: &nbsp;'.$datos_d['telefono'].'<br>
+              Code ZIP: &nbsp;'.$datos_d['codigo_zip'].'<br>
+              Origin: &nbsp;'.$datos_d['origen'].', '.$datos_d['lugar_origen'].'<br>
+              Destino: &nbsp;'.$datos_d['destino'].', '.$datos_d['lugar_destino'].'<br>
+   
+ 
+              pieza: &nbsp;'.$datos_d['pieza'].' tipo_pieza: &nbsp;'.$datos_d['tipo_pieza'].'<br>
+              peso: &nbsp;'.$datos_d['peso'].' tipo_peso: &nbsp;'.$datos_d['tipo_peso'].'<br>
+              alto: &nbsp;'.$datos_d['alto'].' ancho: &nbsp;'.$datos_d['ancho'].' largo: &nbsp;'.$datos_d['largo'].'
+              tipo_dimension: &nbsp;'.$datos_d['tipo_dimension'].'<br>
+              descripcion: &nbsp;'.$datos_d['descripcion'].'<br>
+
+            </p>
+          </h3>';
+
+  /***********Imprimir los invoice de este documento****************/
+
+  $buscarInvoice = Docket::soloCodigo($codigo_documento);
+  $array_i = $buscarInvoice->SelectInvoiceDocket();
+  if ($array_i->num_rows!=0) {
+    
+    $i=0;
+    while ($datos_i = $array_i->fetch_array()) {
+      $i++;
+
+    echo "<pre>";print_r($datos_i);
+    }
+    die();
+    
+  }
+
+  $mpdf=new mPDF('c','A4','','l',10,10,10,10,16,13); 
+  $mpdf->SetTitle('DocKet - '.$datos_d['codigo']);
+
+  //$mpdf->SetDisplayMode('fullpage');
+
+  //$mpdf->list_indent_first_level = 0; // 1 or 0 - whether to indent the first level of a list
+
+  // LOAD a stylesheet
+  //$stylesheet = file_get_contents('mpdfstyletables.css');
+  //$mpdf->WriteHTML($stylesheet,1);  // The parameter 1 tells that this is css/style only and no body/html/text
+  $mpdf->AddPage('L','','','','',10,10,10,10,16,13);
+  $mpdf->WriteHTML($html);
+
+  $mpdf->Output('DocKet - '.$datos['codigo'].'.pdf','I');
+exit;
 }
-/*$buscarInvoice = Invoice::soloCodigo($codigo_factura);
-$array = $buscarInvoice->SelectInvoiceDocket();
+/*
 if ($array->num_rows==0) {
   echo "NO EXIST";
 }else{
@@ -197,7 +279,7 @@ if ($array->num_rows==0) {
     </table>';
 
 
-}
+}*/
 
       
 //==============================================================
