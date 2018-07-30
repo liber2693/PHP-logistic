@@ -28,7 +28,7 @@ if(empty($_SESSION['user']))
         <!--overview start-->
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
+            <h3 class="page-header"><i class="fa fa-laptop"></i>Create Docket</h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="index.php">Home</a></li>
               <li><i class="fa fa-folder-open"></i>Create Docket</li>
@@ -40,11 +40,9 @@ if(empty($_SESSION['user']))
         <div class="panel-group">
           <div class="panel-group">
             <div class="panel panel-link">
-              <div class="panel-heading" align=center>
                 <h3>
-                  <b>CREATE DOCKET</b>
+                  <center><b>CREATE DOCKET</b></center>
                 </h3>
-              </div><br>
               <div class="panel-body">
                 <center>
                   <a href="#myModal" data-toggle="modal" class="btn btn-primary btn-lg"><b>Import Docket</b></a>

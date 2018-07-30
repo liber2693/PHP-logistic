@@ -162,8 +162,8 @@ if(empty($_SESSION['user']))
                             <a class="btn btn-warning" style="font-size:16px" href="detail_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="See Invoice"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-info" style="font-size:16px" target="_blank" href="invoice_pdf.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Download Detail"><i class="fa fa-file-pdf-o"></i></a>
                             <button class="btn btn-danger" style="font-size:16px" onclick="eliminar(document.getElementById('codigo_factura<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="Delete Invoice"><i class="fa fa-trash-o"></i></button>
-                            
-                             
+
+
                           </div>
                         </td>
                       </tr>
@@ -203,18 +203,20 @@ if(empty($_SESSION['user']))
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Elimnar Factura</h4>
+              <h4 class="modal-title"><center><b>DELETE INVOICE</b></center></h4>
             </div>
+            <br>
+            <center><b>ARE YOU SURE DO YOU WANT DELETE THIS INVOICE?</b></center>
             <form class="form-inline" role="form" method="post" id="formulario_eliminar_factura" action="../controllers/invoiceControllers.php">
               <div class="modal-body">
                 <input type="hidden"  class="form-control m-bot15 round-input"  name="codigo_factura_elimanar" id="codigo_factura_elimanar">
                 <input type="hidden"  class="form-control m-bot15 round-input"  name="codigo_factura_documento" id="codigo_factura_documento">
-                <label for="origin">Description </label>
+                <label for="origin"><b>Reason:</b></label>
                 <textarea class="form-control round-input" id="descripcion_eliminar" name="descripcion_eliminar" ></textarea>
               </div>
               <div class="modal-footer">
-                <button type="submit" name="boton_eliminar" class="btn btn-success">Confirmar</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="submit" name="boton_eliminar" class="btn btn-success"><b>Confirm</b></button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><b>Cancel</b></button>
               </div>
             </form>
           </div>

@@ -30,10 +30,10 @@ if(empty($_SESSION['user']))
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-archive"></i> File Delete</h3>
+            <h3 class="page-header"><i class="fa fa-archive"></i> Deleted Docket</h3>
             <ol class="breadcrumb">
               <li><a href="create_docket.php"><i class="fa fa-home"></i>Home</a></li>
-              <li><i class="fa fa-archive"></i>File Delete</li>
+              <li><i class="fa fa-archive"></i>Deleted Docket</li>
             </ol>
           </div>
         </div>
@@ -49,12 +49,12 @@ if(empty($_SESSION['user']))
                 <table class="table display" id="table_id">
                   <thead>
                     <tr>
-                      <th><i class="fa fa-archive"></i> Code Docket</th>
-                      <th><i class="fa fa-list"></i> Code invoice</th>
-                      <th><i class="icon_profile"></i> Type</th>
-                      <th><i class="icon_profile"></i> usuario</th>
-                      <th><i class="icon_calendar fa fa-location-arrow"></i> Fecha</th>
-                      <th><i class="icon_cogs"></i> Action</th>
+                      <th><i class="fa fa-archive"></i>Docket #</th>
+                      <th><i class="fa fa-list"></i>Invoice #</th>
+                      <th><i class="icon_profile"></i>Type</th>
+                      <th><i class="icon_profile"></i>User</th>
+                      <th><i class="icon_calendar fa fa-location-arrow"></i>Date</th>
+                      <th><i class="icon_cogs"></i>Reason</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -73,7 +73,7 @@ if(empty($_SESSION['user']))
                       </td>
                       <td>
                         <b>
-                        <?php 
+                        <?php
                           $invoice_code = ($datos['codigo_invoice']==null) ? "DOCKET" : $datos['codigo_invoice'] ;
                           echo $invoice_code;
                         ?>
@@ -94,7 +94,7 @@ if(empty($_SESSION['user']))
                       <td><?php echo "<b>" .$datos['fecha_creacion']."</b>";?></td>
                       <td>
                         <div class="btn-group">
-                          <button class="btn btn-warning" style="font-size:16px" onclick="detalle(document.getElementById('detalle<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="Delete Docket"><i class="fa fa-eye"></i></button>
+                          <button class="btn btn-warning" style="font-size:16px" onclick="detalle(document.getElementById('detalle<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="See Reason"><i class="fa fa-eye"></i></button>
                         </div>
                       </td>
                     </tr>
@@ -116,16 +116,15 @@ if(empty($_SESSION['user']))
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">DETALLE</h4>
+          <center><h4 class="modal-title"><b>REASON</b></h4></center>
         </div>
-        <label>Detalle del por que se elimino</label>
         <!--<form class="form-inline" role="form" method="post" id="formulario_eliminar_documento" action="../controllers/documentoControllers.php">-->
           <div class="modal-body">
-            <label for="origin">Description </label>
-            <p  id="detalle_delete"></p>
+            <!-- <label for="origin">Description: </label> -->
+            <b><center><p id="detalle_delete"></center></p></b>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal"><b>Close</b></button>
           </div>
         <!--</form>-->
       </div>
