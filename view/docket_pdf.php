@@ -5,6 +5,9 @@ include '../models/documentoModels.php';
 include '../models/invoicesServicesModels.php';
 include '../models/supplierInvoiceModels.php';
 include '../models/shippingInvoiceModels.php';
+
+$mpdf=new mPDF('c','A4','','l',10,10,10,10,16,13); 
+
 $codigo_documento=base64_decode($_GET['docket']);
 $buscardocumento = Docket::soloCodigo($codigo_documento);
 $array_d = $buscardocumento->selectDocket();
@@ -12,10 +15,236 @@ if ($array_d->num_rows==0) {
   echo "NO EXIST";
 }else{
   $datos_d = $array_d->fetch_array();
-  echo "<pre>";print_r($datos_d);die();
+  $html = '<style>
+
+      h2{
+        text-align:center
+      }
+      p{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        line-height: 18px;
+      }
+
+      table th{color: #ffffff; background-color: #3692cd;}
+      .table-striped > tbody > tr > td{border:2px solid #ffffff; background-color: #d1f1fc;}
+
+      .di{
+        text-align:center
+      }
+
+      #menu p {
+        margin: 1px 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      #codigo{
+        float: right;
+      }
+
+      #header{
+        font-size: 15px;
+        line-height: normal;
+      }
+      </style>';
+  
+  $html.='<h2>Titulo del Docuemnto</h2>
+          <h3>
+            <p>
+              Docket: &nbsp;'.$datos_d['codigo'].'<br>
+              Date: &nbsp;'.$datos_d['fecha'].'<br>
+              Phone: &nbsp;'.$datos_d['telefono'].'<br>
+              Code ZIP: &nbsp;'.$datos_d['codigo_zip'].'<br>
+              Origin: &nbsp;'.$datos_d['origen'].', '.$datos_d['lugar_origen'].'<br>
+              Destino: &nbsp;'.$datos_d['destino'].', '.$datos_d['lugar_destino'].'<br>
+   
+ 
+              pieza: &nbsp;'.$datos_d['pieza'].' tipo_pieza: &nbsp;'.$datos_d['tipo_pieza'].'<br>
+              peso: &nbsp;'.$datos_d['peso'].' tipo_peso: &nbsp;'.$datos_d['tipo_peso'].'<br>
+              alto: &nbsp;'.$datos_d['alto'].' ancho: &nbsp;'.$datos_d['ancho'].' largo: &nbsp;'.$datos_d['largo'].'
+              tipo_dimension: &nbsp;'.$datos_d['tipo_dimension'].'<br>
+              descripcion: &nbsp;'.$datos_d['descripcion'].'<br>
+
+            </p>
+          </h3>';
+
+  $mpdf->AddPage('L','','','','',10,10,10,10,16,13);
+  $mpdf->WriteHTML($html);
+  /***********Imprimir los invoice de este documento****************/
+
+  $buscarInvoice = Docket::soloCodigo($codigo_documento);
+  $array_i = $buscarInvoice->SelectInvoiceDocket();
+  if ($array_i->num_rows!=0) {
+    
+    $con=0;
+    while ($datos_i = $array_i->fetch_array()) {
+      $con++;
+      $codigo_factura = $datos_i['codigo_invoice'];
+      $paginas.$con='<h2>FACTURA</h2>
+          <h3>
+            <p>
+             Docket: &nbsp;'.$datos_i['codigo_docket'].'<br>
+            Invoice: &nbsp;'.$datos_i['codigo_invoice'].'<br>
+            Date: &nbsp;'.$datos_i['fecha_creacion'].'<br>
+            Origin: &nbsp;'.$datos_i['pais_origen'].', '.$datos_i['lugar_origen'].'<br>
+            Destino: &nbsp;'.$datos_i['pais_destino'].', '.$datos_i['lugar_destino'].'<br>
+            SUB BILL: &nbsp;'.$datos_i['cliente'].'<br>
+           
+            pieza: &nbsp;'.$datos_i['pieza'].' tipo_pieza: &nbsp;'.$datos_i['tipo_pieza'].'<br>
+            peso: &nbsp;'.$datos_i['peso'].' tipo_peso: &nbsp;'.$datos_i['tipo_peso'].'<br>
+            alto: &nbsp;'.$datos['alto'].' ancho: &nbsp;'.$datos_i['ancho'].' largo: &nbsp;'.$datos_i['largo'].'
+            tipo_dimension: &nbsp;'.$datos_i['tipo<br>_dimension'].'<br>
+            descripcion: &nbsp;'.$datos_i['descripcion'].'<br>
+              
+            </p>
+          </h3>';
+
+      $buscarServInvoice = invoicesServices::soloCodigo($codigo_factura);
+      $array1 = $buscarServInvoice->SelectServicosInvoice();
+                    
+      $paginas.$con.='
+      <h2>Service</h2>
+      <table border="1" width="100%">
+        <thead>
+          <tr>
+            <td>#</td>
+            <td>Description</td>
+            <td>US$ AMT</td>
+            <td>CAD$ AMT</td>
+            <td>Notes</td>
+          </tr>
+        </thead>';
+      if($array1->num_rows==0){
+        $paginas.$con.='
+        <tbody>
+          <tr>
+            <td colspan="5" class="text-center">NO SERVICES</td>
+          </tr>
+        </tbody>';
+      }else{
+        $i=0;
+        while($datos_servi=$array1->fetch_assoc()){
+        $i++;
+        $paginas.$con.='
+          <tbody>
+            <tr>
+              <td>
+                <p>'.$i.'</p>
+              </td>
+              <td>
+                <p>'.$datos_servi['descripcion'].'</p>
+              </td>
+              <td>
+                <p>'.ucfirst($datos_servi['nota']).'</p>
+              </td>
+              <td>
+                <p>'.$datos_servi['precio_us'].'</p>
+              </td>
+              <td>
+                <p>'.$datos_servi['precio_ca'].'</p>
+              </td>
+            </tr>
+          </tbody>';
+        }
+      }
+      $paginas.$con.='</table> ';
+
+      $buscarSupplierInvoice = SupplierInvoice::soloCodigo($codigo_factura);
+      $array3 = $buscarSupplierInvoice->SelectProvedorInvoice();
+      $paginas.$con.='
+      <h2>Suppleir</h2>
+      <table border="1" width="100%">
+        <thead>
+          <tr>
+            <td>#</td>
+            <td>Supplier</td>
+            <td>US$ AMT</td>
+          </tr>
+        </thead>';
+        if($array3->num_rows==0){
+          $paginas.$con.='
+        <tbody>
+          <tr>
+            <td colspan="5" class="text-center">NO SERVICES</td>
+          </tr>
+        </tbody>';  
+        }else{
+          $i=0;
+          while($datos_supli=$array3->fetch_assoc()){
+          $i++;
+          $paginas.$con.='
+          <tbody>
+            <tr>
+              <td>
+                <p>'.$i.'</p>
+              </td>
+              <td>
+                <p>'.ucwords($datos_supli['supplier']).'</p>
+              </td>
+              <td>
+                <p>'.$datos_servi['dinero'].'</p>
+              </td>
+            </tr>
+          </tbody>';
+          }
+        }
+      $paginas.$con.='
+      </table>';
+
+      $buscarViaEnvio = ShippingInvoice::soloCodigo($codigo_factura);
+      $array2 = $buscarViaEnvio->SelectViaEnvio();
+
+      $paginas.$con.='
+      <h2>Via Envio</h2>';
+
+      if($array2->num_rows==0){
+        $paginas.$con.='
+          <div>
+            No ship via
+          <div>';
+      }else{
+        $paginas.$con.='
+        <table border="1">
+          <tbody>
+            <tr>';
+        $i=0;
+        while($datos2=$array2->fetch_assoc()){
+        $i++;
+        $nota = ($datos2['id_envio']==6) ? ucfirst($datos2['nota']) : "" ;
+          $paginas.$con.='
+              <td>
+                <p>'.$datos2['descripcion'].'</p><b>'.$nota.'</b>
+              </td>';
+        }
+      }
+        $paginas.$con.='
+            </tr>
+          </tbody>
+        </table>';
+    $mpdf->AddPage('L','','','','',10,10,10,10,16,13);
+    $mpdf->WriteHTML($paginas.$con);
+    //echo "<pre>";print_r($datos_i);
+    }
+    //die();
+    
+  }
+
+  
+
+  //$mpdf->SetDisplayMode('fullpage');
+
+  //$mpdf->list_indent_first_level = 0; // 1 or 0 - whether to indent the first level of a list
+
+  // LOAD a stylesheet
+  //$stylesheet = file_get_contents('mpdfstyletables.css');
+  //$mpdf->WriteHTML($stylesheet,1);  // The parameter 1 tells that this is css/style only and no body/html/text
+  
+
+  $mpdf->SetTitle('DocKet - '.$datos_d['codigo']);
+  $mpdf->Output('DocKet - '.$datos['codigo'].'.pdf','I');
+exit;
 }
-/*$buscarInvoice = Invoice::soloCodigo($codigo_factura);
-$array = $buscarInvoice->SelectInvoiceDocket();
+/*
 if ($array->num_rows==0) {
   echo "NO EXIST";
 }else{
@@ -73,139 +302,18 @@ if ($array->num_rows==0) {
             </p>
           </h3>';
 
-  $buscarServInvoice = invoicesServices::soloCodigo($codigo_factura);
-  $array1 = $buscarServInvoice->SelectServicosInvoice();
-                
-  $html.='
-  <h2>Service</h2>
-  <table border="1" width="100%">
-    <thead>
-      <tr>
-        <td>#</td>
-        <td>Description</td>
-        <td>US$ AMT</td>
-        <td>CAD$ AMT</td>
-        <td>Notes</td>
-      </tr>
-    </thead>';
-  if($array1->num_rows==0){
-     $html.='
-    <tbody>
-      <tr>
-        <td colspan="5" class="text-center">NO SERVICES</td>
-      </tr>
-    </tbody>';
-  }else{
-    $i=0;
-    while($datos_servi=$array1->fetch_assoc()){
-    $i++;
-    $html.='
-      <tbody>
-        <tr>
-          <td>
-            <p>'.$i.'</p>
-          </td>
-          <td>
-            <p>'.$datos_servi['descripcion'].'</p>
-          </td>
-          <td>
-            <p>'.ucfirst($datos_servi['nota']).'</p>
-          </td>
-          <td>
-            <p>'.$datos_servi['precio_us'].'</p>
-          </td>
-          <td>
-            <p>'.$datos_servi['precio_ca'].'</p>
-          </td>
-        </tr>
-      </tbody>';
-    }
-  }
-  $html.='</table> ';
-
-  $buscarSupplierInvoice = SupplierInvoice::soloCodigo($codigo_factura);
-  $array3 = $buscarSupplierInvoice->SelectProvedorInvoice();
-  $html.='
-  <h2>Suppleir</h2>
-  <table border="1" width="100%">
-    <thead>
-      <tr>
-        <td>#</td>
-        <td>Supplier</td>
-        <td>US$ AMT</td>
-      </tr>
-    </thead>';
-    if($array3->num_rows==0){
-      $html.='
-    <tbody>
-      <tr>
-        <td colspan="5" class="text-center">NO SERVICES</td>
-      </tr>
-    </tbody>';  
-    }else{
-      $i=0;
-      while($datos_supli=$array3->fetch_assoc()){
-      $i++;
-      $html.='
-      <tbody>
-        <tr>
-          <td>
-            <p>'.$i.'</p>
-          </td>
-          <td>
-            <p>'.ucwords($datos_supli['supplier']).'</p>
-          </td>
-          <td>
-            <p>'.$datos_servi['dinero'].'</p>
-          </td>
-        </tr>
-      </tbody>';
-      }
-    }
-  $html.='
-  </table>';
-
-  $buscarViaEnvio = ShippingInvoice::soloCodigo($codigo_factura);
-  $array2 = $buscarViaEnvio->SelectViaEnvio();
-
-  $html.='
-  <h2>Via Envio</h2>';
-
-  if($array2->num_rows==0){
-    $html.='
-      <div>
-        No ship via
-      <div>';
-  }else{
-    $html.='
-    <table border="1">
-      <tbody>
-        <tr>';
-    $i=0;
-    while($datos2=$array2->fetch_assoc()){
-    $i++;
-    $nota = ($datos2['id_envio']==6) ? ucfirst($datos2['nota']) : "" ;
-      $html.='
-          <td>
-            <p>'.$datos2['descripcion'].'</p><b>'.$nota.'</b>
-          </td>';
-    }
-  }
-    $html.='
-        </tr>
-      </tbody>
-    </table>';
+  
 
 
-}
+}*/
 
       
 //==============================================================
 //==============================================================
 //==============================================================
 
-$mpdf=new mPDF('c','A4','','l',10,10,10,10,16,13); 
-$mpdf->SetTitle('Invoice - '.$datos['codigo_invoice']);
+//$mpdf=new mPDF('c','A4','','l',10,10,10,10,16,13); 
+//$mpdf->SetTitle('Invoice - '.$datos['codigo_invoice']);
 
 //$mpdf->SetDisplayMode('fullpage');
 
@@ -214,11 +322,11 @@ $mpdf->SetTitle('Invoice - '.$datos['codigo_invoice']);
 // LOAD a stylesheet
 //$stylesheet = file_get_contents('mpdfstyletables.css');
 //$mpdf->WriteHTML($stylesheet,1);  // The parameter 1 tells that this is css/style only and no body/html/text
-$mpdf->AddPage('L','','','','',10,10,10,10,16,13);
-$mpdf->WriteHTML($html);
+//$mpdf->AddPage('L','','','','',10,10,10,10,16,13);
+//$mpdf->WriteHTML($html);
 
-$mpdf->Output('Invoice - '.$datos['codigo_invoice'].'.pdf','I');
-exit;
+//$mpdf->Output('Invoice - '.$datos['codigo_invoice'].'.pdf','I');
+//exit;
 //==============================================================
 //==============================================================
 //==============================================================
