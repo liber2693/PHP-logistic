@@ -16,7 +16,7 @@
             </a>
           </li>
           <?php
-          if ($_SESSION['id_usuario'] == 1){
+          if ($_SESSION['tipo_usuario'] == 1){
            ?>
           <li class="active">
             <a class="" href="delete_list.php">
