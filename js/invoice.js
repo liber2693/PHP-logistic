@@ -43,25 +43,25 @@ $(document).ready(function() {
     });
 
     $("#guardar_servicio").click(function(){
-        //borrar los tr de la tabla menos la primera fila 
-        
+        //borrar los tr de la tabla menos la primera fila
+
         //$('#seleccion_servicios_tabla').append('tr').not(':first').remove();
         //validar campos del pequeño fomulario
-        var servicio = $("#lista_servicios").val(); 
-        var dinero_us = $("#dinero_us").val();  
-        var dinero_cad = $("#dinero_cad").val();    
-        var nota = $("#nota").val();    
+        var servicio = $("#lista_servicios").val();
+        var dinero_us = $("#dinero_us").val();
+        var dinero_cad = $("#dinero_cad").val();
+        var nota = $("#nota").val();
         var codigo = $("#codigo_documento").val();
         var usuario = $("#usuario_documento").val();
-        
-        
+
+
         if (servicio==0) {
             $("#lista_servicios").css({"border":"2px solid #ff3333"});
            event.preventDefault();
         }else{
             $("#lista_servicios").css({"border":"1px solid #c7c7cc"});
         }
-        
+
         if ($('input[name="bill_to"]').is(':checked')) {
             $("#radio1").css({"border":"0"});
             $("#radio2").css({"border":"0"});
@@ -88,7 +88,7 @@ $(document).ready(function() {
                     if(lista==0){
                         $("#seleccion_servicios_tabla").append(
                         '<tr>'+
-                        '<td colspan="5" class="text-center">tdere are no services available</td>'+
+                        '<td colspan="5" class="text-center">Services are not available yet</td>'+
                         '</tr>');
                         $('#enviar_invoice').attr("disabled", true);
                     }else{
@@ -118,7 +118,7 @@ $(document).ready(function() {
 
     //vericicar los tipo de envios
     // Comprobar cuando cambia un checkbox
-    //mostrar el campo otro caundo selecciona el 6 
+    //mostrar el campo otro caundo selecciona el 6
     $('input[type=checkbox]').on('change', function() {
         var valor = $(this).val();
 
@@ -130,7 +130,7 @@ $(document).ready(function() {
     });
 
     $("#crear_invoice").submit(function(event) {
-        
+
         var supplier = $("#supplier1").val();
         var dinero = $("#dinero1").val();
         var quien_paga = $("#quien_paga").val();
@@ -153,7 +153,7 @@ $(document).ready(function() {
         }else{
             $("#quien_paga").css({"border":"1px solid #c7c7cc"});
         }
-        
+
         //validare que el envio este seleccionado
         var check = $("input[type='checkbox']:checked").length;
         if(check == ""){
@@ -174,20 +174,20 @@ function visible(i){
     var campo=i+1;
     $("#campoSupplier"+campo+"").removeClass("oculto");
     $("#campoSupplier"+campo+"").addClass("mostrar");
-   
+
 }
 
 function invisible(i){
-    //console.log(i);   
+    //console.log(i);
     $("#campoSupplier"+i+"").removeClass("mostrar");
     $("#supplier"+i+"").val("");
-    $("#dinero"+i+"").val("");   
+    $("#dinero"+i+"").val("");
 }
 
 function mostarLista(){
     var codigo = $("#codigo_documento").val();
     var usuario = $("#usuario_documento").val();
-    //borrar los tr de la tabla menos la primera fila 
+    //borrar los tr de la tabla menos la primera fila
     $("#seleccion_servicios_tabla > tbody:last").children().remove();
     //llenar la tabla si existen servicios por este documento
     $.ajax({
@@ -202,7 +202,7 @@ function mostarLista(){
             if(lista==0){
                 $("#seleccion_servicios_tabla").append(
                 '<tr>'+
-                '<td colspan="5" class="text-center">tdere are no services available</td>'+
+                '<td colspan="5" class="text-center">Services are not available yet</td>'+
                 '</tr>');
                 $('#enviar_invoice').attr("disabled", true);
             }else{
@@ -221,7 +221,7 @@ function mostarLista(){
             }
         }
     })
-} 
+}
 
 function eliminar(id){
     console.log(id);
@@ -247,7 +247,3 @@ function limpiar_campos(){
     $(".limpiar").val("");
     $("#lista_servicios").val("0");
 }
-
-
-
-

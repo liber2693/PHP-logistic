@@ -14,7 +14,7 @@ $(document).ready(function() {
         "dataType" : "json",
         "data" : {
         	"tipo": tipo
-        } 
+        }
     }
     $.ajax(settings).done(function (response) {
         var lista = response;
@@ -42,25 +42,25 @@ $(document).ready(function() {
     });
 
 	$("#guardar_servicio").click(function(){
-		//borrar los tr de la tabla menos la primera fila 
-		
+		//borrar los tr de la tabla menos la primera fila
+
 		//$('#seleccion_servicios_tabla').append('tr').not(':first').remove();
 		//validar campos del pequeño fomulario
-		var servicio = $("#lista_servicios").val();	
-		var dinero_us = $("#dinero_us").val();	
-		var dinero_cad = $("#dinero_cad").val();	
-		var nota = $("#nota").val();	
+		var servicio = $("#lista_servicios").val();
+		var dinero_us = $("#dinero_us").val();
+		var dinero_cad = $("#dinero_cad").val();
+		var nota = $("#nota").val();
 		var codigo_factura = $("#codigo_invoice").val();
 		var usuario_documento = $("#usuario_documento").val();
-		
-		
+
+
 		if (servicio==0) {
     		$("#lista_servicios").css({"border":"2px solid #ff3333"});
 	       event.preventDefault();
     	}else{
     		$("#lista_servicios").css({"border":"1px solid #c7c7cc"});
     	}
-		
+
 		if ($('input[name="bill_to"]').is(':checked')) {
 	     	$("#radio1").css({"border":"0"});
 	    	$("#radio2").css({"border":"0"});
@@ -88,7 +88,7 @@ $(document).ready(function() {
                 	if(lista==0){
                 		$("#seleccion_servicios_tabla").append(
                   		'<tr>'+
-                    	'<td colspan="5" class="text-center">tdere are no services available</td>'+
+                    	'<td colspan="5" class="text-center">Services are not available yet</td>'+
                     	'</tr>');
                     	$('#enviar_update_invoice').attr("disabled", true);
                 	}else{
@@ -105,11 +105,11 @@ $(document).ready(function() {
 	                  		$('#enviar_update_invoice').attr("disabled", false);
 				        });
                 	}
-                    limpiar_campos(); 
+                    limpiar_campos();
 				}
 	    	})
 	    }else{
-            $("#mensaje_actulaizacion_servicios").addClass("alert alert-block alert-danger fade in text-center").html("<strong>Disculpa!</strong> Debe llenar el campo");
+            $("#mensaje_actulaizacion_servicios").addClass("alert alert-block alert-danger fade in text-center").html("<strong>Sorry!</strong> You must fill in the required fields");
             setTimeout(function() {
             $("#mensaje_actulaizacion_servicios").removeClass().empty();
         },3000);
@@ -117,7 +117,7 @@ $(document).ready(function() {
 	});
 
 
-    //mostrar el campo otro caundo selecciona el 6 
+    //mostrar el campo otro caundo selecciona el 6
     $('input[type=checkbox]').on('change', function() {
         var valor = $(this).val();
 
@@ -130,7 +130,7 @@ $(document).ready(function() {
 
     //enviar el formulario para que actualize eñ registro del invoice
     $("#update_invoice").submit(function(event) {
-        
+
         var quien_paga = $("#quien_paga").val();
 
         if (quien_paga=='') {
@@ -139,11 +139,11 @@ $(document).ready(function() {
         }else{
             $("#quien_paga").css({"border":"1px solid #c7c7cc"});
         }
-        
+
         //validare que el envio este seleccionado
         var check = $("input[type='checkbox']:checked").length;
         if(check == ""){
-            $("#mensaje_create_invoice").addClass("alert alert-block alert-danger fade in text-center").html("<strong>Disculpa!</strong> Debe seleccionar un tipo de envio");
+            $("#mensaje_create_invoice").addClass("alert alert-block alert-danger fade in text-center").html("<strong>Sorry!</strong> You must select at least one ship via");
             setTimeout(function() {
                 $("#mensaje_create_invoice").removeClass().empty();
             },3000);
@@ -153,12 +153,12 @@ $(document).ready(function() {
             $("#via_envio").css({"border":"0"});
         }
     });
-	  
+
 });
 
 function mostarLista(){
 	var codigo_invoice = $("#codigo_invoice").val();
-	//borrar los tr de la tabla menos la primera fila 
+	//borrar los tr de la tabla menos la primera fila
 	$("#seleccion_servicios_tabla > tbody:last").children().remove();
 	//llenar la tabla si existen servicios por este documento
     $.ajax({
@@ -166,14 +166,14 @@ function mostarLista(){
         dataType: "json",
         url: "../controllers/invoiceControllers.php",
         data: {'tabla' : 4,
-        	   'codigo_invoice' : codigo_invoice 
+        	   'codigo_invoice' : codigo_invoice
               },
         success: function(data){
         	var lista = data;
         	if(lista==0){
         		$("#seleccion_servicios_tabla").append(
           		'<tr>'+
-            	'<td colspan="5" class="text-center">tdere are no services available</td>'+
+            	'<td colspan="5" class="text-center">Services are not available yet</td>'+
             	'</tr>');
             	$('#enviar_update_invoice').attr("disabled", true);
         	}else{
@@ -192,7 +192,7 @@ function mostarLista(){
         	}
 		}
 	})
-} 
+}
 
 function eliminar(id){
 	console.log(id);
@@ -238,7 +238,7 @@ function registrarSupplier(){
     if(supplier.length > 0 && pago_supplier.length > 0){
         //console.log(supplier,codigo_invoice,usuario_documento,pago_supplier);
         //return false;
-        //borrar los tr de la tabla menos la primera fila 
+        //borrar los tr de la tabla menos la primera fila
         $("#seleccion_supplier > tbody:last").children().remove();
         //llenar la tabla si existen servicios por este documento
         $.ajax({
@@ -255,7 +255,7 @@ function registrarSupplier(){
                 if(lista==0){
                     $("#seleccion_supplier").append(
                     '<tr>'+
-                    '<td colspan="3" class="text-center">tdere are no services available</td>'+
+                    '<td colspan="3" class="text-center">Supplier are not available yet</td>'+
                     '</tr>');
                     $('#enviar_update_invoice').attr("disabled", true);
                 }else{
@@ -274,20 +274,20 @@ function registrarSupplier(){
             }
         })
     }else{
-        $("#mensaje_actulaizacion_invoice_supplier").addClass("alert alert-block alert-danger fade in text-center").html("<strong>Disculpa!</strong> Debe llenar el campo");
+        $("#mensaje_actulaizacion_invoice_supplier").addClass("alert alert-block alert-danger fade in text-center").html("<strong>Sorry!</strong> You must fill in the required fields");
         setTimeout(function() {
             $("#mensaje_actulaizacion_invoice_supplier").removeClass().empty();
         },3000);
     }
-    
-} 
+
+}
 
 //mostrar lista de supplier ya exitente
 
 function listaSupplier(){
-  
+
     var codigo_invoice = $("#codigo_invoice").val();
-    //borrar los tr de la tabla menos la primera fila 
+    //borrar los tr de la tabla menos la primera fila
     $("#seleccion_supplier > tbody:last").children().remove();
     //llenar la tabla si existen servicios por este documento
     $.ajax({
@@ -302,7 +302,7 @@ function listaSupplier(){
             if(lista==0){
                 $("#seleccion_supplier").append(
                 '<tr>'+
-                '<td colspan="3" class="text-center">tdere are no services available</td>'+
+                '<td colspan="3" class="text-center">Supplier are not available yet</td>'+
                 '</tr>');
                 $('#enviar_update_invoice').attr("disabled", true);
             }else{
@@ -318,7 +318,7 @@ function listaSupplier(){
             }
         }
     })
-} 
+}
 //eliminar supplier de un invoice
 
 function eliminarSupplier(id){
@@ -345,5 +345,3 @@ function limpiar_campos(){
 
     $(".limpiar").val("");
 }
-
-

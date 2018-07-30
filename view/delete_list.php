@@ -121,7 +121,7 @@ if(empty($_SESSION['user']))
         <!--<form class="form-inline" role="form" method="post" id="formulario_eliminar_documento" action="../controllers/documentoControllers.php">-->
           <div class="modal-body">
             <!-- <label for="origin">Description: </label> -->
-            <b><center><p id="detalle_delete"></center></p></b>
+            <h4><b><center><p id="detalle_delete"></center></p></b><h4>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-dismiss="modal"><b>Close</b></button>

@@ -53,12 +53,12 @@ else
           <div class="col-lg-12">
             <section class="panel">
               <header class="panel-heading">
-                INVOICE
+                <b>INVOICE</b>
               </header>
               <div class="panel-body">
                 <form class="form-horizontal" id="crear_invoice" method="post" action="../controllers/invoiceControllers.php">
                 	<div class="form-group">
-	                    <label class="col-lg-2 control-label">Docket Code</label>
+	                    <label class="col-lg-2 control-label"><b>Docket Code</b></label>
 	                    <div class="col-lg-10">
 	                      <p class="form-control-static"><strong><?php echo $datos['codigo'];?></strong></p>
                         <input type="hidden" name="codigo_documento" id="codigo_documento" value="<?php echo $datos['codigo'];?>">
@@ -67,14 +67,14 @@ else
                     	</div>
                   	</div>
         					<div class="form-group">
-        						<label class="col-sm-2 control-label">Supplier</label>
+        						<label class="col-sm-2 control-label"><b>Supplier</b></label>
         					</div>
         					<?php
         					for ($i=1; $i<7; $i++) {
         						# code...
         					?>
         					<div class="form-group <?php if($i!=1){echo"ocultar";}?>" id='campoSupplier<?php echo $i;?>'>
-        						<label class="col-sm-2 control-label"><?php echo "#".$i;?></label>
+        						<label class="col-sm-2 control-label"><?php echo("<b>" ."#".$i ."</b>"); ?></label>
         						<div class="col-sm-3">
         							<input type="text" id="supplier<?php echo $i;?>" name="supplier[<?php echo $i;?>]" placeholder="Supplier <?php echo "#".$i;?>"  class="form-control">
         						</div>
@@ -101,19 +101,19 @@ else
         					}
         					?>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label">Bill to</label>
+                    <label class="col-sm-2 control-label"><b>Bill to</b></label>
                     <div class="col-sm-10">
                       <input type="text" id="quien_paga" name="quien_paga" class="form-control round-input">
                     </div>
                   </div>
                   <!-- probando -->
                   <header class="panel-heading">
-                    ADD SERVICE
+                    <b>ADD SERVICE</b>
                   </header>
                   <br>
                   <div id="mensaje_servicios_selec"></div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label">Service</label>
+                    <label class="col-sm-2 control-label"><b>Service</b></label>
                     <div class="col-sm-6">
                       <select name="lista_servicios" class="form-control  round-input" autocomplete='country-name' id="lista_servicios">
                       <option value="0">Select Service</option>
@@ -121,21 +121,21 @@ else
                     </div>
                   </div>
                   <div class="form-group" id="radio1">
-                    <label class="col-sm-2 control-label">$ US</label>
+                    <label class="col-sm-2 control-label"><b>$ US</b></label>
                     <input type="radio" id="us_dolar" name="bill_to" >
                     <div class="col-sm-4 ocultar" id="campo_us">
                       <input type="text" id="dinero_us" data-thousands="," data-decimal="." data-prefix="$. " name="dinero_us" class="form-control round-input limpiar">
                     </div>
                   </div>
                   <div class="form-group" id="radio2">
-                    <label class="col-sm-2 control-label">$ CAD</label>
+                    <label class="col-sm-2 control-label"><b>$ CAD</b></label>
                     <input type="radio" id="cad_dolar" name="bill_to" >
                     <div class="col-sm-4 ocultar" id="campo_cad">
                       <input type="text" id="dinero_cad" data-thousands="," data-decimal="." data-prefix="$. " name="dinero_cad" class="form-control round-input limpiar">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label">Note</label>
+                    <label class="col-sm-2 control-label"><b>Note</b></label>
                     <div class="col-sm-8">
                       <textarea name="nota" id="nota" class="form-control round-input limpiar" placeholder="Note"></textarea>
                     </div>
@@ -145,7 +145,7 @@ else
                   </center>
                   <section class="panel">
                     <header class="panel-heading">
-                      SERVICES SELECTED
+                      <b>SELECTED SERVICES</b>
                     </header>
                     <table class="table table-condensed"  id="seleccion_servicios_tabla">
                       <thead>
@@ -176,13 +176,13 @@ else
                   ?>
                   <div id="mensaje_create_invoice"></div>
                   <div class="form-group" id="via_envio">
-                    <label class="control-label col-lg-2" for="inputSuccess">Ship Via:</label>
+                    <label class="control-label col-lg-2" for="inputSuccess"><b>Ship Via:</b></label>
                     <div class="col-lg-10">
                     <?php
                       while($envios = $resultadosEnvio->fetch_array()){
                     ?>
                       <label class="checkbox-inline">
-                        <input type="checkbox" id="envio<?php echo $envios['id'];?>"  name="envio[]" value="<?php echo $envios['id'];?>"> <?php echo $envios['descripcion'];?>
+                        <input type="checkbox" id="envio<?php echo $envios['id'];?>"  name="envio[]" value="<?php echo $envios['id'];?>"> <?php echo "<b>" .$envios['descripcion'] ."</b>";?>
                       </label>
                     <?php
                       }
@@ -190,7 +190,7 @@ else
                     </div>
                   </div>
                   <div class="form-group ocultar" id="campo_otro">
-                    <label class="control-label col-lg-2" for="inputSuccess">Other</label>
+                    <label class="control-label col-lg-2" for="inputSuccess"><b>Other</b></label>
                     <div class="col-sm-6">
                         <input type="text" name="otro" id="otro" class="form-control round-input">
                     </div>
