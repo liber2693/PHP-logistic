@@ -242,8 +242,8 @@ if ($array_d->num_rows==0) {
   //$mpdf->WriteHTML($stylesheet,1);  // The parameter 1 tells that this is css/style only and no body/html/text
 
 
-  $mpdf->SetTitle('DocKet - '.$datos_d['codigo']);
-  $mpdf->Output('DocKet - '.$datos['codigo'].'.pdf','I');
+  $mpdf->SetTitle('Docket - '.$datos_d['codigo']);
+  $mpdf->Output('Docket - '.$datos['codigo'].'.pdf','I');
 exit;
 }
 /*
@@ -367,9 +367,5 @@ if ($array->num_rows==0) {
   //$mpdf = new mPDF('win-1252', 'A4-L', 13, 15, 25, 12, 5, 7);
   $mpdf->WriteHTML($html);
   $mpdf->Output($file,'D');
-
-
-
-
 */
 ?>

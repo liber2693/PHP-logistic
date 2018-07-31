@@ -28,10 +28,10 @@ if(empty($_SESSION['user']))
         <!--overview start-->
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-laptop"></i>Create Docket</h3>
+            <h3 class="page-header"><i class="fa fa-laptop"></i><b>Create Docket</b></h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="index.php">Home</a></li>
-              <li><i class="fa fa-folder-open"></i>Create Docket</li>
+              <li><i class="fa fa-home"></i><a href="index.php"><b>Home</b></a></li>
+              <li><i class="fa fa-folder-open"></i><b>Create Docket</b></li>
             </ol>
           </div>
         </div>
