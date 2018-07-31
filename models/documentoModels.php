@@ -8,7 +8,9 @@ class Docket{
 	protected $shipper; //vendedor
 	 //provedor
 	protected $telefono;
-	protected $codigo_zip;
+	protected $cc;
+	protected $consignee;
+	protected $po;
 	protected $fecha;
 	protected $id_origen_pais;
 	protected $lugar_origen;
@@ -29,7 +31,7 @@ class Docket{
 	protected $usuario;
 	protected $estatus;
 	
-	public function __construct($codigo,$shipper,$telefono,$codigo_zip,$fecha,$id_origen_pais,$lugar_origen,$id_destino_pais,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$tipo_dimension,$descripcion,$tipo,$fecha_creacion,$fecha_modificacion,$usuario,$estatus,$id = ''){
+	public function __construct($codigo,$shipper,$telefono,$cc,$consignee,$po,$fecha,$id_origen_pais,$lugar_origen,$id_destino_pais,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$tipo_dimension,$descripcion,$tipo,$fecha_creacion,$fecha_modificacion,$usuario,$estatus,$id = ''){
 		
 		$db = new Conexion();
 
@@ -37,7 +39,9 @@ class Docket{
 		$this->codigo = $codigo;
 		$this->shipper = $shipper;
 		$this->telefono = $telefono;
-		$this->codigo_zip = $codigo_zip;
+		$this->cc = $cc;
+		$this->consignee = $consignee;
+		$this->po = $po;
 		$this->fecha = $fecha;
 		$this->id_origen_pais = $id_origen_pais;
 		$this->lugar_origen = $lugar_origen;
@@ -61,11 +65,11 @@ class Docket{
 	}
 
 	static function contar(){
-		return new self('','','','','','','','','','','','','','','','','','','','','','','','');
+		return new self('','','','','','','','','','','','','','','','','','','','','','','','','','');
 	} 
 
 	static function soloCodigo($codigo){
-		return new self($codigo,'','','','','','','','','','','','','','','','','','','','','','','');
+		return new self($codigo,'','','','','','','','','','','','','','','','','','','','','','','','','');
 	}
 	public function selectContar(){
 		$db = new Conexion();
@@ -79,13 +83,13 @@ class Docket{
 	public function crearDocumento()
 	{
 		$db = new Conexion();
-		$sql="INSERT INTO docket(codigo,shipper,telefono,codigo_zip,fecha, id_origen_pais, lugar_origen, id_destino_pais, lugar_destino, pieza, tipo_pieza, peso, tipo_peso, alto, ancho, largo, tipo_dimension, descripcion, tipo, fecha_creacion, usuario, estatus)
-			VALUES ('$this->codigo','$this->shipper','$this->telefono','$this->codigo_zip','$this->fecha','$this->id_origen_pais','$this->lugar_origen','$this->id_destino_pais','$this->lugar_destino','$this->pieza','$this->tipo_pieza','$this->peso','$this->tipo_peso','$this->alto','$this->ancho','$this->largo','$this->tipo_dimension','$this->descripcion','$this->tipo','$this->fecha_creacion','$this->usuario','1')";
+		$sql="INSERT INTO docket(codigo,shipper,telefono,cc,consignee,po,fecha, id_origen_pais, lugar_origen, id_destino_pais, lugar_destino, pieza, tipo_pieza, peso, tipo_peso, alto, ancho, largo, tipo_dimension, descripcion, tipo, fecha_creacion, usuario, estatus)
+			VALUES ('$this->codigo','$this->shipper','$this->telefono','$this->cc','$this->consignee','$this->po','$this->fecha','$this->id_origen_pais','$this->lugar_origen','$this->id_destino_pais','$this->lugar_destino','$this->pieza','$this->tipo_pieza','$this->peso','$this->tipo_peso','$this->alto','$this->ancho','$this->largo','$this->tipo_dimension','$this->descripcion','$this->tipo','$this->fecha_creacion','$this->usuario','1')";
 		$db->query($sql) or trigger_error("ERROR insertando codigo de documento");
 	}
 	public function selectDocket(){
 		$db = new Conexion();
-		$sql="SELECT a.codigo,a.shipper,a.fecha,a.telefono,a.codigo_zip,a.id_origen_pais,a.lugar_origen,
+		$sql="SELECT a.codigo,a.shipper,a.fecha,a.telefono,a.cc,a.consignee,a.po,a.id_origen_pais,a.lugar_origen,
 					 a.id_destino_pais,a.lugar_destino, a.pieza,a.tipo_pieza,a.peso,a.tipo_peso,a.alto,a.ancho,a.largo,
 					 a.tipo_dimension,a.descripcion, b.pais AS origen,c.pais AS destino 
 					 FROM docket a 
@@ -114,7 +118,7 @@ class Docket{
 
 	public function UpdateDocumento(){
 		$db = new Conexion();
-		$sql="UPDATE docket SET shipper='$this->shipper', telefono='$this->telefono', codigo_zip='$this->codigo_zip', fecha='$this->fecha', id_origen_pais='$this->id_origen_pais', lugar_origen='$this->lugar_origen',id_destino_pais='$this->id_destino_pais', lugar_destino='$this->lugar_destino', pieza='$this->pieza', tipo_pieza='$this->tipo_pieza', peso='$this->peso', tipo_peso='$this->tipo_peso', alto='$this->alto', ancho='$this->ancho', largo='$this->largo', tipo_dimension='$this->tipo_dimension', descripcion='$this->descripcion', fecha_modificacion='$this->fecha_modificacion' WHERE codigo='$this->codigo' ";
+		$sql="UPDATE docket SET shipper='$this->shipper', telefono='$this->telefono', cc='$this->cc', consignee='$this->consignee', po='$this->po', fecha='$this->fecha', id_origen_pais='$this->id_origen_pais', lugar_origen='$this->lugar_origen',id_destino_pais='$this->id_destino_pais', lugar_destino='$this->lugar_destino', pieza='$this->pieza', tipo_pieza='$this->tipo_pieza', peso='$this->peso', tipo_peso='$this->tipo_peso', alto='$this->alto', ancho='$this->ancho', largo='$this->largo', tipo_dimension='$this->tipo_dimension', descripcion='$this->descripcion', fecha_modificacion='$this->fecha_modificacion' WHERE codigo='$this->codigo' ";
 		;
 		$db->query($sql) or trigger_error("ERROR actualizando el documento");
 	}

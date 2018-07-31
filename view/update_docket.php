@@ -82,9 +82,21 @@ if(empty($_SESSION['user']))
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label"><strong>ZIP PO</strong></label>
+                    <label class="col-sm-2 control-label"><strong>CC #</strong></label>
                     <div class="col-sm-4">
-                      <input type="text" name="codigo_zip" value="<?php echo $datos['codigo_zip'];?>" class="form-control round-input">
+                      <input type="text" name="cc" value="<?php echo $datos['cc'];?>" class="form-control round-input">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label"><strong>Consignee</strong></label>
+                    <div class="col-sm-4">
+                      <input type="text" name="consignee" value="<?php echo $datos['consignee'];?>" class="form-control round-input">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label"><strong>PO #</strong></label>
+                    <div class="col-sm-4">
+                      <input type="text" name="po" value="<?php echo $datos['po'];?>" class="form-control round-input">
                     </div>
                   </div>
                   <div class="form-group">

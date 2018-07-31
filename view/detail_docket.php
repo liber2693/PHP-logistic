@@ -61,7 +61,13 @@ if(empty($_SESSION['user']))
                     <strong>PHONE #: <?php echo $datos['telefono'];?></strong>
                   </label>
                   <label class="label_check" for="checkbox-02">
-                    <strong>PO #: <?php echo $datos['codigo_zip'];?></strong>
+                    <strong>CC #: <?php echo $datos['cc'];?></strong>
+                  </label>
+                  <label class="label_check" for="checkbox-02">
+                    <strong>CONSIGNEE : <?php echo $datos['consignee'];?></strong>
+                  </label>
+                  <label class="label_check" for="checkbox-02">
+                    <strong>PO #: <?php echo $datos['po'];?></strong>
                   </label>
                   <label class="label_check" for="checkbox-02">
                     <strong>DATE: <?php echo $datos['fecha'];?></strong>

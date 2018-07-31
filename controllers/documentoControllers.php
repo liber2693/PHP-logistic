@@ -15,6 +15,8 @@ if(isset($_POST['enviar_documento'])){
     $shipper=$_POST['shipper'];
     $telefono=$_POST['telefono'];
     $po=$_POST['po'];
+    $cc = $_POST['cc'];
+    $consignee = $_POST['consignee'];
     $fecha=$_POST['fecha'];
     $pais_origen=$_POST['pais_origen'];
     $lugar_origen=$_POST['origen'];
@@ -50,7 +52,7 @@ if(isset($_POST['enviar_documento'])){
         $actualizar->UpdateCorrelativo();
     }
 
-    $documento = new Docket($codigo,$shipper,$telefono,$po,$fecha,$pais_origen,$lugar_origen,$pais_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$tipo_dimension,$descripcion,$tipoDocumento,$fecha_registro,'',$usuario,'','');
+    $documento = new Docket($codigo,$shipper,$telefono,$po,$cc,$consignee,$fecha,$pais_origen,$lugar_origen,$pais_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$tipo_dimension,$descripcion,$tipoDocumento,$fecha_registro,'',$usuario,'','');
     $documento->crearDocumento();
 
     if(!empty($_FILES['archivo'])){
@@ -82,7 +84,9 @@ if(isset($_POST['actualizar_documento'])){
     $expedidor = $_POST['expedidor'];
     $fecha = $_POST['fecha'];
     $telefono = $_POST['telefono'];
-    $codigo_zip = $_POST['codigo_zip'];
+    $cc = $_POST['cc'];
+    $consignee = $_POST['consignee'];
+    $po = $_POST['po'];
     $id_origen = $_POST['pais_origen_Actualizacion'];
     $lugar_origen = $_POST['origen'];
     $id_destino = $_POST['pais_destino_Actualizacion'];
@@ -101,7 +105,7 @@ if(isset($_POST['actualizar_documento'])){
 
 
 
-    $documento = new Docket($codigo_docu,$expedidor,$telefono,$codigo_zip,$fecha,$id_origen,$lugar_origen,$id_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$medida,$descripcion,'','',$fecha_registro,$usuario,'','');
+    $documento = new Docket($codigo_docu,$expedidor,$telefono,$cc,$consignee,$po,$fecha,$id_origen,$lugar_origen,$id_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$medida,$descripcion,'','',$fecha_registro,$usuario,'','');
     $documento->UpdateDocumento();
 
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_docket.php?docket=".base64_encode($codigo_docu)."'>";
@@ -122,7 +126,7 @@ if(isset($_POST['boton_eliminar'])){
             $codigo_factura_eliminar = $dato['codigo_invoice'];
             $tipo_factura = 'F';
 
-            $delete_invoice_d = new Docket($codigo_factura_eliminar,'','','','','','','','','','','','','','','','','','','',$fecha_registro,'','','');
+            $delete_invoice_d = new Docket($codigo_factura_eliminar,'','','','','','','','','','','','','','','','','','','','','',$fecha_registro,'','','');
             $delete_invoice_d->DeleteInvoiceDocket();
 
             //guardar regsitros de las facturas eliminadas
@@ -132,7 +136,7 @@ if(isset($_POST['boton_eliminar'])){
         }
     }
     //eliminar el registro del documento
-    $delete_docket = new Docket($codigo_documento,'','','','','','','','','','','','','','','','','','','',$fecha_registro,$usuario,'');
+    $delete_docket = new Docket($codigo_documento,'','','','','','','','','','','','','','','','','','','','','',$fecha_registro,$usuario,'');
     $delete_docket->DeleteDocket();
     //eliminar el documento ponerlo en la tabla eliminados
     $delete_register_d = new DocketInvoiceDelete($codigo_documento,'',$tipo_documento,$descripcion,$usuario,$fecha_registro,'','');

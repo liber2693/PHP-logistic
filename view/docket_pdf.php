@@ -54,7 +54,9 @@ if ($array_d->num_rows==0) {
               Docket: &nbsp;'.$datos_d['codigo'].'<br>
               Date: &nbsp;'.$datos_d['fecha'].'<br>
               Phone: &nbsp;'.$datos_d['telefono'].'<br>
-              Code ZIP: &nbsp;'.$datos_d['codigo_zip'].'<br>
+              CC #: &nbsp;'.$datos_d['cc'].'<br>
+              CONSIGNEE: &nbsp;'.$datos_d['consignee'].'<br>
+              PO #: &nbsp;'.$datos_d['po'].'<br>
               Origin: &nbsp;'.$datos_d['origen'].', '.$datos_d['lugar_origen'].'<br>
               Destino: &nbsp;'.$datos_d['destino'].', '.$datos_d['lugar_destino'].'<br>
 
