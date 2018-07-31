@@ -69,7 +69,7 @@ if(empty($_SESSION['user']))
                     </div>
                     <div class="form-group">
                       <label for="fecha">Date <b style="color: red;">*</b></label>
-                      <input name="fecha" type="text" class="form-control round-input fecha" id="fecha"  placeholder="Enter Date">
+                      <input name="fecha" type="text" class="form-control round-input fecha" id="fecha"  placeholder="Enter Date" readonly="true">
                     </div>
                     <div class="form-group">
                       <label for="origin">Phone</label>
@@ -199,7 +199,7 @@ if(empty($_SESSION['user']))
                 </div>
                 <div class="form-group">
                   <label for="fecha">Date <b style="color: red;">*</b></label>
-                  <input name="fecha" type="text" class="form-control round-input fecha" id="fechaE"  placeholder="Enter Date">
+                  <input name="fecha" type="text" class="form-control round-input fecha" id="fechaE"  placeholder="Enter Date" readonly="true">
                 </div>
                 <div class="form-group">
                   <label for="origin">Phone</label>

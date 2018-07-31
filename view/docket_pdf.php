@@ -49,7 +49,7 @@ if ($array_d->num_rows==0) {
       </style>';
 
   $html.='<h2>Titulo del Docuemnto</h2>
-          <h3>
+          <h2>
             <p>
               Docket: &nbsp;'.$datos_d['codigo'].'<br>
               Date: &nbsp;'.$datos_d['fecha'].'<br>
@@ -68,7 +68,7 @@ if ($array_d->num_rows==0) {
               descripcion: &nbsp;'.$datos_d['descripcion'].'<br>
 
             </p>
-          </h3>';
+          </h2>';
 
   $mpdf->AddPage('L','','','','',10,10,10,10,16,13);
   $mpdf->WriteHTML($html);
