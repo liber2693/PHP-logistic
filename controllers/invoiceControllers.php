@@ -304,5 +304,10 @@ if (isset($_POST['boton_eliminar'])) {
    
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_docket.php?docket=".base64_encode($codigo_docket)."'>";
 }
+//activar 2 una factura que esta en estatu en proceso 1
+if (isset($_GET['active'])) {
+    $codigo_invoice_active = base64_decode($_GET['active']);
+    print_r($codigo_invoice_active);die();
+}
 
 ?>

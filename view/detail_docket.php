@@ -17,6 +17,7 @@ if(empty($_SESSION['user']))
   <title>NETEX GLOBAL</title>
   <link rel="stylesheet" type="text/css" href="../css/jquery.dataTables.min.css">
   <?php include('cabecera.php');?>
+  </style>
 </head>
 <body>
   <!-- container section start -->
@@ -147,6 +148,7 @@ if(empty($_SESSION['user']))
                         <th><i class="fa fa-archive"></i> Invoice Number</th>
                         <th><i class="fa fa-list"></i> Bill to</th>
                         <th><i class="icon_calendar"></i> Date</th>
+                        <th><i class="icon_calendar"></i> Status</th>
                         <th><i class="icon_cogs"></i> Action</th>
                       </tr>
                     </thead>
@@ -156,14 +158,26 @@ if(empty($_SESSION['user']))
                       while($datos=$array1->fetch_assoc())
                       {
                         $i++;
+                        if ($datos['estatus']==1) {
+                          $imagen="i_rojo.png";
+                        }elseif ($datos['estatus']==2) {
+                          $imagen="i_verde.png";
+                        }
                       ?>
                       <tr>
                         <td><strong><?php echo $datos['codigo_invoice'];?></strong><input type="hidden" id="codigo_factura<?php echo $i;?>" value="<?php echo $datos['codigo_invoice'];?>"></td>
                         <td><strong><?php echo ucwords($datos['cliente']);?></strong></td>
                         <td><strong><?php echo $datos['fecha_creacion'];?></strong></td>
+                        <td><strong><?php echo $datos['estatus'];?> &nbsp;&nbsp;<img src="../images/<?php echo $imagen;?>" width="10%"></strong></td>
                         <td>
                           <div class="btn-group">
-                            <!--<a class="btn btn-primary" style="font-size:16px" href="create_invoice.php?docket=<?php //echo base64_encode($datos['codigo']);?>" data-toggle="tooltip" title="Add Invoice"><i class="fa fa-plus"></i></a>-->
+                            <?php
+                            if ($datos['estatus']==1) {
+                            ?>
+                            <a class="btn" style="font-size:16px" href="../controllers/invoiceControllers.php?active=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Process Invoice"><i class="fa fa-check-circle-o"></i></a>
+                            <?php
+                            }
+                            ?>
                             <a class="btn btn-success" style="font-size:16px" href="update_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Edit Invoice"><i class="fa fa-pencil"></i></a>
                             <a class="btn btn-warning" style="font-size:16px" href="detail_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="See Invoice"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-info" style="font-size:16px" target="_blank" href="invoice_pdf.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Download Detail"><i class="fa fa-file-pdf-o"></i></a>

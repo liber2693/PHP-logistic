@@ -111,7 +111,7 @@ class Docket{
 	}
 	public function selectDocketInvoice(){
 		$db = new Conexion();
-		$sql="SELECT * FROM invoice WHERE codigo_docket='$this->codigo' AND estatus='1'";
+		$sql="SELECT * FROM invoice WHERE codigo_docket='$this->codigo' AND estatus IN(1,2)";
 		$resultado = $db->query($sql);
 		return $resultado;
 	}
