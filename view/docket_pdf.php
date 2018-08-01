@@ -49,7 +49,7 @@ if ($array_d->num_rows==0) {
       </style>';
 
   $html.='<h2>Titulo del Docuemnto</h2>
-          <h3>
+          <h2>
             <p>
               Docket: &nbsp;'.$datos_d['codigo'].'<br>
               Date: &nbsp;'.$datos_d['fecha'].'<br>
@@ -68,7 +68,7 @@ if ($array_d->num_rows==0) {
               descripcion: &nbsp;'.$datos_d['descripcion'].'<br>
 
             </p>
-          </h3>';
+          </h2>';
 
   $mpdf->AddPage('L','','','','',10,10,10,10,16,13);
   $mpdf->WriteHTML($html);
@@ -242,8 +242,8 @@ if ($array_d->num_rows==0) {
   //$mpdf->WriteHTML($stylesheet,1);  // The parameter 1 tells that this is css/style only and no body/html/text
 
 
-  $mpdf->SetTitle('DocKet - '.$datos_d['codigo']);
-  $mpdf->Output('DocKet - '.$datos['codigo'].'.pdf','I');
+  $mpdf->SetTitle('Docket - '.$datos_d['codigo']);
+  $mpdf->Output('Docket - '.$datos['codigo'].'.pdf','I');
 exit;
 }
 /*
@@ -367,9 +367,5 @@ if ($array->num_rows==0) {
   //$mpdf = new mPDF('win-1252', 'A4-L', 13, 15, 25, 12, 5, 7);
   $mpdf->WriteHTML($html);
   $mpdf->Output($file,'D');
-
-
-
-
 */
 ?>

@@ -32,8 +32,8 @@ if(empty($_SESSION['user']))
           <div class="col-lg-12">
             <h3 class="page-header"><i class="fa fa-archive"></i> <b>Deleted Docket</b></h3>
             <ol class="breadcrumb">
-              <li><a href="create_docket.php"><i class="fa fa-home"></i>Home</a></li>
-              <li><i class="fa fa-archive"></i>Deleted Docket</li>
+              <li><a href="create_docket.php"><i class="fa fa-home"></i><b>Home</b></a></li>
+              <li><i class="fa fa-archive"></i><b>Deleted Docket</b></li>
             </ol>
           </div>
         </div>

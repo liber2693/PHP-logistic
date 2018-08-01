@@ -30,7 +30,7 @@ if(empty($_SESSION['user']))
           <div class="col-lg-12">
             <h3 class="page-header"><i class="fa fa-archive"></i><b>Docket List</b></h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="create_docket.php">Home</a></li>
+              <li><i class="fa fa-home"></i><a href="create_docket.php"><b>Home</b></a></li>
               <li><i class="fa fa-archive"></i><b>Docket List</b></li>
             </ol>
           </div>
