@@ -168,13 +168,13 @@ if(empty($_SESSION['user']))
                         <td><strong><?php echo $datos['codigo_invoice'];?></strong><input type="hidden" id="codigo_factura<?php echo $i;?>" value="<?php echo $datos['codigo_invoice'];?>"></td>
                         <td><strong><?php echo ucwords($datos['cliente']);?></strong></td>
                         <td><strong><?php echo $datos['fecha_creacion'];?></strong></td>
-                        <td><strong><?php echo $datos['estatus'];?> &nbsp;&nbsp;<img src="../images/<?php echo $imagen;?>" width="10%"></strong></td>
+                        <td><strong><?php echo $datos['descripcion'];?> &nbsp;&nbsp;<img src="../images/<?php echo $imagen;?>" width="10%"></strong></td>
                         <td>
                           <div class="btn-group">
                             <?php
                             if ($datos['estatus']==1) {
                             ?>
-                            <a class="btn" style="font-size:16px" href="../controllers/invoiceControllers.php?active=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Process Invoice"><i class="fa fa-check-circle-o"></i></a>
+                            <a class="btn" style="font-size:16px" href="../controllers/invoiceControllers.php?active=<?php echo base64_encode($datos['codigo_invoice']);?>&docket=<?php echo base64_encode($codigo);?>" data-toggle="tooltip" title="Process Invoice"><i class="fa fa-check-circle-o"></i></a>
                             <?php
                             }
                             ?>

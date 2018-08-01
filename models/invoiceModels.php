@@ -87,11 +87,12 @@ class Invoice{
 		$sql4="UPDATE supplier_invoice SET estatus='5' WHERE codigo_invoice = '$this->codigo_invoice'";
 		$db->query($sql4);
 	}
-	//cambiar estatus del registro
-	public function UpdateInvoice(){
+	//cambiar estatus del registro para los procesos de las facturas
+	public function UpdateStatusInvoice(){
 		$db = new Conexion();
-		$sql="UPDATE invoice SET cliente='$this->cliente', usuario='$this->usuario', fecha_modificacion = '$this->fecha_modificacion' WHERE codigo_invoice='$this->codigo_invoice' AND estatus = '1'";
+		$sql="UPDATE invoice SET estatus = 2 WHERE codigo_invoice='$this->codigo_invoice'";
 		$result = $db->query($sql);
+
 	}
 }
 ?>
