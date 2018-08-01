@@ -43,7 +43,7 @@ else
           <div class="col-lg-12">
             <h3 class="page-header"><i class="fa fa-file-text-o"></i> <b>Create Invoice of Docket: <?php echo $codigo;?></b></h3>
             <ol class="breadcrumb">
-              <li><a href="create_docket.php"><i class="fa fa-home"></i>Home</a></li>
+              <li><a href="create_docket.php"><i class="fa fa-home"></i><b>Home</b></a></li>
               <li><a href="detail_docket.php?docket=<?php echo base64_encode($codigo);?>"><i class="icon_document_alt"></i>Docket: <?php echo $codigo;?></a></li>
               <li><i class="fa fa-file-text-o"></i><b>Create Invoice</b></li>
             </ol>

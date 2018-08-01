@@ -153,7 +153,7 @@ if(empty($_SESSION['user']))
                         <div class="form-group col-lg-3">
                           <label class="control-label col-lg-6" for="inputSuccess">Type</label>
                           <div class="col-lg-14">
-                            <input type="text"  class="form-control m-bot15 round-input" autocomplete='tel-country-code' name="medida" placeholder="type measure">
+                            <input type="text"  class="form-control m-bot15 round-input" autocomplete='tel-country-code' name="medida" placeholder="Type Measure">
                             <!--<select class="form-control m-bot15 round-input" autocomplete='tel-country-code' id="medida" name="medida">
                               <option value="0" selected="selected">SELECT</option>
                               <option value="CENTIMETERS">CENTIMETERS</option>
@@ -283,7 +283,7 @@ if(empty($_SESSION['user']))
                       <div class="form-group col-lg-3">
                         <label class="control-label col-lg-6" for="inputSuccess">Type</label>
                         <div class="col-lg-14">
-                          <input type="text"  class="form-control m-bot15 round-input" autocomplete='tel-country-code' name="medida" placeholder="type measure">
+                          <input type="text"  class="form-control m-bot15 round-input" autocomplete='tel-country-code' name="medida" placeholder="Type Measure">
                           <!--<select class="form-control m-bot15 round-input" autocomplete='tel-country-code' name="medida">
                             <option value=" " selected="selected">SELECT</option>
                             <option value="CENTIMETERS">CENTIMETERS</option>

@@ -42,11 +42,11 @@ else
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-file-text-o"></i> INVOICE</h3>
+            <h3 class="page-header"><i class="fa fa-file-text-o"></i><b>INVOICE</b></h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="../index.php">Home</a></li>
+              <li><i class="fa fa-home"></i><a href="../index.php"><b>Home</b></a></li>
               <li><i class="fa fa-home"></i><a href="detail_docket.php?docket=<?php echo base64_encode($datos['codigo_docket']);?>"><?php echo $datos['codigo_docket'];?></a></li>
-              <li><i class="icon_document_alt"></i>Invoice Details </li>
+              <li><i class="icon_document_alt"></i><b>Invoice Details</b></li>
 
             </ol>
           </div>

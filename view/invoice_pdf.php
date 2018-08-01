@@ -17,12 +17,14 @@ if ($array->num_rows==0) {
   $html = '<style>
 
       h2{
-        text-align:center
+        text-align:center;
       }
       p{
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 12px;
+        font-size: 13px;
         line-height: 18px;
+        text-align:center
+
       }
 
       table th{color: #ffffff; background-color: #3692cd;}
@@ -37,6 +39,11 @@ if ($array->num_rows==0) {
         font-family: Arial, Helvetica, sans-serif;
       }
 
+      td {
+        width:20px;
+        height: 20px;
+        }
+
       #codigo{
         float: right;
       }
@@ -47,45 +54,41 @@ if ($array->num_rows==0) {
       }
       </style>';
 
-  $html.='<h2>FACTURA</h2>
-          <h3>
+  $html.='<h2>INVOICE
             <p>
-              Docket: &nbsp;'.$datos['codigo_docket'].'<br>
-              Invoice: &nbsp;'.$datos['codigo_invoice'].'<br>
-              Date: &nbsp;'.$datos['fecha_creacion'].'<br>
-              Origin: &nbsp;'.$datos['pais_origen'].', '.$datos['lugar_origen'].'<br>
-              Destino: &nbsp;'.$datos['pais_destino'].', '.$datos['lugar_destino'].'<br>
-              SUB BILL: &nbsp;'.$datos['cliente'].'<br>
-
-              pieza: &nbsp;'.$datos['pieza'].' tipo_pieza: &nbsp;'.$datos['tipo_pieza'].'<br>
-              peso: &nbsp;'.$datos['peso'].' tipo_peso: &nbsp;'.$datos['tipo_peso'].'<br>
-              alto: &nbsp;'.$datos['alto'].' ancho: &nbsp;'.$datos['ancho'].' largo: &nbsp;'.$datos['largo'].'
-              tipo_dimension: &nbsp;'.$datos['tipo<br>_dimension'].'<br>
-              descripcion: &nbsp;'.$datos['descripcion'].'<br>
-
+              DOCKET: &nbsp;'.$datos['codigo_docket'].'<br>
+              INVOICE: &nbsp;'.$datos['codigo_invoice'].'
+              DATE: &nbsp;'.$datos['fecha_creacion'].'<br>
+              ORIGIN: &nbsp;'.$datos['pais_origen'].', '.ucfirst($datos['lugar_origen']).'<br>
+              DESTINATION: &nbsp;'.$datos['pais_destino'].', '.ucfirst($datos['lugar_destino']).'<br>
+              BILL TO: &nbsp;'.ucwords($datos['cliente']).'<br>
+              PIECES: &nbsp;'.$datos['pieza'].' '.ucfirst($datos['tipo_pieza']).'<br>
+              WEIGHT: &nbsp;'.$datos['peso'].' '.ucfirst($datos['tipo_peso']).'<br>
+              DIMENSIONS: &nbsp;'.$datos['alto'].' X '.$datos['ancho'].' X '.$datos['largo'].'  '.ucfirst($datos['tipo_dimension']).'<br>
+              NOTE: &nbsp;'.ucfirst($datos['descripcion']).'<br>
             </p>
-          </h3>';
+          </h2>';
 
   $buscarServInvoice = invoicesServices::soloCodigo($codigo_factura);
   $array1 = $buscarServInvoice->SelectServicosInvoice();
 
   $html.='
-  <h2>Service</h2>
+  <h2>Services</h2>
   <table border="1" width="100%">
     <thead>
       <tr>
-        <td>#</td>
-        <td>Description</td>
-        <td>US$ AMT</td>
-        <td>CAD$ AMT</td>
-        <td>Notes</td>
+        <td colspan="2px"><center><b>#</b></center></td>
+        <td colspan="3px"><b><center>Description</b></center></td>
+        <td colspan="2px"><b><center>US$</b></center></td>
+        <td colspan="2px"><b><center>CAD$</b></center></td>
+        <td colspan="8px"><b><center>Notes</b></center></td>
       </tr>
     </thead>';
   if($array1->num_rows==0){
      $html.='
     <tbody>
       <tr>
-        <td colspan="5" class="text-center">NO SERVICES</td>
+        <td colspan="5" class="text-center">No services</td>
       </tr>
     </tbody>';
   }else{
@@ -95,20 +98,20 @@ if ($array->num_rows==0) {
     $html.='
       <tbody>
         <tr>
-          <td>
+          <td colspan="2px">
             <p>'.$i.'</p>
           </td>
-          <td>
+          <td colspan="3px">
             <p>'.$datos_servi['descripcion'].'</p>
           </td>
-          <td>
-            <p>'.ucfirst($datos_servi['nota']).'</p>
-          </td>
-          <td>
+          <td colspan="2px">
             <p>'.$datos_servi['precio_us'].'</p>
           </td>
-          <td>
+          <td colspan="2px">
             <p>'.$datos_servi['precio_ca'].'</p>
+          </td>
+          <td colspan="8px">
+          <p>'.$datos_servi['nota'].'</p>
           </td>
         </tr>
       </tbody>';
@@ -119,7 +122,7 @@ if ($array->num_rows==0) {
   $buscarSupplierInvoice = SupplierInvoice::soloCodigo($codigo_factura);
   $array3 = $buscarSupplierInvoice->SelectProvedorInvoice();
   $html.='
-  <h2>Suppleir</h2>
+  <h2>Suplier</h2>
   <table border="1" width="100%">
     <thead>
       <tr>
@@ -162,7 +165,7 @@ if ($array->num_rows==0) {
   $array2 = $buscarViaEnvio->SelectViaEnvio();
 
   $html.='
-  <h2>Via Envio</h2>';
+  <h2>Ship via</h2>';
 
   if($array2->num_rows==0){
     $html.='
