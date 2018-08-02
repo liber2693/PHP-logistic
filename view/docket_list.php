@@ -53,7 +53,7 @@ if(empty($_SESSION['user']))
                       <th><i class="icon_calendar"></i> Date</th>
                       <th><i class="fa fa-location-arrow"></i> Origin</th>
                       <th><i class="fa fa-location-arrow"></i> Destination</th>
-                      <th><i class="fa fa-location-arrow"></i> Cantidad Facturas</th>
+                      <th><i class="fa fa-location-arrow"></i>Invoices</th>
                       <th><i class="icon_cogs"></i> Action</th>
                     </tr>
                   </thead>
@@ -83,14 +83,15 @@ if(empty($_SESSION['user']))
                       <td><?php echo "<b>" .$datos['fecha'] ."</b>";?></td>
                       <td><?php echo "<b>" .ucwords($datos['origen'] .", " .$datos['lugar_origen']) ."</b>";?></td>
                       <td><?php echo "<b>" .ucwords($datos['destino'] .", " .$datos['lugar_destino']) ."</b>";?></td>
-                      <td>Q <?php echo $resul1['total'];?> | <?php echo $resul2['total_pro'];?><img src="../images/i_verde.png" width="10%"></td>
+                      <td><?php echo "<b>" .$resul2['total_pro'];?> / <?php echo $resul1['total'] ."</b>";?></td>
                       <td>
                         <div class="btn-group">
-                          <a class="btn btn-primary" style="font-size:15px" href="create_invoice.php?docket=<?php echo base64_encode($datos['codigo']);?>" data-toggle="tooltip" title="Add Invoice"><i class="fa fa-plus"></i></a>
-                          <a class="btn btn-success" style="font-size:15px" href="update_docket.php?docket=<?php echo base64_encode($datos['codigo']);?>" data-toggle="tooltip" title="Edit Docket"><i class="fa fa-pencil"></i></a>
-                          <a class="btn btn-warning" style="font-size:15px" href="detail_docket.php?docket=<?php echo base64_encode($datos['codigo']);?>" data-toggle="tooltip" title="Docket Details"><i class="fa fa-eye"></i></a>
-                          <a class="btn btn-info" style="font-size:15px" href="docket_pdf.php?docket=<?php echo base64_encode($datos['codigo']);?>" target="_blank" data-toggle="tooltip" title="Docket Report"><i class="fa fa-file-pdf-o"></i></a>
-                          <button class="btn btn-danger" style="font-size:16px" onclick="eliminar_documento(document.getElementById('codigo_documento<?php echo $i;?>').value,document.getElementById('tipo_documento<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="Delete Docket"><i class="fa fa-trash-o"></i></button>
+                          <a class="btn btn-primary" style="font-size:16px" href="create_invoice.php?docket=<?php echo base64_encode($datos['codigo']);?>" data-toggle="tooltip" title="Add Invoice"><i class="fa fa-plus"></i></a>
+                          <a class="btn btn-success" style="font-size:16px" href="update_docket.php?docket=<?php echo base64_encode($datos['codigo']);?>" data-toggle="tooltip" title="Edit Docket"><i class="fa fa-pencil"></i></a>
+                          <a class="btn btn-warning" style="font-size:16px" href="detail_docket.php?docket=<?php echo base64_encode($datos['codigo']);?>" data-toggle="tooltip" title="Docket Details"><i class="fa fa-eye"></i></a>
+                          <a class="btn btn-info" style="font-size:16px" href="docket_pdf.php?docket=<?php echo base64_encode($datos['codigo']);?>" target="_blank" data-toggle="tooltip" title="Docket Report"><i class="fa fa-file-pdf-o"></i></a>
+                          <button class="btn btn-danger" style="font-size:16px" onclick="eliminar_documento(document.getElementById('codigo_documento<?php echo $i;?>').value,document.getElementById('tipo_documento<?php echo $i;?>').value)"
+                            data-toggle="modal" data-target="#myModal" title="Cancel Docket"><i class="fa fa-times-circle"></i></button>
                         </div>
                       </td>
                     </tr>
@@ -112,10 +113,10 @@ if(empty($_SESSION['user']))
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"><center><b>DELETE DOCKET</b></center></h4>
+          <h4 class="modal-title"><center><b>CANCEL DOCKET</b></center></h4>
         </div>
         <br>
-        <center><b>ARE YOU SURE DO YOU WANT DELETE THIS DOCKET?</b></center>
+        <center><b>ARE YOU SURE DO YOU WANT CANCEL THIS DOCKET?</b></center>
         <form class="form-inline" role="form" method="post" id="formulario_eliminar_documento" action="../controllers/documentoControllers.php">
           <div class="modal-body">
             <input type="hidden"  class="form-control m-bot15 round-input"  name="codigo_documento_elimanar" id="codigo_documento_elimanar">

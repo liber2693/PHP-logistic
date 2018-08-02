@@ -171,18 +171,17 @@ if(empty($_SESSION['user']))
                         <td><strong><?php echo $datos['descripcion'];?> &nbsp;&nbsp;<img src="../images/<?php echo $imagen;?>" width="10%"></strong></td>
                         <td>
                           <div class="btn-group">
-                            <?php
-                            if ($datos['estatus']==1) {
-                            ?>
-                            <a class="btn" style="font-size:16px" href="../controllers/invoiceControllers.php?active=<?php echo base64_encode($datos['codigo_invoice']);?>&docket=<?php echo base64_encode($codigo);?>" data-toggle="tooltip" title="Process Invoice"><i class="fa fa-check-circle-o"></i></a>
-                            <?php
-                            }
-                            ?>
                             <a class="btn btn-success" style="font-size:16px" href="update_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Edit Invoice"><i class="fa fa-pencil"></i></a>
                             <a class="btn btn-warning" style="font-size:16px" href="detail_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="See Invoice"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-info" style="font-size:16px" target="_blank" href="invoice_pdf.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Download Detail"><i class="fa fa-file-pdf-o"></i></a>
-                            <button class="btn btn-danger" style="font-size:16px" onclick="eliminar(document.getElementById('codigo_factura<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="Delete Invoice"><i class="fa fa-trash-o"></i></button>
-
+                            <button class="btn btn-danger" style="font-size:16px" onclick="eliminar(document.getElementById('codigo_factura<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="Cancel Invoice"><i class="fa fa-times-circle"></i></button>
+                            <?php
+                            if ($datos['estatus']==1) {
+                            ?>
+                            <a class="btn btn-primary" style="font-size:16px" href="../controllers/invoiceControllers.php?active=<?php echo base64_encode($datos['codigo_invoice']);?>&docket=<?php echo base64_encode($codigo);?>" data-toggle="tooltip" title="Process Invoice"><i class="fa fa-check-circle"></i></a>
+                            <?php
+                            }
+                            ?>
 
                           </div>
                         </td>
@@ -223,10 +222,10 @@ if(empty($_SESSION['user']))
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title"><center><b>DELETE INVOICE</b></center></h4>
+              <h4 class="modal-title"><center><b>CANCEL INVOICE</b></center></h4>
             </div>
             <br>
-            <center><b>ARE YOU SURE DO YOU WANT DELETE THIS INVOICE?</b></center>
+            <center><b>ARE YOU SURE DO YOU WANT CANCEL THIS INVOICE?</b></center>
             <form class="form-inline" role="form" method="post" id="formulario_eliminar_factura" action="../controllers/invoiceControllers.php">
               <div class="modal-body">
                 <input type="hidden"  class="form-control m-bot15 round-input"  name="codigo_factura_elimanar" id="codigo_factura_elimanar">
