@@ -154,7 +154,7 @@ if ($array_d->num_rows==0) {
       $buscarSupplierInvoice = SupplierInvoice::soloCodigo($codigo_factura);
       $array3 = $buscarSupplierInvoice->SelectProvedorInvoice();
       $paginas.$con.='
-      <h2>Suppleir</h2>
+      <h2>Suplier</h2>
       <table border="1" width="100%">
         <thead>
           <tr>
