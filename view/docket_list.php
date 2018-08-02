@@ -53,6 +53,7 @@ if(empty($_SESSION['user']))
                       <th><i class="icon_calendar"></i> Date</th>
                       <th><i class="fa fa-location-arrow"></i> Origin</th>
                       <th><i class="fa fa-location-arrow"></i> Destination</th>
+                      <th><i class="fa fa-location-arrow"></i> Cantidad Facturas</th>
                       <th><i class="icon_cogs"></i> Action</th>
                     </tr>
                   </thead>
@@ -62,6 +63,14 @@ if(empty($_SESSION['user']))
                     while($datos=$array1->fetch_assoc())
                     {
                     $i++;
+                    //cosultar la cantidad total
+                    $codigoD=$datos['codigo'];
+                    $contarInvoice = Docket::soloCodigo($codigoD);
+                    $count1 = $contarInvoice->SelectQuantityDocketInvoice();
+                    $resul1=$count1->fetch_assoc();
+                    //cosultar la cantidad procesada
+                    $count2 = $contarInvoice->SelectQuantityDocketInvoiceProcesadas();
+                    $resul2=$count2->fetch_assoc();
                     ?>
                     <tr>
                       <td>
@@ -74,6 +83,7 @@ if(empty($_SESSION['user']))
                       <td><?php echo "<b>" .$datos['fecha'] ."</b>";?></td>
                       <td><?php echo "<b>" .ucwords($datos['origen'] .", " .$datos['lugar_origen']) ."</b>";?></td>
                       <td><?php echo "<b>" .ucwords($datos['destino'] .", " .$datos['lugar_destino']) ."</b>";?></td>
+                      <td>Q <?php echo $resul1['total'];?> | <?php echo $resul2['total_pro'];?><img src="../images/i_verde.png" width="10%"></td>
                       <td>
                         <div class="btn-group">
                           <a class="btn btn-primary" style="font-size:15px" href="create_invoice.php?docket=<?php echo base64_encode($datos['codigo']);?>" data-toggle="tooltip" title="Add Invoice"><i class="fa fa-plus"></i></a>

@@ -111,7 +111,9 @@ class Docket{
 	}
 	public function selectDocketInvoice(){
 		$db = new Conexion();
-		$sql="SELECT * FROM invoice WHERE codigo_docket='$this->codigo' AND estatus='1'";
+		$sql="SELECT a.codigo_invoice,a.codigo_docket,a.tipo_documento,a.cliente,a.usuario,a.fecha_creacion,
+			  a.fecha_modificacion,a.estatus,b.descripcion FROM invoice a JOIN estatus b ON b.id=a.estatus
+			  WHERE a.codigo_docket='$this->codigo' AND a.estatus IN(1,2)";
 		$resultado = $db->query($sql);
 		return $resultado;
 	}
@@ -157,6 +159,20 @@ class Docket{
 					 JOIN paises d ON d.codigo=b.id_destino_pais 
 					 WHERE 
 					 codigo_docket='$this->codigo'";
+		$result = $db->query($sql);
+		return $result;
+	}
+	//cantidad de invoices por dockets
+	public function SelectQuantityDocketInvoice(){
+		$db = new Conexion();
+		$sql="SELECT COUNT(*) AS total FROM invoice WHERE codigo_docket='$this->codigo' AND estatus IN(1,2)";
+		$result = $db->query($sql);
+		return $result;
+	}
+	//cantidad de invoices por dockets con estatus PROCESADO
+	public function SelectQuantityDocketInvoiceProcesadas(){
+		$db = new Conexion();
+		$sql="SELECT COUNT(*) AS total_pro FROM invoice WHERE codigo_docket='$this->codigo' AND estatus = 2";
 		$result = $db->query($sql);
 		return $result;
 	}
