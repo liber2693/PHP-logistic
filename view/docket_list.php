@@ -53,7 +53,7 @@ if(empty($_SESSION['user']))
                       <th><i class="icon_calendar"></i> Date</th>
                       <th><i class="fa fa-location-arrow"></i> Origin</th>
                       <th><i class="fa fa-location-arrow"></i> Destination</th>
-                      <th><i class="fa fa-location-arrow"></i>Invoices</th>
+                      <th><i class="fa fa-check"></i>Ready Invoices</th>
                       <th><i class="icon_cogs"></i> Action</th>
                     </tr>
                   </thead>
@@ -83,7 +83,7 @@ if(empty($_SESSION['user']))
                       <td><?php echo "<b>" .$datos['fecha'] ."</b>";?></td>
                       <td><?php echo "<b>" .ucwords($datos['origen'] .", " .$datos['lugar_origen']) ."</b>";?></td>
                       <td><?php echo "<b>" .ucwords($datos['destino'] .", " .$datos['lugar_destino']) ."</b>";?></td>
-                      <td><?php echo "<b>" .$resul2['total_pro'];?> / <?php echo $resul1['total'] ."</b>";?></td>
+                      <td><center><?php echo "<b>" .$resul2['total_pro'];?> of <?php echo $resul1['total'] ."</b>";?></center></td>
                       <td>
                         <div class="btn-group">
                           <a class="btn btn-primary" style="font-size:16px" href="create_invoice.php?docket=<?php echo base64_encode($datos['codigo']);?>" data-toggle="tooltip" title="Add Invoice"><i class="fa fa-plus"></i></a>
