@@ -6,6 +6,8 @@ class Invoice{
 	protected $id;
 	protected $codigo_invoice; //clave UNIQUE
 	protected $codigo_docket; //clave de referencia con el documento
+	protected $codigo_usuario; //codigo registrado por el usuario que se lo proporciona otro sistema
+	protected $fecha; //fecha a la que pertenece este invoice
 	protected $tipo_documento;
 	protected $cliente;
 	protected $precio;
@@ -15,13 +17,15 @@ class Invoice{
 	protected $estatus;
 		
 	
-	public function __construct($codigo_invoice,$codigo_docket,$tipo_documento,$cliente,$precio,$usuario,$fecha_creacion,$fecha_modificacion,$estatus,$id = ''){
+	public function __construct($codigo_invoice,$codigo_docket,$codigo_usuario,$fecha,$tipo_documento,$cliente,$precio,$usuario,$fecha_creacion,$fecha_modificacion,$estatus,$id = ''){
 		
 		$db = new Conexion();
 
 		$this->id = $id;
 		$this->codigo_invoice = $codigo_invoice;
 		$this->codigo_docket = $codigo_docket;
+		$this->codigo_usuario = $codigo_usuario;
+		$this->fecha = $fecha;
 		$this->tipo_documento = $tipo_documento;
 		$this->cliente = $cliente;
 		$this->precio = $precio;
@@ -33,20 +37,20 @@ class Invoice{
 	}
 
 	static function ningundato(){
-		return new self('','','','','','','','','','');
+		return new self('','','','','','','','','','','','');
 	} 
 
 	static function soloCodigo($codigo_invoice){
-		return new self($codigo_invoice,'','','','','','','','','');
+		return new self($codigo_invoice,'','','','','','','','','','','');
 	}
 	public function InsertInvoice(){
 		$db = new Conexion();
-		$sql="INSERT INTO invoice(codigo_invoice, codigo_docket,tipo_documento, cliente,precio,usuario,fecha_creacion,estatus) VALUES ('$this->codigo_invoice','$this->codigo_docket','$this->tipo_documento','$this->cliente','','$this->usuario','$this->fecha_creacion','1')";
+		$sql="INSERT INTO invoice(codigo_invoice, codigo_docket, codigo_usuario, fecha, tipo_documento, cliente,precio,usuario,fecha_creacion,estatus) VALUES ('$this->codigo_invoice','$this->codigo_docket','$this->codigo_usuario','$this->fecha','$this->tipo_documento','$this->cliente','','$this->usuario','$this->fecha_creacion','1')";
 		$result = $db->query($sql);
 	}
 	public function SelectInvoice(){
 		$db = new Conexion();
-		$sql="SELECT * FROM invoice WHERE codigo_invoice = '$this->codigo_invoice' AND estatus = '1'";
+		$sql="SELECT * FROM invoice WHERE codigo_invoice = '$this->codigo_invoice' AND estatus IN (1,2)";
 		$result = $db->query($sql);
 		return $result;
 	}
@@ -54,13 +58,13 @@ class Invoice{
 	//actualizar una factura 
 	public function UpdateInvoice(){
 		$db = new Conexion();
-		$sql="UPDATE invoice SET cliente='$this->cliente', usuario='$this->usuario', fecha_modificacion = '$this->fecha_modificacion' WHERE codigo_invoice='$this->codigo_invoice' AND estatus = '1'";
+		$sql="UPDATE invoice SET codigo_usuario='$this->codigo_usuario', fecha='$this->fecha', cliente='$this->cliente', usuario='$this->usuario', fecha_modificacion = '$this->fecha_modificacion' WHERE codigo_invoice='$this->codigo_invoice' AND estatus IN (1,2)";
 		$result = $db->query($sql);
 	}
 
 	public function SelectInvoiceDocket(){
 		$db = new Conexion();
-		$sql="SELECT a.codigo_invoice,a.codigo_docket,a.cliente,a.fecha_creacion,b.shipper,b.telefono,
+		$sql="SELECT a.codigo_invoice,a.codigo_docket,a.codigo_usuario,a.fecha,a.cliente,a.fecha_creacion,b.shipper,b.telefono,
 					 b.lugar_origen,b.lugar_destino,b.pieza,b.tipo_pieza,b.peso,b.tipo_peso,b.alto,b.ancho,
 					 b.largo,b.tipo_dimension,b.descripcion,c.pais AS pais_origen,d.pais AS pais_destino
 					 FROM invoice a
@@ -68,7 +72,7 @@ class Invoice{
 					 JOIN paises c ON c.codigo=b.id_origen_pais 
 					 JOIN paises d ON d.codigo=b.id_destino_pais 
 					 WHERE 
-					 codigo_invoice='$this->codigo_invoice'";
+					 a.codigo_invoice='$this->codigo_invoice' AND a.estatus IN (1,2)";
 		$result = $db->query($sql);
 		return $result;
 	}

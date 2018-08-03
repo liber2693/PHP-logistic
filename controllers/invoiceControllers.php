@@ -13,9 +13,14 @@ $fecha_registro=date("Y-m-d");
 
 
 if(isset($_POST['enviar_invoice'])){
+    //echo "<pre>";print_r($_POST);die();
     $codigo_documento=$_POST['codigo_documento'];
     $quien=$_POST['quien_paga'];
     $tipoDocumento=$_POST['tipo'];
+    //codigo creado por el usuario
+    $codigo_usuario = $_POST['codigo_usuario'];
+    //fecha de creacion del docmuento, establecida por el usuario
+    $fecha = $_POST['fecha'];
     //Usuario que se encuentra en sesion
     $usuario=$_SESSION['id_usuario'];
     /*generar el correlativo*/
@@ -70,7 +75,7 @@ if(isset($_POST['enviar_invoice'])){
     
     /*FIN*/
     /*registrar en la tabla de invoice por fin*/
-    $insert_invoice = new Invoice($codigo,$codigo_documento,$tipoDocumento,$quien,'',$usuario,$fecha_registro,'','','');
+    $insert_invoice = new Invoice($codigo,$codigo_documento,$codigo_usuario,$fecha,$tipoDocumento,$quien,'',$usuario,$fecha_registro,'','','');
     $insert_invoice->InsertInvoice();
     
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_invoice.php?invoice=".base64_encode($codigo)."'>";
@@ -140,6 +145,7 @@ if(isset($_GET['tabla']) && $_GET['tabla']==2){
     $codigo_invoice = $_GET['codigo_invoice'];
     $usuario = $_GET['usuario_documento'];
     $pago_supplier = $_GET['pago_supplier'];
+
     //registro nuevo en el proceso de actualizar un INVOICE en supplier
     $actualizarRegistro = new SupplierInvoice($codigo_invoice,$supplier,$pago_supplier,$usuario,$fecha_registro,'','');
     $actualizarRegistro->InsertProvedorInvoice();
@@ -260,6 +266,9 @@ if(isset($_POST['enviar_update_invoice'])){
     $usuario_documento = $_POST['usuario_documento'];
     $quien_paga = $_POST['quien_paga'];
 
+    $codigo_usuario = $_POST['codigo_usuario'];
+    $fecha = $_POST['fecha'];
+
     $cantidad_envios_regis = count($_POST['id_envio_seleccionado']);
     for ($i=0; $i <$cantidad_envios_regis; $i++) { 
         if (!empty($_POST['id_envio_seleccionado'][$i])) {
@@ -278,7 +287,7 @@ if(isset($_POST['enviar_update_invoice'])){
         $insert_envi->InsertfactipoEnvio();
     }
     
-    $update_invoice = new Invoice($codigo_invoice,'','',$quien_paga,'',$usuario_documento,'',$fecha_registro,'','');
+    $update_invoice = new Invoice($codigo_invoice,'',$codigo_usuario,$fecha,'',$quien_paga,'',$usuario_documento,'',$fecha_registro,'','');
     $update_invoice->UpdateInvoice();
     //echo "<pre>";print_r($update_invoice);die();
 

@@ -65,10 +65,16 @@ else
                         <input type="hidden" name="usuario_documento" id="usuario_documento" value="<?php echo $_SESSION['id_usuario'];?>">
                         <input type="hidden" value="<?php echo $tipo;?>" name="tipo" id="tipo">
                     	</div>
-                  	</div>
-        					<div class="form-group">
-        						<label class="col-sm-2 control-label"><b>Supplier</b></label>
-        					</div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label"><b>Invoice Code</b></label>
+                      <div class="col-sm-4">
+                        <input type="text" id="codigo_usuario" name="codigo_usuario" class="form-control round-input">
+                      </div>
+                    </div>
+          					<div class="form-group">
+          						<label class="col-sm-2 control-label"><b>Supplier</b></label>
+          					</div>
         					<?php
         					for ($i=1; $i<7; $i++) {
         						# code...
@@ -104,6 +110,12 @@ else
                     <label class="col-sm-2 control-label"><b>Bill to</b></label>
                     <div class="col-sm-10">
                       <input type="text" id="quien_paga" name="quien_paga" class="form-control round-input">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label"><b>Creation Date</b></label>
+                    <div class="col-sm-4">
+                      <input type="text" id="fecha" name="fecha" class="form-control round-input fecha" placeholder="Enter Date" readonly="true">
                     </div>
                   </div>
                   <!-- probando -->
