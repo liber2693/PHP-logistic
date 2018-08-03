@@ -5,6 +5,15 @@ $(document).ready(function() {
     for (var i = 0; i < 7; i++) {
         $("#dinero"+i+"").maskMoney();
     }
+    //campo de fecha 
+    $(function () {
+        $.datepicker.setDefaults($.datepicker.regional["es"]);
+        $(".fecha").datepicker({
+            dateFormat: 'dd-mm-yy',
+            firstDay: 1
+        });
+   });
+
     //busca los servicios
     var tipo = $('#tipo').val();
     $.ajax({
@@ -121,10 +130,10 @@ $(document).ready(function() {
     //mostrar el campo otro caundo selecciona el 6
     $('input[type=checkbox]').on('change', function() {
         var valor = $(this).val();
-
+        console.log(valor);
         if ($(this).is(':checked') && valor==6) {
             $("#campo_otro").removeClass("ocultar");
-        } else {
+        } else if(valor ==6)  {
             $("#campo_otro").addClass("ocultar");
         }
     });
@@ -134,6 +143,8 @@ $(document).ready(function() {
         var supplier = $("#supplier1").val();
         var dinero = $("#dinero1").val();
         var quien_paga = $("#quien_paga").val();
+        var codigo_usuario = $("#codigo_usuario").val();
+        var fecha = $("#fecha").val();
 
         if (supplier=='') {
             $("#supplier1").css({"border":"2px solid #ff3333"});
@@ -153,6 +164,19 @@ $(document).ready(function() {
         }else{
             $("#quien_paga").css({"border":"1px solid #c7c7cc"});
         }
+        if (codigo_usuario=='') {
+            $("#codigo_usuario").css({"border":"2px solid #ff3333"});
+            event.preventDefault();
+        }else{
+            $("#codigo_usuario").css({"border":"1px solid #c7c7cc"});
+        }
+        if (fecha=='') {
+            $("#fecha").css({"border":"2px solid #ff3333"});
+            event.preventDefault();
+        }else{
+            $("#fecha").css({"border":"1px solid #c7c7cc"});
+        }
+        
 
         //validare que el envio este seleccionado
         var check = $("input[type='checkbox']:checked").length;

@@ -165,9 +165,9 @@ if(empty($_SESSION['user']))
                         }
                       ?>
                       <tr>
-                        <td><strong><?php echo $datos['codigo_invoice'];?></strong><input type="hidden" id="codigo_factura<?php echo $i;?>" value="<?php echo $datos['codigo_invoice'];?>"></td>
+                        <td><strong><?php echo $datos['codigo_usuario'];?></strong><input type="hidden" id="codigo_factura<?php echo $i;?>" value="<?php echo $datos['codigo_invoice'];?>"></td>
                         <td><strong><?php echo ucwords($datos['cliente']);?></strong></td>
-                        <td><strong><?php echo $datos['fecha_creacion'];?></strong></td>
+                        <td><strong><?php echo $datos['fecha'];?></strong></td>
                         <td><strong><?php echo $datos['descripcion'];?> &nbsp;&nbsp;<img src="../images/<?php echo $imagen;?>" width="10%"></strong></td>
                         <td>
                           <div class="btn-group">

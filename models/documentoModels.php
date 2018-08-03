@@ -111,7 +111,7 @@ class Docket{
 	}
 	public function selectDocketInvoice(){
 		$db = new Conexion();
-		$sql="SELECT a.codigo_invoice,a.codigo_docket,a.tipo_documento,a.cliente,a.usuario,a.fecha_creacion,
+		$sql="SELECT a.codigo_invoice,a.codigo_docket,a.codigo_usuario,a.fecha,a.tipo_documento,a.cliente,a.usuario,a.fecha_creacion,
 			  a.fecha_modificacion,a.estatus,b.descripcion FROM invoice a JOIN estatus b ON b.id=a.estatus
 			  WHERE a.codigo_docket='$this->codigo' AND a.estatus IN(1,2)";
 		$resultado = $db->query($sql);

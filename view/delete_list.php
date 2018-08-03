@@ -94,11 +94,9 @@ if(empty($_SESSION['user']))
                       <td><?php echo "<b>" .$datos['fecha_creacion']."</b>";?></td>
                       <td>
                         <div class="btn-group">
-                          <button class="btn btn-primary" style="font-size:16px" onclick="detalle(document.getElementById('detalle
-                          <?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="See Reason"><i class="fa fa-eye"></i></button>
+                          <button class="btn btn-primary" style="font-size:16px" onclick="detalle(document.getElementById('detalle<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="See Reason"><i class="fa fa-eye"></i></button>
 
-                          <button class="btn btn-success" style="font-size:16px" onclick="eliminar_documento(document.getElementById('codigo_documento
-                          <?php echo $i;?>').value,document.getElementById('tipo_documento<?php echo $i;?>').value)" data-toggle="modal"
+                          <button class="btn btn-success" style="font-size:16px" onclick="eliminar_documento(document.getElementById('codigo_documento<?php echo $i;?>').value,document.getElementById('tipo_documento<?php echo $i;?>').value)" data-toggle="modal"
                           data-target="#myModal" title="Cancel Docket"><i class="fa fa-reply"></i></button>
                         </div>
                       </td>

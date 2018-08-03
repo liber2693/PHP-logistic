@@ -63,10 +63,10 @@ else
                     <strong>DOCKET #: <?php echo $datos['codigo_docket'];?></strong>
                   </label>
                   <label class="label_check" for="checkbox-02">
-                    <strong>INVOICE #: <?php echo $datos['codigo_invoice'];?></strong>
+                    <strong>INVOICE #: <?php echo $datos['codigo_usuario'];?></strong>
                   </label>
                   <label class="label_check" for="checkbox-02">
-                    <strong>DATE: <?php echo $datos['fecha_creacion'];?></strong>
+                    <strong>CREATION DATE #: <?php echo $datos['fecha'];?></strong>
                   </label>
                   <label class="label_check" for="checkbox-02">
                     <strong>BILL TO: <?php echo ucwords($datos['cliente']);?></strong>
