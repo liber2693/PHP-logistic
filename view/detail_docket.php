@@ -28,6 +28,19 @@ if(empty($_SESSION['user']))
     <!--sidebar start-->
      <?php include('menu.php');?>
     <!--sidebar end-->
+<style>
+    table {
+        display: table;
+        border-collapse: separate;
+        border-spacing: 1px;
+        border-color: black;
+        width: 100%;
+        align: center;
+    }
+    td {
+        padding: 8px;
+    }
+</style>
 
     <!--main content start-->
     <section id="main-content">
@@ -39,7 +52,7 @@ if(empty($_SESSION['user']))
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="../index.php">Home</a></li>
               <li><i class="fa fa-archive"></i><a href="docket_list.php">Docket List</a></li>
-              <li><i class="fa fa-archive"></i>Docket Details</li>
+              <li><i class="fa fa-archive"></i><b>Docket Details</b></li>
             </ol>
           </div>
         </div>
@@ -51,46 +64,58 @@ if(empty($_SESSION['user']))
               </header>
               <div class="panel-body">
                 <div class="checkboxes">
-                  <label class="label_check" for="checkbox-01">
-                    <input type="hidden" name="id_codigo_docket" id="id_codigo_docket" value="<?php echo $codigo;?>">
-                    <strong>DOCKET # : <?php echo $codigo;?></strong>
-                  </label>
-                  <label class="label_check" for="checkbox-02">
-                    <strong>SHIPPER: <?php echo ucwords($datos['shipper']);?></strong>
-                  </label>
-                  <label class="label_check" for="checkbox-02">
-                    <strong>PHONE #: <?php echo $datos['telefono'];?></strong>
-                  </label>
-                  <label class="label_check" for="checkbox-02">
-                    <strong>CC #: <?php echo $datos['cc'];?></strong>
-                  </label>
-                  <label class="label_check" for="checkbox-02">
-                    <strong>CONSIGNEE : <?php echo $datos['consignee'];?></strong>
-                  </label>
-                  <label class="label_check" for="checkbox-02">
-                    <strong>PO #: <?php echo $datos['po'];?></strong>
-                  </label>
-                  <label class="label_check" for="checkbox-02">
-                    <strong>DATE: <?php echo $datos['fecha'];?></strong>
-                  </label>
-                  <label class="label_check" for="checkbox-02">
-                    <strong>ORIGIN: <?php echo ucfirst($datos['origen']) .", " .ucwords($datos['lugar_origen']);?></strong>
-                  </label>
-                  <label class="label_check" for="checkbox-02">
-                    <strong>DESTINATION: <?php echo ucfirst($datos['destino']) .", " .ucwords($datos['lugar_destino']);?></strong>
-                  </label>
-                  <label class="label_check" for="checkbox-02">
-                    <strong>PIECES: <?php echo $datos['pieza'] ." " .ucfirst($datos['tipo_pieza']);?></strong>
-                  </label>
-                  <label class="label_check" for="checkbox-02">
-                    <strong>WEIGHT: <?php echo $datos['peso'] ." " .ucfirst($datos['tipo_peso']);?></strong>
-                  </label>
-                  <label class="label_check" for="checkbox-02">
-                    <strong>DIMENS: <?php echo $datos['alto'] . " X "  .$datos['ancho'] ." X " .$datos['largo'] ." " .ucfirst(strtolower($datos['tipo_dimension']));?></strong>
-                  </label>
-                  <label class="label_check" for="checkbox-02">
-                    <strong>NOTES: <?php echo ucfirst($datos['descripcion']);?></strong>
-                  </label>
+                  <table border="1" width="100%">
+                    <thead>
+                      <tr>
+                        <td colspan="2px" class="text-center" cellspadding>
+                          <input type="hidden" name="id_codigo_docket" id="id_codigo_docket" value="<?php echo $codigo;?>">
+                          <strong>DOCKET # : <?php echo $codigo;?></strong>
+                        </td>
+                        <td colspan="2px" class="text-center" cellspadding>
+                          <strong>SHIPPER: <?php echo ucwords($datos['shipper']);?></strong>
+                        </td>
+                        <td colspan="2px" class="text-center" cellspadding>
+                          <strong>PHONE #: <?php echo $datos['telefono'];?></strong>
+                        </td>
+                        <td colspan="2px" class="text-center" cellspadding>
+                          <strong>CC #: <?php echo $datos['cc'];?></strong>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="2px" class="text-center" cellspadding>
+                          <strong>ORIGIN: <?php echo ucfirst($datos['origen']) .", " .ucwords($datos['lugar_origen']);?></strong>
+                        </td>
+                        <td colspan="2px" class="text-center" cellspadding>
+                          <strong>PO #: <?php echo $datos['po'];?></strong>
+                        </td>
+                        <td colspan="2px" class="text-center" cellspadding>
+                          <strong>DATE: <?php echo $datos['fecha'];?></strong>
+                        </td>
+                        <td colspan="2px" class="text-center" cellspadding>
+                          <strong>CONSIGNEE : <?php echo $datos['consignee'];?></strong>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="2px" class="text-center" cellspadding>
+                          <strong>DESTINATION: <?php echo ucfirst($datos['destino']) .", " .ucwords($datos['lugar_destino']);?></strong>
+                        </td>
+                        <td colspan="2px" class="text-center" cellspadding>
+                          <strong>PIECES: <?php echo $datos['pieza'] ." " .ucfirst($datos['tipo_pieza']);?></strong>
+                        </td>
+                        <td colspan="2px" class="text-center" cellspadding>
+                          <strong>WEIGHT: <?php echo $datos['peso'] ." " .ucfirst($datos['tipo_peso']);?></strong>
+                        </td>
+                        <td colspan="2px" class="text-center" cellspadding>
+                          <strong>DIMENS: <?php echo $datos['alto'] . " X "  .$datos['ancho'] ." X " .$datos['largo'] ." " .ucfirst(strtolower($datos['tipo_dimension']));?></strong>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="8" class="text-center" cellspadding>
+                          <strong>NOTES: <?php echo ucfirst($datos['descripcion']);?></strong>
+                        </td>
+                      </tr>
+                    </thead>
+                  </table>
                 </div>
               </div>
             </section>

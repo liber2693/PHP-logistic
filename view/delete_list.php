@@ -98,6 +98,7 @@ if(empty($_SESSION['user']))
 
                           <button class="btn btn-success" style="font-size:16px" onclick="eliminar_documento(document.getElementById('codigo_documento<?php echo $i;?>').value,document.getElementById('tipo_documento<?php echo $i;?>').value)" data-toggle="modal"
                           data-target="#myModal" title="Cancel Docket"><i class="fa fa-reply"></i></button>
+
                         </div>
                       </td>
                     </tr>
