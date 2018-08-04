@@ -56,12 +56,11 @@ else
             <section class="panel">
               <header class="panel-heading">
                 <b>INVOICE</b>
-              </header>
+              </header><br><br>
               <div class="panel-body">
                 	<div class="form-group">
                     <label class="col-lg-2 control-label"><b>Invoice #</b></label>
                     <div class="col-lg-10">
-                      <!--<p class="form-control-static"><strong><?php //echo $datos['codigo_invoice'];?></strong></p>-->
                       <div class="col-sm-4">
                         <input type="text" id="codigo_usuario" name="codigo_usuario" class="form-control round-input" value="<?php echo $datos['codigo_usuario'];?>">
                       </div>
@@ -69,9 +68,9 @@ else
                       <input type="hidden" name="usuario_documento" id="usuario_documento" value="<?php echo $_SESSION['id_usuario'];?>">
                       <input type="hidden" name="tipo" id="tipo" value="<?php echo $datos['tipo_documento'];?>">
                     </div>
-                    <label class="col-sm-2 control-label"><strong>DATE</strong></label>
+                    <label class="col-sm-2 control-label"><br><br><strong>Date</strong></label>
                     <div class="col-sm-4">
-                      <input name="fecha" type="text" class="form-control round-input fecha" readonly  placeholder="Enter Date" value="<?php echo $datos['fecha'];?>">
+                      <br><br><input name="fecha" type="text" class="form-control round-input fecha" readonly  placeholder="Enter Date" value="<?php echo $datos['fecha'];?>"><br>
                     </div>
                   </div>
                   <div class="form-group">
