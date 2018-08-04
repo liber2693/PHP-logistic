@@ -64,7 +64,7 @@ else
                         <input type="hidden" name="codigo_documento" id="codigo_documento" value="<?php echo $datos['codigo'];?>">
                         <input type="hidden" name="usuario_documento" id="usuario_documento" value="<?php echo $_SESSION['id_usuario'];?>">
                         <input type="hidden" value="<?php echo $tipo;?>" name="tipo" id="tipo">
-                    	</div>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-2 control-label"><b>Invoice Code</b></label>

@@ -114,7 +114,7 @@ $(document).ready(function() {
                             $('#enviar_invoice').attr("disabled", false);
                         });
                     }
-                    limpiar_campos();
+                    limpiar_campos_servicios();
                 }
             })
         }else{
@@ -130,7 +130,7 @@ $(document).ready(function() {
     //mostrar el campo otro caundo selecciona el 6
     $('input[type=checkbox]').on('change', function() {
         var valor = $(this).val();
-        console.log(valor);
+        //console.log(valor);
         if ($(this).is(':checked') && valor==6) {
             $("#campo_otro").removeClass("ocultar");
         } else if(valor ==6)  {
@@ -140,6 +140,8 @@ $(document).ready(function() {
 
     $("#crear_invoice").submit(function(event) {
 
+        $('#enviar_invoice').attr("disabled", true);
+
         var supplier = $("#supplier1").val();
         var dinero = $("#dinero1").val();
         var quien_paga = $("#quien_paga").val();
@@ -148,37 +150,42 @@ $(document).ready(function() {
 
         if (supplier=='') {
             $("#supplier1").css({"border":"2px solid #ff3333"});
+            $('#enviar_invoice').attr("disabled", false);
             event.preventDefault();
         }else{
             $("#supplier1").css({"border":"1px solid #c7c7cc"});
         }
         if (dinero=='') {
             $("#dinero1").css({"border":"2px solid #ff3333"});
+            $('#enviar_invoice').attr("disabled", false);
             event.preventDefault();
         }else{
             $("#dinero1").css({"border":"1px solid #c7c7cc"});
         }
         if (quien_paga=='') {
             $("#quien_paga").css({"border":"2px solid #ff3333"});
+            $('#enviar_invoice').attr("disabled", false);
             event.preventDefault();
         }else{
             $("#quien_paga").css({"border":"1px solid #c7c7cc"});
         }
         if (codigo_usuario=='') {
             $("#codigo_usuario").css({"border":"2px solid #ff3333"});
+            $('#enviar_invoice').attr("disabled", false);
             event.preventDefault();
         }else{
             $("#codigo_usuario").css({"border":"1px solid #c7c7cc"});
         }
         if (fecha=='') {
             $("#fecha").css({"border":"2px solid #ff3333"});
+            $('#enviar_invoice').attr("disabled", false);
             event.preventDefault();
         }else{
             $("#fecha").css({"border":"1px solid #c7c7cc"});
         }
         
 
-        //validare que el envio este seleccionado
+        //validar que el envio este seleccionado
         var check = $("input[type='checkbox']:checked").length;
         if(check == ""){
             $("#mensaje_create_invoice").addClass("alert alert-block alert-danger fade in text-center").html("<strong>Disculpa!</strong> Debe seleccionar un tipo de envio");
@@ -186,10 +193,12 @@ $(document).ready(function() {
                 $("#mensaje_create_invoice").removeClass().empty();
             },3000);
             $("#via_envio").css({"border":"2px solid #ff3333"});
+            $('#enviar_invoice').attr("disabled", false);
            event.preventDefault();
         }else{
             $("#via_envio").css({"border":"0"});
         }
+        
     });
 });
 
@@ -266,8 +275,16 @@ function eliminar(id){
         }
     })
 }
-function limpiar_campos(){
+//limpia los campos al momento de agregar un servico
+function limpiar_campos_servicios(){
 
     $(".limpiar").val("");
     $("#lista_servicios").val("0");
 }
+//limpia los campos de la factura como tal
+//function limpiar_campos_invoice(){
+
+    //$(".limpiar_invoice").val("");
+    //limpiar el tipo de campo checbox
+    //$('input[type=checkbox]').prop( "checked", false );
+//}
