@@ -21,7 +21,7 @@
           <li class="active">
             <a class="" href="delete_list.php">
               <i class="fa fa-trash-o"></i>
-              <span>Canceled Docket</span>
+              <span>Void Dockets</span>
             </a>
           </li>
           <?php
