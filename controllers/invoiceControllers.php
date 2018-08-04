@@ -317,8 +317,10 @@ if (isset($_POST['boton_eliminar'])) {
 if (isset($_GET['active']) && !empty($_GET['active'])) {
     $codigo_invoice_active = base64_decode($_GET['active']);
     $codigo_docket_active = base64_decode($_GET['docket']);
+
     $procesar_invoice = new Invoice($codigo_invoice_active,'','','','','','','','','','','');
     $procesar_invoice->UpdateStatusInvoice();
+    //echo "<pre>";print_r($procesar_invoice);die();
 
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_docket.php?docket=".base64_encode($codigo_docket_active)."'>";
 }
