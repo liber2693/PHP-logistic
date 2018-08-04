@@ -5,7 +5,7 @@ $(document).ready(function() {
     for (var i = 0; i < 7; i++) {
         $("#dinero"+i+"").maskMoney();
     }
-    //campo de fecha 
+    //campo de fecha
     $(function () {
         $.datepicker.setDefaults($.datepicker.regional["es"]);
         $(".fecha").datepicker({
@@ -183,7 +183,7 @@ $(document).ready(function() {
         }else{
             $("#fecha").css({"border":"1px solid #c7c7cc"});
         }
-        
+
 
         //validar que el envio este seleccionado
         var check = $("input[type='checkbox']:checked").length;

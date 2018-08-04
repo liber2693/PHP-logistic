@@ -160,7 +160,7 @@ if ($array_d->num_rows==0) {
           <tr>
             <td>#</td>
             <td>Supplier</td>
-            <td>US$ AMT</td>
+            <td>US$</td>
           </tr>
         </thead>';
         if($array3->num_rows==0){
