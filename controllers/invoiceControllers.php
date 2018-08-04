@@ -12,7 +12,7 @@ date_default_timezone_set("America/Caracas");
 $fecha_registro=date("Y-m-d");
 
 
-if(isset($_POST['enviar_invoice'])){
+if(isset($_POST['codigo_documento']) && isset($_POST['usuario_documento'])){
     //echo "<pre>";print_r($_POST);die();
     $codigo_documento=$_POST['codigo_documento'];
     $quien=$_POST['quien_paga'];

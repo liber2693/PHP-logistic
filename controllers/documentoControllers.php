@@ -10,7 +10,7 @@ $fecha_registro=date("Y-m-d");
 $date=substr(date("Y"),2);
 
 
-if(isset($_POST['enviar_documento'])){
+if(isset($_POST['tipoDocumento'])){
     $tipoDocumento=$_POST['tipoDocumento'];
     $shipper=$_POST['shipper'];
     $telefono=$_POST['telefono'];

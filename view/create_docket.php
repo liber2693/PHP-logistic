@@ -171,7 +171,7 @@ if(empty($_SESSION['user']))
                           <label for="files">File input</label>
                           <input type="file" name="archivo[]" multiple="true">
                         </div>
-                          <button type="submit" id="enviar_documento" name="enviar_documento" class="btn btn-primary"><b>Save</b></button>
+                          <button type="submit" id="enviar_documento_import" name="enviar_documento" class="btn btn-primary"><b>Save</b></button>
                           <button type="reset" class="btn btn-info"><b>Reset</b></button>
                       </center>
                   </form>
@@ -301,7 +301,7 @@ if(empty($_SESSION['user']))
                         <label for="files">File input</label>
                         <input type="file" name="archivo[]" multiple=true>
                       </div>
-                      <button type="submit" id="enviar_documento" name="enviar_documento" class="btn btn-primary"><b>Save</b></button>
+                      <button type="submit" id="enviar_documento_export" name="enviar_documento" class="btn btn-primary"><b>Save</b></button>
                       <button type="reset" class="btn btn-info"><b>Reset</b></button>
                     </center>
                   </div>
