@@ -52,6 +52,7 @@
   <script src="../theme/js/bootstrap-datepicker.js"></script>
   <script type="text/javascript" src="../theme/assets/ckeditor/ckeditor.js"></script>
   <!--<script src="../theme/js/form-component.js"></script>-->
+  <script type="text/javascript" src="../js/funciones.js"></script>
 
   
 
