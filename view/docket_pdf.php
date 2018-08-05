@@ -240,7 +240,7 @@ if ($array_d->num_rows==0) {
         <div>';
       }else{
         $paginas.$con.='
-        <table border="1">
+        <table border="1" width="40%" style="margin-left:auto; margin-right: auto">
           <tbody>
             <tr>';
         $i=0;
@@ -249,7 +249,7 @@ if ($array_d->num_rows==0) {
         $nota = ($datos2['id_envio']==6) ? ": ".ucfirst($datos2['nota']) : "" ;
           $paginas.$con.='
               <td>
-                <p>'.$datos2['descripcion'].'</p><b>'.$nota.'</b>
+                <b>'.$datos2['descripcion'].' '.$nota.'</b>
               </td>';
         }
       }

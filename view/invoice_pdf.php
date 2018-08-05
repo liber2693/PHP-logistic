@@ -201,7 +201,7 @@ if ($array->num_rows==0) {
       <div>';
   }else{
     $html.='
-    <table border="1">
+    <table border="1" width="40%" style="margin-left:auto; margin-right: auto">
       <tbody>
         <tr>';
     $i=0;
@@ -209,7 +209,7 @@ if ($array->num_rows==0) {
     $i++;
     $nota = ($datos2['id_envio']==6) ? ": ".ucfirst($datos2['nota']) : "" ;
       $html.='
-          <td width="20%">
+          <td>
             <b><center>'.$datos2['descripcion'] .$nota.'</b>
           </td>';
     }

@@ -118,7 +118,7 @@ $(document).ready(function() {
                 }
             })
         }else{
-            $("#mensaje_servicios_selec").addClass("alert alert-block alert-danger fade in text-center").html("<strong>Disculpa!</strong> Debe registrar un servicio");
+            $("#mensaje_servicios_selec").addClass("alert alert-block alert-danger fade in text-center").html("<strong>SORRY!</strong> You must select at least one service");
             setTimeout(function() {
                 $("#mensaje_servicios_selec").removeClass().empty();
             },3000);
@@ -188,7 +188,7 @@ $(document).ready(function() {
         //validar que el envio este seleccionado
         var check = $("input[type='checkbox']:checked").length;
         if(check == ""){
-            $("#mensaje_create_invoice").addClass("alert alert-block alert-danger fade in text-center").html("<strong>Disculpa!</strong> Debe seleccionar un tipo de envio");
+            $("#mensaje_create_invoice").addClass("alert alert-block alert-danger fade in text-center").html("<strong>SORRY!</strong> You must select at least one service");
             setTimeout(function() {
                 $("#mensaje_create_invoice").removeClass().empty();
             },3000);
@@ -198,7 +198,7 @@ $(document).ready(function() {
         }else{
             $("#via_envio").css({"border":"0"});
         }
-        
+
     });
 });
 
