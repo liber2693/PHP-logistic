@@ -209,7 +209,7 @@ if ($array->num_rows==0) {
     $i++;
     $nota = ($datos2['id_envio']==6) ? ": ".ucfirst($datos2['nota']) : "" ;
       $html.='
-          <td>
+          <td style="text-align:center">
             <b><center>'.$datos2['descripcion'] .$nota.'</b>
           </td>';
     }

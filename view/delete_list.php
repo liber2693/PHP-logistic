@@ -140,12 +140,12 @@ if(empty($_SESSION['user']))
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <center><h4 class="modal-title"><b>DEVOLVER FACTURA</b></h4></center>
+            <center><h4 class="modal-title"><b>GO BACK</b></h4></center>
           </div>
           <form class="form-inline" role="form" method="post" id="regresar_eliminado" action="../controllers/documentoControllers.php">
             <input type="hidden" name="id_regresar" id="id_regresar">
             <div class="modal-body">
-              <center><b>¿Estas Seguro de Devolver este archivo?</b></center>
+              <center><b>Are you sure go back this document?</b></center>
             </div>
             <div class="modal-footer">
               <button type="submit" name="boton_regresar" class="btn btn-success"><b>Confirm</b></button>

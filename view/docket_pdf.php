@@ -248,7 +248,7 @@ if ($array_d->num_rows==0) {
         $i++;
         $nota = ($datos2['id_envio']==6) ? ": ".ucfirst($datos2['nota']) : "" ;
           $paginas.$con.='
-              <td>
+              <td style="text-align:center">
                 <b>'.$datos2['descripcion'].' '.$nota.'</b>
               </td>';
         }
