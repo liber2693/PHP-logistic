@@ -16,6 +16,6 @@ class Conexion extends mysqli{
 
 		//echo $m;
 	}
-	
+
 }
 ?>

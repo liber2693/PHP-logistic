@@ -92,7 +92,9 @@ if(empty($_SESSION['user']))
                         </b>
                       </td>
                       <td><?php echo "<b>" .$datos['usuario']."</b>";?></td>
-                      <td><?php echo "<b>" .$datos['fecha_creacion']."</b>";?></td>
+                      <td><strong><?php
+                      $fecha = explode('-', $datos['fecha_creacion']);
+                      echo "<b>" .$fecha[1] .'-' .$fecha[2] .'-' .$fecha[0] ."</b>";?></strong></td>
                       <td>
                         <div class="btn-group">
                           <button class="btn btn-primary" style="font-size:16px" onclick="detalle(document.getElementById('detalle<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="See Reason"><i class="fa fa-eye"></i></button>

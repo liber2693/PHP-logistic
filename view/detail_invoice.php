@@ -69,11 +69,11 @@ else
                           <strong>INVOICE #: <?php echo $datos['codigo_usuario'];?></strong>
                         </td>
                         <td class="text-center">
-                          <strong>DATE #:
+                          <strong>DATE:&nbsp;
                             <?php
-                            /*$fecha_seteada = explode("-", $datos['fecha']);
-                            echo "<pre>";print_r($fecha_final);exit;*/
-                             echo $datos['fecha'];?></strong>
+                            $fecha = explode('-', $datos['fecha']);
+                            echo "<b>" .$fecha[1] .'-' .$fecha[2] .'-' .$fecha[0] ."</b>";
+                            ?></strong>
                         </td>
                         <td class="text-center">
                           <strong>BILL TO: <?php echo ucwords($datos['cliente']);?></strong>

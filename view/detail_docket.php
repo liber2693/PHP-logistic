@@ -90,7 +90,10 @@ if(empty($_SESSION['user']))
                           <strong>PO #: <?php echo ucfirst($datos['po']);?></strong>
                         </td>
                         <td class="text-center">
-                          <strong>DATE: <?php echo $datos['fecha'];?></strong>
+                          <strong>DATE: <?php
+                          $fecha = explode('-', $datos['fecha']);
+                          echo "<b>" .$fecha[1] .'-' .$fecha[2] .'-' .$fecha[0] ."</b>";
+                          ?></strong>
                         </td>
                         <td class="text-center">
                           <strong>CONSIGNEE : <?php echo ucwords($datos['consignee']);?></strong>
@@ -193,7 +196,9 @@ if(empty($_SESSION['user']))
                       <tr>
                         <td><strong><?php echo $datos['codigo_usuario'];?></strong><input type="hidden" id="codigo_factura<?php echo $i;?>" value="<?php echo $datos['codigo_invoice'];?>"><input type="hidden" id="codigo_usuario<?php echo $i;?>" value="<?php echo $datos['codigo_usuario'];?>"></td>
                         <td><strong><?php echo ucwords($datos['cliente']);?></strong></td>
-                        <td><strong><?php echo $datos['fecha'];?></strong></td>
+                        <td><strong><?php
+                        $fecha = explode('-', $datos['fecha']);
+                        echo "<b>" .$fecha[1] .'-' .$fecha[2] .'-' .$fecha[0] ."</b>";?></strong></td>
                         <td><strong><?php echo $datos['descripcion'];?> &nbsp;&nbsp;<img src="../images/<?php echo $imagen;?>" width="10%"></strong></td>
                         <td>
                           <div class="btn-group">
