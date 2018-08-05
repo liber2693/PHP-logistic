@@ -6,6 +6,7 @@ class DocketInvoiceDelete{
 	protected $id;
 	protected $codigo_docket;
 	protected $codigo_invoice;
+	protected $codigo_usuario;
 	protected $tipo;
 	protected $detalle;
 	protected $usuario;
@@ -13,13 +14,14 @@ class DocketInvoiceDelete{
 	protected $estatus;
 	
 	
-	public function __construct($codigo_docket,$codigo_invoice,$tipo,$detalle,$usuario,$fecha_creacion,$estatus,$id = ''){
+	public function __construct($codigo_docket,$codigo_invoice,$codigo_usuario,$tipo,$detalle,$usuario,$fecha_creacion,$estatus,$id = ''){
 		
 		$db = new Conexion();
 
 		$this->id = $id;
 		$this->codigo_docket = $codigo_docket;
 		$this->codigo_invoice = $codigo_invoice;
+		$this->codigo_usuario = $codigo_usuario;
 		$this->tipo = $tipo;
 		$this->detalle = $detalle;
 		$this->usuario = $usuario;
@@ -29,16 +31,16 @@ class DocketInvoiceDelete{
 	}
 
 	static function solo(){
-		return new self('','','','','','','','','');
+		return new self('','','','','','','','','','');
 	} 
 
 	static function soloCodigo($codigo){
-		return new self($codigo,'','','','','','','','');
+		return new self($codigo,'','','','','','','','','');
 	}
 	public function InsertDocketInvoice()
 	{
 		$db = new Conexion();
-		$sql="INSERT INTO docket_invoice_delete (codigo_docket, codigo_invoice, tipo, detalle, usuario, fecha_creacion, estatus) VALUES ('$this->codigo_docket','$this->codigo_invoice','$this->tipo','$this->detalle','$this->usuario','$this->fecha_creacion','5')";
+		$sql="INSERT INTO docket_invoice_delete (codigo_docket, codigo_invoice, codigo_usuario, tipo, detalle, usuario, fecha_creacion, estatus) VALUES ('$this->codigo_docket','$this->codigo_invoice', '$this->codigo_usuario','$this->tipo','$this->detalle','$this->usuario','$this->fecha_creacion','5')";
 		$db->query($sql) or trigger_error("ERROR insertando en la tabla eliminados");
 	}
 	//lista de los archos eleiminados entre (documentos y facturas del documento)

@@ -53,6 +53,7 @@ else
         <div class="row">
           <div class="col-lg-12">
             <form class="form-horizontal" id="update_invoice" method="post" action="../controllers/invoiceControllers.php">
+             <input type="hidden" name="update" value="update"> 
             <section class="panel">
               <header class="panel-heading">
                 <b>INVOICE</b>
@@ -131,20 +132,20 @@ else
                     <label class="col-sm-2 control-label"><b>$ US</b></label>
                     <input type="radio" id="us_dolar" name="bill_to" >
                     <div class="col-sm-4 ocultar" id="campo_us">
-                      <input type="text" id="dinero_us" data-thousands="." data-decimal="," data-prefix="$. " name="dinero_us" class="form-control round-input">
+                      <input type="text" id="dinero_us" data-thousands="." data-decimal="," data-prefix="$. " name="dinero_us" class="form-control round-input limpiar">
                     </div>
                   </div>
                   <div class="form-group" id="radio2">
                     <label class="col-sm-2 control-label"><b>$ CAD</b></label>
                     <input type="radio" id="cad_dolar" name="bill_to" >
                     <div class="col-sm-4 ocultar" id="campo_cad">
-                      <input type="text" id="dinero_cad" data-thousands="." data-decimal="," data-prefix="$. " name="dinero_cad" class="form-control round-input">
+                      <input type="text" id="dinero_cad" data-thousands="." data-decimal="," data-prefix="$. " name="dinero_cad" class="form-control round-input limpiar">
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-2 control-label"><b>Note</b></label>
                     <div class="col-sm-8">
-                      <textarea name="nota" id="nota" class="form-control round-input" placeholder="Note"></textarea>
+                      <textarea name="nota" id="nota" class="form-control round-input limpiar" placeholder="Note"></textarea>
                     </div>
                   </div>
                   <center>

@@ -74,8 +74,9 @@ if(empty($_SESSION['user']))
                       <td>
                         <b>
                         <?php
-                          $invoice_code = ($datos['codigo_invoice']==null) ? "DOCKET" : $datos['codigo_invoice'] ;
-                          echo $invoice_code;
+                          //$invoice_code = ($datos['codigo_invoice']==null) ? "DOCKET" : $datos['codigo_invoice'] ;
+                          //echo $invoice_code;
+                          echo $datos['codigo_usuario'];
                         ?>
                         </b>
                       </td>

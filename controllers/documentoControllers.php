@@ -78,7 +78,7 @@ if(isset($_POST['tipoDocumento'])){
     }
     echo"<meta http-equiv='refresh' content='0;URL=../view/create_invoice.php?docket=".base64_encode($codigo)."'>";
 }
-if(isset($_POST['actualizar_documento'])){
+if(isset($_POST['codigo_docu'])){
 
     $codigo_docu = $_POST['codigo_docu'];
     $expedidor = $_POST['expedidor'];
@@ -124,13 +124,14 @@ if(isset($_POST['boton_eliminar'])){
     if ($result->num_rows!=0) {
         while ($dato = $result->fetch_assoc()) {
             $codigo_factura_eliminar = $dato['codigo_invoice'];
+            $codigo_usuario_eliminar = $dato['codigo_usuario'];
             $tipo_factura = 'F';
 
             $delete_invoice_d = new Docket($codigo_factura_eliminar,'','','','','','','','','','','','','','','','','','','','','',$fecha_registro,'','','');
             $delete_invoice_d->DeleteInvoiceDocket();
 
             //guardar regsitros de las facturas eliminadas
-            $delete_register = new DocketInvoiceDelete($codigo_documento,$codigo_factura_eliminar,$tipo_factura,$descripcion,$usuario,$fecha_registro,'','');
+            $delete_register = new DocketInvoiceDelete($codigo_documento,$codigo_factura_eliminar,$codigo_usuario_eliminar,$tipo_factura,$descripcion,$usuario,$fecha_registro,'','');
             $delete_register->InsertDocketInvoice();
 
         }
@@ -139,7 +140,7 @@ if(isset($_POST['boton_eliminar'])){
     $delete_docket = new Docket($codigo_documento,'','','','','','','','','','','','','','','','','','','','','',$fecha_registro,$usuario,'');
     $delete_docket->DeleteDocket();
     //eliminar el documento ponerlo en la tabla eliminados
-    $delete_register_d = new DocketInvoiceDelete($codigo_documento,'',$tipo_documento,$descripcion,$usuario,$fecha_registro,'','');
+    $delete_register_d = new DocketInvoiceDelete($codigo_documento,'','',$tipo_documento,$descripcion,$usuario,$fecha_registro,'','');
     $delete_register_d->InsertDocketInvoice();
 
     echo"<meta http-equiv='refresh' content='0;URL=../view/docket_list.php'>";
