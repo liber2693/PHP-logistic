@@ -194,7 +194,7 @@ if(empty($_SESSION['user']))
                         }
                       ?>
                       <tr>
-                        <td><strong><?php echo $datos['codigo_usuario'];?></strong><input type="hidden" id="codigo_factura<?php echo $i;?>" value="<?php echo $datos['codigo_invoice'];?>"></td>
+                        <td><strong><?php echo $datos['codigo_usuario'];?></strong><input type="hidden" id="codigo_factura<?php echo $i;?>" value="<?php echo $datos['codigo_invoice'];?>"><input type="hidden" id="codigo_usuario<?php echo $i;?>" value="<?php echo $datos['codigo_usuario'];?>"></td>
                         <td><strong><?php echo ucwords($datos['cliente']);?></strong></td>
                         <td><strong><?php
                         $fecha = explode('-', $datos['fecha']);
@@ -205,7 +205,7 @@ if(empty($_SESSION['user']))
                             <a class="btn btn-success" style="font-size:16px" href="update_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Edit Invoice"><i class="fa fa-pencil"></i></a>
                             <a class="btn btn-warning" style="font-size:16px" href="detail_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Invoice Details"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-info" style="font-size:16px" target="_blank" href="invoice_pdf.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Invoice Report"><i class="fa fa-file-pdf-o"></i></a>
-                            <button class="btn btn-danger" style="font-size:16px" onclick="eliminar(document.getElementById('codigo_factura<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="Void Invoice"><i class="fa fa-times-circle"></i></button>
+                            <button class="btn btn-danger" style="font-size:16px" onclick="eliminar(document.getElementById('codigo_factura<?php echo $i;?>').value,document.getElementById('codigo_usuario<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="Void Invoice"><i class="fa fa-times-circle"></i></button>
                             <?php
                             if ($datos['estatus']==1) {
                             ?>
@@ -261,6 +261,7 @@ if(empty($_SESSION['user']))
               <div class="modal-body">
                 <input type="hidden"  class="form-control m-bot15 round-input"  name="codigo_factura_elimanar" id="codigo_factura_elimanar">
                 <input type="hidden"  class="form-control m-bot15 round-input"  name="codigo_factura_documento" id="codigo_factura_documento">
+                <input type="hidden"  class="form-control m-bot15 round-input"  name="codigo_factura_usuario" id="codigo_factura_usuario">
                 <label for="origin"><b>Reason:</b></label>
                 <textarea class="form-control round-input" id="descripcion_eliminar" name="descripcion_eliminar" ></textarea>
               </div>
@@ -282,9 +283,10 @@ if(empty($_SESSION['user']))
       $('#table_id').DataTable();
     });
 
-    function eliminar(id){
+    function eliminar(id,codigoUsuario){
       //console.log(id);
       $("#codigo_factura_elimanar").val(id);
+      $("#codigo_factura_usuario").val(codigoUsuario);
       $("#codigo_factura_documento").val($("#id_codigo_docket").val());
       $("#formulario_eliminar_factura").submit(function(event) {
         var codigo = $("#codigo_factura_elimanar").val();
