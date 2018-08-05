@@ -118,7 +118,7 @@ if ($array_d->num_rows==0) {
         <thead>
           <tr>
             <td colspan="2px" width="20%"><center><b>DOCKET #: &nbsp;'.$datos_i['codigo_docket'].'</b></center></td>
-            <td colspan="2px" width="20%"><b><center>INVOICE #: &nbsp;'.$datos_i['codigo_invoice'].'</b></center></td>
+            <td colspan="2px" width="20%"><b><center>INVOICE #: &nbsp;'.$datos_d['codigo_usuario'].'</b></center></td>
             <td colspan="2px" width="25%"><b><center>DATE: &nbsp;'.$fecha_formateada.'</b></center></td>
             <td colspan="2px" width="35%"><b><center>BILL TO: &nbsp;'.ucwords($datos_i['cliente']).'</b></center></td>
           </tr>

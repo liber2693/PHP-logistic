@@ -87,6 +87,7 @@ class Docket{
 			VALUES ('$this->codigo','$this->shipper','$this->telefono','$this->cc','$this->consignee','$this->po','$this->fecha','$this->id_origen_pais','$this->lugar_origen','$this->id_destino_pais','$this->lugar_destino','$this->pieza','$this->tipo_pieza','$this->peso','$this->tipo_peso','$this->alto','$this->ancho','$this->largo','$this->tipo_dimension','$this->descripcion','$this->tipo','$this->fecha_creacion','$this->usuario','1')";
 		$db->query($sql) or trigger_error("ERROR insertando codigo de documento");
 	}
+
 	public function selectDocket(){
 		$db = new Conexion();
 		$sql="SELECT a.codigo,a.shipper,a.fecha,a.telefono,a.cc,a.consignee,a.po,a.id_origen_pais,a.lugar_origen,
@@ -100,6 +101,7 @@ class Docket{
 		$resultado = $db->query($sql);
 		return $resultado;
 	}
+
 	public function selectDocketAll(){
 		$db = new Conexion();
 		$sql="SELECT a.id,a.codigo,a.shipper,a.fecha, a.lugar_origen, a.lugar_destino, b.pais AS origen, c.pais AS destino,a.tipo FROM docket a
@@ -109,6 +111,7 @@ class Docket{
 		$resultado = $db->query($sql);
 		return $resultado;
 	}
+
 	public function selectDocketInvoice(){
 		$db = new Conexion();
 		$sql="SELECT a.codigo_invoice,a.codigo_docket,a.codigo_usuario,a.fecha,a.tipo_documento,a.cliente,a.usuario,a.fecha_creacion,
