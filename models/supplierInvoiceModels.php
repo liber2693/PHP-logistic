@@ -39,7 +39,7 @@ class SupplierInvoice{
 	}
 	public function SelectProvedorInvoice(){
 		$db = new Conexion();
-		$sql="SELECT * FROM `supplier_invoice` WHERE codigo_invoice = '$this->codigo_invoice'";
+		$sql="SELECT * FROM `supplier_invoice` WHERE codigo_invoice = '$this->codigo_invoice' AND  estatus IN (1,2)";
 		$result = $db->query($sql);
 		return $result;
 	}

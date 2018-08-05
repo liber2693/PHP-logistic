@@ -44,7 +44,7 @@ class invoicesServices{
 	}
 	public function SelectServicosInvoice(){
 		$db = new Conexion();
-		$sql="SELECT b.id as codigo_ser, a.id as id_servico,a.precio_us,a.precio_ca,a.nota,b.descripcion FROM invoices_services a JOIN servicios_catalogo b ON b.id=a.id_servico WHERE a.codigo_invoice='$this->codigo_invoice'";
+		$sql="SELECT b.id as codigo_ser, a.id as id_servico,a.precio_us,a.precio_ca,a.nota,b.descripcion FROM invoices_services a JOIN servicios_catalogo b ON b.id=a.id_servico WHERE a.codigo_invoice='$this->codigo_invoice' AND a.estatus IN (1,2)";
 		$result = $db->query($sql);
 		return $result;
 	}

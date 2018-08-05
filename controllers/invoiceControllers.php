@@ -6,7 +6,7 @@ include '../models/supplierInvoiceModels.php';
 include '../models/shippingInvoiceModels.php';
 include '../models/invoicesServicesTempModels.php';
 include '../models/invoicesServicesModels.php';
-include '../models/docketInvoiceDelete.php';
+include '../models/docketInvoiceDeleteModels.php';
 session_start();
 date_default_timezone_set("America/Caracas");
 $fecha_registro=date("Y-m-d");

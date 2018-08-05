@@ -150,7 +150,7 @@ class Docket{
 
 	public function SelectInvoiceDocket(){
 		$db = new Conexion();
-		$sql="SELECT a.codigo_invoice,a.codigo_docket,a.cliente,a.fecha_creacion,b.shipper,b.telefono,
+		$sql="SELECT a.codigo_invoice,a.codigo_docket,a.codigo_usuario,a.fecha,a.cliente,a.fecha_creacion,b.shipper,b.telefono,
 					 b.lugar_origen,b.lugar_destino,b.pieza,b.tipo_pieza,b.peso,b.tipo_peso,b.alto,b.ancho,
 					 b.largo,b.tipo_dimension,b.descripcion,c.pais AS pais_origen,d.pais AS pais_destino
 					 FROM invoice a
@@ -158,7 +158,7 @@ class Docket{
 					 JOIN paises c ON c.codigo=b.id_origen_pais
 					 JOIN paises d ON d.codigo=b.id_destino_pais
 					 WHERE
-					 codigo_docket='$this->codigo'";
+					 a.codigo_docket='$this->codigo' AND a.estatus IN (1,2)";
 		$result = $db->query($sql);
 		return $result;
 	}

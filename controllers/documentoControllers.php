@@ -2,7 +2,7 @@
 include '../models/documentoModels.php';
 include '../models/archivoAdjuntosModels.php';
 include '../models/catalogoModels.php';
-include '../models/docketInvoiceDelete.php';
+include '../models/docketInvoiceDeleteModels.php';
 include '../funciones/funciones.php';
 session_start();
 date_default_timezone_set("America/Caracas");
@@ -144,6 +144,51 @@ if(isset($_POST['boton_eliminar'])){
     $delete_register_d->InsertDocketInvoice();
 
     echo"<meta http-equiv='refresh' content='0;URL=../view/docket_list.php'>";
+
+}
+//regresar un archivo de la lista de eliminados
+if (isset($_POST['boton_regresar'])) {
+    $id = $_POST['id_regresar'];
+
+
+    $buscarEliminado = new DocketInvoiceDelete('','','','','','','','',$id);
+
+    $array1 = $buscarEliminado->SelectIdDelete();
+    $resultadoE=$array1->fetch_assoc();
+    
+    $codigoD = $resultadoE['codigo_docket'];
+
+    if ($resultadoE['tipo']=='E' || $resultadoE['tipo']=='I') {
+        //echo "estas regresando un documento";
+        $retornarDocumento = new DocketInvoiceDelete($codigoD,'','','','','','','',$id);
+        $retornarDocumento->ReturnDocket();
+    }
+    elseif ($resultadoE['tipo']=='F') 
+    {
+        //echo "Estas regresando una factura";
+        $codigoF = $resultadoE['codigo_invoice'];
+        //pregunto si esxiste el documento de la factura aqui para retornarlo
+        $todoDocumento = new DocketInvoiceDelete($codigoD,'','','','','','','','');
+        $array2 = $todoDocumento->SelectAllDocInv();
+        
+        while ($varI=$array2->fetch_assoc()) {
+            if($varI['tipo']=='E' || $varI['tipo']=='I'){
+                //toca retornarla y eliminarla de una
+                $varId = $varI['id'];
+                $varCodigoDoc = $varI['codigo_docket'];
+                $retornarDocumento = new DocketInvoiceDelete($varCodigoDoc,'','','','','','','',$varId);
+                $retornarDocumento->ReturnDocket();
+    //echo "<pre>";print_r($retornarDocumento);die();
+            }
+        }
+        //cambiarle los estatus para retornarla
+        //eliminarla de la tabla eliminados
+        $retornandoFactura = new DocketInvoiceDelete('',$codigoF,'','','','','','','');
+        $retornandoFactura->ReturnInvoice();
+    }
+
+    echo"<meta http-equiv='refresh' content='0;URL=../view/delete_list.php'>";
+    
 
 }
 ?>

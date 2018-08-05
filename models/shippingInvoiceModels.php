@@ -46,7 +46,7 @@ class ShippingInvoice{
 		$db = new Conexion();
 		$sql="SELECT * FROM shipping_invoice a 
 			  JOIN envios_via b ON b.id=a.id_envio
-			  WHERE codigo_invoice ='$this->codigo_invoice' ";
+			  WHERE a.codigo_invoice ='$this->codigo_invoice' AND a.estatus IN (1,2)";
 		$result = $db->query($sql);
 		return $result;
 	}

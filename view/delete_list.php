@@ -1,6 +1,6 @@
 <?php
 include '../models/documentoModels.php';
-include '../models/docketInvoiceDelete.php';
+include '../models/docketInvoiceDeleteModels.php';
 
 session_start();
 if(empty($_SESSION['user']))
@@ -99,8 +99,8 @@ if(empty($_SESSION['user']))
                         <div class="btn-group">
                           <button class="btn btn-primary" style="font-size:16px" onclick="detalle(document.getElementById('detalle<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="See Reason"><i class="fa fa-eye"></i></button>
 
-                          <button class="btn btn-success" style="font-size:16px" onclick="eliminar_documento(document.getElementById('codigo_documento<?php echo $i;?>').value,document.getElementById('tipo_documento<?php echo $i;?>').value)" data-toggle="modal"
-                          data-target="#myModal" title="Cancel Docket"><i class="fa fa-reply"></i></button>
+                          <button class="btn btn-success" style="font-size:16px" onclick="regresar(document.getElementById('id_registro<?php echo $i;?>').value)" data-toggle="modal"
+                          data-target="#myModalRegresar" title="Cancel Docket"><i class="fa fa-reply"></i></button>
 
                         </div>
                       </td>
@@ -116,27 +116,45 @@ if(empty($_SESSION['user']))
         </div>
         <!-- page end-->
       </section>
-  </section>
-  <div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-    <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <center><h4 class="modal-title"><b>REASON</b></h4></center>
+    </section>
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+      <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <center><h4 class="modal-title"><b>REASON</b></h4></center>
+          </div>
+            <div class="modal-body">
+              <h4><b><center><p id="detalle_delete"></center></p></b><h4>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal"><b>Close</b></button>
+            </div>
         </div>
-        <!--<form class="form-inline" role="form" method="post" id="formulario_eliminar_documento" action="../controllers/documentoControllers.php">-->
-          <div class="modal-body">
-            <!-- <label for="origin">Description: </label> -->
-            <h4><b><center><p id="detalle_delete"></center></p></b><h4>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal"><b>Close</b></button>
-          </div>
-        <!--</form>-->
       </div>
     </div>
-  </div>
+    <div id="myModalRegresar" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+      <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <center><h4 class="modal-title"><b>DEVOLVER FACTURA</b></h4></center>
+          </div>
+          <form class="form-inline" role="form" method="post" id="regresar_eliminado" action="../controllers/documentoControllers.php">
+            <input type="hidden" name="id_regresar" id="id_regresar">
+            <div class="modal-body">
+              <center><b>¿Estas Seguro de Devolver este archivo?</b></center>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" name="boton_regresar" class="btn btn-success"><b>Confirm</b></button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal"><b>Close</b></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
   <!-- container section start -->
   <!-- javascripts -->
@@ -150,6 +168,10 @@ if(empty($_SESSION['user']))
 
     function detalle(detalle){
       $("#detalle_delete").html(detalle);
+    }
+    //regresar un archivo
+    function regresar(id) {
+      $("#id_regresar").val(id);
     }
   </script>
 </body>
