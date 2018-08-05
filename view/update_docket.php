@@ -66,13 +66,13 @@ if(empty($_SESSION['user']))
                   <div class="form-group">
                     <label class="col-sm-2 control-label"><strong>SHIPPER</strong></label>
                     <div class="col-sm-4">
-                      <input type="text" name="expedidor" value="<?php echo $datos['shipper'];?>" class="form-control round-input">
+                      <input type="text" name="expedidor" id="expedidor" value="<?php echo $datos['shipper'];?>" class="form-control round-input">
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-2 control-label"><strong>DATE</strong></label>
                     <div class="col-sm-4">
-                      <input name="fecha" type="text" class="form-control round-input fecha" readonly  placeholder="Enter Date" value="<?php echo $datos['fecha'];?>">
+                      <input name="fecha" type="text" class="form-control round-input fecha" readonly  placeholder="Enter Date" value="<?php echo $datos['fecha'];?>" id="fecha">
                     </div>
                   </div>
                   <div class="form-group">
@@ -88,7 +88,7 @@ if(empty($_SESSION['user']))
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label"><strong>Consignee</strong></label>
+                    <label class="col-sm-2 control-label"><strong>CONSIGNEE</strong></label>
                     <div class="col-sm-4">
                       <input type="text" name="consignee" value="<?php echo $datos['consignee'];?>" class="form-control round-input">
                     </div>

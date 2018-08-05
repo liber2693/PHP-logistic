@@ -260,7 +260,7 @@ if(isset($_POST['codigo_factura']) && !empty($_POST['codigo_factura'])){
 
 /***********ACTUALIZAR EL INVOIVE COMO TAL COMPLETO************/
 
-if(isset($_POST['enviar_update_invoice'])){
+if(isset($_POST['codigo_invoice']) && isset($_POST['update']) && !empty($_POST['update'])){
 
     $codigo_invoice = $_POST['codigo_invoice'];
     $usuario_documento = $_POST['usuario_documento'];
@@ -299,16 +299,17 @@ if(isset($_POST['enviar_update_invoice'])){
 if (isset($_POST['boton_eliminar'])) {
     $codigo_docket = $_POST['codigo_factura_documento'];
     $codigo_invoice = $_POST['codigo_factura_elimanar'];
+    $codigo_factura_usuario = $_POST['codigo_factura_usuario'];
     $descripcion = $_POST['descripcion_eliminar'];
 
     $usuario=$_SESSION['id_usuario'];
     $tipo_factura = 'F';
-
-    $delete_invoice = new Invoice($codigo_invoice,'','','','','','',$fecha_registro,'','');
+    $delete_invoice = new Invoice($codigo_invoice,'','','','','','','','',$fecha_registro,'','');
     $delete_invoice->DeleteInvoice();
 
     //guardar regsitros de las facturas eliminadas
-    $delete_register = new DocketInvoiceDelete($codigo_docket,$codigo_invoice,$tipo_factura,$descripcion,$usuario,$fecha_registro,'','');
+    $delete_register = new DocketInvoiceDelete($codigo_docket,$codigo_invoice,$codigo_factura_usuario,$tipo_factura,$descripcion,$usuario,$fecha_registro,'','');
+    //echo "<pre>";print_r($delete_register);die();
     $delete_register->InsertDocketInvoice();
 
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_docket.php?docket=".base64_encode($codigo_docket)."'>";
