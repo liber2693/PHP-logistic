@@ -149,15 +149,20 @@ if(empty($_SESSION['user']))
     });
 
     function eliminar_documento(id,tipo){
-      console.log(id,tipo);
+      //console.log(id,tipo);
+      
       $("#codigo_documento_elimanar").val(id);
       $("#tipo_documento_eliminar").val(tipo);
       $("#formulario_eliminar_documento").submit(function(event) {
+        
+        $('#boton_eliminar').attr("disabled", true);
+        
         var codigo = $("#codigo_documento_elimanar").val();
         var tipo = $("#tipo_documento_eliminar").val();
         var descripcion = $("#descripcion_eliminar").val();
         if (descripcion.length==0) {
             $("#descripcion_eliminar").css({"border":"2px solid #ff3333"});
+            $('#boton_eliminar').attr("disabled", false);
             event.preventDefault();
         }else{
             $("#descripcion_eliminar").css({"border":"0"});

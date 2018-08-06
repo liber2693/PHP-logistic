@@ -171,7 +171,11 @@ if(empty($_SESSION['user']))
     }
     //regresar un archivo
     function regresar(id) {
-      $("#id_regresar").val(id);
+      $("#regresar_eliminado").submit(function(event) {
+        $('#boton_regresar').attr("disabled", true);
+        
+        $("#id_regresar").val(id);
+      })
     }
   </script>
 </body>

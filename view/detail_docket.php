@@ -285,14 +285,19 @@ if(empty($_SESSION['user']))
 
     function eliminar(id,codigoUsuario){
       //console.log(id);
+
       $("#codigo_factura_elimanar").val(id);
       $("#codigo_factura_usuario").val(codigoUsuario);
       $("#codigo_factura_documento").val($("#id_codigo_docket").val());
       $("#formulario_eliminar_factura").submit(function(event) {
+        
+        $('#boton_eliminar').attr("disabled", true);
+        
         var codigo = $("#codigo_factura_elimanar").val();
         var descripcion = $("#descripcion_eliminar").val();
         if (descripcion.length==0) {
             $("#descripcion_eliminar").css({"border":"2px solid #ff3333"});
+            $('#boton_eliminar').attr("disabled", false);
             event.preventDefault();
         }else{
             $("#descripcion_eliminar").css({"border":"0"});
