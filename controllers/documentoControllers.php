@@ -2,7 +2,7 @@
 include '../models/documentoModels.php';
 include '../models/archivoAdjuntosModels.php';
 include '../models/catalogoModels.php';
-include '../models/docketInvoiceDelete.php';
+include '../models/docketInvoiceDeleteModels.php';
 include '../funciones/funciones.php';
 session_start();
 date_default_timezone_set("America/Caracas");
@@ -10,7 +10,7 @@ $fecha_registro=date("Y-m-d");
 $date=substr(date("Y"),2);
 
 
-if(isset($_POST['enviar_documento'])){
+if(isset($_POST['tipoDocumento'])){
     $tipoDocumento=$_POST['tipoDocumento'];
     $shipper=$_POST['shipper'];
     $telefono=$_POST['telefono'];
@@ -78,7 +78,7 @@ if(isset($_POST['enviar_documento'])){
     }
     echo"<meta http-equiv='refresh' content='0;URL=../view/create_invoice.php?docket=".base64_encode($codigo)."'>";
 }
-if(isset($_POST['actualizar_documento'])){
+if(isset($_POST['codigo_docu'])){
 
     $codigo_docu = $_POST['codigo_docu'];
     $expedidor = $_POST['expedidor'];
@@ -124,13 +124,14 @@ if(isset($_POST['boton_eliminar'])){
     if ($result->num_rows!=0) {
         while ($dato = $result->fetch_assoc()) {
             $codigo_factura_eliminar = $dato['codigo_invoice'];
+            $codigo_usuario_eliminar = $dato['codigo_usuario'];
             $tipo_factura = 'F';
 
             $delete_invoice_d = new Docket($codigo_factura_eliminar,'','','','','','','','','','','','','','','','','','','','','',$fecha_registro,'','','');
             $delete_invoice_d->DeleteInvoiceDocket();
 
             //guardar regsitros de las facturas eliminadas
-            $delete_register = new DocketInvoiceDelete($codigo_documento,$codigo_factura_eliminar,$tipo_factura,$descripcion,$usuario,$fecha_registro,'','');
+            $delete_register = new DocketInvoiceDelete($codigo_documento,$codigo_factura_eliminar,$codigo_usuario_eliminar,$tipo_factura,$descripcion,$usuario,$fecha_registro,'','');
             $delete_register->InsertDocketInvoice();
 
         }
@@ -139,10 +140,55 @@ if(isset($_POST['boton_eliminar'])){
     $delete_docket = new Docket($codigo_documento,'','','','','','','','','','','','','','','','','','','','','',$fecha_registro,$usuario,'');
     $delete_docket->DeleteDocket();
     //eliminar el documento ponerlo en la tabla eliminados
-    $delete_register_d = new DocketInvoiceDelete($codigo_documento,'',$tipo_documento,$descripcion,$usuario,$fecha_registro,'','');
+    $delete_register_d = new DocketInvoiceDelete($codigo_documento,'','',$tipo_documento,$descripcion,$usuario,$fecha_registro,'','');
     $delete_register_d->InsertDocketInvoice();
 
     echo"<meta http-equiv='refresh' content='0;URL=../view/docket_list.php'>";
+
+}
+//regresar un archivo de la lista de eliminados
+if (isset($_POST['boton_regresar'])) {
+    $id = $_POST['id_regresar'];
+
+
+    $buscarEliminado = new DocketInvoiceDelete('','','','','','','','',$id);
+
+    $array1 = $buscarEliminado->SelectIdDelete();
+    $resultadoE=$array1->fetch_assoc();
+    
+    $codigoD = $resultadoE['codigo_docket'];
+
+    if ($resultadoE['tipo']=='E' || $resultadoE['tipo']=='I') {
+        //echo "estas regresando un documento";
+        $retornarDocumento = new DocketInvoiceDelete($codigoD,'','','','','','','',$id);
+        $retornarDocumento->ReturnDocket();
+    }
+    elseif ($resultadoE['tipo']=='F') 
+    {
+        //echo "Estas regresando una factura";
+        $codigoF = $resultadoE['codigo_invoice'];
+        //pregunto si esxiste el documento de la factura aqui para retornarlo
+        $todoDocumento = new DocketInvoiceDelete($codigoD,'','','','','','','','');
+        $array2 = $todoDocumento->SelectAllDocInv();
+        
+        while ($varI=$array2->fetch_assoc()) {
+            if($varI['tipo']=='E' || $varI['tipo']=='I'){
+                //toca retornarla y eliminarla de una
+                $varId = $varI['id'];
+                $varCodigoDoc = $varI['codigo_docket'];
+                $retornarDocumento = new DocketInvoiceDelete($varCodigoDoc,'','','','','','','',$varId);
+                $retornarDocumento->ReturnDocket();
+    //echo "<pre>";print_r($retornarDocumento);die();
+            }
+        }
+        //cambiarle los estatus para retornarla
+        //eliminarla de la tabla eliminados
+        $retornandoFactura = new DocketInvoiceDelete('',$codigoF,'','','','','','','');
+        $retornandoFactura->ReturnInvoice();
+    }
+
+    echo"<meta http-equiv='refresh' content='0;URL=../view/delete_list.php'>";
+    
 
 }
 ?>

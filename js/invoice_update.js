@@ -130,11 +130,12 @@ $(document).ready(function() {
 
     //enviar el formulario para que actualize eñ registro del invoice
     $("#update_invoice").submit(function(event) {
-
+        $('#enviar_update_invoice').attr("disabled", true);
         var quien_paga = $("#quien_paga").val();
 
         if (quien_paga=='') {
             $("#quien_paga").css({"border":"2px solid #ff3333"});
+            $('#enviar_update_invoice').attr("disabled", false);
             event.preventDefault();
         }else{
             $("#quien_paga").css({"border":"1px solid #c7c7cc"});
@@ -148,6 +149,7 @@ $(document).ready(function() {
                 $("#mensaje_create_invoice").removeClass().empty();
             },3000);
             $("#via_envio").css({"border":"2px solid #ff3333"});
+            $('#enviar_update_invoice').attr("disabled", false);
            event.preventDefault();
         }else{
             $("#via_envio").css({"border":"0"});
@@ -344,4 +346,5 @@ function eliminarSupplier(id){
 function limpiar_campos(){
 
     $(".limpiar").val("");
+    $("#lista_servicios").val("0");
 }

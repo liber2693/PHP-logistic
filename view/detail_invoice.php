@@ -55,22 +55,52 @@ else
           <div class="col-lg-12">
             <section class="panel">
               <header class="panel-heading">
-                INVOICE
+                <b>INVOICE</b>
               </header>
               <div class="panel-body">
                 <div class="checkboxes">
-                  <label class="label_check" for="checkbox-01">
-                    <strong>DOCKET #: <?php echo $datos['codigo_docket'];?></strong>
-                  </label>
-                  <label class="label_check" for="checkbox-02">
-                    <strong>INVOICE #: <?php echo $datos['codigo_usuario'];?></strong>
-                  </label>
-                  <label class="label_check" for="checkbox-02">
-                    <strong>CREATION DATE #: <?php echo $datos['fecha'];?></strong>
-                  </label>
-                  <label class="label_check" for="checkbox-02">
-                    <strong>BILL TO: <?php echo ucwords($datos['cliente']);?></strong>
-                  </label>
+                  <table class="table table-bordered">
+                    <tbody>
+                      <tr>
+                        <td class="text-center">
+                          <strong>DOCKET #: <?php echo $datos['codigo_docket'];?></strong>
+                        </td>
+                        <td class="text-center">
+                          <strong>INVOICE #: <?php echo $datos['codigo_usuario'];?></strong>
+                        </td>
+                        <td class="text-center">
+                          <strong>DATE:&nbsp;
+                            <?php
+                            $fecha = explode('-', $datos['fecha']);
+                            echo "<b>" .$fecha[1] .'-' .$fecha[2] .'-' .$fecha[0] ."</b>";
+                            ?></strong>
+                        </td>
+                        <td class="text-center">
+                          <strong>BILL TO: <?php echo ucwords($datos['cliente']);?></strong>
+                        </td>
+                        <td class="text-center">
+                          <strong>STATUS:
+                          <?php
+                          if ($datos['estatus'] == 1)
+                          {
+                          echo "<b>STAND BY</b> &nbsp;"; ?> <i class="fa fa-circle" style="color: red;"></i>
+                          <?php
+                          }
+                          if ($datos['estatus'] == 2)
+                          {
+                          echo "<b>READY</b> &nbsp;"; ?><i class="fa fa-circle" style="color: green;"></i>
+                          <?php
+                          }
+                          ?>
+                        </strong>
+
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+
                 </div>
               </div>
             </section>
@@ -91,6 +121,7 @@ else
                   <tr>
                     <th>#</th>
                     <th>Supplier</th>
+                    <th>Cost US$</th>
                   </tr>
                 </thead>
                 <?php
@@ -111,6 +142,7 @@ else
                   <tr>
                     <td><?php echo "<b>" .$i ."</b>";?></td>
                     <td><?php echo "<b>" .ucwords($datos_supli['supplier']) ."</b>";?></td>
+                    <td><?php echo "<b>" .$datos_supli['dinero'] ."</b>";?></td>
                   </tr>
                 <?php
                   }
@@ -138,8 +170,8 @@ else
                     <th>#</th>
                     <th>Description</th>
                     <th>Notes</th>
-                    <th>US$ AMT</th>
-                    <th>CAD$ AMT</th>
+                    <th>US$</th>
+                    <th>CAD$</th>
                   </tr>
                 </thead>
                 <?php

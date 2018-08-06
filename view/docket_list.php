@@ -74,13 +74,18 @@ if(empty($_SESSION['user']))
                     ?>
                     <tr>
                       <td>
-                        <?php $tipo = ($datos['tipo']=='E') ? "EXPORT" : "IMPORT" ; echo $tipo;?>
+                        <?php $tipo = ($datos['tipo']=='E') ? "<b>EXPORT</b>" : "<b>IMPORT</b>" ; echo $tipo;?>
                         <input type="hidden" name="tipo_documento" id="tipo_documento<?php echo $i;?>" value="<?php echo $datos['tipo'];?>">
                         <input type="hidden" name="codigo_documento" id="codigo_documento<?php echo $i;?>" value="<?php echo $datos['codigo'];?>">
                       </td>
                       <td><?php echo "<b>" .$datos['codigo'] ."</b>";?></td>
                       <td><?php echo "<b>" .ucwords($datos['shipper']) ."</b>";?></td>
-                      <td><?php echo "<b>" .$datos['fecha'] ."</b>";?></td>
+                      <td>
+                        <?php
+                        $fecha = explode('-', $datos['fecha']);
+                        echo "<b>" .$fecha[1] .'-' .$fecha[2] .'-' .$fecha[0] ."</b>";
+                        ?>
+                      </td>
                       <td><?php echo "<b>" .ucwords($datos['origen'] .", " .$datos['lugar_origen']) ."</b>";?></td>
                       <td><?php echo "<b>" .ucwords($datos['destino'] .", " .$datos['lugar_destino']) ."</b>";?></td>
                       <td><center><?php echo "<b>" .$resul2['total_pro'];?> of <?php echo $resul1['total'] ."</b>";?></center></td>
@@ -91,7 +96,7 @@ if(empty($_SESSION['user']))
                           <a class="btn btn-warning" style="font-size:16px" href="detail_docket.php?docket=<?php echo base64_encode($datos['codigo']);?>" data-toggle="tooltip" title="Docket Details"><i class="fa fa-eye"></i></a>
                           <a class="btn btn-info" style="font-size:16px" href="docket_pdf.php?docket=<?php echo base64_encode($datos['codigo']);?>" target="_blank" data-toggle="tooltip" title="Docket Report"><i class="fa fa-file-pdf-o"></i></a>
                           <button class="btn btn-danger" style="font-size:16px" onclick="eliminar_documento(document.getElementById('codigo_documento<?php echo $i;?>').value,document.getElementById('tipo_documento<?php echo $i;?>').value)"
-                            data-toggle="modal" data-target="#myModal" title="Cancel Docket"><i class="fa fa-times-circle"></i></button>
+                            data-toggle="modal" data-target="#myModal" title="Void Docket"><i class="fa fa-times-circle"></i></button>
                         </div>
                       </td>
                     </tr>

@@ -108,7 +108,7 @@ if(empty($_SESSION['user']))
                   <div>
                     <div class="form-group col-lg-6">
                       <label for="pieces">Pieces</label>
-                      <input name="pieza" type="text" class="form-control round-input" autocomplete='tel-country-code' placeholder="Enter Pieces">
+                      <input name="pieza" type="text" class="form-control round-input solo-numero" autocomplete='tel-country-code' placeholder="Enter Pieces">
                     </div>
                     <div class="form-group col-lg-6">
                       <label class="control-label col-lg-6" for="inputSuccess">Type</label>
@@ -124,7 +124,7 @@ if(empty($_SESSION['user']))
                     <div>
                       <div class="form-group col-lg-6">
                         <label for="weight">Weight</label>
-                        <input name="peso" type="text" class="form-control round-input" placeholder="Enter Weight">
+                        <input name="peso" type="text" class="form-control round-input solo-numero" placeholder="Enter Weight">
                       </div>
                       <div class="form-group col-lg-6">
                         <label class="control-label col-lg-6" for="inputSuccess">Type</label>
@@ -140,15 +140,15 @@ if(empty($_SESSION['user']))
                       <div>
                         <div class="form-group col-lg-3">
                           <label for="height">Height</label>
-                          <input name="alto" type="text" class="form-control round-input" placeholder="Enter Height">
+                          <input name="alto" type="text" class="form-control round-input solo-numero" placeholder="Enter Height">
                         </div>
                         <div class="form-group col-lg-3">
                           <label for="width">Width</label>
-                          <input name="ancho" type="text" class="form-control round-input" placeholder="Enter Width">
+                          <input name="ancho" type="text" class="form-control round-input solo-numero" placeholder="Enter Width">
                         </div>
                         <div class="form-group col-lg-3">
                           <label for="long">Long</label>
-                          <input name="largo" type="text" class="form-control round-input" placeholder="Enter Long">
+                          <input name="largo" type="text" class="form-control round-input solo-numero" placeholder="Enter Long">
                         </div>
                         <div class="form-group col-lg-3">
                           <label class="control-label col-lg-6" for="inputSuccess">Type</label>
@@ -171,7 +171,7 @@ if(empty($_SESSION['user']))
                           <label for="files">File input</label>
                           <input type="file" name="archivo[]" multiple="true">
                         </div>
-                          <button type="submit" id="enviar_documento" name="enviar_documento" class="btn btn-primary"><b>Save</b></button>
+                          <button type="submit" id="enviar_documento_import" name="enviar_documento" class="btn btn-primary"><b>Save</b></button>
                           <button type="reset" class="btn btn-info"><b>Reset</b></button>
                       </center>
                   </form>
@@ -238,7 +238,7 @@ if(empty($_SESSION['user']))
                 <div>
                   <div class="form-group col-lg-6">
                     <label for="pieces">Pieces</label>
-                    <input name="pieza" type="text" class="form-control round-input" autocomplete='tel-country-code' placeholder="Enter Pieces">
+                    <input name="pieza" type="text" class="form-control round-input solo-numero" autocomplete='tel-country-code' placeholder="Enter Pieces">
                   </div>
                   <div class="form-group col-lg-6">
                     <label class="control-label col-lg-6" for="inputSuccess">Type</label>
@@ -254,7 +254,7 @@ if(empty($_SESSION['user']))
                   <div>
                     <div class="form-group col-lg-6">
                       <label for="weight">Weight</label>
-                      <input name="peso" type="text" class="form-control round-input" placeholder="Enter Weight">
+                      <input name="peso" type="text" class="form-control round-input solo-numero" placeholder="Enter Weight">
                     </div>
                     <div class="form-group col-lg-6">
                       <label class="control-label col-lg-6" for="inputSuccess">Type</label>
@@ -270,15 +270,15 @@ if(empty($_SESSION['user']))
                     <div>
                       <div class="form-group col-lg-3">
                         <label for="height">Height</label>
-                        <input name="alto" type="text" class="form-control round-input" placeholder="Enter Height">
+                        <input name="alto" type="text" class="form-control round-input solo-numero" placeholder="Enter Height">
                       </div>
                       <div class="form-group col-lg-3">
                         <label for="width">Width</label>
-                        <input name="ancho" type="text" class="form-control round-input" placeholder="Enter Width">
+                        <input name="ancho" type="text" class="form-control round-input solo-numero" placeholder="Enter Width">
                       </div>
                       <div class="form-group col-lg-3">
                         <label for="long">Long</label>
-                        <input name="largo" type="text" class="form-control round-input" placeholder="Enter Long">
+                        <input name="largo" type="text" class="form-control round-input solo-numero" placeholder="Enter Long">
                       </div>
                       <div class="form-group col-lg-3">
                         <label class="control-label col-lg-6" for="inputSuccess">Type</label>
@@ -301,7 +301,7 @@ if(empty($_SESSION['user']))
                         <label for="files">File input</label>
                         <input type="file" name="archivo[]" multiple=true>
                       </div>
-                      <button type="submit" id="enviar_documento" name="enviar_documento" class="btn btn-primary"><b>Save</b></button>
+                      <button type="submit" id="enviar_documento_export" name="enviar_documento" class="btn btn-primary"><b>Save</b></button>
                       <button type="reset" class="btn btn-info"><b>Reset</b></button>
                     </center>
                   </div>

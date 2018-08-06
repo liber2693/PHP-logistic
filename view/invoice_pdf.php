@@ -53,15 +53,16 @@ if ($array->num_rows==0) {
         line-height: normal;
       }
       </style>';
-
+      $fecha = explode('-', $datos['fecha']);
+      $fecha_formateada = $fecha[1] .'-' .$fecha[2] .'-' .$fecha[0];
       $html.='<br>
       <h3>INVOICE</h3>
       <table border="1" width="100%">
         <thead>
           <tr>
-            <td colspan="2px" width="20%"><center><b>DOCKET: &nbsp;'.$datos['codigo_docket'].'</b></center></td>
-            <td colspan="2px" width="20%"><b><center>INVOICE: &nbsp;'.$datos['codigo_invoice'].'</b></center></td>
-            <td colspan="2px" width="25%"><b><center>DATE: &nbsp;'.$datos['fecha_creacion'].'</b></center></td>
+            <td colspan="2px" width="20%"><center><b>DOCKET #: &nbsp;'.$datos['codigo_docket'].'</b></center></td>
+            <td colspan="2px" width="20%"><b><center>INVOICE #: &nbsp;'.$datos['codigo_usuario'].'</b></center></td>
+            <td colspan="2px" width="25%"><b><center>DATE: &nbsp;'.$fecha_formateada.'</b></center></td>
             <td colspan="2px" width="35%"><b><center>BILL TO: &nbsp;'.ucwords($datos['cliente']).'</b></center></td>
           </tr>
         </thead>
@@ -160,14 +161,14 @@ if ($array->num_rows==0) {
       <tr>
         <td width="10%"><center><b>#</b></center></td>
         <td width="30%"><center><b>Supplier</b></center></td>
-        <td width="20%"><center><b>COST US$</b></center></td>
+        <td width="20%"><center><b>Cost US$</b></center></td>
       </tr>
     </thead>';
     if($array3->num_rows==0){
       $html.='
     <tbody>
       <tr>
-        <td><center>NO SERVICES</center></td>
+        <td colspan="3" width="100%"><center>NO SERVICES</center></td>
       </tr>
     </tbody>';
     }else{
@@ -179,7 +180,7 @@ if ($array->num_rows==0) {
         <tr>
           <td><center>'.$i.'</center></td>
           <td><center>'.ucwords($datos_supli['supplier']).'</center></td>
-          <td><center>'.$datos_servi['dinero'].'</center></td>
+          <td><center>'.$datos_supli['dinero'].'</center></td>
         </tr>
       </tbody>';
       }
@@ -200,15 +201,15 @@ if ($array->num_rows==0) {
       <div>';
   }else{
     $html.='
-    <table border="1">
+    <table border="1" width="40%" style="margin-left:auto; margin-right: auto">
       <tbody>
         <tr>';
     $i=0;
     while($datos2=$array2->fetch_assoc()){
     $i++;
-    $nota = ($datos2['id_envio']==6) ? ucfirst($datos2['nota']) : "" ;
+    $nota = ($datos2['id_envio']==6) ? ": ".ucfirst($datos2['nota']) : "" ;
       $html.='
-          <td width="20%">
+          <td style="text-align:center">
             <b><center>'.$datos2['descripcion'] .$nota.'</b>
           </td>';
     }
@@ -221,9 +222,16 @@ if ($array->num_rows==0) {
 
 }
 
+/* MOSTRAR LA FECHA VOLTEADA*/
+/*$fecha = explode('-', $datos['fecha_creacion']);
+$reversa = array_reverse($fecha);
+$fecha_bien = implode($reversa, '-');
+echo "<pre>";print_r($fecha_bien);die;
+*/
 
+$code = explode('-', $datos['codigo_invoice']);
 $mpdf=new mPDF('c','A4','','l',10,10,10,10,16,13);
-$mpdf->SetTitle('Invoice - '.$datos['codigo_invoice']);
+$mpdf->SetTitle('Invoice-'.$code[1] .'-' .$datos['codigo_usuario']);
 
 //$mpdf->SetDisplayMode('fullpage');
 
@@ -238,7 +246,7 @@ $mpdf->showWatermarkImage = true;
 $mpdf->AddPage('L','','','','',10,10,10,10,16,13);
 $mpdf->WriteHTML($html);
 
-$mpdf->Output('Invoice - '.$datos['codigo_invoice'].'.pdf','I');
+$mpdf->Output('Invoice-'.$code[1] .'-' .$datos['codigo_usuario'] .'.pdf','I');
 exit;
 //==============================================================
 //==============================================================

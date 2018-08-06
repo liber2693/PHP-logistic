@@ -41,7 +41,7 @@ else
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-file-text-o"></i> <b>Create Invoice of Docket: <?php echo $codigo;?></b></h3>
+            <h3 class="page-header"><i class="fa fa-file-text-o"></i> <b>Create Invoice of Docket : <?php echo $codigo;?></b></h3>
             <ol class="breadcrumb">
               <li><a href="create_docket.php"><i class="fa fa-home"></i><b>Home</b></a></li>
               <li><a href="detail_docket.php?docket=<?php echo base64_encode($codigo);?>"><i class="icon_document_alt"></i>Docket: <?php echo $codigo;?></a></li>
@@ -64,7 +64,7 @@ else
                         <input type="hidden" name="codigo_documento" id="codigo_documento" value="<?php echo $datos['codigo'];?>">
                         <input type="hidden" name="usuario_documento" id="usuario_documento" value="<?php echo $_SESSION['id_usuario'];?>">
                         <input type="hidden" value="<?php echo $tipo;?>" name="tipo" id="tipo">
-                    	</div>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-2 control-label"><b>Invoice Code</b></label>
@@ -85,7 +85,7 @@ else
         							<input type="text" id="supplier<?php echo $i;?>" name="supplier[<?php echo $i;?>]" placeholder="Supplier <?php echo "#".$i;?>"  class="form-control">
         						</div>
                     <div class="col-sm-3">
-                      <input type="text" id="dinero<?php echo $i;?>" name="dinero[<?php echo $i;?>]" placeholder="Price <?php echo "#".$i;?>" data-thousands="," data-decimal="." data-prefix="$. "  class="form-control">
+                      <input type="text" id="dinero<?php echo $i;?>" name="dinero[<?php echo $i;?>]" placeholder="Cost <?php echo "#".$i;?>" data-thousands="," data-decimal="." data-prefix="$. "  class="form-control">
                     </div>
         						<div class="col-sm-4">
         							<?php
@@ -108,12 +108,12 @@ else
         					?>
                   <div class="form-group">
                     <label class="col-sm-2 control-label"><b>Bill to</b></label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-6">
                       <input type="text" id="quien_paga" name="quien_paga" class="form-control round-input">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label"><b>Creation Date</b></label>
+                    <label class="col-sm-2 control-label"><b>Date</b></label>
                     <div class="col-sm-4">
                       <input type="text" id="fecha" name="fecha" class="form-control round-input fecha" placeholder="Enter Date" readonly="true">
                     </div>
@@ -203,7 +203,7 @@ else
                   </div>
                   <div class="form-group ocultar" id="campo_otro">
                     <label class="control-label col-lg-2" for="inputSuccess"><b>Other</b></label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <input type="text" name="otro" id="otro" class="form-control round-input">
                     </div>
                   </div>

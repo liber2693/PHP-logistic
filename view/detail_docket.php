@@ -62,51 +62,55 @@ if(empty($_SESSION['user']))
               <header class="panel-heading">
               <b>DOCKET</b>
               </header>
+
               <div class="panel-body">
                 <div class="checkboxes">
-                  <table border="1" width="100%">
-                    <thead>
+                  <table class="table table-bordered">
+                    <tbody>
                       <tr>
-                        <td colspan="2px" class="text-center" cellspadding>
+                        <td class="text-center">
                           <input type="hidden" name="id_codigo_docket" id="id_codigo_docket" value="<?php echo $codigo;?>">
                           <strong>DOCKET # : <?php echo $codigo;?></strong>
                         </td>
-                        <td colspan="2px" class="text-center" cellspadding>
+                        <td class="text-center">
                           <strong>SHIPPER: <?php echo ucwords($datos['shipper']);?></strong>
                         </td>
-                        <td colspan="2px" class="text-center" cellspadding>
+                        <td class="text-center">
                           <strong>PHONE #: <?php echo $datos['telefono'];?></strong>
                         </td>
-                        <td colspan="2px" class="text-center" cellspadding>
+                        <td class="text-center">
                           <strong>CC #: <?php echo $datos['cc'];?></strong>
                         </td>
                       </tr>
                       <tr>
-                        <td colspan="2px" class="text-center" cellspadding>
+                        <td class="text-center">
                           <strong>ORIGIN: <?php echo ucfirst($datos['origen']) .", " .ucwords($datos['lugar_origen']);?></strong>
                         </td>
-                        <td colspan="2px" class="text-center" cellspadding>
-                          <strong>PO #: <?php echo $datos['po'];?></strong>
+                        <td class="text-center">
+                          <strong>PO #: <?php echo ucfirst($datos['po']);?></strong>
                         </td>
-                        <td colspan="2px" class="text-center" cellspadding>
-                          <strong>DATE: <?php echo $datos['fecha'];?></strong>
+                        <td class="text-center">
+                          <strong>DATE: <?php
+                          $fecha = explode('-', $datos['fecha']);
+                          echo "<b>" .$fecha[1] .'-' .$fecha[2] .'-' .$fecha[0] ."</b>";
+                          ?></strong>
                         </td>
-                        <td colspan="2px" class="text-center" cellspadding>
-                          <strong>CONSIGNEE : <?php echo $datos['consignee'];?></strong>
+                        <td class="text-center">
+                          <strong>CONSIGNEE : <?php echo ucwords($datos['consignee']);?></strong>
                         </td>
                       </tr>
                       <tr>
-                        <td colspan="2px" class="text-center" cellspadding>
+                        <td class="text-center">
                           <strong>DESTINATION: <?php echo ucfirst($datos['destino']) .", " .ucwords($datos['lugar_destino']);?></strong>
                         </td>
-                        <td colspan="2px" class="text-center" cellspadding>
+                        <td class="text-center">
                           <strong>PIECES: <?php echo $datos['pieza'] ." " .ucfirst($datos['tipo_pieza']);?></strong>
                         </td>
-                        <td colspan="2px" class="text-center" cellspadding>
+                        <td class="text-center">
                           <strong>WEIGHT: <?php echo $datos['peso'] ." " .ucfirst($datos['tipo_peso']);?></strong>
                         </td>
-                        <td colspan="2px" class="text-center" cellspadding>
-                          <strong>DIMENS: <?php echo $datos['alto'] . " X "  .$datos['ancho'] ." X " .$datos['largo'] ." " .ucfirst(strtolower($datos['tipo_dimension']));?></strong>
+                        <td class="text-center">
+                          <strong>DIMENS: <?php echo $datos['alto'] . " X "  .$datos['ancho'] ." X " .$datos['largo'] ." " .ucfirst(($datos['tipo_dimension']));?></strong>
                         </td>
                       </tr>
                       <tr>
@@ -114,7 +118,7 @@ if(empty($_SESSION['user']))
                           <strong>NOTES: <?php echo ucfirst($datos['descripcion']);?></strong>
                         </td>
                       </tr>
-                    </thead>
+                    </tbody>
                   </table>
                 </div>
               </div>
@@ -190,16 +194,18 @@ if(empty($_SESSION['user']))
                         }
                       ?>
                       <tr>
-                        <td><strong><?php echo $datos['codigo_usuario'];?></strong><input type="hidden" id="codigo_factura<?php echo $i;?>" value="<?php echo $datos['codigo_invoice'];?>"></td>
+                        <td><strong><?php echo $datos['codigo_usuario'];?></strong><input type="hidden" id="codigo_factura<?php echo $i;?>" value="<?php echo $datos['codigo_invoice'];?>"><input type="hidden" id="codigo_usuario<?php echo $i;?>" value="<?php echo $datos['codigo_usuario'];?>"></td>
                         <td><strong><?php echo ucwords($datos['cliente']);?></strong></td>
-                        <td><strong><?php echo $datos['fecha'];?></strong></td>
+                        <td><strong><?php
+                        $fecha = explode('-', $datos['fecha']);
+                        echo "<b>" .$fecha[1] .'-' .$fecha[2] .'-' .$fecha[0] ."</b>";?></strong></td>
                         <td><strong><?php echo $datos['descripcion'];?> &nbsp;&nbsp;<img src="../images/<?php echo $imagen;?>" width="10%"></strong></td>
                         <td>
                           <div class="btn-group">
                             <a class="btn btn-success" style="font-size:16px" href="update_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Edit Invoice"><i class="fa fa-pencil"></i></a>
-                            <a class="btn btn-warning" style="font-size:16px" href="detail_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="See Invoice"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-info" style="font-size:16px" target="_blank" href="invoice_pdf.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Download Detail"><i class="fa fa-file-pdf-o"></i></a>
-                            <button class="btn btn-danger" style="font-size:16px" onclick="eliminar(document.getElementById('codigo_factura<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="Cancel Invoice"><i class="fa fa-times-circle"></i></button>
+                            <a class="btn btn-warning" style="font-size:16px" href="detail_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Invoice Details"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-info" style="font-size:16px" target="_blank" href="invoice_pdf.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Invoice Report"><i class="fa fa-file-pdf-o"></i></a>
+                            <button class="btn btn-danger" style="font-size:16px" onclick="eliminar(document.getElementById('codigo_factura<?php echo $i;?>').value,document.getElementById('codigo_usuario<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="Void Invoice"><i class="fa fa-times-circle"></i></button>
                             <?php
                             if ($datos['estatus']==1) {
                             ?>
@@ -247,14 +253,15 @@ if(empty($_SESSION['user']))
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title"><center><b>CANCEL INVOICE</b></center></h4>
+              <h4 class="modal-title"><center><b>VOID INVOICE</b></center></h4>
             </div>
             <br>
-            <center><b>ARE YOU SURE DO YOU WANT CANCEL THIS INVOICE?</b></center>
+            <center><b>ARE YOU SURE DO YOU WANT VOID THIS INVOICE?</b></center>
             <form class="form-inline" role="form" method="post" id="formulario_eliminar_factura" action="../controllers/invoiceControllers.php">
               <div class="modal-body">
                 <input type="hidden"  class="form-control m-bot15 round-input"  name="codigo_factura_elimanar" id="codigo_factura_elimanar">
                 <input type="hidden"  class="form-control m-bot15 round-input"  name="codigo_factura_documento" id="codigo_factura_documento">
+                <input type="hidden"  class="form-control m-bot15 round-input"  name="codigo_factura_usuario" id="codigo_factura_usuario">
                 <label for="origin"><b>Reason:</b></label>
                 <textarea class="form-control round-input" id="descripcion_eliminar" name="descripcion_eliminar" ></textarea>
               </div>
@@ -276,9 +283,10 @@ if(empty($_SESSION['user']))
       $('#table_id').DataTable();
     });
 
-    function eliminar(id){
+    function eliminar(id,codigoUsuario){
       //console.log(id);
       $("#codigo_factura_elimanar").val(id);
+      $("#codigo_factura_usuario").val(codigoUsuario);
       $("#codigo_factura_documento").val($("#id_codigo_docket").val());
       $("#formulario_eliminar_factura").submit(function(event) {
         var codigo = $("#codigo_factura_elimanar").val();
