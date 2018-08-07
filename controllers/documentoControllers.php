@@ -39,7 +39,7 @@ if(isset($_POST['tipoDocumento'])){
         $array = $correlativo->SelectCodigo();
         $cantidad=$array->fetch_assoc();
         $digito=$cantidad['correlativo']+1;
-        $codigo="I-".str_pad($digito,1,"0",STR_PAD_LEFT).'-'.$date;
+        $codigo="I-".str_pad($digito,3,"0",STR_PAD_LEFT).'-'.$date;
         $actualizar= new Catalogo($cantidad['id'],$digito,$tipoDocumento,'','');
         $actualizar->UpdateCorrelativo();
     }
@@ -47,7 +47,7 @@ if(isset($_POST['tipoDocumento'])){
         $array = $correlativo->SelectCodigo();
         $cantidad=$array->fetch_assoc();
         $digito=$cantidad['correlativo']+1;
-        $codigo="E-".str_pad($digito,1,"0",STR_PAD_LEFT).'-'.$date;
+        $codigo="E-".str_pad($digito,3,"0",STR_PAD_LEFT).'-'.$date;
         $actualizar= new Catalogo($cantidad['id'],$digito,$tipoDocumento,'','');
         $actualizar->UpdateCorrelativo();
     }
@@ -155,7 +155,7 @@ if (isset($_POST['boton_regresar'])) {
 
     $array1 = $buscarEliminado->SelectIdDelete();
     $resultadoE=$array1->fetch_assoc();
-    
+
     $codigoD = $resultadoE['codigo_docket'];
 
     if ($resultadoE['tipo']=='E' || $resultadoE['tipo']=='I') {
@@ -163,14 +163,14 @@ if (isset($_POST['boton_regresar'])) {
         $retornarDocumento = new DocketInvoiceDelete($codigoD,'','','','','','','',$id);
         $retornarDocumento->ReturnDocket();
     }
-    elseif ($resultadoE['tipo']=='F') 
+    elseif ($resultadoE['tipo']=='F')
     {
         //echo "Estas regresando una factura";
         $codigoF = $resultadoE['codigo_invoice'];
         //pregunto si esxiste el documento de la factura aqui para retornarlo
         $todoDocumento = new DocketInvoiceDelete($codigoD,'','','','','','','','');
         $array2 = $todoDocumento->SelectAllDocInv();
-        
+
         while ($varI=$array2->fetch_assoc()) {
             if($varI['tipo']=='E' || $varI['tipo']=='I'){
                 //toca retornarla y eliminarla de una
@@ -188,7 +188,7 @@ if (isset($_POST['boton_regresar'])) {
     }
 
     echo"<meta http-equiv='refresh' content='0;URL=../view/delete_list.php'>";
-    
+
 
 }
 ?>

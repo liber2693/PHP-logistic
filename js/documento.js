@@ -7,14 +7,14 @@ $(document).ready(function() {
 	//formulario de exportacion
     $("#importacion").submit(function(event) {
 		//event.preventDefault();
-    
+
         $('#enviar_documento_import').attr("disabled", true);
 
         var shipper = $('#shipper').val();
         var fecha = $('#fecha').val();
         var pais_origen = $("#pais_origen").val();
         var pais_destino = $("#pais_destino").val();
-	
+
         if (shipper=='') {
     		$("#shipper").css({"border":"2px solid #ff3333"});
             $('#enviar_documento_import').attr("disabled", false);
@@ -43,19 +43,19 @@ $(document).ready(function() {
         }else{
             $("#pais_destino").css({"border":"0"});
         }
-    
+
 
     });
 
     $("#exportacion").submit(function(event) {
         //event.preventDefault();
         $('#enviar_documento_export').attr("disabled", true);
-        
+
         var shipper = $('#shipperE').val();
         var fecha = $('#fechaE').val();
         var pais_origen = $("#pais_origenE").val();
         var pais_destino = $("#pais_destinoE").val();
-       
+
 
 
         if (shipper=='') {
@@ -72,7 +72,7 @@ $(document).ready(function() {
         }else{
             $("#fechaE").css({"border":"0"});
         }
-        
+
         if (pais_origen==0) {
             $("#pais_origenE").css({"border":"2px solid #ff3333"});
             $('#enviar_documento_export').attr("disabled", false);
@@ -87,18 +87,18 @@ $(document).ready(function() {
         }else{
             $("#pais_destinoE").css({"border":"0"});
         }
-        
+
     });
 
     $("#enviar_actualizacion").submit(function(event){
-        
+
         $('#actualizar_documento').attr("disabled", true);
 
         var expedidor = $("#expedidor").val().trim();
         var fecha = $("#fecha").val().trim();
         var id_origen = $("#id_origen").val().trim();
         var id_destino = $("#id_destino").val().trim();
-        
+
 
         if (expedidor.length=='') {
             $("#expedidor").css({"border":"2px solid #ff3333"});
@@ -116,7 +116,7 @@ $(document).ready(function() {
             $("#fecha").css({"border":"1px solid #c7c7cc"});
         }
 
-       
+
         if (id_origen==0) {
             $("#id_origen").css({"border":"2px solid #ff3333"});
             $('#actualizar_documento').attr("disabled", false);
@@ -124,7 +124,7 @@ $(document).ready(function() {
         }else{
             $("#id_origen").css({"border":"1px solid #c7c7cc"});
         }
-        
+
         if (id_destino==0) {
             $("#id_destino").css({"border":"2px solid #ff3333"});
             $('#actualizar_documento').attr("disabled", false);
@@ -132,7 +132,7 @@ $(document).ready(function() {
         }else{
             $("#id_destino").css({"border":"1px solid #c7c7cc"});
         }
-        
+
     });
 });
 
@@ -143,5 +143,22 @@ function llenar_paises(idO,idD){
     $("#pais_origen_Actualizacion").load(url_origen);
     $("#pais_destino_Actualizacion").load(url_destino);
 
-
 }
+
+
+    function format(input)
+    {
+        var num = input.value.replace(/\./g,'');
+            if(!isNaN(num)){
+                  num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                  num = num.split('').reverse().join('').replace(/^[\.]/,'');
+                  input.value = num;
+                }
+
+            else{
+              alert('Solo se permiten numeros');
+              input.value = input.value.replace(/[^\d\.]*/g,'');
+            }
+    //<input type="text" onkeyup="format(this)" onchange="format(this)">
+
+    }
