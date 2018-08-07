@@ -100,7 +100,7 @@ if(empty($_SESSION['user']))
                           <button class="btn btn-primary" style="font-size:16px" onclick="detalle(document.getElementById('detalle<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="See Reason"><i class="fa fa-eye"></i></button>
 
                           <button class="btn btn-success" style="font-size:16px" onclick="regresar(document.getElementById('id_registro<?php echo $i;?>').value)" data-toggle="modal"
-                          data-target="#myModalRegresar" title="Cancel Docket"><i class="fa fa-reply"></i></button>
+                          data-target="#myModalRegresar" title="Go Back Document"><i class="fa fa-reply"></i></button>
 
                         </div>
                       </td>
@@ -173,7 +173,7 @@ if(empty($_SESSION['user']))
     function regresar(id) {
       $("#regresar_eliminado").submit(function(event) {
         $('#boton_regresar').attr("disabled", true);
-        
+
         $("#id_regresar").val(id);
       })
     }

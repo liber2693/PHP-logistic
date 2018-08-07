@@ -83,12 +83,12 @@ else
                           <?php
                           if ($datos['estatus'] == 1)
                           {
-                          echo "<b>STAND BY</b> &nbsp;"; ?> <i class="fa fa-circle" style="color: red;"></i>
+                          echo "<b>PENDING</b> &nbsp;"; ?> <i class="fa fa-circle" style="color: red;"></i>
                           <?php
                           }
                           if ($datos['estatus'] == 2)
                           {
-                          echo "<b>READY</b> &nbsp;"; ?><i class="fa fa-circle" style="color: green;"></i>
+                          echo "<b>READY TO BILL</b> &nbsp;"; ?><i class="fa fa-circle" style="color: green;"></i>
                           <?php
                           }
                           ?>
