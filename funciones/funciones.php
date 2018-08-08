@@ -28,20 +28,20 @@ function recibirIPReal()
 
 }
 function calcularEdad($fecha_nacimiento){
-	
+
 	$dia=date("d");
 	$mes=date("m");
 	$ano=date("Y");
 
-	
+
 	$dianaz=date("d",strtotime($fecha_nacimiento));
 	$mesnaz=date("m",strtotime($fecha_nacimiento));
 	$anonaz=date("Y",strtotime($fecha_nacimiento));
-	
+
 	if (($mesnaz == $mes) && ($dianaz > $dia)) {
 	$ano=($ano-1); }
 
-	
+
 	if ($mesnaz > $mes) {
 	$ano=($ano-1);}
 
@@ -50,5 +50,16 @@ function calcularEdad($fecha_nacimiento){
 	return $edad;
 }
 
-    
+
+   function post($key)
+   {
+       if($key)
+       {
+           return isset($_POST[$key]) ? addslashes(trim($_POST[$key])) : null;
+       }
+   }
+
+   //$nombre = post("nombre");
+
+
 ?>

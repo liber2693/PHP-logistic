@@ -9,28 +9,32 @@ date_default_timezone_set("America/Caracas");
 $fecha_registro=date("Y-m-d");
 $date=substr(date("Y"),2);
 
+//echo "<pre>";print_r($tipo_documento);die;
 
-if(isset($_POST['tipoDocumento'])){
-    $tipoDocumento=$_POST['tipoDocumento'];
-    $shipper=$_POST['shipper'];
-    $telefono=$_POST['telefono'];
-    $po=$_POST['po'];
-    $cc = $_POST['cc'];
-    $consignee = $_POST['consignee'];
-    $fecha=$_POST['fecha'];
-    $pais_origen=$_POST['pais_origen'];
-    $lugar_origen=$_POST['origen'];
-    $pais_destino=$_POST['pais_destino'];
-    $lugar_destino=$_POST['destino'];
-    $pieza=$_POST['pieza'];
-    $tipo_pieza=$_POST['tipo_pieza'];
-    $peso=$_POST['peso'];
-    $tipo_peso=$_POST['tipo_peso'];
-    $alto=$_POST['alto'];
-    $ancho=$_POST['ancho'];
-    $largo=$_POST['largo'];
-    $tipo_dimension=$_POST['medida'];
-    $descripcion=$_POST['descripcion'];
+$tipo_documento = post("tipoDocumento");
+
+
+if(isset($tipo_documento)){
+    $tipoDocumento=post("tipoDocumento");
+    $shipper=post('shipper');
+    $telefono=post('telefono');
+    $po=post("po");
+    $cc = post("cc");
+    $consignee = post("consignee");
+    $fecha=post("fecha");
+    $pais_origen=post("pais_origen");
+    $lugar_origen=post("origen");
+    $pais_destino=post("pais_destino");
+    $lugar_destino=post("destino");
+    $pieza=post("pieza");
+    $tipo_pieza=post("tipo_pieza");
+    $peso=post("peso");
+    $tipo_peso=post("tipo_peso");
+    $alto=post("alto");
+    $ancho=post("ancho");
+    $largo=post("largo");
+    $tipo_dimension=post("medida");
+    $descripcion=post("descripcion");
 
     $usuario=$_SESSION['id_usuario'];
 
@@ -78,28 +82,28 @@ if(isset($_POST['tipoDocumento'])){
     }
     echo"<meta http-equiv='refresh' content='0;URL=../view/create_invoice.php?docket=".base64_encode($codigo)."'>";
 }
-if(isset($_POST['codigo_docu'])){
+if((post("codigo_docu"))){
 
-    $codigo_docu = $_POST['codigo_docu'];
-    $expedidor = $_POST['expedidor'];
-    $fecha = $_POST['fecha'];
-    $telefono = $_POST['telefono'];
-    $cc = $_POST['cc'];
-    $consignee = $_POST['consignee'];
-    $po = $_POST['po'];
-    $id_origen = $_POST['pais_origen_Actualizacion'];
-    $lugar_origen = $_POST['origen'];
-    $id_destino = $_POST['pais_destino_Actualizacion'];
-    $lugar_destino = $_POST['destino'];
-    $pieza = $_POST['pieza'];
-    $tipo_pieza = $_POST['tipo_pieza'];
-    $peso = $_POST['peso'];
-    $tipo_peso = $_POST['tipo_peso'];
-    $alto = $_POST['alto'];
-    $ancho = $_POST['ancho'];
-    $largo = $_POST['largo'];
-    $medida = $_POST['medida'];
-    $descripcion = $_POST['descripcion'];
+    $codigo_docu = post("codigo_docu");
+    $expedidor = post("expedidor");
+    $fecha = post("fecha");
+    $telefono = post("telefono");
+    $cc = post("cc");
+    $consignee = post("consignee");
+    $po = post("po");
+    $id_origen = post("pais_origen_Actualizacion");
+    $lugar_origen = post("origen");
+    $id_destino = post("pais_destino_Actualizacion");
+    $lugar_destino = post("destino");
+    $pieza = post("pieza");
+    $tipo_pieza = post("tipo_pieza");
+    $peso = post("peso");
+    $tipo_peso = post("tipo_peso");
+    $alto = post("alto");
+    $ancho = post("ancho");
+    $largo = post("largo");
+    $medida = post("medida");
+    $descripcion = post("descripcion");
 
     $usuario=$_SESSION['id_usuario'];
 
@@ -111,11 +115,11 @@ if(isset($_POST['codigo_docu'])){
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_docket.php?docket=".base64_encode($codigo_docu)."'>";
 }
 //eliminar documento
-if(isset($_POST['boton_eliminar'])){
+if((post("boton_eliminar"))){
 
-    $codigo_documento = $_POST['codigo_documento_elimanar'];
-    $tipo_documento = $_POST['tipo_documento_eliminar'];
-    $descripcion = $_POST['descripcion_eliminar'];
+    $codigo_documento = post("codigo_documento_elimanar");
+    $tipo_documento = post("tipo_documento_eliminar");
+    $descripcion = post("descripcion_eliminar");
     $usuario=$_SESSION['id_usuario'];
 
     //primero consultar en invoices si existe el documento
@@ -147,8 +151,8 @@ if(isset($_POST['boton_eliminar'])){
 
 }
 //regresar un archivo de la lista de eliminados
-if (isset($_POST['boton_regresar'])) {
-    $id = $_POST['id_regresar'];
+if ((post("boton_regresar"))) {
+    $id = post("id_regresar");
 
 
     $buscarEliminado = new DocketInvoiceDelete('','','','','','','','',$id);
