@@ -53,15 +53,22 @@ if ($array->num_rows==0) {
         line-height: normal;
       }
       </style>';
-      $fecha = explode('-', $datos['fecha']);
-      $fecha_formateada = $fecha[1] .'-' .$fecha[2] .'-' .$fecha[0];
+      if (!empty($datos['fecha'])) {
+        $fecha = explode('-', $datos['fecha']);
+        $fecha_formateada = $fecha[1] .'-' .$fecha[2] .'-' .$fecha[0];
+        
+      }
+      else{
+        $fecha_formateada = "Not registered";
+      }
+      $varCode = ($datos['codigo_usuario']) ? $datos['codigo_usuario'] : "Not registered" ;
       $html.='<br>
       <h3>INVOICE</h3>
       <table border="1" width="100%">
         <thead>
           <tr>
             <td colspan="2px" width="20%"><center><b>DOCKET #: &nbsp;'.$datos['codigo_docket'].'</b></center></td>
-            <td colspan="2px" width="20%"><b><center>INVOICE #: &nbsp;'.$datos['codigo_usuario'].'</b></center></td>
+            <td colspan="2px" width="20%"><b><center>INVOICE #: &nbsp;'.$varCode.'</b></center></td>
             <td colspan="2px" width="25%"><b><center>DATE: &nbsp;'.$fecha_formateada.'</b></center></td>
             <td colspan="2px" width="35%"><b><center>BILL TO: &nbsp;'.ucwords($datos['cliente']).'</b></center></td>
           </tr>

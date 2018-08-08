@@ -13,7 +13,7 @@ $fecha_registro=date("Y-m-d");
 
 
 if(isset($_POST['codigo_documento']) && isset($_POST['usuario_documento'])){
-    //echo "<pre>";print_r($_POST);die();
+    
     $codigo_documento=$_POST['codigo_documento'];
     $quien=$_POST['quien_paga'];
     $tipoDocumento=$_POST['tipo'];
@@ -77,6 +77,7 @@ if(isset($_POST['codigo_documento']) && isset($_POST['usuario_documento'])){
     /*registrar en la tabla de invoice por fin*/
     $insert_invoice = new Invoice($codigo,$codigo_documento,$codigo_usuario,$fecha,$tipoDocumento,$quien,'',$usuario,$fecha_registro,'','','');
     $insert_invoice->InsertInvoice();
+    //echo "<pre>";print_r($insert_invoice);die();
 
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_invoice.php?invoice=".base64_encode($codigo)."'>";
 }
@@ -262,6 +263,7 @@ if(isset($_POST['codigo_factura']) && !empty($_POST['codigo_factura'])){
 
 if(isset($_POST['codigo_invoice']) && isset($_POST['update']) && !empty($_POST['update'])){
 
+    
     $codigo_invoice = $_POST['codigo_invoice'];
     $usuario_documento = $_POST['usuario_documento'];
     $quien_paga = $_POST['quien_paga'];
@@ -289,7 +291,6 @@ if(isset($_POST['codigo_invoice']) && isset($_POST['update']) && !empty($_POST['
 
     $update_invoice = new Invoice($codigo_invoice,'',$codigo_usuario,$fecha,'',$quien_paga,'',$usuario_documento,'',$fecha_registro,'','');
     $update_invoice->UpdateInvoice();
-    //echo "<pre>";print_r($update_invoice);die();
 
 
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_invoice.php?invoice=".base64_encode($codigo_invoice)."'>";
