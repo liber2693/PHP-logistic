@@ -13,18 +13,16 @@ session_start();
 date_default_timezone_set("America/Caracas");
 $fecha_registro=date("Y-m-d");
 
-
-
-if((post("codigo_documento")) && (post("usuario_documento"))){
+if(isset($_POST['codigo_documento']) && isset($_POST['usuario_documento'])){
     //echo "<pre>";print_r($_POST);die();
-    $codigo_documento=post("codigo_documento");
+    $codigo_documento=$_POST['codigo_documento'];
     $quien=post("quien_paga");
-    $tipoDocumento=post("tipo");
+    $tipoDocumento=$_POST['tipo'];
 
     //codigo creado por el usuario
     $codigo_usuario = post("codigo_usuario");
     //fecha de creacion del docmuento, establecida por el usuario
-    $fecha = post("fecha");
+    $fecha = $_POST['fecha'];
     //Usuario que se encuentra en sesion
     $usuario=$_SESSION['id_usuario'];
     /*generar el correlativo*/
@@ -38,11 +36,12 @@ if((post("codigo_documento")) && (post("usuario_documento"))){
     $actualizar->UpdateCorrelativo();
     /*fin generando el correlativo*/
     /*Se guardan los proveedores de esta factura*/
-    $cantidad_Supli=count(post("supplier"));
+
+    $cantidad_Supli=count($_POST['supplier']);
     for ($i=1; $i <= $cantidad_Supli ; $i++) {
-        if (!empty(post("supplier")[$i])) {
-            $supplier=post("supplier")[$i];
-            $dinero=post("dinero")[$i];
+        if (!empty($_POST['supplier'][$i])) {
+            $supplier = addslashes($_POST['supplier'][$i]);
+            $dinero = addslashes($_POST['dinero'][$i]);
             $insert_supl = new SupplierInvoice($codigo,$supplier,$dinero,$usuario,$fecha_registro,'','');
             $insert_supl->InsertProvedorInvoice();
         }
@@ -69,9 +68,9 @@ if((post("codigo_documento")) && (post("usuario_documento"))){
 
     /*FIN*/
     /*registrar el metodo de envio*/
-    $cantidad_envio=count(post("envio"));
+    $cantidad_envio=count($_POST['envio']);
     for ($i=0; $i <$cantidad_envio; $i++) {
-        $id_envio=post("envio")[$i];
+        $id_envio=$_POST['envio'][$i];
         $otro = ($id_envio==6) ? post("otro") : null ;
         $insert_envi = new ShippingInvoice($codigo,$id_envio,$otro,$usuario,$fecha_registro,'','');
         $insert_envi->InsertfactipoEnvio();
@@ -85,13 +84,13 @@ if((post("codigo_documento")) && (post("usuario_documento"))){
 
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_invoice.php?invoice=".base64_encode($codigo)."'>";
 }
-if((post("servicio"))){
-    $servicio = post("servicio");
+if(isset($_POST['servicio'])){
+    $servicio = $_POST['servicio'];
     $dinero_us = post("dinero_us");
     $dinero_cad = post("dinero_cad");
     $nota = post("nota");
-    $codigo = post("codigo");
-    $usuario = post("usuario");
+    $codigo = $_POST['codigo'];
+    $usuario = $_POST['usuario'];
 
     $insert = new invoicesServicesTemp($codigo,$servicio,$dinero_us,$dinero_cad,$nota,$usuario,$fecha_registro,'');
     $insert->InsertTablaTempServi();
@@ -136,8 +135,8 @@ if(isset($_GET['tabla']) && $_GET['tabla']==1){
     echo json_encode($data);
 }
 //eliminar registro de la tabla temporal de servicos
-if((post("id"))){
-    $id=post("id");
+if(isset($_POST['id'])){
+    $id=$_POST['id'];
     $eliminar = new invoicesServicesTemp('','','','','','','',$id);
     $array=$eliminar->EliminarServicioTablaTemp();
 
@@ -223,8 +222,8 @@ if(isset($_GET['tabla']) && $_GET['tabla']==4){
 }
 
 //eliminar registro de la tabla servicos
-if((post("id_eliminar"))){
-    $id=post("id_eliminar");
+if(isset($_POST['id_eliminar'])){
+    $id=$_POST['id_eliminar'];
     $eliminar = new invoicesServices('','','','','','','','',$id);
 
     $array=$eliminar->DeleteServicio();
@@ -232,12 +231,12 @@ if((post("id_eliminar"))){
     echo json_encode(3);
 }
 //actualziar los servicios por ajax gracias jquery
-if((post("codigo_factura")) && !empty(post(codigo_factura))){
-    $servicio = post("servicio_update");
+if(isset($_POST['codigo_factura']) && !empty($_POST['codigo_factura'])){
+    $servicio = $_POST['servicio_update'];
     $dinero_us = post("dinero_us");
     $dinero_cad = post("dinero_cad");
     $nota = post("nota");
-    $codigo_invoice = post("codigo_factura");
+    $codigo_invoice = $_POST['codigo_factura'];
     $usuario_documento = post("usuario_documento");
     //insertando registro de servivios por invoice
     $insert = new invoicesServices($codigo_invoice,$servicio,$dinero_us,$dinero_cad,$nota,$usuario_documento,$fecha_registro,'','');
@@ -265,28 +264,28 @@ if((post("codigo_factura")) && !empty(post(codigo_factura))){
 
 /***********ACTUALIZAR EL INVOIVE COMO TAL COMPLETO************/
 
-if((post("codigo_invoice")) && (post("update")) && !empty(post("update"))){
+if(isset($_POST['codigo_invoice']) && isset($_POST['update']) && !empty($_POST['update'])){
 
-    $codigo_invoice = post("codigo_invoice");
+    $codigo_invoice = $_POST['codigo_invoice'];
     $usuario_documento = post("usuario_documento");
     $quien_paga = post("quien_paga");
 
     $codigo_usuario = post("codigo_usuario");
-    $fecha = post("fecha");
+    $fecha = $_POST['fecha'];
 
-    $cantidad_envios_regis = count(post("id_envio_seleccionado"));
+    $cantidad_envios_regis = count($_POST['id_envio_seleccionado']);
     for ($i=0; $i <$cantidad_envios_regis; $i++) {
-        if (!empty(post("id_envio_seleccionado")[$i])) {
-            $id_envio=post("id_envio_seleccionado")[$i];
+        if (!empty($_POST['id_envio_seleccionado'][$i])) {
+            $id_envio=$_POST['id_envio_seleccionado'][$i];
             $eliminar_envio = new ShippingInvoice($codigo_invoice,'','','','','',$id_envio);
             $eliminar_envio->DeleteViaEnvio();
         }
     }
 
     //ahora registrar lo que el usuario quiso
-    $cantidad_envio=count(post("envio"));
+    $cantidad_envio=count($_POST['envio']);
     for ($i=0; $i <$cantidad_envio; $i++) {
-        $id_envio=post("envio")[$i];
+        $id_envio=$_POST['envio'][$i];
         $otro = ($id_envio==6) ? post("otro") : null ;
         $insert_envi = new ShippingInvoice($codigo_invoice,$id_envio,$otro,$usuario_documento,$fecha_registro,'','');
         $insert_envi->InsertfactipoEnvio();
@@ -300,10 +299,10 @@ if((post("codigo_invoice")) && (post("update")) && !empty(post("update"))){
 
 }
 //eliminar factura
-if ((post("boton_eliminar"))) {
-    $codigo_docket = post("codigo_factura_documento");
-    $codigo_invoice = post("codigo_factura_elimanar");
-    $codigo_factura_usuario = post("codigo_factura_usuario");
+if (isset($_POST['boton_eliminar'])) {
+    $codigo_docket = $_POST['codigo_factura_documento'];
+    $codigo_invoice = $_POST['codigo_factura_elimanar'];
+    $codigo_factura_usuario = $_POST['codigo_factura_usuario'];
     $descripcion = post("descripcion_eliminar");
 
     $usuario=$_SESSION['id_usuario'];
