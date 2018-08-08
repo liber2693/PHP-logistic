@@ -194,18 +194,37 @@ if(empty($_SESSION['user']))
                         }
                       ?>
                       <tr>
-                        <td><strong><?php echo $datos['codigo_usuario'];?></strong><input type="hidden" id="codigo_factura<?php echo $i;?>" value="<?php echo $datos['codigo_invoice'];?>"><input type="hidden" id="codigo_usuario<?php echo $i;?>" value="<?php echo $datos['codigo_usuario'];?>"></td>
+                        <td>
+                          <strong>
+                            <?php 
+                              $varCode = ($datos['codigo_usuario']) ? $datos['codigo_usuario'] : "Not registered" ;
+                              echo $varCode;
+                            ?>
+                          </strong>
+                          <input type="text" id="codigo_factura<?php echo $i;?>" value="<?php echo $datos['codigo_invoice'];?>">
+                          <input type="hidden" id="codigo_usuario<?php echo $i;?>" value="<?php echo $datos['codigo_usuario'];?>">
+                        </td>
                         <td><strong><?php echo ucwords($datos['cliente']);?></strong></td>
-                        <td><strong><?php
-                        $fecha = explode('-', $datos['fecha']);
-                        echo "<b>" .$fecha[1] .'-' .$fecha[2] .'-' .$fecha[0] ."</b>";?></strong></td>
+                        <td>
+                          <strong>
+                            <?php
+                              if (!empty($datos['fecha'])) {
+                                $fecha = explode('-', $datos['fecha']);
+                                  echo "<b>" .$fecha[1] .'-' .$fecha[2] .'-' .$fecha[0] ."</b>";
+                              }
+                              else{
+                                echo "Not registered";
+                              }
+                            ?>                                
+                          </strong>
+                        </td>
                         <td><strong><?php echo $datos['descripcion'];?> &nbsp;&nbsp;<img src="../images/<?php echo $imagen;?>" width="10%"></strong></td>
                         <td>
                           <div class="btn-group">
                             <a class="btn btn-success" style="font-size:16px" href="update_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Edit Invoice"><i class="fa fa-pencil"></i></a>
                             <a class="btn btn-warning" style="font-size:16px" href="detail_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Invoice Details"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-info" style="font-size:16px" target="_blank" href="invoice_pdf.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Invoice Report"><i class="fa fa-file-pdf-o"></i></a>
-                            <button class="btn btn-danger" style="font-size:16px" onclick="eliminar(document.getElementById('codigo_factura<?php echo $i;?>').value,document.getElementById('codigo_usuario<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="Void Invoice"><i class="fa fa-times-circle"></i></button>
+                            <a class="btn btn-danger" style="font-size:16px" onclick="eliminar(document.getElementById('codigo_factura<?php echo $i;?>').value,document.getElementById('codigo_usuario<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="Void Invoice"><i class="fa fa-times-circle"></i></a>
                             <?php
                             if ($datos['estatus']==1) {
                             ?>
@@ -213,7 +232,7 @@ if(empty($_SESSION['user']))
                             <?php
                             }
                             ?>
-
+                            <a class="btn btn-success" style="font-size:16px" onclick="comentario(document.getElementById('codigo_factura<?php echo $i;?>').value,document.getElementById('codigo_usuario<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModalComentario" title="Add Comment o See Comment"><i class="fa fa-comment-o"></i></a>
                           </div>
                         </td>
                       </tr>
@@ -262,6 +281,33 @@ if(empty($_SESSION['user']))
                 <input type="hidden"  class="form-control m-bot15 round-input"  name="codigo_factura_elimanar" id="codigo_factura_elimanar">
                 <input type="hidden"  class="form-control m-bot15 round-input"  name="codigo_factura_documento" id="codigo_factura_documento">
                 <input type="hidden"  class="form-control m-bot15 round-input"  name="codigo_factura_usuario" id="codigo_factura_usuario">
+                <label for="origin"><b>Reason:</b></label>
+                <textarea class="form-control round-input" id="descripcion_eliminar" name="descripcion_eliminar" ></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" name="boton_eliminar" class="btn btn-success"><b>Confirm</b></button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><b>Cancel</b></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Comentario -->
+      <div id="myModalComentario" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+        <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title"><center><b>Agregar Comentario</b></center></h4>
+            </div>
+            <br>
+            <center><b>ARE YOU SURE DO YOU WANT VOID THIS INVOICE?</b></center>
+            <form class="form-inline" role="form" method="post" id="formulario_eliminar_factura" action="../controllers/invoiceControllers.php">
+              <div class="modal-body">
+                <input type="text"  class="form-control m-bot15 round-input"  name="codigo_factura_elimanar" id="codigo_factura_elimanar">
+                <input type="text"  class="form-control m-bot15 round-input"  name="codigo_factura_documento" id="codigo_factura_documento">
+                <input type="text"  class="form-control m-bot15 round-input"  name="codigo_factura_usuario" id="codigo_factura_usuario">
                 <label for="origin"><b>Reason:</b></label>
                 <textarea class="form-control round-input" id="descripcion_eliminar" name="descripcion_eliminar" ></textarea>
               </div>

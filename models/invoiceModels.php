@@ -11,6 +11,8 @@ class Invoice{
 	protected $tipo_documento;
 	protected $cliente;
 	protected $precio;
+	//protected $pagos;
+	//protected $comentarios;
 	protected $usuario;
 	protected $fecha_creacion;
 	protected $fecha_modificacion;
@@ -45,7 +47,15 @@ class Invoice{
 	}
 	public function InsertInvoice(){
 		$db = new Conexion();
-		$sql="INSERT INTO invoice(codigo_invoice, codigo_docket, codigo_usuario, fecha, tipo_documento, cliente,precio,usuario,fecha_creacion,estatus) VALUES ('$this->codigo_invoice','$this->codigo_docket','$this->codigo_usuario','$this->fecha','$this->tipo_documento','$this->cliente','','$this->usuario','$this->fecha_creacion','1')";
+		if (!empty($this->fecha)) {
+			$fechaSql = "fecha,";	
+			$var1="'$this->fecha',";	
+		}
+		else{
+			$fechaSql = null;	
+			$var1 = null;
+		}
+		$sql="INSERT INTO invoice(codigo_invoice, codigo_docket, codigo_usuario, ".$fechaSql." tipo_documento, cliente,precio,usuario,fecha_creacion,estatus) VALUES ('$this->codigo_invoice','$this->codigo_docket','$this->codigo_usuario', ".$var1." '$this->tipo_documento','$this->cliente','','$this->usuario','$this->fecha_creacion','1')";
 		$result = $db->query($sql);
 	}
 	public function SelectInvoice(){
@@ -58,7 +68,9 @@ class Invoice{
 	//actualizar una factura
 	public function UpdateInvoice(){
 		$db = new Conexion();
-		$sql="UPDATE invoice SET codigo_usuario='$this->codigo_usuario', fecha='$this->fecha', cliente='$this->cliente', usuario='$this->usuario', fecha_modificacion = '$this->fecha_modificacion' WHERE codigo_invoice='$this->codigo_invoice' AND estatus IN (1,2)";
+		$var1 = (!empty($this->fecha)) ? "fecha='$this->fecha'," : null ;
+		$var2 = (!empty($this->codigo_usuario)) ? "codigo_usuario='$this->codigo_usuario'," : null ;
+		$sql="UPDATE invoice SET  ".$var2." ".$var1." cliente='$this->cliente', usuario='$this->usuario', fecha_modificacion = '$this->fecha_modificacion' WHERE codigo_invoice='$this->codigo_invoice' AND estatus IN (1,2)";
 		$result = $db->query($sql);
 	}
 

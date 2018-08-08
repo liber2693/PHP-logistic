@@ -169,7 +169,7 @@ $(document).ready(function() {
         }else{
             $("#quien_paga").css({"border":"1px solid #c7c7cc"});
         }
-        if (codigo_usuario=='') {
+        /*if (codigo_usuario=='') {
             $("#codigo_usuario").css({"border":"2px solid #ff3333"});
             $('#enviar_invoice').attr("disabled", false);
             event.preventDefault();
@@ -182,7 +182,7 @@ $(document).ready(function() {
             event.preventDefault();
         }else{
             $("#fecha").css({"border":"1px solid #c7c7cc"});
-        }
+        }*/
 
 
         //validar que el envio este seleccionado

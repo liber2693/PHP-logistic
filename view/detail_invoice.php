@@ -12,6 +12,7 @@ else
 {
   if(isset($_GET['invoice'])){
     $codigo_factura = base64_decode($_GET['invoice']);
+    //print_r($codigo_factura);die();
     $buscarInvoice = Invoice::soloCodigo($codigo_factura);
     $array = $buscarInvoice->SelectInvoice();
     if ($array->num_rows==0) {
@@ -66,14 +67,21 @@ else
                           <strong>DOCKET #: <?php echo $datos['codigo_docket'];?></strong>
                         </td>
                         <td class="text-center">
-                          <strong>INVOICE #: <?php echo $datos['codigo_usuario'];?></strong>
+                          <strong>INVOICE #: <?php echo $varCode = ($datos['codigo_usuario']) ? $datos['codigo_usuario'] : "Not registered";?></strong>
                         </td>
                         <td class="text-center">
                           <strong>DATE:&nbsp;
                             <?php
-                            $fecha = explode('-', $datos['fecha']);
-                            echo "<b>" .$fecha[1] .'-' .$fecha[2] .'-' .$fecha[0] ."</b>";
-                            ?></strong>
+                              if (!empty($datos['fecha'])) {
+                                $fecha = explode('-', $datos['fecha']);
+                                echo $fecha_formateada = $fecha[1] .'-' .$fecha[2] .'-' .$fecha[0];
+                                
+                              }
+                              else{
+                                echo $fecha_formateada = "Not registered";
+                              }
+                            ?>
+                          </strong>
                         </td>
                         <td class="text-center">
                           <strong>BILL TO: <?php echo ucwords($datos['cliente']);?></strong>

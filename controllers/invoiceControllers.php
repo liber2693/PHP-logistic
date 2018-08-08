@@ -14,11 +14,13 @@ date_default_timezone_set("America/Caracas");
 $fecha_registro=date("Y-m-d");
 
 
+
 if((post("codigo_documento")) && (post("usuario_documento"))){
     //echo "<pre>";print_r($_POST);die();
     $codigo_documento=post("codigo_documento");
     $quien=post("quien_paga");
     $tipoDocumento=post("tipo");
+
     //codigo creado por el usuario
     $codigo_usuario = post("codigo_usuario");
     //fecha de creacion del docmuento, establecida por el usuario
@@ -79,6 +81,7 @@ if((post("codigo_documento")) && (post("usuario_documento"))){
     /*registrar en la tabla de invoice por fin*/
     $insert_invoice = new Invoice($codigo,$codigo_documento,$codigo_usuario,$fecha,$tipoDocumento,$quien,'',$usuario,$fecha_registro,'','','');
     $insert_invoice->InsertInvoice();
+    //echo "<pre>";print_r($insert_invoice);die();
 
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_invoice.php?invoice=".base64_encode($codigo)."'>";
 }
@@ -291,7 +294,6 @@ if((post("codigo_invoice")) && (post("update")) && !empty(post("update"))){
 
     $update_invoice = new Invoice($codigo_invoice,'',$codigo_usuario,$fecha,'',$quien_paga,'',$usuario_documento,'',$fecha_registro,'','');
     $update_invoice->UpdateInvoice();
-    //echo "<pre>";print_r($update_invoice);die();
 
 
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_invoice.php?invoice=".base64_encode($codigo_invoice)."'>";
