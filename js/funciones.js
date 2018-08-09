@@ -16,9 +16,9 @@ function vermMensajeAlert(tipo, texto, target){
 
     return $temp;
 }
-/*$('.solo-numero').on("keyup",function (){
+$('.solo-numero').on("keyup",function (){
     this.value = (this.value + '').replace(/[^0-9]/g, '');
-});*/
+});
 
 // formatea un numero según una mascara dada ej: "-$###,###,##0.00"
 //
@@ -33,13 +33,13 @@ function MASK(form, n, mask, format) {
   if (format == "undefined") format = false;
   if (format || NUM(n)) {
     dec = 0, point = 0;
-    x = mask.indexOf(".")+1;
+    x = mask.indexOf(",")+1;
     if (x) { dec = mask.length - x; }
 
     if (dec) {
       n = NUM(n, dec)+"";
-      x = n.indexOf(".")+1;
-      if (x) { point = n.length - x; } else { n += "."; }
+      x = n.indexOf(",")+1;
+      if (x) { point = n.length - x; } else { n += ","; }
     } else {
       n = NUM(n, 0)+"";
     } 
@@ -49,7 +49,7 @@ function MASK(form, n, mask, format) {
     x = n.length, y = mask.length, XMASK = "";
     while ( x || y ) {
       if ( x ) {
-        while ( y && "#0.".indexOf(mask.charAt(y-1)) == -1 ) {
+        while ( y && "#0,".indexOf(mask.charAt(y-1)) == -1 ) {
           if ( n.charAt(x-1) != "-")
             XMASK = mask.charAt(y-1) + XMASK;
           y--;

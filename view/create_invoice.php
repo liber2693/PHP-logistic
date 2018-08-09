@@ -85,7 +85,9 @@ else
         							<input type="text" id="supplier<?php echo $i;?>" name="supplier[<?php echo $i;?>]" placeholder="Supplier <?php echo "#".$i;?>"  class="form-control">
         						</div>
                     <div class="col-sm-3">
-                      <input type="text" id="dinero<?php echo $i;?>" name="dinero[<?php echo $i;?>]" placeholder="Cost <?php echo "#".$i;?>" data-thousands="," data-decimal="." data-prefix="$. "  class="form-control">
+                      <input type="text" id="dinero<?php echo $i;?>" name="dinero[<?php echo $i;?>]" placeholder="Cost <?php echo "#".$i;?>" onchange="MASK(this,this.value,'-$##.###.##0,00',1)" class="form-control solo-numero">
+                      
+                      <!--<input type="text" id="dinero<?php //echo $i;?>" name="dinero[<?php //echo $i;?>]" placeholder="Cost <?php //echo "#".$i;?>" data-thousands="," data-decimal="." data-prefix="$. "  class="form-control"> -->
                     </div>
         						<div class="col-sm-4">
         							<?php
@@ -136,14 +138,16 @@ else
                     <label class="col-sm-2 control-label"><b>$ US</b></label>
                     <input type="radio" id="us_dolar" name="bill_to" >
                     <div class="col-sm-4 ocultar" id="campo_us">
-                      <input type="text" id="dinero_us" data-thousands="," data-decimal="." data-prefix="$. " name="dinero_us" class="form-control round-input limpiar">
+                      <input type="text" id="dinero_us" name="dinero_us" class="form-control round-input solo-numero limpiar" onchange="MASK(this,this.value,'-$##.###.##0,00',1)">
+                      <!--<input type="text" id="dinero_us" data-thousands="," data-decimal="." data-prefix="$. " name="dinero_us" class="form-control round-input limpiar">-->
                     </div>
                   </div>
                   <div class="form-group" id="radio2">
                     <label class="col-sm-2 control-label"><b>$ CAD</b></label>
                     <input type="radio" id="cad_dolar" name="bill_to" >
                     <div class="col-sm-4 ocultar" id="campo_cad">
-                      <input type="text" id="dinero_cad" data-thousands="," data-decimal="." data-prefix="$. " name="dinero_cad" class="form-control round-input limpiar">
+                      <input type="text" id="dinero_cad" name="dinero_cad" class="form-control round-input solo-numero limpiar" onchange="MASK(this,this.value,'-$##.###.##0,00',1)">
+                      <!--<input type="text" id="dinero_cad" data-thousands="," data-decimal="." data-prefix="$. " name="dinero_cad" class="form-control round-input limpiar">-->
                     </div>
                   </div>
                   <div class="form-group">
@@ -228,6 +232,7 @@ else
   <!-- javascripts -->
   <?php include('pie.php');?>
   <script type="text/javascript" src="../js/invoice.js"></script>
+  <script type="text/javascript" src="../js/funciones.js"></script>
   <script type="text/javascript" src="../js/jquery.maskMoney.min.js"></script>
 
 

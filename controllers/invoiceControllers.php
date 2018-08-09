@@ -41,7 +41,7 @@ if(isset($_POST['codigo_documento']) && isset($_POST['usuario_documento'])){
     for ($i=1; $i <= $cantidad_Supli ; $i++) {
         if (!empty($_POST['supplier'][$i])) {
             $supplier = addslashes($_POST['supplier'][$i]);
-            $dinero = addslashes($_POST['dinero'][$i]);
+            $dinero = addslashes(substr($_POST['dinero'][$i],1));
             $insert_supl = new SupplierInvoice($codigo,$supplier,$dinero,$usuario,$fecha_registro,'','');
             $insert_supl->InsertProvedorInvoice();
         }
@@ -86,8 +86,8 @@ if(isset($_POST['codigo_documento']) && isset($_POST['usuario_documento'])){
 }
 if(isset($_POST['servicio'])){
     $servicio = $_POST['servicio'];
-    $dinero_us = post("dinero_us");
-    $dinero_cad = post("dinero_cad");
+    $dinero_us = substr($_POST['dinero_us'],1);
+    $dinero_cad = substr($_POST['dinero_cad'],1);
     $nota = post("nota");
     $codigo = $_POST['codigo'];
     $usuario = $_POST['usuario'];

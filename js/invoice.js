@@ -1,10 +1,10 @@
 $(document).ready(function() {
     //mascara de cifra con puntos(.) y comas(,)
-    $("#dinero_us").maskMoney();
-    $("#dinero_cad").maskMoney();
-    for (var i = 0; i < 7; i++) {
+    //$("#dinero_us").maskMoney();
+    //$("#dinero_cad").maskMoney();
+    /*for (var i = 0; i < 7; i++) {
         $("#dinero"+i+"").maskMoney();
-    }
+    }*/
     //campo de fecha
     $(function () {
         $.datepicker.setDefaults($.datepicker.regional["es"]);
@@ -104,11 +104,11 @@ $(document).ready(function() {
                         lista.forEach( function(data, indice, array) {
                             $("#seleccion_servicios_tabla").append(
                             '<tr>'+
-                            '<td>'+'<b>'+data.codigo_ser+'</b>'+'</td>'+
-                            '<td>'+'<b>'+data.descripcion+'</b>'+'</td>'+
-                            '<td>'+'<b>'+data.nota+'</b>'+'</td>'+
-                            '<td>'+'<b>'+data.dolar_us+'</b>'+'</td>'+
-                            '<td>'+'<b>'+data.dolar_cad+'</b>'+'</td>'+
+                            '<td><b>'+data.codigo_ser+'</b></td>'+
+                            '<td><b>'+data.descripcion+'</b></td>'+
+                            '<td><b>'+data.nota+'</b>'+'</td>'+
+                            '<td><b>'+(data.dolar_us ? "$ "+data.dolar_us : "")+'</b></td>'+
+                            '<td><b>'+(data.dolar_cad ? "$ "+data.dolar_cad : "")+'</b></td>'+
                             '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminar('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                             '</tr>');
                             $('#enviar_invoice').attr("disabled", false);
@@ -242,11 +242,11 @@ function mostarLista(){
                 lista.forEach( function(data, indice, array) {
                     $("#seleccion_servicios_tabla").append(
                     '<tr>'+
-                    '<td>'+'<b>'+data.codigo_ser+'</b>'+'</td>'+
-                    '<td>'+'<b>'+data.descripcion+'</b>'+'</td>'+
-                    '<td>'+'<b>'+data.nota+'</b>'+'</td>'+
-                    '<td>'+'<b>'+data.dolar_us+'</b>'+'</td>'+
-                    '<td>'+'<b>'+data.dolar_cad+'</b>'+'</td>'+
+                    '<td><b>'+data.codigo_ser+'</b></td>'+
+                    '<td><b>'+data.descripcion+'</b></td>'+
+                    '<td><b>'+data.nota+'</b>'+'</td>'+
+                    '<td><b>'+(data.dolar_us ? "$ "+data.dolar_us : "")+'</b></td>'+
+                    '<td><b>'+(data.dolar_cad ? "$ "+data.dolar_cad : "")+'</b></td>'+
                     '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminar('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                     '</tr>');
                     $('#enviar_invoice').attr("disabled", false);

@@ -150,7 +150,7 @@ else
                   <tr>
                     <td><?php echo "<b>" .$i ."</b>";?></td>
                     <td><?php echo "<b>" .ucwords($datos_supli['supplier']) ."</b>";?></td>
-                    <td><?php echo "<b>" .$datos_supli['dinero'] ."</b>";?></td>
+                    <td><?php echo "<b>$ " .$datos_supli['dinero'] ."</b>";?></td>
                   </tr>
                 <?php
                   }
@@ -196,13 +196,15 @@ else
                   $i=0;
                   while($datos_servi=$array1->fetch_assoc()){
                   $i++;
+                  $us = ($datos_servi['precio_us']) ? "$ ".$datos_servi['precio_us'] : "" ;
+                  $ca = ($datos_servi['precio_ca']) ? "$ ".$datos_servi['precio_ca'] : "" ;
                 ?>
                   <strong><tr>
                     <td><?php echo  "<b>" .$i ."</b>";?></td>
                     <td><?php echo "<b>" .$datos_servi['descripcion'] ."</b>";?></td>
                     <td><?php echo "<b>" .ucfirst($datos_servi['nota']) ."</b>";?></td>
-                    <td><?php echo "<b>" .$datos_servi['precio_us'] ."</b>";?></td>
-                    <td><?php echo "<b>" .$datos_servi['precio_ca'] ."</b>";?></td>
+                    <td><b><?php echo $us;?></b></td>
+                    <td><b><?php echo $ca;?></b></td>
                   </tr>
                 <?php
                   }
