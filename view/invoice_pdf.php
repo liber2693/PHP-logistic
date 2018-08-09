@@ -67,10 +67,10 @@ if ($array->num_rows==0) {
       <table border="1" width="100%">
         <thead>
           <tr>
-            <td colspan="2px" width="20%"><center><b>DOCKET #: &nbsp;'.$datos['codigo_docket'].'</b></center></td>
-            <td colspan="2px" width="20%"><b><center>INVOICE #: &nbsp;'.$varCode.'</b></center></td>
-            <td colspan="2px" width="25%"><b><center>DATE: &nbsp;'.$fecha_formateada.'</b></center></td>
-            <td colspan="2px" width="35%"><b><center>BILL TO: &nbsp;'.ucwords($datos['cliente']).'</b></center></td>
+            <td colspan="2" width="20%"><center><b>DOCKET #: &nbsp;'.$datos['codigo_docket'].'</b></center></td>
+            <td colspan="2" width="20%"><b><center>INVOICE #: &nbsp;'.$varCode.'</b></center></td>
+            <td colspan="2" width="25%"><b><center>DATE: &nbsp;'.$fecha_formateada.'</b></center></td>
+            <td colspan="2" width="35%"><b><center>BILL TO: &nbsp;'.ucwords($datos['cliente']).'</b></center></td>
           </tr>
         </thead>
       </table>
@@ -78,10 +78,10 @@ if ($array->num_rows==0) {
       <table border="1" width="100%">
         <thead>
           <tr>
-            <td colspan="2px" width="30%"><center><b>ORIGIN: &nbsp;'.$datos['pais_origen'].', '.ucfirst($datos['lugar_origen']).'</b></center></td>
-            <td colspan="2px" width="30%"><b><center>DESTINATION: &nbsp;'.$datos['pais_destino'].', '.ucfirst($datos['lugar_destino']).'</b></center></td>
-            <td colspan="2px" width="20%"><b><center>PIECES: &nbsp;'.$datos['pieza'].' '.ucfirst($datos['tipo_pieza']).'</b></center></td>
-            <td colspan="2px" width="20%"><b><center>WEIGHT: &nbsp;'.$datos['peso'].' '.ucfirst($datos['tipo_peso']).'</b></center></td>
+            <td colspan="2" width="30%"><center><b>ORIGIN: &nbsp;'.$datos['pais_origen'].', '.ucfirst($datos['lugar_origen']).'</b></center></td>
+            <td colspan="2" width="30%"><b><center>DESTINATION: &nbsp;'.$datos['pais_destino'].', '.ucfirst($datos['lugar_destino']).'</b></center></td>
+            <td colspan="2" width="20%"><b><center>PIECES: &nbsp;'.$datos['pieza'].' '.ucfirst($datos['tipo_pieza']).'</b></center></td>
+            <td colspan="2" width="20%"><b><center>WEIGHT: &nbsp;'.$datos['peso'].' '.ucfirst($datos['tipo_peso']).'</b></center></td>
           </tr>
         </thead>
       </table>

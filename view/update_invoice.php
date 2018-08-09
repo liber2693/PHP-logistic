@@ -85,7 +85,8 @@ else
                       <input type="text" id="supplierActualizar" placeholder="New Supplier"  class="form-control round-input limpiar">
                     </div>
                     <div class="col-sm-3">
-                      <input type="text" id="pago_supplier" placeholder="Cost" data-thousands="," data-decimal="." data-prefix="$. " name="pago_supplier" class="form-control round-input limpiar">
+                      <input type="text" id="pago_supplier" name="pago_supplier" placeholder="Cost" onchange="MASK(this,this.value,'-$##.###.##0,00',1)" class="form-control solo-numero round-input limpiar">
+                      <!--<input type="text" id="pago_supplier" placeholder="Cost" data-thousands="," data-decimal="." data-prefix="$. " name="pago_supplier" class="form-control round-input limpiar">-->
                     </div>
                     <div class="col-sm-3">
                       <button type="button" id="masActualizar" class="btn btn-primary" title="New Supplier" onclick="registrarSupplier()"><i class="fa fa-plus" aria-hidden="true"></i></button>
@@ -132,14 +133,19 @@ else
                     <label class="col-sm-2 control-label"><b>$ US</b></label>
                     <input type="radio" id="us_dolar" name="bill_to" >
                     <div class="col-sm-4 ocultar" id="campo_us">
-                      <input type="text" id="dinero_us" data-thousands="." data-decimal="," data-prefix="$. " name="dinero_us" class="form-control round-input limpiar">
+                      <input type="text" id="dinero_us" name="dinero_us" placeholder="$" onchange="MASK(this,this.value,'-$##.###.##0,00',1)" class="form-control round-input solo-numero limpiar">
+
+                      <!--<input type="text" id="dinero_us" data-thousands="." data-decimal="," data-prefix="$. " name="dinero_us" class="form-control round-input limpiar">-->
                     </div>
                   </div>
                   <div class="form-group" id="radio2">
                     <label class="col-sm-2 control-label"><b>$ CAD</b></label>
                     <input type="radio" id="cad_dolar" name="bill_to" >
                     <div class="col-sm-4 ocultar" id="campo_cad">
-                      <input type="text" id="dinero_cad" data-thousands="." data-decimal="," data-prefix="$. " name="dinero_cad" class="form-control round-input limpiar">
+
+                      <input type="text" id="dinero_cad" name="dinero_cad" placeholder="$" onchange="MASK(this,this.value,'-$##.###.##0,00',1)" class="form-control round-input solo-numero limpiar">
+
+                      <!--<input type="text" id="dinero_cad" data-thousands="." data-decimal="," data-prefix="$. " name="dinero_cad" class="form-control round-input limpiar">-->
                     </div>
                   </div>
                   <div class="form-group">
@@ -232,6 +238,7 @@ else
   <?php include('pie.php');?>
 
   <script type="text/javascript" src="../js/jquery.maskMoney.min.js"></script>
+  <script type="text/javascript" src="../js/funciones.js"></script>
   <script type="text/javascript" src="../js/invoice_update.js"></script>
 
 

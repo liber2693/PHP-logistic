@@ -148,7 +148,7 @@ if(isset($_GET['tabla']) && $_GET['tabla']==2){
     $supplier = $_GET['supplier'];
     $codigo_invoice = $_GET['codigo_invoice'];
     $usuario = $_GET['usuario_documento'];
-    $pago_supplier = $_GET['pago_supplier'];
+    $pago_supplier = substr($_GET['pago_supplier'],1);
 
     //registro nuevo en el proceso de actualizar un INVOICE en supplier
     $actualizarRegistro = new SupplierInvoice($codigo_invoice,$supplier,$pago_supplier,$usuario,$fecha_registro,'','');
@@ -233,8 +233,8 @@ if(isset($_POST['id_eliminar'])){
 //actualziar los servicios por ajax gracias jquery
 if(isset($_POST['codigo_factura']) && !empty($_POST['codigo_factura'])){
     $servicio = $_POST['servicio_update'];
-    $dinero_us = post("dinero_us");
-    $dinero_cad = post("dinero_cad");
+    $dinero_us = substr($_POST['dinero_us'],1);
+    $dinero_cad = substr($_POST['dinero_cad'],1);
     $nota = post("nota");
     $codigo_invoice = $_POST['codigo_factura'];
     $usuario_documento = post("usuario_documento");

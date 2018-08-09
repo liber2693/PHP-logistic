@@ -104,6 +104,26 @@ else
 
                         </td>
                       </tr>
+                      <?php
+                      if(!empty($datos['pagos'])){
+                      ?>
+                        <tr>
+                          <td colspan="5">
+                            <b>Paymnts: &nbsp;<?php echo $datos['pagos'];?></b>
+                          </td>
+                        </tr>
+                      <?php 
+                      }
+                      if(!empty($datos['comentarios'])){
+                      ?>
+                      <tr>
+                        <td colspan="5">
+                          <b>Comments: &nbsp;<?php echo $datos['comentarios'];?></b>
+                        </td>
+                      </tr>
+                      <?php 
+                      }
+                      ?>
                     </tbody>
                   </table>
 
