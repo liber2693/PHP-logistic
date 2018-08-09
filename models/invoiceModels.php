@@ -11,15 +11,15 @@ class Invoice{
 	protected $tipo_documento;
 	protected $cliente;
 	protected $precio;
-	//protected $pagos;
-	//protected $comentarios;
+	protected $pagos;
+	protected $comentarios;
 	protected $usuario;
 	protected $fecha_creacion;
 	protected $fecha_modificacion;
 	protected $estatus;
 
 
-	public function __construct($codigo_invoice,$codigo_docket,$codigo_usuario,$fecha,$tipo_documento,$cliente,$precio,$usuario,$fecha_creacion,$fecha_modificacion,$estatus,$id = ''){
+	public function __construct($codigo_invoice,$codigo_docket,$codigo_usuario,$fecha,$tipo_documento,$cliente,$precio,$pagos,$comentarios,$usuario,$fecha_creacion,$fecha_modificacion,$estatus,$id = ''){
 
 		$db = new Conexion();
 
@@ -31,6 +31,8 @@ class Invoice{
 		$this->tipo_documento = $tipo_documento;
 		$this->cliente = $cliente;
 		$this->precio = $precio;
+		$this->pagos = $pagos;
+		$this->comentarios = $comentarios;
 		$this->usuario = $usuario;
 		$this->fecha_creacion = $fecha_creacion;
 		$this->fecha_modificacion = $fecha_modificacion;
@@ -39,11 +41,11 @@ class Invoice{
 	}
 
 	static function ningundato(){
-		return new self('','','','','','','','','','','','');
+		return new self('','','','','','','','','','','','','','');
 	}
 
 	static function soloCodigo($codigo_invoice){
-		return new self($codigo_invoice,'','','','','','','','','','','');
+		return new self($codigo_invoice,'','','','','','','','','','','','','');
 	}
 	public function InsertInvoice(){
 		$db = new Conexion();
@@ -78,7 +80,7 @@ class Invoice{
 		$db = new Conexion();
 		$sql="SELECT a.codigo_invoice,a.codigo_docket,a.codigo_usuario,a.fecha,a.cliente,a.fecha_creacion,b.shipper,b.telefono,
 					 b.lugar_origen,b.lugar_destino,b.pieza,b.tipo_pieza,b.peso,b.tipo_peso,b.alto,b.ancho,
-					 b.largo,b.tipo_dimension,b.descripcion,c.pais AS pais_origen,d.pais AS pais_destino
+					 b.largo,b.tipo_dimension,b.descripcion,c.pais AS pais_origen,d.pais AS pais_destino, a.pagos,a.comentarios
 					 FROM invoice a
 					 JOIN docket b ON b.codigo=a.codigo_docket
 					 JOIN paises c ON c.codigo=b.id_origen_pais
@@ -107,6 +109,14 @@ class Invoice{
 	public function UpdateStatusInvoice(){
 		$db = new Conexion();
 		$sql="UPDATE invoice SET estatus = 2 WHERE codigo_invoice='$this->codigo_invoice'";
+		$result = $db->query($sql);
+
+	}
+	//agregar comentario a la factura
+	public function UpdateComment(){
+		$db = new Conexion();
+		$sql="UPDATE invoice SET pagos = '$this->pagos', comentarios = '$this->comentarios' WHERE codigo_invoice='$this->codigo_invoice'";
+		//echo "<pre>";print_r($sql);die();
 		$result = $db->query($sql);
 
 	}

@@ -87,31 +87,24 @@ if ($array->num_rows==0) {
       </table>
 
       <table border="1" width="100%">
-        <thead>
-          <tr>
-            <td colspan="1px" width="40%"><center><b>DIMENSIONS: &nbsp;'.$datos['alto'].' X '.$datos['ancho'].' X '.$datos['largo'].'  '.ucfirst($datos['tipo_dimension']).'</b></center></td>
-            <td colspan="7px" width="60%"><b><center>NOTE: &nbsp;'.ucfirst($datos['descripcion']).'</b></center></td>
-          </tr>
-        </thead>
+        <tr>
+          <td width="40%">
+            <b>DIMENSIONS:</b> &nbsp;'.$datos['alto'].' X '.$datos['ancho'].' X '.$datos['largo'].'  '.ucfirst($datos['tipo_dimension']).'
+          </td>
+          <td width="60%">
+            <b>NOTE:</b> &nbsp;'.ucfirst($datos['descripcion']).'</td>
+        </tr>
+        <tr>
+            <td width="40%">
+              <b>PAYMENTS:</b>
+              <br>'.$datos['pagos'].'
+            </td>
+            <td width="40%">
+              <b>COMMENTS:</b>
+                 <br>'.$datos['comentarios'].'
+            </td>
+        </tr>
       </table>';
-        //print_r($html);die;
-//        width:60px;
-
-  /*$html.='<h2>INVOICE
-            <p>
-              DOCKET: &nbsp;'.$datos['codigo_docket'].'<br>
-              INVOICE: &nbsp;'.$datos['codigo_invoice'].'<br>
-              DATE: &nbsp;'.$datos['fecha_creacion'].'<br>
-              ORIGIN: &nbsp;'.$datos['pais_origen'].', '.ucfirst($datos['lugar_origen']).'<br>
-              DESTINATION: &nbsp;'.$datos['pais_destino'].', '.ucfirst($datos['lugar_destino']).'<br>
-              BILL TO: &nbsp;'.ucwords($datos['cliente']).'<br>
-              PIECES: &nbsp;'.$datos['pieza'].' '.ucfirst($datos['tipo_pieza']).'<br>
-              WEIGHT: &nbsp;'.$datos['peso'].' '.ucfirst($datos['tipo_peso']).'<br>
-              DIMENSIONS: &nbsp;'.$datos['alto'].' X '.$datos['ancho'].' X '.$datos['largo'].'  '.ucfirst($datos['tipo_dimension']).'<br>
-              NOTES: &nbsp;'.ucfirst($datos['descripcion']).'<br>
-            </p>
-          </h2>';
-*/
   $buscarServInvoice = invoicesServices::soloCodigo($codigo_factura);
   $array1 = $buscarServInvoice->SelectServicosInvoice();
 

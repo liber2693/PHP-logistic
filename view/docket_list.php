@@ -130,7 +130,7 @@ if(empty($_SESSION['user']))
             <textarea class="form-control round-input" id="descripcion_eliminar" name="descripcion_eliminar" ></textarea>
           </div>
           <div class="modal-footer">
-            <button type="submit" name="boton_eliminar" class="btn btn-success"><b>Confirm</b></button>
+            <button type="submit" name="boton_eliminar" id="boton_eliminar" class="btn btn-success"><b>Confirm</b></button>
             <button type="button" class="btn btn-danger" data-dismiss="modal"><b>Cancel</b></button>
           </div>
         </form>
@@ -155,7 +155,7 @@ if(empty($_SESSION['user']))
       $("#tipo_documento_eliminar").val(tipo);
       $("#formulario_eliminar_documento").submit(function(event) {
         
-        $('#boton_eliminar').attr("disabled", true);
+        //$('#boton_eliminar').attr("disabled", true);
         
         var codigo = $("#codigo_documento_elimanar").val();
         var tipo = $("#tipo_documento_eliminar").val();

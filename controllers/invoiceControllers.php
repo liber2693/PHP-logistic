@@ -78,7 +78,7 @@ if(isset($_POST['codigo_documento']) && isset($_POST['usuario_documento'])){
 
     /*FIN*/
     /*registrar en la tabla de invoice por fin*/
-    $insert_invoice = new Invoice($codigo,$codigo_documento,$codigo_usuario,$fecha,$tipoDocumento,$quien,'',$usuario,$fecha_registro,'','','');
+    $insert_invoice = new Invoice($codigo,$codigo_documento,$codigo_usuario,$fecha,$tipoDocumento,$quien,'','','',$usuario,$fecha_registro,'','','');
     $insert_invoice->InsertInvoice();
     //echo "<pre>";print_r($insert_invoice);die();
 
@@ -291,7 +291,7 @@ if(isset($_POST['codigo_invoice']) && isset($_POST['update']) && !empty($_POST['
         $insert_envi->InsertfactipoEnvio();
     }
 
-    $update_invoice = new Invoice($codigo_invoice,'',$codigo_usuario,$fecha,'',$quien_paga,'',$usuario_documento,'',$fecha_registro,'','');
+    $update_invoice = new Invoice($codigo_invoice,'',$codigo_usuario,$fecha,'',$quien_paga,'','','',$usuario_documento,'',$fecha_registro,'','');
     $update_invoice->UpdateInvoice();
 
 
@@ -307,7 +307,7 @@ if (isset($_POST['boton_eliminar'])) {
 
     $usuario=$_SESSION['id_usuario'];
     $tipo_factura = 'F';
-    $delete_invoice = new Invoice($codigo_invoice,'','','','','','','','',$fecha_registro,'','');
+    $delete_invoice = new Invoice($codigo_invoice,'','','','','','','','','','',$fecha_registro,'','');
     $delete_invoice->DeleteInvoice();
 
     //guardar regsitros de las facturas eliminadas
@@ -322,11 +322,25 @@ if (isset($_GET['active']) && !empty($_GET['active'])) {
     $codigo_invoice_active = base64_decode($_GET['active']);
     $codigo_docket_active = base64_decode($_GET['docket']);
 
-    $procesar_invoice = new Invoice($codigo_invoice_active,'','','','','','','','','','','');
+    $procesar_invoice = new Invoice($codigo_invoice_active,'','','','','','','','','','','','','');
     $procesar_invoice->UpdateStatusInvoice();
     //echo "<pre>";print_r($procesar_invoice);die();
 
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_docket.php?docket=".base64_encode($codigo_docket_active)."'>";
+}
+//agregar comentario de invoice desde la lista de invoices
+if (isset($_POST['boton_comentario'])) {
+    $codigo_invoice = $_POST['codigo_invoice_comentario'];
+    $pagos = post('compo_pagos');
+    $comentario = post('campo_comentario');
+
+    $comentario_invoice = new Invoice($codigo_invoice,'','','','','','',$pagos,$comentario,'','','','','');
+    $comentario_invoice->UpdateComment();
+    
+    //echo "<pre>";print_r($_POST);die();
+    
+    echo"<meta http-equiv='refresh' content='0;URL=../view/detail_docket.php?docket=".base64_encode($_POST['codigo_docket_comentario'])."'>";
+    
 }
 
 ?>

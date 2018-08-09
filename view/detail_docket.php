@@ -201,7 +201,9 @@ if(empty($_SESSION['user']))
                               echo $varCode;
                             ?>
                           </strong>
-                          <input type="text" id="codigo_factura<?php echo $i;?>" value="<?php echo $datos['codigo_invoice'];?>">
+                          <input type="hidden" id="pagos<?php echo $datos['codigo_invoice'];?>" value="<?php echo $datos['pagos'];?>">
+                          <input type="hidden" id="comentarios<?php echo $datos['codigo_invoice'];?>" value="<?php echo $datos['comentarios'];?>">
+                          <input type="hidden" id="codigo_factura<?php echo $i;?>" value="<?php echo $datos['codigo_invoice'];?>">
                           <input type="hidden" id="codigo_usuario<?php echo $i;?>" value="<?php echo $datos['codigo_usuario'];?>">
                         </td>
                         <td><strong><?php echo ucwords($datos['cliente']);?></strong></td>
@@ -232,7 +234,7 @@ if(empty($_SESSION['user']))
                             <?php
                             }
                             ?>
-                            <a class="btn btn-success" style="font-size:16px" onclick="comentario(document.getElementById('codigo_factura<?php echo $i;?>').value,document.getElementById('codigo_usuario<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModalComentario" title="Add Comment o See Comment"><i class="fa fa-comment-o"></i></a>
+                            <a class="btn btn-success" style="font-size:16px" onclick="comentario(document.getElementById('codigo_factura<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModalComentario" title="Add Comment o See Comment"><i class="fa fa-comment-o"></i></a>
                           </div>
                         </td>
                       </tr>
@@ -285,7 +287,7 @@ if(empty($_SESSION['user']))
                 <textarea class="form-control round-input" id="descripcion_eliminar" name="descripcion_eliminar" ></textarea>
               </div>
               <div class="modal-footer">
-                <button type="submit" name="boton_eliminar" class="btn btn-success"><b>Confirm</b></button>
+                <button type="submit" name="boton_eliminar" id="boton_eliminar" class="btn btn-success"><b>Confirm</b></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><b>Cancel</b></button>
               </div>
             </form>
@@ -301,18 +303,17 @@ if(empty($_SESSION['user']))
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <h4 class="modal-title"><center><b>Agregar Comentario</b></center></h4>
             </div>
-            <br>
-            <center><b>ARE YOU SURE DO YOU WANT VOID THIS INVOICE?</b></center>
-            <form class="form-inline" role="form" method="post" id="formulario_eliminar_factura" action="../controllers/invoiceControllers.php">
+            <form class="form-inline" role="form" method="post" id="formulario_comentario" action="../controllers/invoiceControllers.php">
               <div class="modal-body">
-                <input type="text"  class="form-control m-bot15 round-input"  name="codigo_factura_elimanar" id="codigo_factura_elimanar">
-                <input type="text"  class="form-control m-bot15 round-input"  name="codigo_factura_documento" id="codigo_factura_documento">
-                <input type="text"  class="form-control m-bot15 round-input"  name="codigo_factura_usuario" id="codigo_factura_usuario">
-                <label for="origin"><b>Reason:</b></label>
-                <textarea class="form-control round-input" id="descripcion_eliminar" name="descripcion_eliminar" ></textarea>
+                <input type="hidden"  class="form-control"  name="codigo_invoice_comentario" id="codigo_invoice_comentario">
+                <input type="hidden"  class="form-control"  name="codigo_docket_comentario" id="codigo_docket_comentario">
+                <label for="Payments"><b>Payments:</b></label>
+                <textarea class="form-control round-input" id="compo_pagos" placeholder="Add a payment description of the invoice" name="compo_pagos" ></textarea>
+                <label for="Comments"><b>Comments:</b></label>
+                <textarea class="form-control round-input" id="campo_comentario" placeholder="Add a description of the invoice" name="campo_comentario" ></textarea>
               </div>
               <div class="modal-footer">
-                <button type="submit" name="boton_eliminar" class="btn btn-success"><b>Confirm</b></button>
+                <button type="submit" name="boton_comentario" class="btn btn-success"><b>Confirm</b></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><b>Cancel</b></button>
               </div>
             </form>
@@ -337,7 +338,7 @@ if(empty($_SESSION['user']))
       $("#codigo_factura_documento").val($("#id_codigo_docket").val());
       $("#formulario_eliminar_factura").submit(function(event) {
         
-        $('#boton_eliminar').attr("disabled", true);
+        //$('#boton_eliminar').attr("disabled", true);
         
         var codigo = $("#codigo_factura_elimanar").val();
         var descripcion = $("#descripcion_eliminar").val();
@@ -349,6 +350,14 @@ if(empty($_SESSION['user']))
             $("#descripcion_eliminar").css({"border":"0"});
         }
       });
+    }
+    function comentario(cod_invoice){
+      console.log(cod_invoice);
+      $("#codigo_invoice_comentario").val(cod_invoice);
+      $("#codigo_docket_comentario").val($("#id_codigo_docket").val());
+      $("#compo_pagos").val($("#pagos"+cod_invoice).val());
+      $("#campo_comentario").val($("#comentarios"+cod_invoice).val());
+      //$('#boton_eliminar').attr("disabled", true);
     }
 
   </script>

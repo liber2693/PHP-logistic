@@ -145,12 +145,23 @@ if ($array_d->num_rows==0) {
       </table>
 
       <table border="1" width="100%">
-        <thead>
-          <tr>
-            <td colspan="1px" width="40%"><center><b>DIMENSIONS: &nbsp;'.$datos_i['alto'].' X '.$datos_i['ancho'].' X '.$datos_i['largo'].'  '.ucfirst($datos_i['tipo_dimension']).'</b></center></td>
-            <td colspan="7px" width="60%"><b><center>NOTE: &nbsp;'.ucfirst($datos_i['descripcion']).'</b></center></td>
-          </tr>
-        </thead>
+        <tr>
+          <td width="40%">
+            <b>DIMENSIONS:</b> &nbsp;'.$datos_i['alto'].' X '.$datos_i['ancho'].' X '.$datos_i['largo'].'  '.ucfirst($datos_i['tipo_dimension']).'
+          </td>
+          <td width="60%">
+            <b>NOTE:</b> &nbsp;'.ucfirst($datos_i['descripcion']).'</td>
+        </tr>
+        <tr>
+            <td width="40%">
+              <b>PAYMENTS:</b>
+              <br>'.$datos_i['pagos'].'
+            </td>
+            <td width="40%">
+              <b>COMMENTS:</b>
+                 <br>'.$datos_i['comentarios'].'
+            </td>
+        </tr>
       </table>';
 
       $buscarServInvoice = invoicesServices::soloCodigo($codigo_factura);
