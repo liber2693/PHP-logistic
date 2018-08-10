@@ -115,7 +115,7 @@ if(empty($_SESSION['user']))
                       </tr>
                       <tr>
                         <td colspan="4">
-                          <strong>NOTES: </strong> <?php echo ucfirst($datos['descripcion']);?>
+                          <strong>NOTES: <?php echo ucfirst($datos['descripcion']);?> </strong>
                         </td>
                       </tr>
                     </tbody>
