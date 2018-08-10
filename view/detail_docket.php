@@ -196,7 +196,7 @@ if(empty($_SESSION['user']))
                       <tr>
                         <td>
                           <strong>
-                            <?php 
+                            <?php
                               $varCode = ($datos['codigo_usuario']) ? $datos['codigo_usuario'] : "Not registered" ;
                               echo $varCode;
                             ?>
@@ -217,7 +217,7 @@ if(empty($_SESSION['user']))
                               else{
                                 echo "Not registered";
                               }
-                            ?>                                
+                            ?>
                           </strong>
                         </td>
                         <td><strong><?php echo $datos['descripcion'];?> &nbsp;&nbsp;<img src="../images/<?php echo $imagen;?>" width="10%"></strong></td>
@@ -337,9 +337,9 @@ if(empty($_SESSION['user']))
       $("#codigo_factura_usuario").val(codigoUsuario);
       $("#codigo_factura_documento").val($("#id_codigo_docket").val());
       $("#formulario_eliminar_factura").submit(function(event) {
-        
+
         //$('#boton_eliminar').attr("disabled", true);
-        
+
         var codigo = $("#codigo_factura_elimanar").val();
         var descripcion = $("#descripcion_eliminar").val();
         if (descripcion.length==0) {
