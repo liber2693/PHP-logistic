@@ -1,9 +1,9 @@
 $(document).ready(function() {
 	//mascara de cifra con puntos(.) y comas(,)
-	$("#dinero_us").maskMoney();
-	$("#dinero_cad").maskMoney();
+	//$("#dinero_us").maskMoney();
+	//$("#dinero_cad").maskMoney();
     //campo de actualizar
-    $("#pago_supplier").maskMoney();
+    //$("#pago_supplier").maskMoney();
 	//busca los servicios
 	var tipo = $('#tipo').val();
 	var settings = {
@@ -95,11 +95,11 @@ $(document).ready(function() {
 	                	lista.forEach( function(data, indice, array) {
 				        	$("#seleccion_servicios_tabla").append(
 	                  		'<tr>'+
-	                    	'<td>'+'<b>'+data.codigo_ser+'</b>'+'</td>'+
-	                    	'<td>'+'<b>'+data.descripcion+'</b>'+'</td>'+
-	                    	'<td>'+'<b>'+data.nota+'</b>'+'</td>'+
-	                    	'<td>'+'<b>'+data.precio_us+'</b>'+'</td>'+
-	                    	'<td>'+'<b>'+data.precio_ca+'</b>'+'</td>'+
+	                    	'<td><b>'+data.codigo_ser+'</b></td>'+
+                            '<td><b>'+data.descripcion+'</b></td>'+
+                            '<td><b>'+data.nota+'</b>'+'</td>'+
+                            '<td><b>'+(data.precio_us ? "$ "+data.precio_us : "")+'</b></td>'+
+                            '<td><b>'+(data.precio_ca ? "$ "+data.precio_ca : "")+'</b></td>'+
 	                    	'<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminar('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
 	                  		'</tr>');
 	                  		$('#enviar_update_invoice').attr("disabled", false);
@@ -182,11 +182,11 @@ function mostarLista(){
             	lista.forEach( function(data, indice, array) {
 		        	$("#seleccion_servicios_tabla").append(
               		'<tr>'+
-                	'<td>'+'<b>'+data.codigo_ser+'</td>'+
-                	'<td>'+'<b>'+data.descripcion+'</b>'+'</td>'+
-                	'<td>'+'<b>'+data.nota+'</b>'+'</td>'+
-                	'<td>'+'<b>'+data.precio_us+'</b>'+'</td>'+
-                	'<td>'+'<b>'+data.precio_ca+'</b>'+'</td>'+
+                	'<td><b>'+data.codigo_ser+'</b></td>'+
+                    '<td><b>'+data.descripcion+'</b></td>'+
+                    '<td><b>'+data.nota+'</b>'+'</td>'+
+                    '<td><b>'+(data.precio_us ? "$ "+data.precio_us : "")+'</b></td>'+
+                    '<td><b>'+(data.precio_ca ? "$ "+data.precio_ca : "")+'</b></td>'+
                 	'<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminar('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
               		'</tr>');
 		        	$('#enviar_update_invoice').attr("disabled", false);
@@ -264,8 +264,8 @@ function registrarSupplier(){
                     lista.forEach( function(data, indice, array) {
                         $("#seleccion_supplier").append(
                         '<tr>'+
-                        '<td>'+'<b>'+data.supplier+'</b>'+'</td>'+
-                        '<td>'+'<b>'+data.dinero+'</b>'+'</td>'+
+                        '<td><b>'+data.supplier+'</b></td>'+
+                        '<td><b>'+(data.dinero ? "$ "+data.dinero : "")+'</b></td>'+
                         '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminarSupplier('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                         '</tr>');
                         $('#enviar_update_invoice').attr("disabled", false);
@@ -311,8 +311,8 @@ function listaSupplier(){
                 lista.forEach( function(data, indice, array) {
                     $("#seleccion_supplier").append(
                     '<tr>'+
-                    '<td>'+'<b>'+data.supplier+'</b>'+'</td>'+
-                    '<td>'+'<b>'+data.dinero+'</b>'+'</td>'+
+                    '<td><b>'+data.supplier+'</b></td>'+
+                    '<td><b>'+(data.dinero ? "$ "+data.dinero : "")+'</b></td>'+
                     '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminarSupplier('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                     '</tr>');
                     $('#enviar_update_invoice').attr("disabled", false);

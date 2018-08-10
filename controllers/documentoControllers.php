@@ -9,22 +9,17 @@ date_default_timezone_set("America/Caracas");
 $fecha_registro=date("Y-m-d");
 $date=substr(date("Y"),2);
 
-//echo "<pre>";print_r($tipo_documento);die;
-
-$tipo_documento = post("tipoDocumento");
-
-
-if(isset($tipo_documento)){
-    $tipoDocumento=post("tipoDocumento");
+if(isset($_POST['tipoDocumento'])){
+    $tipoDocumento=$_POST['tipoDocumento'];
     $shipper=post('shipper');
     $telefono=post('telefono');
     $po=post("po");
     $cc = post("cc");
     $consignee = post("consignee");
-    $fecha=post("fecha");
-    $pais_origen=post("pais_origen");
+    $fecha=$_POST['fecha'];
+    $pais_origen=$_POST['pais_origen'];
     $lugar_origen=post("origen");
-    $pais_destino=post("pais_destino");
+    $pais_destino=$_POST['pais_destino'];
     $lugar_destino=post("destino");
     $pieza=post("pieza");
     $tipo_pieza=post("tipo_pieza");
@@ -82,18 +77,18 @@ if(isset($tipo_documento)){
     }
     echo"<meta http-equiv='refresh' content='0;URL=../view/create_invoice.php?docket=".base64_encode($codigo)."'>";
 }
-if((post("codigo_docu"))){
+if(isset($_POST['codigo_docu'])){
 
-    $codigo_docu = post("codigo_docu");
+    $codigo_docu = $_POST['codigo_docu'];
     $expedidor = post("expedidor");
-    $fecha = post("fecha");
+    $fecha = $_POST['fecha'];
     $telefono = post("telefono");
     $cc = post("cc");
     $consignee = post("consignee");
     $po = post("po");
-    $id_origen = post("pais_origen_Actualizacion");
+    $id_origen = $_POST['pais_origen_Actualizacion'];
     $lugar_origen = post("origen");
-    $id_destino = post("pais_destino_Actualizacion");
+    $id_destino = $_POST['pais_destino_Actualizacion'];
     $lugar_destino = post("destino");
     $pieza = post("pieza");
     $tipo_pieza = post("tipo_pieza");
@@ -107,18 +102,16 @@ if((post("codigo_docu"))){
 
     $usuario=$_SESSION['id_usuario'];
 
-
-
     $documento = new Docket($codigo_docu,$expedidor,$telefono,$cc,$consignee,$po,$fecha,$id_origen,$lugar_origen,$id_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$medida,$descripcion,'','',$fecha_registro,$usuario,'','');
     $documento->UpdateDocumento();
 
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_docket.php?docket=".base64_encode($codigo_docu)."'>";
 }
 //eliminar documento
-if((post("boton_eliminar"))){
+if(isset($_POST['boton_eliminar'])){
 
-    $codigo_documento = post("codigo_documento_elimanar");
-    $tipo_documento = post("tipo_documento_eliminar");
+    $codigo_documento = $_POST['codigo_documento_elimanar'];
+    $tipo_documento = $_POST['tipo_documento_eliminar'];
     $descripcion = post("descripcion_eliminar");
     $usuario=$_SESSION['id_usuario'];
 
@@ -151,10 +144,9 @@ if((post("boton_eliminar"))){
 
 }
 //regresar un archivo de la lista de eliminados
-if ((post("boton_regresar"))) {
-    $id = post("id_regresar");
-
-
+if (isset($_POST['boton_regresar'])) {
+    $id = $_POST['id_regresar'];
+    
     $buscarEliminado = new DocketInvoiceDelete('','','','','','','','',$id);
 
     $array1 = $buscarEliminado->SelectIdDelete();
