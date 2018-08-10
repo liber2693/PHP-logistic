@@ -22,8 +22,8 @@ if ($array->num_rows==0) {
       }
       p{
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 13px;
-        line-height: 18px;
+        font-size: 9px;
+        line-height: 12px;
         text-align:center
 
       }
@@ -32,7 +32,7 @@ if ($array->num_rows==0) {
       .table-striped > tbody > tr > td{border:2px solid #ffffff; background-color: #d1f1fc;}
 
       td {
-        height: 30px;
+        height: 20px;
         }
 
       .di{
@@ -49,7 +49,7 @@ if ($array->num_rows==0) {
       }
 
       #header{
-        font-size: 15px;
+        font-size: 12px;
         line-height: normal;
       }
       </style>';
@@ -62,47 +62,37 @@ if ($array->num_rows==0) {
         $fecha_formateada = "Not registered";
       }
       $varCode = ($datos['codigo_usuario']) ? $datos['codigo_usuario'] : "Not registered" ;
-      $html.='<br>
+      $html.='
       <h3>INVOICE</h3>
       <table border="1" width="100%">
-        <thead>
-          <tr>
-            <td colspan="2" width="20%"><center><b>DOCKET #: &nbsp;'.$datos['codigo_docket'].'</b></center></td>
-            <td colspan="2" width="20%"><b><center>INVOICE #: &nbsp;'.$varCode.'</b></center></td>
-            <td colspan="2" width="25%"><b><center>DATE: &nbsp;'.$fecha_formateada.'</b></center></td>
-            <td colspan="2" width="35%"><b><center>BILL TO: &nbsp;'.ucwords($datos['cliente']).'</b></center></td>
-          </tr>
-        </thead>
-      </table>
-
-      <table border="1" width="100%">
-        <thead>
-          <tr>
-            <td colspan="2" width="30%"><center><b>ORIGIN: &nbsp;'.$datos['pais_origen'].', '.ucfirst($datos['lugar_origen']).'</b></center></td>
-            <td colspan="2" width="30%"><b><center>DESTINATION: &nbsp;'.$datos['pais_destino'].', '.ucfirst($datos['lugar_destino']).'</b></center></td>
-            <td colspan="2" width="20%"><b><center>PIECES: &nbsp;'.$datos['pieza'].' '.ucfirst($datos['tipo_pieza']).'</b></center></td>
-            <td colspan="2" width="20%"><b><center>WEIGHT: &nbsp;'.$datos['peso'].' '.ucfirst($datos['tipo_peso']).'</b></center></td>
-          </tr>
-        </thead>
-      </table>
-
-      <table border="1" width="100%">
         <tr>
-          <td width="40%">
+          <td><b>DOCKET #: </b>&nbsp;'.$datos['codigo_docket'].'</td>
+          <td><b>INVOICE #: </b>&nbsp;'.$varCode.'</td>
+          <td><b>DATE: </b>&nbsp;'.$fecha_formateada.'</td>
+          <td><b>BILL TO: </b>&nbsp;'.ucwords($datos['cliente']).'</td>
+        </tr>
+        <tr>
+          <td><b>ORIGIN: </b>&nbsp;'.$datos['pais_origen'].', '.ucfirst($datos['lugar_origen']).'</td>
+          <td><b>DESTINATION: </b>&nbsp;'.$datos['pais_destino'].', '.ucfirst($datos['lugar_destino']).'</td>
+          <td><b>PIECES: </b>&nbsp;'.$datos['pieza'].' '.ucfirst($datos['tipo_pieza']).'</td>
+          <td><b>WEIGHT: </b>&nbsp;'.$datos['peso'].' '.ucfirst($datos['tipo_peso']).'</td>
+        </tr>
+        <tr>
+          <td colspan="2">
             <b>DIMENSIONS:</b> &nbsp;'.$datos['alto'].' X '.$datos['ancho'].' X '.$datos['largo'].'  '.ucfirst($datos['tipo_dimension']).'
           </td>
-          <td width="60%">
+          <td colspan="2">
             <b>NOTE:</b> &nbsp;'.ucfirst($datos['descripcion']).'</td>
         </tr>
         <tr>
-            <td width="40%">
-              <b>PAYMENTS:</b>
-              <br>'.$datos['pagos'].'
-            </td>
-            <td width="40%">
-              <b>COMMENTS:</b>
-                 <br>'.$datos['comentarios'].'
-            </td>
+          <td colspan="2">
+            <b>PAYMENTS:</b>
+            <br>'.$datos['pagos'].'
+          </td>
+          <td colspan="2">
+            <b>COMMENTS:</b>
+               <br>'.$datos['comentarios'].'
+          </td>
         </tr>
       </table>';
   $buscarServInvoice = invoicesServices::soloCodigo($codigo_factura);
@@ -115,37 +105,34 @@ if ($array->num_rows==0) {
   <table border="1" width="100%">
     <thead>
       <tr>
-        <td width="10%"><center><b>#</b></center></td>
-        <td width="20%"><b><center>Description</b></center></td>
-        <td width="20%"><b><center>US$</b></center></td>
-        <td width="20%"><b><center>CAD$</b></center></td>
-        <td width="30%"><b><center>Notes</b></center></td>
+        <td align="center"><b>#</b></td>
+        <td align="center"><b>Description</b></td>
+        <td align="center"><b>US$</b></td>
+        <td align="center"><b>CAD$</b></td>
+        <td align="center"><b>Notes</b></td>
       </tr>
     </thead>';
   if($array1->num_rows==0){
      $html.='
     <tbody>
       <tr>
-        <td colspan="5" width="100%"><center>No services</center></td>
+        <td colspan="5" align="center">No services</td>
       </tr>
     </tbody>';
   }else{
     $i=0;
     while($datos_servi=$array1->fetch_assoc()){
     $i++;
+    $precio_us = ($datos_servi['precio_us']) ? "$ ".$datos_servi['precio_us'] : "" ;
+    $precio_ca = ($datos_servi['precio_ca']) ? "$ ".$datos_servi['precio_ca'] : "" ;
     $html.='
       <tbody>
         <tr>
-          <td width="10%"><center>'.$i.'</center>
-          </td>
-          <td width="25%"><center>'.$datos_servi['descripcion'].'</center>
-          </td>
-          <td width="20%"><center>'.$datos_servi['precio_us'].'</center>
-          </td>
-          <td width="20%"><center>'.$datos_servi['precio_ca'].'</center>
-          </td>
-          <td width="25%"><center>'.$datos_servi['nota'].'</center>
-          </td>
+          <td>'.$i.'</td>
+          <td>'.$datos_servi['descripcion'].'</td>
+          <td>'.$precio_us.'</td>
+          <td>'.$precio_ca.'</td>
+          <td>'.$datos_servi['nota'].'</td>
         </tr>
       </tbody>';
     }
@@ -159,16 +146,16 @@ if ($array->num_rows==0) {
   <table border="1" width="100%">
     <thead>
       <tr>
-        <td width="10%"><center><b>#</b></center></td>
-        <td width="30%"><center><b>Supplier</b></center></td>
-        <td width="20%"><center><b>Cost US$</b></center></td>
+        <td align="center"><b>#</b></td>
+        <td align="center"><b>Supplier</b></td>
+        <td align="center"><b>Cost US$</b></td>
       </tr>
     </thead>';
     if($array3->num_rows==0){
       $html.='
     <tbody>
       <tr>
-        <td colspan="3" width="100%"><center>NO SERVICES</center></td>
+        <td colspan="3" align="center">No supplier</td>
       </tr>
     </tbody>';
     }else{
@@ -178,9 +165,9 @@ if ($array->num_rows==0) {
       $html.='
       <tbody>
         <tr>
-          <td><center>'.$i.'</center></td>
-          <td><center>'.ucwords($datos_supli['supplier']).'</center></td>
-          <td><center>'.$datos_supli['dinero'].'</center></td>
+          <td>'.$i.'</td>
+          <td>'.ucwords($datos_supli['supplier']).'</td>
+          <td>$ '.$datos_supli['dinero'].'</td>
         </tr>
       </tbody>';
       }
@@ -196,13 +183,11 @@ if ($array->num_rows==0) {
 
   if($array2->num_rows==0){
     $html.='
-      <div>
-        <center>No ship via</center>
-      <div>';
+      <div align="center">No ship via<div>';
   }else{
     $html.='
     <table border="1" width="40%" style="margin-left:auto; margin-right: auto">
-      <tbody>
+      
         <tr>';
     $i=0;
     while($datos2=$array2->fetch_assoc()){
@@ -210,13 +195,13 @@ if ($array->num_rows==0) {
     $nota = ($datos2['id_envio']==6) ? ": ".ucfirst($datos2['nota']) : "" ;
       $html.='
           <td style="text-align:center">
-            <b><center>'.$datos2['descripcion'] .$nota.'</b>
+            &nbsp;&nbsp;<b>'.$datos2['descripcion'] .$nota.'</b>&nbsp;&nbsp;
           </td>';
     }
   }
     $html.='
         </tr>
-      </tbody>
+      
     </table>';
 
 
@@ -248,46 +233,5 @@ $mpdf->WriteHTML($html);
 
 $mpdf->Output('Invoice-'.$code[1] .'-' .$datos['codigo_usuario'] .'.pdf','I');
 exit;
-//==============================================================
-//==============================================================
-//==============================================================
-     /* //echo"<pre>"; print_r($html);die();
 
-      //$mpdf=new mPDF('win-1252','LEGAL','','',15,15,35,25,5,7);*/
-      //$mpdf=new mPDF('c', 'LETTER','','',30,30,30,30);
-      //
-
-      /*
-
-      //$mpdf->SetWatermarkText('No válido');
-      //$mpdf->showWatermarkText = true;
-      //$mpdf->SetHTMLFooter(' <div  id="footer" ><img src="images/footer.png" width="100%"></div>');
-      $mpdf->SetHTMLFooter(
-       '<div id="footer">
-<br><br><br>
-            <div>
-            <img src="images/FirmaSuper.png" style="margin-left:40%;margin-bottom:-45px;width:35%;height:20%;">
-                <p><b>WILLIAN ANTONIO CONTRERAS <br>
-                Superintendente Nacional para la Defensa de los Derechos Socioeconómicos</b></p>
-                <p>Decreto N° 2.186, publicado en Gaceta Oficial de la República Bolivariana de Venezuela N° 40.830, de fecha 18 de enero de 2016.</p>
-            </div>
-            <div>
-                <blockquote> <p style="text-align: justify; margin: 0px 0;font-size:8px;">Los sujetos de aplicación a través del número telefónico (0212) 808.94.36 podrán:<br>
-                1. Corroborar la identidad del fiscal autorizado para la práctica de la inspección y/o fiscalización;<br>
-                2. Comunicarse y obtener información adicional en relación al presente procedimiento.</p>
-                </blockquote>
-            </div>
-            <img src="images/footer.png" width="100%">
-        </div>'
-      );
-
-
-  //$mpdf = new mPDF('win-1252', 'A4-L', 13, 15, 25, 12, 5, 7);
-  $mpdf->WriteHTML($html);
-  $mpdf->Output($file,'D');
-
-
-
-
-*/
 ?>

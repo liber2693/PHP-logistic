@@ -25,14 +25,19 @@ if ($array_d->num_rows==0) {
       p{
         font-family: Arial, Helvetica, sans-serif;
         font-size: 13px;
-        line-height: 18px;
+        line-height: 12px;
         text-align:center
 
       }
 
-      table th{color: #ffffff; background-color: #3692cd;}
-      .table-striped > tbody > tr > td{border:2px solid #ffffff; background-color: #d1f1fc;}
-
+      table th{
+        color: #ffffff;
+        background-color: #3692cd;
+      }
+      .table-striped > tbody > tr > td{
+        border:2px solid #ffffff;
+        background-color: #d1f1fc;
+      }
       td {
         height: 30px;
         }
@@ -60,42 +65,27 @@ if ($array_d->num_rows==0) {
 
         <h3>DOCKET '.$datos_d['codigo'].'</h3>
         <table border="1" width="100%">
-          <thead>
-            <tr>
-            <td colspan="2px" width="33%"><center><b> SHIPPER: &nbsp;'.ucwords($datos_d['shipper']).'</b></center></td>
-            <td colspan="2px" width="33%"><center><b> CC#: &nbsp;'.ucwords($datos_d['cc']).'</b></center></td>
-            <td colspan="2px" width="33%"><center><b>DOCKET #: &nbsp;'.$datos_d['codigo'].'</b></center></td>
-            </tr>
-          </thead>
-        </table>
-
-        <table border="1" width="100%">
-          <thead>
-            <tr>
-              <td colspan="2px" width="33%"><center><b>ORIGIN: &nbsp;'.$datos_d['origen'].', '.ucfirst($datos_d['lugar_origen']).'</b></center></td>
-              <td colspan="2px" width="33%"><b><center>DESTINATION: &nbsp;'.$datos_d['destino'].', '.ucfirst($datos_d['lugar_destino']).'</b></center></td>
-              <td colspan="2px" width="33%"><b><center>DATE: &nbsp;'.$fecha_formateada1.'</b></center></td>
-            </tr>
-          </thead>
-        </table>
-
-        <table border="1" width="100%">
-          <thead>
-            <tr>
-            <td colspan="2px" width="100%"><b><center>PIECES / WEIGHT / DIMENSIONS: &nbsp;
-            '.$datos_d['pieza'].' '.ucfirst($datos_d['tipo_pieza']).' &nbsp;&nbsp;&nbsp;
-            '.$datos_d['peso'].' '.ucfirst($datos_d['tipo_peso']).' &nbsp;&nbsp;&nbsp;
-            '.$datos_d['alto'].' X '.$datos_d['ancho'].' X '.$datos_d['largo'].'  '.ucfirst($datos_d['tipo_dimension']).'</b></center></td>
-            </tr>
-          </thead>
-        </table>
-
-        <table border="1" width="100%">
-          <thead>
-            <tr>
-            <td colspan="7px" width="60%"><b><center>NOTE: &nbsp;'.ucfirst($datos_d['descripcion']).'</b></center></td>
-            </tr>
-          </thead>
+          <tr>
+            <td><b>SHIPPER: </b> &nbsp;'.ucwords($datos_d['shipper']).'</td>
+            <td><b>CC#: </b>&nbsp;'.ucwords($datos_d['cc']).'</td>
+            <td><b>DOCKET #: </b>&nbsp;'.$datos_d['codigo'].'</td>
+          </tr>
+          <tr>
+            <td><b>ORIGIN: </b>&nbsp;'.$datos_d['origen'].', '.ucfirst($datos_d['lugar_origen']).'</td>
+            <td><b>DESTINATION: </b>&nbsp;'.$datos_d['destino'].', '.ucfirst($datos_d['lugar_destino']).'</td>
+            <td><b>DATE: </b>&nbsp;'.$fecha_formateada1.'</td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <b>PIECES / WEIGHT / DIMENSIONS: </b>&nbsp;
+              '.$datos_d['pieza'].' '.ucfirst($datos_d['tipo_pieza']).' &nbsp;
+              '.$datos_d['peso'].' '.ucfirst($datos_d['tipo_peso']).' &nbsp;
+              '.$datos_d['alto'].' X '.$datos_d['ancho'].' X '.$datos_d['largo'].'  '.ucfirst($datos_d['tipo_dimension']).'
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3"><b>NOTE: </b><br>&nbsp;'.ucfirst($datos_d['descripcion']).'</td>
+          </tr>
         </table>';
 
   $mpdf->AddPage('L','','','','',10,10,10,10,16,13);
@@ -119,48 +109,36 @@ if ($array_d->num_rows==0) {
         $fecha_formateada = "Not registered";
       }
       $varCode = ($datos_i['codigo_usuario']) ? $datos_i['codigo_usuario'] : "Not registered" ;
-      $paginas.$con='
-      <h3>INVOICE</h3>
-      <table border="1" width="100%">
-        <thead>
-          <tr>
-            <td colspan="2px" width="20%"><center><b>DOCKET #: &nbsp;'.$datos_i['codigo_docket'].'</b></center></td>
-            <td colspan="2px" width="20%"><b><center>INVOICE #: &nbsp;'.$varCode.'</b></center>
-            </td>
-            <td colspan="2px" width="25%"><b><center>DATE: &nbsp;'.$fecha_formateada.'</b></center></td>
-            <td colspan="2px" width="35%"><b><center>BILL TO: &nbsp;'.ucwords($datos_i['cliente']).'</b></center></td>
-          </tr>
-        </thead>
-      </table>
-
-      <table border="1" width="100%">
-        <thead>
-          <tr>
-            <td colspan="2px" width="30%"><center><b>ORIGIN: &nbsp;'.$datos_i['pais_origen'].', '.ucfirst($datos_i['lugar_origen']).'</b></center></td>
-            <td colspan="2px" width="30%"><b><center>DESTINATION: &nbsp;'.$datos_i['pais_destino'].', '.ucfirst($datos_i['lugar_destino']).'</b></center></td>
-            <td colspan="2px" width="20%"><b><center>PIECES: &nbsp;'.$datos_i['pieza'].' '.ucfirst($datos_i['tipo_pieza']).'</b></center></td>
-            <td colspan="2px" width="20%"><b><center>WEIGHT: &nbsp;'.$datos_i['peso'].' '.ucfirst($datos_i['tipo_peso']).'</b></center></td>
-          </tr>
-        </thead>
-      </table>
-
+      $paginas.$con='<br><br>
       <table border="1" width="100%">
         <tr>
-          <td width="40%">
+          <td><b>DOCKET #: </b>&nbsp;'.$datos_i['codigo_docket'].'</td>
+          <td><b>INVOICE #: </b>&nbsp;'.$varCode.'</td>
+          <td><b>DATE: </b>&nbsp;'.$fecha_formateada.'</td>
+          <td><b>BILL TO: </b>&nbsp;'.ucwords($datos_i['cliente']).'</td>
+        </tr>
+        <tr>
+          <td><b>ORIGIN: </b>&nbsp;'.$datos_i['pais_origen'].', '.ucfirst($datos_i['lugar_origen']).'</td>
+          <td><b>DESTINATION: </b>&nbsp;'.$datos_i['pais_destino'].', '.ucfirst($datos_i['lugar_destino']).'</td>
+          <td><b>PIECES: </b>&nbsp;'.$datos_i['pieza'].' '.ucfirst($datos_i['tipo_pieza']).'</td>
+          <td><b>WEIGHT: </b>&nbsp;'.$datos_i['peso'].' '.ucfirst($datos_i['tipo_peso']).'</td>
+        </tr>
+        <tr>
+          <td colspan="2">
             <b>DIMENSIONS:</b> &nbsp;'.$datos_i['alto'].' X '.$datos_i['ancho'].' X '.$datos_i['largo'].'  '.ucfirst($datos_i['tipo_dimension']).'
           </td>
-          <td width="60%">
+          <td colspan="2">
             <b>NOTE:</b> &nbsp;'.ucfirst($datos_i['descripcion']).'</td>
         </tr>
         <tr>
-            <td width="40%">
-              <b>PAYMENTS:</b>
-              <br>'.$datos_i['pagos'].'
-            </td>
-            <td width="40%">
-              <b>COMMENTS:</b>
-                 <br>'.$datos_i['comentarios'].'
-            </td>
+          <td colspan="2">
+            <b>PAYMENTS:</b>
+            <br>'.$datos_i['pagos'].'
+          </td>
+          <td colspan="2">
+            <b>COMMENTS:</b>
+               <br>'.$datos_i['comentarios'].'
+          </td>
         </tr>
       </table>';
 
@@ -169,42 +147,39 @@ if ($array_d->num_rows==0) {
 
       $paginas.$con.='
       <h3>Services</h3>
-      <table border="1" width="100%">
-        <thead>
-          <tr>
-            <td width="10%"><center><b>#</b></center></td>
-            <td width="20%"><b><center>Description</b></center></td>
-            <td width="20%"><b><center>US$</b></center></td>
-            <td width="20%"><b><center>CAD$</b></center></td>
-            <td width="30%"><b><center>Notes</b></center></td>
-          </tr>
-        </thead>';
+        <table border="1" width="100%">
+          <thead>
+            <tr>
+              <td align="center"><b>#</b></td>
+              <td align="center"><b>Description</b></td>
+              <td align="center"><b>US$</b></td>
+              <td align="center"><b>CAD$</b></td>
+              <td align="center"><b>Notes</b></td>
+            </tr>
+          </thead>';
       if($array1->num_rows==0){
         $paginas.$con.='
         <tbody>
           <tr>
-            <td colspan="5" width="100%"><center>No services</center></td>
+            <td colspan="5" align="center">No services</td>
           </tr>
         </tbody>';
       }else{
         $i=0;
         while($datos_servi=$array1->fetch_assoc()){
         $i++;
+        $precio_us = ($datos_servi['precio_us']) ? "$ ".$datos_servi['precio_us'] : "" ;
+        $precio_ca = ($datos_servi['precio_ca']) ? "$ ".$datos_servi['precio_ca'] : "" ;
         $paginas.$con.='
-        <tbody>
-          <tr>
-            <td width="10%"><center>'.$i.'</center>
-            </td>
-            <td width="25%"><center>'.$datos_servi['descripcion'].'</center>
-            </td>
-            <td width="20%"><center>'.$datos_servi['precio_us'].'</center>
-            </td>
-            <td width="20%"><center>'.$datos_servi['precio_ca'].'</center>
-            </td>
-            <td width="25%"><center>'.ucfirst($datos_servi['nota']).'</center>
-            </td>
-          </tr>
-        </tbody>';
+          <tbody>
+            <tr>
+              <td>'.$i.'</td>
+              <td>'.$datos_servi['descripcion'].'</td>
+              <td>'.$precio_us.'</td>
+              <td>'.$precio_ca.'</td>
+              <td>'.$datos_servi['nota'].'</td>
+            </tr>
+          </tbody>';
         }
       }
       $paginas.$con.='</table> ';
@@ -216,16 +191,16 @@ if ($array_d->num_rows==0) {
       <table border="1" width="100%">
         <thead>
           <tr>
-            <td width="10%"><center><b>#</b></center></td>
-            <td width="30%"><center><b>Supplier</b></center></td>
-            <td width="20%"><center><b>Cost US$</b></center></td>
+            <td align="center"><b>#</b></td>
+            <td align="center"><b>Supplier</b></td>
+            <td align="center"><b>Cost US$</b></td>
           </tr>
         </thead>';
         if($array3->num_rows==0){
           $paginas.$con.='
           <tbody>
             <tr>
-              <td colspan="3" width="100%"><center>NO SERVICES</center></td>
+              <td colspan="3" align="center">No supplier</td>
             </tr>
           </tbody>';
         }else{
@@ -235,9 +210,9 @@ if ($array_d->num_rows==0) {
           $paginas.$con.='
           <tbody>
             <tr>
-              <td><center>'.$i.'</center></td>
-              <td><center>'.ucwords($datos_supli['supplier']).'</center></td>
-              <td><center>'.$datos_supli['dinero'].'</center></td>
+              <td>'.$i.'</td>
+              <td>'.ucwords($datos_supli['supplier']).'</td>
+              <td>$ '.$datos_supli['dinero'].'</td>
             </tr>
           </tbody>';
           }
@@ -253,13 +228,10 @@ if ($array_d->num_rows==0) {
 
       if($array2->num_rows==0){
         $paginas.$con.='
-        <div>
-          <center>No ship via</center>
-        <div>';
+        <div align="center">No ship via<div>';
       }else{
         $paginas.$con.='
         <table border="1" width="40%" style="margin-left:auto; margin-right: auto">
-          <tbody>
             <tr>';
         $i=0;
         while($datos2=$array2->fetch_assoc()){
@@ -267,7 +239,7 @@ if ($array_d->num_rows==0) {
         $nota = ($datos2['id_envio']==6) ? ": ".ucfirst($datos2['nota']) : "" ;
           $paginas.$con.='
               <td style="text-align:center">
-                <b>'.$datos2['descripcion'].' '.$nota.'</b>
+                &nbsp;&nbsp;<b>'.$datos2['descripcion'] .$nota.'</b>&nbsp;&nbsp;
               </td>';
         }
       }
@@ -287,126 +259,5 @@ if ($array_d->num_rows==0) {
   $mpdf->Output('Docket - '.$datos['codigo'].'.pdf','I');
 exit;
 }
-/*
-if ($array->num_rows==0) {
-  echo "NO EXIST";
-}else{
-  $datos = $array->fetch_array();
 
-  $html = '<style>
-
-      h2{
-        text-align:center
-      }
-      p{
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 12px;
-        line-height: 18px;
-      }
-
-      table th{color: #ffffff; background-color: #3692cd;}
-      .table-striped > tbody > tr > td{border:2px solid #ffffff; background-color: #d1f1fc;}
-
-      .di{
-        text-align:center
-      }
-
-      #menu p {
-        margin: 1px 0;
-        font-family: Arial, Helvetica, sans-serif;
-      }
-
-      #codigo{
-        float: right;
-      }
-
-      #header{
-        font-size: 15px;
-        line-height: normal;
-      }
-      </style>';
-
-  $html.='<h2>FACTURA</h2>
-          <h3>
-            <p>
-              Docket: &nbsp;'.$datos['codigo_docket'].'<br>
-              Invoice: &nbsp;'.$datos['codigo_invoice'].'<br>
-              Date: &nbsp;'.$datos['fecha_creacion'].'<br>
-              Origin: &nbsp;'.$datos['pais_origen'].', '.$datos['lugar_origen'].'<br>
-              Destino: &nbsp;'.$datos['pais_destino'].', '.$datos['lugar_destino'].'<br>
-              SUB BILL: &nbsp;'.$datos['cliente'].'<br>
-
-              pieza: &nbsp;'.$datos['pieza'].' tipo_pieza: &nbsp;'.$datos['tipo_pieza'].'<br>
-              peso: &nbsp;'.$datos['peso'].' tipo_peso: &nbsp;'.$datos['tipo_peso'].'<br>
-              alto: &nbsp;'.$datos['alto'].' ancho: &nbsp;'.$datos['ancho'].' largo: &nbsp;'.$datos['largo'].'
-              tipo_dimension: &nbsp;'.$datos['tipo<br>_dimension'].'<br>
-              descripcion: &nbsp;'.$datos['descripcion'].'<br>
-
-            </p>
-          </h3>';
-
-
-
-
-}*/
-
-
-//==============================================================
-//==============================================================
-//==============================================================
-
-//$mpdf=new mPDF('c','A4','','l',10,10,10,10,16,13);
-//$mpdf->SetTitle('Invoice - '.$datos['codigo_invoice']);
-
-//$mpdf->SetDisplayMode('fullpage');
-
-//$mpdf->list_indent_first_level = 0; // 1 or 0 - whether to indent the first level of a list
-
-// LOAD a stylesheet
-//$stylesheet = file_get_contents('mpdfstyletables.css');
-//$mpdf->WriteHTML($stylesheet,1);  // The parameter 1 tells that this is css/style only and no body/html/text
-//$mpdf->AddPage('L','','','','',10,10,10,10,16,13);
-//$mpdf->WriteHTML($html);
-
-//$mpdf->Output('Invoice - '.$datos['codigo_invoice'].'.pdf','I');
-//exit;
-//==============================================================
-//==============================================================
-//==============================================================
-     /* //echo"<pre>"; print_r($html);die();
-
-      //$mpdf=new mPDF('win-1252','LEGAL','','',15,15,35,25,5,7);*/
-      //$mpdf=new mPDF('c', 'LETTER','','',30,30,30,30);
-      //
-
-      /*$mpdf->SetHTMLHeader('<div><img src="images/ultimo_cintillo.png" width="100%", height="55px"></div>');
-      $mpdf->SetWatermarkImage("images/fondo.png");
-      $mpdf->showWatermarkImage = true;
-      //$mpdf->SetWatermarkText('No válido');
-      //$mpdf->showWatermarkText = true;
-      //$mpdf->SetHTMLFooter(' <div  id="footer" ><img src="images/footer.png" width="100%"></div>');
-      $mpdf->SetHTMLFooter(
-       '<div id="footer">
-<br><br><br>
-            <div>
-            <img src="images/FirmaSuper.png" style="margin-left:40%;margin-bottom:-45px;width:35%;height:20%;">
-                <p><b>WILLIAN ANTONIO CONTRERAS <br>
-                Superintendente Nacional para la Defensa de los Derechos Socioeconómicos</b></p>
-                <p>Decreto N° 2.186, publicado en Gaceta Oficial de la República Bolivariana de Venezuela N° 40.830, de fecha 18 de enero de 2016.</p>
-            </div>
-            <div>
-                <blockquote> <p style="text-align: justify; margin: 0px 0;font-size:8px;">Los sujetos de aplicación a través del número telefónico (0212) 808.94.36 podrán:<br>
-                1. Corroborar la identidad del fiscal autorizado para la práctica de la inspección y/o fiscalización;<br>
-                2. Comunicarse y obtener información adicional en relación al presente procedimiento.</p>
-                </blockquote>
-            </div>
-            <img src="images/footer.png" width="100%">
-        </div>'
-      );
-
-
-  //$mpdf = new mPDF('win-1252', 'A4-L', 13, 15, 25, 12, 5, 7);
-  $mpdf->WriteHTML($html);
-  $mpdf->Output($file,'D');
-*/
 ?>
