@@ -1,14 +1,14 @@
-<?php 
+<?php
 include '../config/conexion.php';
 /***paises***/
 class Paises{
-	
+
 	protected $codigo;
 	protected $pais;
 	protected $estatus;
-		
+
 	public function __construct($codigo,$pais,$estatus){
-		
+
 		$db = new Conexion();
 
 		$this->codigo = $codigo;
@@ -18,7 +18,7 @@ class Paises{
 
 	static function ningunPais(){
 		return new self('','','');
-	} 
+	}
 
 	public function SelectPais(){
 		$db = new Conexion();

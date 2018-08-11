@@ -67,7 +67,7 @@ if ($array_d->num_rows==0) {
         <table border="1" width="100%">
           <tr>
             <td><b>SHIPPER: </b> &nbsp;'.ucwords($datos_d['shipper']).'</td>
-            <td><b>CC#: </b>&nbsp;'.ucwords($datos_d['cc']).'</td>
+            <td><b>CC#: </b>&nbsp;'.ucwords($datos_d['consignee']).'</td>
             <td><b>DOCKET #: </b>&nbsp;'.$datos_d['codigo'].'</td>
           </tr>
           <tr>
@@ -76,15 +76,21 @@ if ($array_d->num_rows==0) {
             <td><b>DATE: </b>&nbsp;'.$fecha_formateada1.'</td>
           </tr>
           <tr>
-            <td colspan="3">
+            <td colspan="1">
               <b>PIECES / WEIGHT / DIMENSIONS: </b>&nbsp;
               '.$datos_d['pieza'].' '.ucfirst($datos_d['tipo_pieza']).' &nbsp;
               '.$datos_d['peso'].' '.ucfirst($datos_d['tipo_peso']).' &nbsp;
               '.$datos_d['alto'].' X '.$datos_d['ancho'].' X '.$datos_d['largo'].'  '.ucfirst($datos_d['tipo_dimension']).'
             </td>
+            <td>
+              <b>PO #:</b>&nbsp;'.ucwords($datos_d['cc']).'
+              </td>
+            <td>
+              <b>CONSIGNEE:</b>&nbsp;'.ucwords($datos_d['po']).'
+              </td>
           </tr>
           <tr>
-            <td colspan="3"><b>NOTE: </b><br>&nbsp;'.ucfirst($datos_d['descripcion']).'</td>
+            <td colspan="3"><b>NOTE: </b>&nbsp;'.ucfirst($datos_d['descripcion']).'</td>
           </tr>
         </table>';
 
@@ -103,7 +109,7 @@ if ($array_d->num_rows==0) {
       if (!empty($datos['fecha'])) {
         $fecha = explode('-', $datos_i['fecha']);
         $fecha_formateada = $fecha[1] .'-' .$fecha[2] .'-' .$fecha[0];
-        
+
       }
       else{
         $fecha_formateada = "Not registered";

@@ -1,16 +1,16 @@
-<?php 
+<?php
 //include '../config/conexion.php';
 /***catalogo***/
 class Catalogo{
-	
+
 	protected $id;
 	protected $correlativo;
 	protected $tipo;
 	protected $descripcion;
 	protected $estatus;
-		
+
 	public function __construct($id,$correlativo,$tipo,$descripcion,$estatus){
-		
+
 		$db = new Conexion();
 
 		$this->id = $id;
@@ -22,7 +22,7 @@ class Catalogo{
 
 	static function ningunCatalogo(){
 		return new self('','','','','');
-	} 
+	}
 
 	public function SelectCodigo(){
 		$db = new Conexion();

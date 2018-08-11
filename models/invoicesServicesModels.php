@@ -1,4 +1,4 @@
-<?php 
+<?php
 //include '../config/conexion.php';
 /***invoices_services***/
 class invoicesServices{
@@ -12,9 +12,9 @@ class invoicesServices{
 	protected $usuario;
 	protected $fecha_registro;
 	protected $estatus;
-	
+
 	public function __construct($codigo_invoice,$id_servico,$precio_us,$precio_ca,$nota,$usuario,$fecha_registro,$estatus,$id = ''){
-		
+
 		$db = new Conexion();
 		$this->id = $id;
 		$this->codigo_invoice = $codigo_invoice;
@@ -25,12 +25,12 @@ class invoicesServices{
 		$this->usuario = $usuario;
 		$this->fecha_registro = $fecha_registro;
 		$this->estatus = $estatus;
-	
+
 	}
 
 	static function ningunServicio(){
 		return new self('','','','','','','','','');
-	} 
+	}
 	static function soloCodigo($codigo_invoice){
 		return new self($codigo_invoice,'','','','','','','','');
 	}

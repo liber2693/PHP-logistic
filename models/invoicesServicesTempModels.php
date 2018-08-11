@@ -1,4 +1,4 @@
-<?php 
+<?php
 //include '../config/conexion.php';
 /***invoices_services_temp***/
 class invoicesServicesTemp{
@@ -11,12 +11,12 @@ class invoicesServicesTemp{
 	protected $nota;
 	protected $usuario;
 	protected $fecha_registro;
-	
-	
+
+
 
 
 	public function __construct($codigo_documento,$id_servico,$pago_us,$pago_can,$nota,$usuario,$fecha_registro,$id = ''){
-		
+
 		$db = new Conexion();
 		$this->id = $id;
 		$this->codigo_documento = $codigo_documento;
@@ -26,12 +26,12 @@ class invoicesServicesTemp{
 		$this->nota = $nota;
 		$this->usuario = $usuario;
 		$this->fecha_registro = $fecha_registro;
-		
+
 	}
 
 	static function ningunServicio(){
 		return new self('','','','','','','','');
-	} 
+	}
 
 	public function InsertTablaTempServi(){
 		$db = new Conexion();

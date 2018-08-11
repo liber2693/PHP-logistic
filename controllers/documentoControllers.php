@@ -112,7 +112,7 @@ if(isset($_POST['boton_eliminar'])){
 
     $codigo_documento = $_POST['codigo_documento_elimanar'];
     $tipo_documento = $_POST['tipo_documento_eliminar'];
-    $descripcion = post("descripcion_eliminar");
+    $descripcion = addslashes($_POST['descripcion_eliminar']);
     $usuario=$_SESSION['id_usuario'];
 
     //primero consultar en invoices si existe el documento
@@ -146,7 +146,7 @@ if(isset($_POST['boton_eliminar'])){
 //regresar un archivo de la lista de eliminados
 if (isset($_POST['boton_regresar'])) {
     $id = $_POST['id_regresar'];
-    
+
     $buscarEliminado = new DocketInvoiceDelete('','','','','','','','',$id);
 
     $array1 = $buscarEliminado->SelectIdDelete();

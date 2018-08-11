@@ -75,7 +75,7 @@ else
                               if (!empty($datos['fecha'])) {
                                 $fecha = explode('-', $datos['fecha']);
                                 echo $fecha_formateada = $fecha[1] .'-' .$fecha[2] .'-' .$fecha[0];
-                                
+
                               }
                               else{
                                 echo $fecha_formateada = "Not registered";
@@ -108,20 +108,20 @@ else
                       if(!empty($datos['pagos'])){
                       ?>
                         <tr>
-                          <td colspan="5">
-                            <b>Paymnts: &nbsp;<?php echo $datos['pagos'];?></b>
+                          <td colspan="5" class="text-center">
+                            <b>PAYMENTS: &nbsp;<?php echo $datos['pagos'];?></b>
                           </td>
                         </tr>
-                      <?php 
+                      <?php
                       }
                       if(!empty($datos['comentarios'])){
                       ?>
                       <tr>
-                        <td colspan="5">
-                          <b>Comments: &nbsp;<?php echo $datos['comentarios'];?></b>
+                        <td colspan="5" class="text-center">
+                          <b>COMMENTS: &nbsp;<?php echo $datos['comentarios'];?></b>
                         </td>
                       </tr>
-                      <?php 
+                      <?php
                       }
                       ?>
                     </tbody>

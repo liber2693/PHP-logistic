@@ -56,14 +56,14 @@ if ($array->num_rows==0) {
       if (!empty($datos['fecha'])) {
         $fecha = explode('-', $datos['fecha']);
         $fecha_formateada = $fecha[1] .'-' .$fecha[2] .'-' .$fecha[0];
-        
+
       }
       else{
         $fecha_formateada = "Not registered";
       }
       $varCode = ($datos['codigo_usuario']) ? $datos['codigo_usuario'] : "Not registered" ;
       $html.='
-      <h3>INVOICE</h3>
+      <h3><br>INVOICE</h3>
       <table border="1" width="100%">
         <tr>
           <td><b>DOCKET #: </b>&nbsp;'.$datos['codigo_docket'].'</td>
@@ -187,7 +187,7 @@ if ($array->num_rows==0) {
   }else{
     $html.='
     <table border="1" width="40%" style="margin-left:auto; margin-right: auto">
-      
+
         <tr>';
     $i=0;
     while($datos2=$array2->fetch_assoc()){
@@ -201,7 +201,7 @@ if ($array->num_rows==0) {
   }
     $html.='
         </tr>
-      
+
     </table>';
 
 
@@ -225,7 +225,7 @@ $mpdf->SetTitle('Invoice-'.$code[1] .'-' .$datos['codigo_usuario']);
 // LOAD a stylesheet
 //$stylesheet = file_get_contents('mpdfstyletables.css');
 //$mpdf->WriteHTML($stylesheet,1);  // The parameter 1 tells that this is css/style only and no body/html/text
-$mpdf->SetHTMLHeader('<div><img src="../theme/img/logonetex.png" style="margin-left:1%;margin-top:-45px;width:160px;height:90px;"></div>');
+$mpdf->SetHTMLHeader('<div><img src="../theme/img/logonetex.png" style="margin-left:1%;margin-top:-45px;width:145px;height:80px;"></div>');
 $mpdf->SetWatermarkImage("../theme/img/logonetex-bspline.png");
 $mpdf->showWatermarkImage = true;
 $mpdf->AddPage('L','','','','',10,10,10,10,16,13);
