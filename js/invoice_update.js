@@ -230,14 +230,15 @@ function registrarSupplier(){
         $("#supplierActualizar").css({"border":"1px solid #c7c7cc"});
     }
 
-    if (pago_supplier.length==0) {
+    /*if (pago_supplier.length==0) {
         $("#pago_supplier").css({"border":"2px solid #ff3333"});
         event.preventDefault();
     }else{
         $("#pago_supplier").css({"border":"1px solid #c7c7cc"});
-    }
+    }*/
 
-    if(supplier.length > 0 && pago_supplier.length > 0){
+    //if(supplier.length > 0 && pago_supplier.length > 0){
+    if(supplier.length > 0){
         //console.log(supplier,codigo_invoice,usuario_documento,pago_supplier);
         //return false;
         //borrar los tr de la tabla menos la primera fila

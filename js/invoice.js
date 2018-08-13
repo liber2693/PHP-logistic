@@ -143,7 +143,7 @@ $(document).ready(function() {
         $('#enviar_invoice').attr("disabled", true);
 
         var supplier = $("#supplier1").val();
-        var dinero = $("#dinero1").val();
+        //var dinero = $("#dinero1").val();
         var quien_paga = $("#quien_paga").val();
         var codigo_usuario = $("#codigo_usuario").val();
         var fecha = $("#fecha").val();
@@ -155,13 +155,13 @@ $(document).ready(function() {
         }else{
             $("#supplier1").css({"border":"1px solid #c7c7cc"});
         }
-        if (dinero=='') {
+        /*if (dinero=='') {
             $("#dinero1").css({"border":"2px solid #ff3333"});
             $('#enviar_invoice').attr("disabled", false);
             event.preventDefault();
         }else{
             $("#dinero1").css({"border":"1px solid #c7c7cc"});
-        }
+        }*/
         if (quien_paga=='') {
             $("#quien_paga").css({"border":"2px solid #ff3333"});
             $('#enviar_invoice').attr("disabled", false);
