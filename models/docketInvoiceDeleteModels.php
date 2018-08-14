@@ -1,8 +1,8 @@
-<?php 
+<?php
 //include '../config/conexion.php';
 /***docket_invoice_delete***/
 class DocketInvoiceDelete{
-	
+
 	protected $id;
 	protected $codigo_docket;
 	protected $codigo_invoice;
@@ -12,10 +12,10 @@ class DocketInvoiceDelete{
 	protected $usuario;
 	protected $fecha_creacion;
 	protected $estatus;
-	
-	
+
+
 	public function __construct($codigo_docket,$codigo_invoice,$codigo_usuario,$tipo,$detalle,$usuario,$fecha_creacion,$estatus,$id = ''){
-		
+
 		$db = new Conexion();
 
 		$this->id = $id;
@@ -27,12 +27,12 @@ class DocketInvoiceDelete{
 		$this->usuario = $usuario;
 		$this->fecha_creacion = $fecha_creacion;
 		$this->estatus = $estatus;
-		
+
 	}
 
 	static function solo(){
 		return new self('','','','','','','','','');
-	} 
+	}
 
 	static function soloCodigo($codigo){
 		return new self($codigo,'','','','','','','','');
@@ -50,7 +50,7 @@ class DocketInvoiceDelete{
 		$result = $db->query($sql) or trigger_error("ERROR Selecionando docuemntos y facturas eliminadas");
 		return $result;
 	}
-	//buscar los registros 
+	//buscar los registros
 	public function SelectIdDelete(){
 		$db = new Conexion();
 		$sql="SELECT * FROM docket_invoice_delete WHERE id=$this->id AND estatus = '5'";

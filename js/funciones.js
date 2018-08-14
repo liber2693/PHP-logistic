@@ -1,5 +1,5 @@
 function vermMensajeAlert(tipo, texto, target){
-    
+
     var temp = '<div class="alert alert-{{tipo}} ocultar  text-center" role="alert">{{texto}}</div>';
 
     temp = temp.replace("{{tipo}}", tipo);
@@ -33,23 +33,23 @@ function MASK(form, n, mask, format) {
   if (format == "undefined") format = false;
   if (format || NUM(n)) {
     dec = 0, point = 0;
-    x = mask.indexOf(",")+1;
+    x = mask.indexOf(".")+1;
     if (x) { dec = mask.length - x; }
 
     if (dec) {
       n = NUM(n, dec)+"";
-      x = n.indexOf(",")+1;
-      if (x) { point = n.length - x; } else { n += ","; }
+      x = n.indexOf(".")+1;
+      if (x) { point = n.length - x; } else { n += "."; }
     } else {
       n = NUM(n, 0)+"";
-    } 
+    }
     for (var x = point; x < dec ; x++) {
       n += "0";
     }
     x = n.length, y = mask.length, XMASK = "";
     while ( x || y ) {
       if ( x ) {
-        while ( y && "#0,".indexOf(mask.charAt(y-1)) == -1 ) {
+        while ( y && "#0.".indexOf(mask.charAt(y-1)) == -1 ) {
           if ( n.charAt(x-1) != "-")
             XMASK = mask.charAt(y-1) + XMASK;
           y--;
@@ -63,7 +63,7 @@ function MASK(form, n, mask, format) {
   } else {
      XMASK="";
   }
-  if (form) { 
+  if (form) {
     form.value = XMASK;
     if (NUM(n)<0) {
       form.style.color="#FF0000";

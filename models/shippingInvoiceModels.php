@@ -1,8 +1,8 @@
-<?php 
+<?php
 //include '../config/conexion.php';
 /***shipping_invoice***/
 class ShippingInvoice{
-	
+
 	protected $id;
 	protected $codigo_invoice; //clave UNIQUE
 	protected $id_envio;
@@ -10,10 +10,10 @@ class ShippingInvoice{
 	protected $usuario;
 	protected $fecha_creacion;
 	protected $estatus;
-		
-	
+
+
 	public function __construct($codigo_invoice,$id_envio,$nota,$usuario,$fecha_creacion,$estatus,$id = ''){
-		
+
 		$db = new Conexion();
 
 		$this->id = $id;
@@ -23,12 +23,12 @@ class ShippingInvoice{
 		$this->usuario = $usuario;
 		$this->fecha_creacion = $fecha_creacion;
 		$this->estatus = $estatus;
-		
+
 	}
 
 	static function ningundato(){
 		return new self('','','','','','','');
-	} 
+	}
 	static function soloCodigo($codigo_invoice){
 		return new self($codigo_invoice,'','','','','','','','');
 	}
@@ -44,7 +44,7 @@ class ShippingInvoice{
 	}
 	public function SelectViaEnvio(){
 		$db = new Conexion();
-		$sql="SELECT * FROM shipping_invoice a 
+		$sql="SELECT * FROM shipping_invoice a
 			  JOIN envios_via b ON b.id=a.id_envio
 			  WHERE a.codigo_invoice ='$this->codigo_invoice' AND a.estatus IN (1,2)";
 		$result = $db->query($sql);
@@ -65,4 +65,3 @@ class ShippingInvoice{
 	}
 }
 ?>
-

@@ -1,14 +1,14 @@
-<?php 
+<?php
 //include '../config/conexion.php';
 /***estatus***/
 class Estatus{
-	
+
 	protected $id;
 	protected $descripcion; //clave UNIQUE
 	protected $estatus;
-	
+
 	public function __construct($descripcion,$estatus,$id = ''){
-		
+
 		$db = new Conexion();
 
 		$this->id = $id;
@@ -18,7 +18,7 @@ class Estatus{
 
 	static function ningundato(){
 		return new self('','','');
-	} 
+	}
 
 	/*public function SelectViaEnvio(){
 		$db = new Conexion();

@@ -53,7 +53,7 @@ if(empty($_SESSION['user']))
                       <th><i class="icon_calendar"></i> Date</th>
                       <th><i class="fa fa-location-arrow"></i> Origin</th>
                       <th><i class="fa fa-location-arrow"></i> Destination</th>
-                      <th><i class="fa fa-check"></i>Ready Invoices</th>
+                      <th width="4%"><i class="fa fa-check"></i>Ready Invoices</th>
                       <th><i class="icon_cogs"></i> Action</th>
                     </tr>
                   </thead>
@@ -95,8 +95,14 @@ if(empty($_SESSION['user']))
                           <a class="btn btn-success" style="font-size:16px" href="update_docket.php?docket=<?php echo base64_encode($datos['codigo']);?>" data-toggle="tooltip" title="Edit Docket"><i class="fa fa-pencil"></i></a>
                           <a class="btn btn-warning" style="font-size:16px" href="detail_docket.php?docket=<?php echo base64_encode($datos['codigo']);?>" data-toggle="tooltip" title="Docket Details"><i class="fa fa-eye"></i></a>
                           <a class="btn btn-info" style="font-size:16px" href="docket_pdf.php?docket=<?php echo base64_encode($datos['codigo']);?>" target="_blank" data-toggle="tooltip" title="Docket Report"><i class="fa fa-file-pdf-o"></i></a>
+                          <?php
+                          if ($_SESSION['tipo_usuario'] == 1){
+                          ?>
                           <a class="btn btn-danger" style="font-size:16px" onclick="eliminar_documento(document.getElementById('codigo_documento<?php echo $i;?>').value,document.getElementById('tipo_documento<?php echo $i;?>').value)"
                             data-toggle="modal" data-target="#myModal" title="Void Docket"><i class="fa fa-times-circle"></i></a>
+                        <?php
+                        }
+                        ?>
                         </div>
                       </td>
                     </tr>
@@ -150,13 +156,13 @@ if(empty($_SESSION['user']))
 
     function eliminar_documento(id,tipo){
       //console.log(id,tipo);
-      
+
       $("#codigo_documento_elimanar").val(id);
       $("#tipo_documento_eliminar").val(tipo);
       $("#formulario_eliminar_documento").submit(function(event) {
-        
+
         //$('#boton_eliminar').attr("disabled", true);
-        
+
         var codigo = $("#codigo_documento_elimanar").val();
         var tipo = $("#tipo_documento_eliminar").val();
         var descripcion = $("#descripcion_eliminar").val();

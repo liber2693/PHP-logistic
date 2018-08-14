@@ -146,7 +146,7 @@ if(isset($_POST['boton_eliminar'])){
 //regresar un archivo de la lista de eliminados
 if (isset($_POST['boton_regresar'])) {
     $id = $_POST['id_regresar'];
-    
+
     $buscarEliminado = new DocketInvoiceDelete('','','','','','','','',$id);
 
     $array1 = $buscarEliminado->SelectIdDelete();

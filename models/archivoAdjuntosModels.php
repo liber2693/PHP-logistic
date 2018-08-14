@@ -1,30 +1,30 @@
-<?php 
+<?php
 //include '../config/conexion.php';
 /***docket_import***/
 class ArchivoAdjuntos{
-	
+
 	protected $id;
 	protected $codigo;
 	protected $url_ubicacion;
 	protected $estatus_logico;
 	protected $nombre_archivo;
-	
-	
+
+
 	public function __construct($codigo,$url_ubicacion,$estatus_logico,$nombre_archivo,$id = ''){
-		
+
 		$db = new Conexion();
 
 		$this->id = $id;
 		$this->codigo = $codigo;
 		$this->url_ubicacion = $url_ubicacion;
 		$this->estatus_logico = $estatus_logico;
-		$this->nombre_archivo = $nombre_archivo;	
-		
+		$this->nombre_archivo = $nombre_archivo;
+
 	}
 
 	static function ningunDato(){
 		return new self('','','','','');
-	} 
+	}
 	static function soloCodigo($codigo){
 		return new self($codigo,'','','','');
 	}

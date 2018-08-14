@@ -63,8 +63,4 @@ if((post("id"))){
 	echo json_encode(3);
 }
 
-
-
-
-
 ?>

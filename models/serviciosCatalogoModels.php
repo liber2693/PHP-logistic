@@ -1,17 +1,17 @@
-<?php 
+<?php
 include '../config/conexion.php';
 /***servicios_catalogo***/
 class ServiciosCatalogo{
-	
+
 	protected $id;
 	protected $descripcion;
 	protected $tipo_servicio;
 	protected $fecha_creacion;
 	protected $estatus;
-	
-	
+
+
 	public function __construct($descripcion,$tipo_servicio,$fecha_creacion,$estatus,$id = ''){
-		
+
 		$db = new Conexion();
 
 		$this->id = $id;
@@ -19,12 +19,12 @@ class ServiciosCatalogo{
 		$this->tipo_servicio = $tipo_servicio;
 		$this->fecha_creacion = $fecha_creacion;
 		$this->estatus = $estatus;
-		
+
 	}
 
 	static function ningundato(){
 		return new self('','','','','');
-	} 
+	}
 
 	public function SelectServicos(){
 		$db = new Conexion();

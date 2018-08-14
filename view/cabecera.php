@@ -1,4 +1,3 @@
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="../theme/img/icono1.png">
@@ -31,4 +30,3 @@
   <link href="../theme/css/bootstrap-datepicker.css" rel="stylesheet" />
   <link href="../theme/css/bootstrap-colorpicker.css" rel="stylesheet" />
   <link href="../css/estilos.css" rel="stylesheet" />
-  

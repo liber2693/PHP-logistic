@@ -336,11 +336,11 @@ if (isset($_POST['boton_comentario'])) {
 
     $comentario_invoice = new Invoice($codigo_invoice,'','','','','','',$pagos,$comentario,'','','','','');
     $comentario_invoice->UpdateComment();
-    
+
     //echo "<pre>";print_r($_POST);die();
-    
+
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_docket.php?docket=".base64_encode($_POST['codigo_docket_comentario'])."'>";
-    
+
 }
 
 ?>

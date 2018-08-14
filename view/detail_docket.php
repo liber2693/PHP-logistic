@@ -79,7 +79,7 @@ if(empty($_SESSION['user']))
                           <strong>PHONE #: <?php echo $datos['telefono'];?></strong>
                         </td>
                         <td class="text-center">
-                          <strong>CC #: <?php echo $datos['cc'];?></strong>
+                          <strong>CC #: <?php echo ucwords($datos['consignee']);?></strong>
                         </td>
                       </tr>
                       <tr>
@@ -87,7 +87,7 @@ if(empty($_SESSION['user']))
                           <strong>ORIGIN: <?php echo ucfirst($datos['origen']) .", " .ucwords($datos['lugar_origen']);?></strong>
                         </td>
                         <td class="text-center">
-                          <strong>PO #: <?php echo ucfirst($datos['po']);?></strong>
+                          <strong>PO #: <?php echo $datos['cc'];?></strong>
                         </td>
                         <td class="text-center">
                           <strong>DATE: <?php
@@ -96,7 +96,7 @@ if(empty($_SESSION['user']))
                           ?></strong>
                         </td>
                         <td class="text-center">
-                          <strong>CONSIGNEE : <?php echo ucwords($datos['consignee']);?></strong>
+                          <strong>CONSIGNEE : <?php echo ucfirst($datos['po']);?></strong>
                         </td>
                       </tr>
                       <tr>
@@ -114,8 +114,8 @@ if(empty($_SESSION['user']))
                         </td>
                       </tr>
                       <tr>
-                        <td colspan="4">
-                          <strong>NOTES: </strong><br> <?php echo ucfirst($datos['descripcion']);?>
+                        <td colspan="4" class="text-center">
+                          <strong>NOTES: <?php echo ucfirst($datos['descripcion']) ."</strong>";?>
                         </td>
                       </tr>
                     </tbody>
@@ -196,7 +196,7 @@ if(empty($_SESSION['user']))
                       <tr>
                         <td>
                           <strong>
-                            <?php 
+                            <?php
                               $varCode = ($datos['codigo_usuario']) ? $datos['codigo_usuario'] : "Not registered" ;
                               echo $varCode;
                             ?>
@@ -217,7 +217,7 @@ if(empty($_SESSION['user']))
                               else{
                                 echo "Not registered";
                               }
-                            ?>                                
+                            ?>
                           </strong>
                         </td>
                         <td><strong><?php echo $datos['descripcion'];?> &nbsp;&nbsp;<img src="../images/<?php echo $imagen;?>" width="10%"></strong></td>
@@ -226,15 +226,19 @@ if(empty($_SESSION['user']))
                             <a class="btn btn-success" style="font-size:16px" href="update_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Edit Invoice"><i class="fa fa-pencil"></i></a>
                             <a class="btn btn-warning" style="font-size:16px" href="detail_invoice.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Invoice Details"><i class="fa fa-eye"></i></a>
                             <a class="btn btn-info" style="font-size:16px" target="_blank" href="invoice_pdf.php?invoice=<?php echo base64_encode($datos['codigo_invoice']);?>" data-toggle="tooltip" title="Invoice Report"><i class="fa fa-file-pdf-o"></i></a>
+                             <?php
+                          if ($_SESSION['tipo_usuario'] == 1){
+                          ?>
                             <a class="btn btn-danger" style="font-size:16px" onclick="eliminar(document.getElementById('codigo_factura<?php echo $i;?>').value,document.getElementById('codigo_usuario<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModal" title="Void Invoice"><i class="fa fa-times-circle"></i></a>
                             <?php
+                            }
                             if ($datos['estatus']==1) {
                             ?>
                             <a class="btn btn-primary" style="font-size:16px" href="../controllers/invoiceControllers.php?active=<?php echo base64_encode($datos['codigo_invoice']);?>&docket=<?php echo base64_encode($codigo);?>" data-toggle="tooltip" title="Process Invoice"><i class="fa fa-check-circle"></i></a>
                             <?php
                             }
                             ?>
-                            <a class="btn btn-success" style="font-size:16px" onclick="comentario(document.getElementById('codigo_factura<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModalComentario" title="Add Comment o See Comment"><i class="fa fa-comment-o"></i></a>
+                            <a class="btn btn-success" style="font-size:16px" onclick="comentario(document.getElementById('codigo_factura<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModalComentario" title="Comments & Payments"><i class="fa fa-comment-o"></i></a>
                           </div>
                         </td>
                       </tr>
@@ -301,16 +305,16 @@ if(empty($_SESSION['user']))
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title"><center><b>Agregar Comentario</b></center></h4>
+              <h4 class="modal-title"><center><b>Add Comments & Payments</b></center></h4>
             </div>
             <form class="form-inline" role="form" method="post" id="formulario_comentario" action="../controllers/invoiceControllers.php">
               <div class="modal-body">
                 <input type="hidden"  class="form-control"  name="codigo_invoice_comentario" id="codigo_invoice_comentario">
                 <input type="hidden"  class="form-control"  name="codigo_docket_comentario" id="codigo_docket_comentario">
                 <label for="Payments"><b>Payments:</b></label>
-                <textarea class="form-control round-input" id="compo_pagos" placeholder="Add a payment description of the invoice" name="compo_pagos" ></textarea>
-                <label for="Comments"><b>Comments:</b></label>
-                <textarea class="form-control round-input" id="campo_comentario" placeholder="Add a description of the invoice" name="campo_comentario" ></textarea>
+                <textarea class="form-control round-input" id="compo_pagos" placeholder="Payments" name="compo_pagos" ></textarea>
+                <label for="Comments"><b><br>Comments:</b></label>
+                <textarea class="form-control round-input" id="campo_comentario" placeholder="Comments" name="campo_comentario" ></textarea>
               </div>
               <div class="modal-footer">
                 <button type="submit" name="boton_comentario" class="btn btn-success"><b>Confirm</b></button>
@@ -337,9 +341,9 @@ if(empty($_SESSION['user']))
       $("#codigo_factura_usuario").val(codigoUsuario);
       $("#codigo_factura_documento").val($("#id_codigo_docket").val());
       $("#formulario_eliminar_factura").submit(function(event) {
-        
+
         //$('#boton_eliminar').attr("disabled", true);
-        
+
         var codigo = $("#codigo_factura_elimanar").val();
         var descripcion = $("#descripcion_eliminar").val();
         if (descripcion.length==0) {

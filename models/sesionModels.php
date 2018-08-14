@@ -1,4 +1,4 @@
-<?php 
+<?php
 include '../config/conexion.php';
 /***usuarios***/
 class Sesion{
@@ -33,7 +33,7 @@ class Sesion{
 
 	static function ningunDato(){
 		return new self('','','','','','','','','','','');
-	} 
+	}
 
 	static function soloUsuario($usuario){
 		return new self($usuario,'','','','','','','','','','');

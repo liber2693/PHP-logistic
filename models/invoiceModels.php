@@ -50,11 +50,11 @@ class Invoice{
 	public function InsertInvoice(){
 		$db = new Conexion();
 		if (!empty($this->fecha)) {
-			$fechaSql = "fecha,";	
-			$var1="'$this->fecha',";	
+			$fechaSql = "fecha,";
+			$var1="'$this->fecha',";
 		}
 		else{
-			$fechaSql = null;	
+			$fechaSql = null;
 			$var1 = null;
 		}
 		$sql="INSERT INTO invoice(codigo_invoice, codigo_docket, codigo_usuario, ".$fechaSql." tipo_documento, cliente,precio,usuario,fecha_creacion,estatus) VALUES ('$this->codigo_invoice','$this->codigo_docket','$this->codigo_usuario', ".$var1." '$this->tipo_documento','$this->cliente','','$this->usuario','$this->fecha_creacion','1')";
