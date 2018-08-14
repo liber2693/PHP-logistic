@@ -112,7 +112,7 @@ if(isset($_POST['boton_eliminar'])){
 
     $codigo_documento = $_POST['codigo_documento_elimanar'];
     $tipo_documento = $_POST['tipo_documento_eliminar'];
-    $descripcion = post("descripcion_eliminar");
+    $descripcion = addslashes($_POST['descripcion_eliminar']);
     $usuario=$_SESSION['id_usuario'];
 
     //primero consultar en invoices si existe el documento
