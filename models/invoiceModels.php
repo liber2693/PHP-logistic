@@ -62,7 +62,9 @@ class Invoice{
 	}
 	public function SelectInvoice(){
 		$db = new Conexion();
-		$sql="SELECT * FROM invoice WHERE codigo_invoice = '$this->codigo_invoice' AND estatus IN (1,2)";
+		//$sql="SELECT * FROM invoice WHERE codigo_invoice = '$this->codigo_invoice' AND estatus IN (1,2)";
+		$sql = "SELECT a.codigo_invoice,a.codigo_docket,a.codigo_usuario,a.fecha,a.cliente,a.pagos,a.comentarios,a.estatus,b.fecha AS fecha_docket FROM invoice a JOIN docket b ON b.codigo=a.codigo_docket WHERE a.codigo_invoice = 
+		'$this->codigo_invoice' AND a.estatus IN (1,2)";
 		$result = $db->query($sql);
 		return $result;
 	}

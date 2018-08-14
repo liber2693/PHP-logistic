@@ -67,6 +67,16 @@ else
                           <strong>DOCKET #: <?php echo $datos['codigo_docket'];?></strong>
                         </td>
                         <td class="text-center">
+                          <strong>DATE DOCKET #: 
+                            <?php
+                              $fecha_docket = explode('-', $datos['fecha_docket']);
+                              echo $fecha_docket[1] .'-' .$fecha_docket[2] .'-' .$fecha_docket[0]; 
+                            ?>
+                          </strong>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">
                           <strong>INVOICE #: <?php echo $varCode = ($datos['codigo_usuario']) ? $datos['codigo_usuario'] : "Not registered";?></strong>
                         </td>
                         <td class="text-center">
@@ -83,6 +93,8 @@ else
                             ?>
                           </strong>
                         </td>
+                      </tr>
+                      <tr>
                         <td class="text-center">
                           <strong>BILL TO: <?php echo ucwords($datos['cliente']);?></strong>
                         </td>
@@ -108,7 +120,7 @@ else
                       if(!empty($datos['pagos'])){
                       ?>
                         <tr>
-                          <td colspan="5" class="text-center">
+                          <td colspan="2" class="text-center">
                             <b>PAYMENTS: &nbsp;<?php echo $datos['pagos'];?></b>
                           </td>
                         </tr>

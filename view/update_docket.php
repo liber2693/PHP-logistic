@@ -180,13 +180,41 @@ if(empty($_SESSION['user']))
 						</form>
 			        </div>
 		          	<div id="about" class="tab-pane">
-		          		About
+		          		<section class="panel">
+							<header class="panel-heading">
+							MANAGE FILE
+							</header>
+							<div class="table-responsive">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>CODE</th>
+											<th>URL ARCHIVE</th>
+											<th>NAME ARCHIVE</th>
+											<th>ACTION</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<button type="button" data-toggle="modal" data-target="#myModal" name="nuevo_archivo" id="nuevo_archivo" class="btn btn-primary">
+								<i class="fa fa-plus"></i> <strong>NEW ARCHIVE</strong>
+							</button>
+						</section>
 		          	</div>
 		        </div>
 		    </div>
 	    </section>
         <div class="col-lg-offset-5 col-lg-9">
-	        <button type="submit" name="actualizar_documento" id="actualizar_documento" class="btn btn-primary"><strong>UPDATE</strong></button>
+	        <button type="submit"  name="actualizar_documento" id="actualizar_documento" class="btn btn-primary"><strong>UPDATE</strong></button>
 	        <a href="docket_list.php">
 	          <button type="button" class="btn btn-danger"><strong>GO BACK</strong></button>
 	        </a>
@@ -196,6 +224,27 @@ if(empty($_SESSION['user']))
     </section>
     <!--main content end-->
   </section>
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+    <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><center><b>NEW ARCHIVE</b></center></h4>
+        </div>
+        <br>
+        <form class="form-inline" role="form">
+          <div class="modal-body">
+            <input type="text"  class="form-control m-bot15 round-input"  name="codigo_documento" id="codigo_documento">
+          </div>
+          <div class="modal-footer">
+            <button type="button" name="boton_registrar" id="boton_registrar" class="btn btn-success"><b>Confirm</b></button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><b>Cancel</b></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
   <!-- container section start -->
   <!-- javascripts -->
   <?php include('pie.php');?>
