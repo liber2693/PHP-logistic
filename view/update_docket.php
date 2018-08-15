@@ -65,7 +65,7 @@ if(empty($_SESSION['user']))
 							    <label class="col-lg-2 control-label"><strong>DOCKET #</strong></label>
 						        <div class="col-lg-10">
 									<p class="form-control-static"><strong><?php echo $codigo;?></strong></p>
-									<input type="hidden" name="codigo_docu" value="<?php echo $codigo;?>">
+									<input type="hidden" name="codigo_docu" id="codigo_docu" value="<?php echo $codigo;?>">
 						        </div>
 							</div>
 							<div class="form-group">
@@ -185,23 +185,16 @@ if(empty($_SESSION['user']))
 							MANAGE FILE
 							</header>
 							<div class="table-responsive">
-								<table class="table">
+								<table class="table" id="lista_archivo">
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>CODE</th>
 											<th>URL ARCHIVE</th>
 											<th>NAME ARCHIVE</th>
 											<th>ACTION</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1</td>
-											<td>Table cell</td>
-											<td>Table cell</td>
-											<td>Table cell</td>
-										</tr>
 									</tbody>
 								</table>
 							</div>
@@ -235,7 +228,8 @@ if(empty($_SESSION['user']))
         <br>
         <form class="form-inline" role="form">
           <div class="modal-body">
-            <input type="text"  class="form-control m-bot15 round-input"  name="codigo_documento" id="codigo_documento">
+            <input type="hidden"  class="form-control m-bot15 round-input"  name="codigo_documento" id="codigo_documento">
+            <input type="file" name="imagen" id="imagen"  accept=".jpg, .jpeg, .png, .pdf">
           </div>
           <div class="modal-footer">
             <button type="button" name="boton_registrar" id="boton_registrar" class="btn btn-success"><b>Confirm</b></button>

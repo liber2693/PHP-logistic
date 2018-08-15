@@ -162,5 +162,82 @@ function format(input)
 //<input type="text" onkeyup="format(this)" onchange="format(this)">
 
 }
-//*********ACTUALZIAR IMAGEN********
+//*********ACTUALZIAR IMAGEN********//
 
+$("#nuevo_archivo").click(function(){
+    console.log("nueva imagem");
+    $("#codigo_documento").val($("#codigo_docu").val());
+})
+
+//confirmar para subir imagen
+$("#boton_registrar").click(function(){
+    console.log("subir iamgen");
+
+    var codigo_d = $("#codigo_documento").val();
+    var inputArchivo = document.getElementById('imagen');    
+    var file = inputArchivo.files[0];
+    
+    var data = new FormData();
+    data.append('archivo',file);
+    data.append('codigo_docket',codigo_d);
+    
+    var archivo = $("#imagen").val();
+    console.log(archivo);
+    
+   //variable para validar
+
+    $("#imagen").css({"border":"1px solid #c7c7cc"});
+
+    if (archivo == '') {
+        $("#imagen").css({"border":"2px solid #ff3333"});
+        event.preventDefault();
+    }
+    
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "../controllers/documentoControllers.php",
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(data){
+            var lista = data;
+            if(lista==0){
+                $("#lista_archivo").append(
+                '<tr>'+
+                '<td colspan="4" class="text-center"><b>Services are not available yet</b></td>'+
+                '</tr>');
+            }else{
+                lista.forEach( function(data, indice, array) {
+                    $("#lista_archivo").append(
+                    '<tr>'+
+                    '<td><b>'+data.id+'</b></td>'+
+                    '<td><b>'+data.url_ubicacion+'</b></td>'+
+                    '<td><b>'+data.nombre_archivo+'</b>'+'</td>'+
+                    '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminar('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
+                    '</tr>');
+                });
+            }
+        }
+    })
+
+    /*var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": url_constant+"update_img",
+        "method": "POST",
+        "beforeSend" : function() {
+            showLoader();
+        },
+        "headers": {
+            "accept": "application/json",
+            "authorization": end_token,
+            "cache-control": "no-cache",
+        },
+        "data": data,
+        "contentType": false,
+        "processData": false
+        
+    }*/
+})

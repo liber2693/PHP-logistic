@@ -9,6 +9,7 @@ date_default_timezone_set("America/Caracas");
 $fecha_registro=date("Y-m-d");
 $date=substr(date("Y"),2);
 
+//print_r($_POST);die();
 if(isset($_POST['tipoDocumento'])){
     $tipoDocumento=$_POST['tipoDocumento'];
     $shipper=post('shipper');
@@ -69,7 +70,7 @@ if(isset($_POST['tipoDocumento'])){
                 $error=$_FILES['archivo']['error'][$i];
                 $tamano=$_FILES['archivo']['size'][$i];
 
-                $archivos = new ArchivoAdjuntos($codigo,$rutaArchivo,'',$nombreArchivo,'');
+                $archivos = new ArchivoAdjuntos($codigo,$rutaArchivo,'',$nombreArchivo,$i,'');
                 $archivos->insertArchivoDocumento();
             }
         }
@@ -184,7 +185,51 @@ if (isset($_POST['boton_regresar'])) {
     }
 
     echo"<meta http-equiv='refresh' content='0;URL=../view/delete_list.php'>";
-
-
 }
+//actualizar imagen
+if (isset($_POST['codigo_docket']) && !empty($_FILES['archivo'])) {
+    //echo "empezar coño";
+    $codigo_d = $_POST['codigo_docket'];
+    
+    $maximo = ArchivoAdjuntos::soloCodigo($codigo_d);
+    $array = $maximo->SelectMax();
+    $cantidad = $array->fetch_assoc();
+    
+    $i = $cantidad['max'] + 1;
+
+    //echo "<pre>";print_r($_FILES);die();
+
+    $nombreArchivo=str_replace(" ","_",$_FILES['archivo']['name']);
+    $rutaArchivo="../img/documentos/".$codigo_d."_".$i."_".$nombreArchivo;
+    $foto=$_FILES['archivo']['tmp_name'];
+
+    if (is_uploaded_file($foto)) {
+
+        copy($foto,$rutaArchivo);
+        $tipo=$_FILES['archivo']['type'];
+        $error=$_FILES['archivo']['error'];
+        $tamano=$_FILES['archivo']['size'];
+
+        $archivos = new ArchivoAdjuntos($codigo_d,$rutaArchivo,'',$nombreArchivo,$i,'');
+        $archivos->insertArchivoDocumento();
+    }    
+
+    //si es correcto ahora busco
+    $archivos = ArchivoAdjuntos::soloCodigo($codigo_d);
+    $array2 = $archivos->SelectArchivoAdjunto();
+    if($array2->num_rows!=0){
+        while($resultado = $array2->fetch_assoc()) {
+          $data []= array('id' => $resultado['id'],
+                          'url_ubicacion' => $resultado['url_ubicacion'],
+                          'nombre_archivo' => $resultado['nombre_archivo'],
+                        );
+        }
+    }else{
+        $data=0;
+    }
+    echo json_encode($data);
+}
+
+
+
 ?>
