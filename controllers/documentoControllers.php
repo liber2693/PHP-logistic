@@ -214,6 +214,10 @@ if (isset($_POST['codigo_docket']) && !empty($_FILES['archivo'])) {
         $archivos->insertArchivoDocumento();
     }    
 
+    echo json_encode(1);
+}
+if(isset($_GET['codigo_docket_lista'])){
+    $codigo_d = $_GET['codigo_docket_lista'];
     //si es correcto ahora busco
     $archivos = ArchivoAdjuntos::soloCodigo($codigo_d);
     $array2 = $archivos->SelectArchivoAdjunto();
@@ -229,7 +233,19 @@ if (isset($_POST['codigo_docket']) && !empty($_FILES['archivo'])) {
     }
     echo json_encode($data);
 }
+if(isset($_POST['id_archivo'])){
+    //echo "preparado para eliminar";
 
+    $id_archivo = $_POST['id_archivo'];
 
+    $archivo = ArchivoAdjuntos::soloId($id_archivo);
+    $result = $archivo->SelectIdRegister();
+    $datos = $result->fetch_assoc();
 
+    $url = $datos['url_ubicacion'];
+    unlink($url);
+    $archivo_eliminar = ArchivoAdjuntos::soloId($id_archivo);
+    $archivo_eliminar->DeleteArchivo(); 
+    echo json_encode(1);
+}
 ?>

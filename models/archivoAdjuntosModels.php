@@ -30,6 +30,9 @@ class ArchivoAdjuntos{
 	static function soloCodigo($codigo){
 		return new self($codigo,'','','','','');
 	}
+	static function soloId($id){
+		return new self('','','','','',$id);
+	}
 
 	public function insertArchivoDocumento(){
 		$db = new Conexion();
@@ -49,6 +52,18 @@ class ArchivoAdjuntos{
 		$result = $db->query($sql);
 		return $result;
 	}
+	public function SelectIdRegister(){
+		$db = new Conexion();
+		$sql = "SELECT * FROM `archivos_adjuntos` WHERE id='$this->id'";
+		$result = $db->query($sql);
+		return $result;
+	}
+	public function DeleteArchivo(){
+		$db = new Conexion();
+		$sql = "DELETE FROM `archivos_adjuntos` WHERE id='$this->id'";
+		$result = $db->query($sql);
+	}
+
 
 	
 }

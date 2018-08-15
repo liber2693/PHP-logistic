@@ -177,7 +177,7 @@ if(empty($_SESSION['user']))
 									<textarea name="descripcion" class="form-control round-input" placeholder="Description"><?php echo $datos['descripcion'];?></textarea>
 								</div>
 							</div>
-						</form>
+						
 			        </div>
 		          	<div id="about" class="tab-pane">
 		          		<section class="panel">
@@ -189,7 +189,6 @@ if(empty($_SESSION['user']))
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>URL ARCHIVE</th>
 											<th>NAME ARCHIVE</th>
 											<th>ACTION</th>
 										</tr>
@@ -212,6 +211,7 @@ if(empty($_SESSION['user']))
 	          <button type="button" class="btn btn-danger"><strong>GO BACK</strong></button>
 	        </a>
 	    </div>
+	    </form>
          <!--tab nav start-->
       </div>
     </section>
@@ -242,7 +242,7 @@ if(empty($_SESSION['user']))
   <!-- container section start -->
   <!-- javascripts -->
   <?php include('pie.php');?>
-  <script src="../js/documento.js" type="text/javascript"></script>
+  <script src="../js/documento_update.js" type="text/javascript"></script>
 </body>
 </html>
 <?php
