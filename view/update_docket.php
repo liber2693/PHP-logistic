@@ -53,7 +53,7 @@ if(empty($_SESSION['user']))
 			    		<a data-toggle="tab" href="#home">EDIT DOCKET</a>
 			  		</li>
 					<li class="">
-						<a data-toggle="tab" href="#about">EDIT IMAGE</a>
+						<a data-toggle="tab" href="#about"><b>EDIT ATTACHMENT</b></a>
 					</li>
 				</ul>
 			</header>
@@ -177,7 +177,7 @@ if(empty($_SESSION['user']))
 									<textarea name="descripcion" class="form-control round-input" placeholder="Description"><?php echo $datos['descripcion'];?></textarea>
 								</div>
 							</div>
-						
+
 			        </div>
 		          	<div id="about" class="tab-pane">
 		          		<section class="panel">
@@ -197,9 +197,9 @@ if(empty($_SESSION['user']))
 									</tbody>
 								</table>
 							</div>
-							<button type="button" data-toggle="modal" data-target="#myModal" name="nuevo_archivo" id="nuevo_archivo" class="btn btn-primary">
-								<i class="fa fa-plus"></i> <strong>NEW ARCHIVE</strong>
-							</button>
+							<center><button type="button" data-toggle="modal" data-target="#myModal" name="nuevo_archivo" id="nuevo_archivo" class="btn btn-primary">
+								<i class="fa fa-plus"></i><b>NEW ARCHIVE</b>
+							</button></center>
 						</section>
 		          	</div>
 		        </div>
@@ -223,7 +223,7 @@ if(empty($_SESSION['user']))
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"><center><b>NEW ARCHIVE</b></center></h4>
+          <h4 class="modal-title"><center><b>NEW ATTACHMENT</b></center></h4>
         </div>
         <br>
         <form class="form-inline" role="form">

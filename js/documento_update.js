@@ -73,7 +73,7 @@ function listar_archivos_update(codigo_d){
             if(lista==0){
                 $("#lista_archivo").append(
                 '<tr>'+
-                '<td colspan="4" class="text-center"><b>Services are not available yet</b></td>'+
+                '<td colspan="4" class="text-center"><b>This docket not have attachments</b></td>'+
                 '</tr>');
             }else{
                 lista.forEach( function(data, indice, array) {
@@ -100,16 +100,16 @@ $("#boton_registrar").click(function(){
     console.log("subir iamgen");
 
     var codigo_d = $("#codigo_documento").val();
-    var inputArchivo = document.getElementById('imagen');    
+    var inputArchivo = document.getElementById('imagen');
     var file = inputArchivo.files[0];
-    
+
     var data = new FormData();
     data.append('archivo',file);
     data.append('codigo_docket',codigo_d);
-    
+
     var archivo = $("#imagen").val();
     console.log(archivo);
-    
+
    //variable para validar
 
     $("#imagen").css({"border":"1px solid #c7c7cc"});
@@ -118,7 +118,7 @@ $("#boton_registrar").click(function(){
         $("#imagen").css({"border":"2px solid #ff3333"});
         event.preventDefault();
     }
-    
+
     $.ajax({
         type: "POST",
         dataType: "json",
