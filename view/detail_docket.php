@@ -183,6 +183,7 @@ if(empty($_SESSION['user']))
                     </thead>
                     <tbody>
                       <?php
+                      //echo "<pre>";print_r($datos);die;
                       $i=0;
                       while($datos=$array1->fetch_assoc())
                       {
