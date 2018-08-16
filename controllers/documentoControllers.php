@@ -35,17 +35,16 @@ if(isset($_POST['tipoDocumento'])){
     $usuario=$_SESSION['id_usuario'];
 
     $correlativo = new Catalogo('','',$tipoDocumento,'','');
+    $array = $correlativo->SelectCodigo();
+    $cantidad=$array->fetch_assoc();
+    $array->free();
     if($tipoDocumento=='I'){
-        $array = $correlativo->SelectCodigo();
-        $cantidad=$array->fetch_assoc();
         $digito=$cantidad['correlativo']+1;
         $codigo="I-".str_pad($digito,3,"0",STR_PAD_LEFT).'-'.$date;
         $actualizar= new Catalogo($cantidad['id'],$digito,$tipoDocumento,'','');
         $actualizar->UpdateCorrelativo();
     }
     if($tipoDocumento=='E'){
-        $array = $correlativo->SelectCodigo();
-        $cantidad=$array->fetch_assoc();
         $digito=$cantidad['correlativo']+1;
         $codigo="E-".str_pad($digito,3,"0",STR_PAD_LEFT).'-'.$date;
         $actualizar= new Catalogo($cantidad['id'],$digito,$tipoDocumento,'','');
@@ -133,6 +132,7 @@ if(isset($_POST['boton_eliminar'])){
             $delete_register->InsertDocketInvoice();
 
         }
+        $result->free();
     }
     //eliminar el registro del documento
     $delete_docket = new Docket($codigo_documento,'','','','','','','','','','','','','','','','','','','','','',$fecha_registro,$usuario,'');
@@ -152,6 +152,7 @@ if (isset($_POST['boton_regresar'])) {
 
     $array1 = $buscarEliminado->SelectIdDelete();
     $resultadoE=$array1->fetch_assoc();
+    $array1->free();
 
     $codigoD = $resultadoE['codigo_docket'];
 
@@ -177,6 +178,7 @@ if (isset($_POST['boton_regresar'])) {
                 $retornarDocumento->ReturnDocket();
     //echo "<pre>";print_r($retornarDocumento);die();
             }
+            $array2->free();
         }
         //cambiarle los estatus para retornarla
         //eliminarla de la tabla eliminados
@@ -194,6 +196,7 @@ if (isset($_POST['codigo_docket']) && !empty($_FILES['archivo'])) {
     $maximo = ArchivoAdjuntos::soloCodigo($codigo_d);
     $array = $maximo->SelectMax();
     $cantidad = $array->fetch_assoc();
+    $array->free();
     
     $i = $cantidad['max'] + 1;
 
@@ -228,6 +231,7 @@ if(isset($_GET['codigo_docket_lista'])){
                           'nombre_archivo' => $resultado['nombre_archivo'],
                         );
         }
+        $array2->free();
     }else{
         $data=0;
     }
@@ -241,6 +245,7 @@ if(isset($_POST['id_archivo'])){
     $archivo = ArchivoAdjuntos::soloId($id_archivo);
     $result = $archivo->SelectIdRegister();
     $datos = $result->fetch_assoc();
+    $result->free();
 
     $url = $datos['url_ubicacion'];
     if (file_exists($url)){

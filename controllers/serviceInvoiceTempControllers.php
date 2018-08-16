@@ -28,6 +28,7 @@ if((post("servicio"))){
 		  				  'nota' => $resultado['nota'],
 		  				);
 		}
+		$array->free();
 	}else{
 		$data=0;
 	}
@@ -49,6 +50,7 @@ if(isset($_GET['tabla']) && $_GET['tabla']==1){
 		  				  'nota' => $resultado['nota'],
 		  				);
 		}
+		$array->free();
 	}else{
 		$data=0;
 	}

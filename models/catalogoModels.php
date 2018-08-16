@@ -18,6 +18,9 @@ class Catalogo{
 		$this->tipo = $tipo;
 		$this->descripcion = $descripcion;
 		$this->estatus = $estatus;
+
+		$db->close();
+
 	}
 
 	static function ningunCatalogo(){
@@ -28,12 +31,17 @@ class Catalogo{
 		$db = new Conexion();
 		$sql="SELECT * FROM `catalogo` WHERE tipo='$this->tipo'";
 		$result = $db->query($sql);
+
+		$db->close();
+
 		return $result;
 	}
 	public function UpdateCorrelativo(){
 		$db = new Conexion();
 		$sql="UPDATE catalogo SET correlativo='$this->correlativo' WHERE id=$this->id AND tipo='$this->tipo'";
-		$result = $db->query($sql);
+		$db->query($sql);
+
+		$db->close();
 
 	}
 }

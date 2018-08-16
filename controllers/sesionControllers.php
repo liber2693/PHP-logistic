@@ -19,6 +19,7 @@ if(!empty(post("usuario")) && !empty(post("password")))
 		if($array2->num_rows!=0){
 			session_start();
 	 		$resultado_usuario=$array2->fetch_assoc();
+	 		$array2->free();
 			$id_usuario=$resultado_usuario['id_usuario'];
 			$nombre=$resultado_usuario['nombre'];
 			$apellido=$resultado_usuario['apellido'];
@@ -35,8 +36,7 @@ if(!empty(post("usuario")) && !empty(post("password")))
 			$_SESSION['user']=$user;
 			$_SESSION['tipo_usuario']=$tipo_usuario;
 			$_SESSION['acceso']='loco1234';
-			$array2->free();
-
+			
 			echo json_encode(3); //LOGEADO con exito
 			//	echo "<meta http-equiv='refresh' content='0;URL=../inicio.php'>";
 		}
@@ -61,5 +61,5 @@ if(isset($_GET['close'])){
 		session_destroy();
 		echo "<meta http-equiv='refresh' content='0;URL=../index.php'>";
 }
-//$conexion->close();
+
 ?>

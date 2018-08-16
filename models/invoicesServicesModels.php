@@ -26,6 +26,8 @@ class invoicesServices{
 		$this->fecha_registro = $fecha_registro;
 		$this->estatus = $estatus;
 
+		$db->close();
+
 	}
 
 	static function ningunServicio(){
@@ -40,6 +42,8 @@ class invoicesServices{
 		$sql="INSERT INTO invoices_services(codigo_invoice,id_servico,precio_us,precio_ca,nota,usuario,fecha_registro,estatus)
 			VALUES ('$this->codigo_invoice','$this->id_servico','$this->precio_us','$this->precio_ca','$this->nota','$this->usuario','$this->fecha_registro',1)";
 		$db->query($sql);
+
+		$db->close();
 
 	}
 	public function SelectServicosInvoice(){

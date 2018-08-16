@@ -15,6 +15,7 @@ if ($array_d->num_rows==0) {
   echo "NO EXIST";
 }else{
   $datos_d = $array_d->fetch_array();
+  $array_d->free();
   $fecha1 = explode('-', $datos_d['fecha']);
   $fecha_formateada1 = $fecha1[1] .'-' .$fecha1[2] .'-' .$fecha1[0];
   $html = '<style>
@@ -79,8 +80,30 @@ if ($array_d->num_rows==0) {
             <td colspan="1">
               <b>PIECES / WEIGHT / DIMENSIONS: </b>&nbsp;
               '.$datos_d['pieza'].' '.ucfirst($datos_d['tipo_pieza']).' &nbsp;
-              '.$datos_d['peso'].' '.ucfirst($datos_d['tipo_peso']).' &nbsp;
-              '.$datos_d['alto'].' X '.$datos_d['ancho'].' X '.$datos_d['largo'].'  '.ucfirst($datos_d['tipo_dimension']).'
+              '.$datos_d['peso'].' '.ucfirst($datos_d['tipo_peso']).' &nbsp;';
+
+              $varI=null;
+              if (!empty($datos_d['alto']) && empty($datos_d['ancho']) && empty($datos_d['largo'])) {
+                $varI=$datos_d['alto'];
+              }
+              if (!empty($datos_d['alto']) && !empty($datos_d['ancho']) && empty($datos_d['largo'])) {
+                $varI=$datos_d['alto']." X ".$datos_d['ancho'];
+              }
+              if (!empty($datos_d['alto']) && !empty($datos_d['ancho']) && !empty($datos_d['largo'])) {
+                $varI=$datos_d['alto']." X ".$datos_d['ancho']." X ".$datos_d['largo'];
+              }
+              if (empty($datos_d['alto']) && !empty($datos_d['ancho']) && empty($datos_d['largo'])) {
+                $varI=$datos_d['ancho'];
+              }
+              if (empty($datos_d['alto']) && !empty($datos_d['ancho']) && !empty($datos_d['largo'])) {
+                $varI=$datos_d['ancho']." X ".$datos_d['largo'];
+              }
+              if (empty($datos_d['alto']) && empty($datos_d['ancho']) && !empty($datos_d['largo'])) {
+                $varI=$datos_d['largo'];
+              }
+              //echo $varI." ".ucfirst($datos['tipo_dimension']);
+
+            $html.=$varI." ".ucfirst($datos_d['tipo_dimension']).'
             </td>
             <td>
               <b>PO #:</b>&nbsp;'.ucwords($datos_d['cc']).'

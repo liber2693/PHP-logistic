@@ -107,6 +107,7 @@ if(empty($_SESSION['user']))
                     </tr>
                     <?php
                     }
+                    $array1->free();
                     ?>
                   </tbody>
                 </table>

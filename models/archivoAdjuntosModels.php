@@ -22,6 +22,8 @@ class ArchivoAdjuntos{
 		$this->nombre_archivo = $nombre_archivo;
 		$this->identificador_docket = $identificador_docket;
 
+		$db->close();
+
 	}
 
 	static function ningunDato(){
@@ -39,32 +41,43 @@ class ArchivoAdjuntos{
 		$sql="INSERT INTO archivos_adjuntos(codigo,url_ubicacion,estatus_logico,nombre_archivo,identificador_docket)
 			VALUES ('$this->codigo','$this->url_ubicacion',1,'$this->nombre_archivo','$this->identificador_docket')";
 		$db->query($sql) || die("ERROR insertando los registros de archivos");
+
+		$db->close();
+
 	}
 	public function SelectArchivoAdjunto(){
 		$db = new Conexion();
 		$sql="SELECT * FROM `archivos_adjuntos` WHERE codigo='$this->codigo' AND `estatus_logico`=1";
 		$result = $db->query($sql);
+
+		$db->close();
+
 		return $result;
 	}
 	public function SelectMax(){
 		$db = new Conexion();
 		$sql = "SELECT MAX(identificador_docket) AS max FROM `archivos_adjuntos` WHERE `codigo`='$this->codigo'";
 		$result = $db->query($sql);
+
+		$db->close();
+
 		return $result;
 	}
 	public function SelectIdRegister(){
 		$db = new Conexion();
 		$sql = "SELECT * FROM `archivos_adjuntos` WHERE id='$this->id'";
 		$result = $db->query($sql);
+
+		$db->close();
+
 		return $result;
 	}
 	public function DeleteArchivo(){
 		$db = new Conexion();
 		$sql = "DELETE FROM `archivos_adjuntos` WHERE id='$this->id'";
 		$result = $db->query($sql);
+
+		$db->close();
 	}
-
-
-	
 }
 ?>

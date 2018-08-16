@@ -68,9 +68,11 @@ if(empty($_SESSION['user']))
                     $contarInvoice = Docket::soloCodigo($codigoD);
                     $count1 = $contarInvoice->SelectQuantityDocketInvoice();
                     $resul1=$count1->fetch_assoc();
+                    $count1->free();
                     //cosultar la cantidad procesada
                     $count2 = $contarInvoice->SelectQuantityDocketInvoiceProcesadas();
                     $resul2=$count2->fetch_assoc();
+                    $count2->free();
                     ?>
                     <tr>
                       <td>
@@ -108,6 +110,7 @@ if(empty($_SESSION['user']))
                     </tr>
                     <?php
                     }
+                    $array1->free();
                     ?>
                   </tbody>
                 </table>

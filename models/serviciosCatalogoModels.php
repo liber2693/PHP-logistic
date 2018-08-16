@@ -20,6 +20,8 @@ class ServiciosCatalogo{
 		$this->fecha_creacion = $fecha_creacion;
 		$this->estatus = $estatus;
 
+		$db->close();
+
 	}
 
 	static function ningundato(){
@@ -30,12 +32,18 @@ class ServiciosCatalogo{
 		$db = new Conexion();
 		$sql="SELECT * FROM servicios_catalogo WHERE estatus=1 AND tipo_servicio='$this->tipo_servicio' ORDER BY descripcion ASC";
 		$result = $db->query($sql);
+
+		$db->close();
+
 		return $result;
 	}
 	public function ContarServicos(){
 		$db = new Conexion();
 		$sql="SELECT COUNT(*) AS total FROM `servicios_catalogo` WHERE `estatus`=1";
 		$result = $db->query($sql);
+
+		$db->close();
+
 		return $result;
 	}
 }

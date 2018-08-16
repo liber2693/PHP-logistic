@@ -10,11 +10,10 @@ if($array->num_rows!=0){
   				  'descripcion' => $resultado['descripcion']
                         );
         }
+        $array->free();
     }else{
         $data=0;
     }
 //echo "<pre>";print_r($data);die();
 echo json_encode($data);
-//$array1->free_result();
-
 ?>

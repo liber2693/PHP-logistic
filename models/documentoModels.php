@@ -62,6 +62,8 @@ class Docket{
 		$this->usuario = $usuario;
 		$this->estatus = $estatus;
 
+		$db->close();
+
 	}
 
 	static function contar(){
@@ -78,6 +80,8 @@ class Docket{
 
 		$result = $db->query($sql);
 
+		$db->close();
+
 		return $result;
 	}
 	public function crearDocumento()
@@ -86,6 +90,8 @@ class Docket{
 		$sql="INSERT INTO docket(codigo,shipper,telefono,cc,consignee,po,fecha, id_origen_pais, lugar_origen, id_destino_pais, lugar_destino, pieza, tipo_pieza, peso, tipo_peso, alto, ancho, largo, tipo_dimension, descripcion, tipo, fecha_creacion, usuario, estatus)
 			VALUES ('$this->codigo','$this->shipper','$this->telefono','$this->cc','$this->consignee','$this->po','$this->fecha','$this->id_origen_pais','$this->lugar_origen','$this->id_destino_pais','$this->lugar_destino','$this->pieza','$this->tipo_pieza','$this->peso','$this->tipo_peso','$this->alto','$this->ancho','$this->largo','$this->tipo_dimension','$this->descripcion','$this->tipo','$this->fecha_creacion','$this->usuario','1')";
 		$db->query($sql) or trigger_error("ERROR insertando codigo de documento");
+
+		$db->close();
 	}
 
 	public function selectDocket(){
@@ -99,6 +105,9 @@ class Docket{
 					 WHERE a.codigo='$this->codigo' AND a.estatus='1'";
 					//print_r($sql);die();
 		$resultado = $db->query($sql);
+
+		$db->close();
+
 		return $resultado;
 	}
 
@@ -109,6 +118,9 @@ class Docket{
 				JOIN  paises c ON c.codigo=a.id_destino_pais
 				WHERE a.estatus='1'";
 		$resultado = $db->query($sql);
+
+		$db->close();
+
 		return $resultado;
 	}
 
@@ -118,6 +130,9 @@ class Docket{
 			  a.fecha_modificacion,a.estatus,b.descripcion,a.pagos,a.comentarios FROM invoice a JOIN estatus b ON b.id=a.estatus
 			  WHERE a.codigo_docket='$this->codigo' AND a.estatus IN(1,2)";
 		$resultado = $db->query($sql);
+
+		$db->close();
+
 		return $resultado;
 	}
 
@@ -126,6 +141,8 @@ class Docket{
 		$sql="UPDATE docket SET shipper='$this->shipper', telefono='$this->telefono', cc='$this->cc', consignee='$this->consignee', po='$this->po', fecha='$this->fecha', id_origen_pais='$this->id_origen_pais', lugar_origen='$this->lugar_origen',id_destino_pais='$this->id_destino_pais', lugar_destino='$this->lugar_destino', pieza='$this->pieza', tipo_pieza='$this->tipo_pieza', peso='$this->peso', tipo_peso='$this->tipo_peso', alto='$this->alto', ancho='$this->ancho', largo='$this->largo', tipo_dimension='$this->tipo_dimension', descripcion='$this->descripcion', fecha_modificacion='$this->fecha_modificacion' WHERE codigo='$this->codigo' ";
 		;
 		$db->query($sql) or trigger_error("ERROR actualizando el documento");
+
+		$db->close();
 	}
 
 	//eliminar primero todo de invoice de un docket
@@ -143,12 +160,16 @@ class Docket{
 		//eliminar de la tabla proveedores una factura
 		$sql4="UPDATE supplier_invoice SET estatus='5' WHERE codigo_invoice = '$this->codigo'";
 		$db->query($sql4);
+
+		$db->close();
 	}
 	//elimnar el documento
 	public function DeleteDocket(){
 		$db = new Conexion();
 		$sql="UPDATE docket SET fecha_modificacion='$this->fecha_modificacion', usuario='$this->usuario', estatus = '5' WHERE codigo='$this->codigo'";
 		$db->query($sql);
+
+		$db->close();
 	}
 
 	public function SelectInvoiceDocket(){
@@ -163,6 +184,9 @@ class Docket{
 					 WHERE
 					 a.codigo_docket='$this->codigo' AND a.estatus IN (1,2)";
 		$result = $db->query($sql);
+
+		$db->close();
+
 		return $result;
 	}
 	//cantidad de invoices por dockets
@@ -170,6 +194,9 @@ class Docket{
 		$db = new Conexion();
 		$sql="SELECT COUNT(*) AS total FROM invoice WHERE codigo_docket='$this->codigo' AND estatus IN(1,2)";
 		$result = $db->query($sql);
+
+		$db->close();
+
 		return $result;
 	}
 	//cantidad de invoices por dockets con estatus PROCESADO
@@ -177,6 +204,9 @@ class Docket{
 		$db = new Conexion();
 		$sql="SELECT COUNT(*) AS total_pro FROM invoice WHERE codigo_docket='$this->codigo' AND estatus = 2";
 		$result = $db->query($sql);
+
+		$db->close();
+
 		return $result;
 	}
 }

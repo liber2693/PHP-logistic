@@ -10,6 +10,7 @@ if(empty($_SESSION['user']))
   $buscarDocket = Docket::soloCodigo($codigo);
   $array = $buscarDocket->selectDocket();
   $datos = $array->fetch_array();
+  $array->free();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,7 +111,30 @@ if(empty($_SESSION['user']))
                           <strong>WEIGHT: <?php echo $datos['peso'] ." " .ucfirst($datos['tipo_peso']);?></strong>
                         </td>
                         <td class="text-center">
-                          <strong>DIMENS: <?php echo $datos['alto'] . " X "  .$datos['ancho'] ." X " .$datos['largo'] ." " .ucfirst(($datos['tipo_dimension']));?></strong>
+                          <strong>DIMENS: 
+                            <?php
+                            $varI=null;
+                            if (!empty($datos['alto']) && empty($datos['ancho']) && empty($datos['largo'])) {
+                              $varI=$datos['alto'];
+                            }
+                            if (!empty($datos['alto']) && !empty($datos['ancho']) && empty($datos['largo'])) {
+                              $varI=$datos['alto']." X ".$datos['ancho'];
+                            }
+                            if (!empty($datos['alto']) && !empty($datos['ancho']) && !empty($datos['largo'])) {
+                              $varI=$datos['alto']." X ".$datos['ancho']." X ".$datos['largo'];
+                            }
+                            if (empty($datos['alto']) && !empty($datos['ancho']) && empty($datos['largo'])) {
+                              $varI=$datos['ancho'];
+                            }
+                            if (empty($datos['alto']) && !empty($datos['ancho']) && !empty($datos['largo'])) {
+                              $varI=$datos['ancho']." X ".$datos['largo'];
+                            }
+                            if (empty($datos['alto']) && empty($datos['ancho']) && !empty($datos['largo'])) {
+                              $varI=$datos['largo'];
+                            }
+                            echo $varI." ".ucfirst($datos['tipo_dimension']);
+                            ?>
+                          </strong>
                         </td>
                       </tr>
                       <tr>
@@ -158,6 +182,7 @@ if(empty($_SESSION['user']))
               </div>
               <?php
                 }
+                $array2->free();
               }
               ?>
             </section>
@@ -245,6 +270,7 @@ if(empty($_SESSION['user']))
                       </tr>
                       <?php
                       }
+                      $array1->free();
                       ?>
                     </tbody>
                   </table>

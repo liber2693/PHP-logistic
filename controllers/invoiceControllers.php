@@ -30,6 +30,7 @@ if(isset($_POST['codigo_documento']) && isset($_POST['usuario_documento'])){
     $correlativo = new Catalogo('','',$tipo,'','');
     $array = $correlativo->SelectCodigo();
     $cantidad=$array->fetch_assoc();
+    $array->free();
     $digito=$cantidad['correlativo']+1;
     $codigo="F-".str_pad($digito,1,"0",STR_PAD_LEFT);
     $actualizar= new Catalogo($cantidad['id'],$digito,$tipo,'','');
@@ -65,6 +66,7 @@ if(isset($_POST['codigo_documento']) && isset($_POST['usuario_documento'])){
         $eliminar = new invoicesServicesTemp('','','','','','','',$id_tabla);
         $array=$eliminar->EliminarServicioTablaTemp();
     }
+    $array1->free();
 
     /*FIN*/
     /*registrar el metodo de envio*/
@@ -107,6 +109,7 @@ if(isset($_POST['servicio'])){
                           'nota' => $resultado['nota'],
                         );
         }
+        $array->free();
     }else{
         $data=0;
     }
@@ -128,6 +131,7 @@ if(isset($_GET['tabla']) && $_GET['tabla']==1){
                           'nota' => $resultado['nota'],
                         );
         }
+        $array->free();
     }else{
         $data=0;
     }
@@ -166,6 +170,7 @@ if(isset($_GET['tabla']) && $_GET['tabla']==2){
                           'dinero' => $resultado['dinero'],
                         );
         }
+        $array->free();
     }else{
         $data=0;
     }
@@ -186,6 +191,7 @@ if(isset($_GET['tabla']) && $_GET['tabla']==3){
                           'dinero' => $resultado['dinero'],
                         );
         }
+        $array->free();
     }else{
         $data=0;
     }
@@ -215,6 +221,7 @@ if(isset($_GET['tabla']) && $_GET['tabla']==4){
                           'precio_ca' => $resultado['precio_ca'],
                         );
         }
+        $array->free();
     }else{
         $data=0;
     }
@@ -255,6 +262,7 @@ if(isset($_POST['codigo_factura']) && !empty($_POST['codigo_factura'])){
                           'precio_ca' => $resultado['precio_ca'],
                         );
         }
+        $array->free();
     }else{
         $data=0;
     }

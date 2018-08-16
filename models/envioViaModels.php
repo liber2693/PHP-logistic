@@ -20,6 +20,8 @@ class EnviosVia{
 		$this->fecha_creacion = $fecha_creacion;
 		$this->estatus = $estatus;
 
+		$db->close();
+
 	}
 
 	static function ningundato(){
@@ -30,6 +32,9 @@ class EnviosVia{
 		$db = new Conexion();
 		$sql="SELECT * FROM `envios_via` WHERE `estatus`='ACTIVO' ORDER BY id ASC";
 		$result = $db->query($sql);
+
+		$db->close();
+
 		return $result;
 	}
 }

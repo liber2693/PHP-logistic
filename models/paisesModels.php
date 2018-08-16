@@ -14,6 +14,9 @@ class Paises{
 		$this->codigo = $codigo;
 		$this->pais = $pais;
 		$this->estatus = $estatus;
+
+		$db->close();
+
 	}
 
 	static function ningunPais(){
@@ -24,6 +27,9 @@ class Paises{
 		$db = new Conexion();
 		$sql="SELECT * FROM `paises` WHERE estatus='1' ORDER BY pais ASC";
 		$result = $db->query($sql);
+
+		$db->close();
+
 		return $result;
 	}
 }

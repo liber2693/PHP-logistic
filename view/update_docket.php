@@ -13,6 +13,7 @@ if(empty($_SESSION['user']))
     echo "no existe";
   }else{
   $datos = $array->fetch_array();
+  $array->free();
   //echo "<pre>";print_r($datos);die();
 ?>
 <!DOCTYPE html>

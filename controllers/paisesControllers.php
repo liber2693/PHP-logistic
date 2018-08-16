@@ -17,6 +17,7 @@ if(isset($_GET['origen']) && !empty($_GET['origen'])){
 
 	    	echo '<option '.$sele.' value="'.$resultado['codigo'].'">'.$resultado['pais'].'</option>';
 	    }
+	    $array1->free();
 	}
 }
 if (isset($_GET['destino']) && !empty($_GET['destino'])) {
@@ -31,6 +32,7 @@ if (isset($_GET['destino']) && !empty($_GET['destino'])) {
 
 	       echo '<option '.$sele.' value="'.$resultado['codigo'].'">'.$resultado['pais'].'</option>';
 	    }
+	    $array1->free();
 	}
 }
 
@@ -39,11 +41,9 @@ if (isset($_GET['destino']) && !empty($_GET['destino'])) {
 	    while ($resultado = $array1->fetch_assoc()){
 	        echo '<option value="'.$resultado['codigo'].'">'.$resultado['pais'].'</option>';
 	    }
+	    $array1->free();
 	}else{
 		echo '<option value="0">Select Country</option>';
 	}
-
-
-$array1->free_result();
 
 ?>

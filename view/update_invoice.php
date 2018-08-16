@@ -19,6 +19,7 @@ else
 		echo "no existe";
 		}else{
 		$datos = $array->fetch_array();
+    $array->free();
 
 	//echo "<pre>";print_r($datos);die();
 
@@ -200,6 +201,7 @@ else
                         $resultEnvio=$buscarShippingEnvios->EditViaEnvio();
                         $chek = ($resultEnvio->num_rows!=0) ? 'checked="checked"' : '' ;
                         $datoNota=$resultEnvio->fetch_assoc();
+                        $resultEnvio->free();
                     ?>
                       <label class="checkbox-inline">
                         <input type="hidden" name="id_envio_seleccionado[]" value="<?php echo $datoNota['id'];?>">
@@ -207,6 +209,7 @@ else
                       </label>
                     <?php
                       }
+                      $resultadosEnvio->free();
                       $mostrarClase = ($datoNota['id_envio']==6) ? "" : "ocultar" ;
                     ?>
                     </div>

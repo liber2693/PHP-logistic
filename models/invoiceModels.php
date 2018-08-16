@@ -38,6 +38,8 @@ class Invoice{
 		$this->fecha_modificacion = $fecha_modificacion;
 		$this->estatus = $estatus;
 
+		$db->close();
+
 	}
 
 	static function ningundato(){
@@ -59,6 +61,8 @@ class Invoice{
 		}
 		$sql="INSERT INTO invoice(codigo_invoice, codigo_docket, codigo_usuario, ".$fechaSql." tipo_documento, cliente,precio,usuario,fecha_creacion,estatus) VALUES ('$this->codigo_invoice','$this->codigo_docket','$this->codigo_usuario', ".$var1." '$this->tipo_documento','$this->cliente','','$this->usuario','$this->fecha_creacion','1')";
 		$result = $db->query($sql);
+
+		$db->close();
 	}
 	public function SelectInvoice(){
 		$db = new Conexion();
@@ -66,6 +70,9 @@ class Invoice{
 		$sql = "SELECT a.tipo_documento,a.codigo_invoice,a.codigo_docket,a.codigo_usuario,a.fecha,a.cliente,a.pagos,a.comentarios,a.estatus,b.fecha AS fecha_docket FROM invoice a JOIN docket b ON b.codigo=a.codigo_docket WHERE a.codigo_invoice = 
 		'$this->codigo_invoice' AND a.estatus IN (1,2)";
 		$result = $db->query($sql);
+
+		$db->close();
+
 		return $result;
 	}
 
@@ -76,6 +83,8 @@ class Invoice{
 		$var2 = (!empty($this->codigo_usuario)) ? "codigo_usuario='$this->codigo_usuario'," : null ;
 		$sql="UPDATE invoice SET  ".$var2." ".$var1." cliente='$this->cliente', usuario='$this->usuario', fecha_modificacion = '$this->fecha_modificacion' WHERE codigo_invoice='$this->codigo_invoice' AND estatus IN (1,2)";
 		$result = $db->query($sql);
+
+		$db->close();
 	}
 
 	public function SelectInvoiceDocket(){
@@ -90,6 +99,9 @@ class Invoice{
 					 WHERE
 					 a.codigo_invoice='$this->codigo_invoice' AND a.estatus IN (1,2)";
 		$result = $db->query($sql);
+
+		$db->close();
+
 		return $result;
 	}
 	public function DeleteInvoice(){
@@ -106,12 +118,17 @@ class Invoice{
 		//eliminar de la tabla proveedores una factura
 		$sql4="UPDATE supplier_invoice SET estatus='5' WHERE codigo_invoice = '$this->codigo_invoice'";
 		$db->query($sql4);
+
+		$db->close();
+
 	}
 	//cambiar estatus del registro para los procesos de las facturas
 	public function UpdateStatusInvoice(){
 		$db = new Conexion();
 		$sql="UPDATE invoice SET estatus = 2 WHERE codigo_invoice='$this->codigo_invoice'";
 		$result = $db->query($sql);
+
+		$db->close();
 
 	}
 	//agregar comentario a la factura
@@ -120,6 +137,8 @@ class Invoice{
 		$sql="UPDATE invoice SET pagos = '$this->pagos', comentarios = '$this->comentarios' WHERE codigo_invoice='$this->codigo_invoice'";
 		//echo "<pre>";print_r($sql);die();
 		$result = $db->query($sql);
+
+		$db->close();
 
 	}
 }

@@ -14,6 +14,8 @@ class Estatus{
 		$this->id = $id;
 		$this->descripcion = $descripcion;
 		$this->estatus = $estatus;
+
+		$db->close();
 	}
 
 	static function ningundato(){

@@ -19,6 +19,7 @@ else
     echo "NO EXIST";
     }else{
     $datos = $array->fetch_array();
+    $array->free();
 
 ?>
 <!DOCTYPE html>
@@ -186,6 +187,7 @@ else
                   </tr>
                 <?php
                   }
+                  $array3->free();
                 }
                 ?>
                 </tbody>
@@ -240,6 +242,7 @@ else
                   </tr>
                 <?php
                   }
+                  $array1->free();
                 }
                 ?>
                 </tbody>
@@ -283,7 +286,7 @@ else
               </div>
             <?php
               }
-
+              $array2->free();
             }
             ?>
           </section>
