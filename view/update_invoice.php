@@ -62,6 +62,7 @@ else
                 	<div class="form-group">
                     <label class="col-lg-2 control-label"><b>Invoice #</b></label>
                     <div class="col-lg-10">
+                      <?php // echo "<pre>";print_r($datos); ?>
                       <div class="col-sm-4">
                         <input type="text" id="codigo_usuario" name="codigo_usuario" class="form-control round-input" value="<?php echo $datos['codigo_usuario'];?>">
                       </div>

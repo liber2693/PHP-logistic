@@ -7,6 +7,7 @@ class Conexion extends mysqli{
 	private $DB_CONTRASENA = '123456';
 	private $DB_NOMRBE = 'proyecto_liber';
 
+
 	public function __construct(){
 		parent:: __construct($this->DB_HOST, $this->DB_USUARIO, $this->DB_CONTRASENA, $this->DB_NOMRBE);
 

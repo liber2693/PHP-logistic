@@ -58,7 +58,7 @@ else
               <div class="panel-body">
                 <form class="form-horizontal" id="crear_invoice" method="post" action="../controllers/invoiceControllers.php">
                 	<div class="form-group">
-	                    <label class="col-lg-2 control-label"><b>Docket Code</b></label>
+	                    <label class="col-lg-2 control-label"><b>Docket #</b></label>
 	                    <div class="col-lg-10">
 	                      <p class="form-control-static"><strong><?php echo $datos['codigo'];?></strong></p>
                         <input type="hidden" name="codigo_documento" id="codigo_documento" value="<?php echo $datos['codigo'];?>">
@@ -67,7 +67,7 @@ else
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="col-sm-2 control-label"><b>Invoice Code</b></label>
+                      <label class="col-sm-2 control-label"><b>Invoice #</b></label>
                       <div class="col-sm-4">
                         <input type="text" id="codigo_usuario" name="codigo_usuario" class="form-control round-input">
                       </div>
