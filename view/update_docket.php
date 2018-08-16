@@ -32,6 +32,7 @@ if(empty($_SESSION['user']))
 
     <!--main content start-->
     <section id="main-content">
+    	<div  align="center"  class="loader" style="display: none;" id="loader_imagen"></div>
       <section class="wrapper">
         <!--overview start-->
         <div class="row">

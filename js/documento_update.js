@@ -130,7 +130,11 @@ $("#boton_registrar").click(function(){
         cache: false,
         contentType: false,
         processData: false,
+        beforeSend: function(){
+           $('#loader_imagen').show();
+        },
         success: function(data){
+            $('#loader_imagen').hide();
             if(data==1){
                 //console.log("se subio y guardo con existo");
                 $("#myModal").modal("hide");
