@@ -243,7 +243,9 @@ if(isset($_POST['id_archivo'])){
     $datos = $result->fetch_assoc();
 
     $url = $datos['url_ubicacion'];
-    unlink($url);
+    if (file_exists($url)){
+        unlink($url);
+    }
     $archivo_eliminar = ArchivoAdjuntos::soloId($id_archivo);
     $archivo_eliminar->DeleteArchivo(); 
     echo json_encode(1);

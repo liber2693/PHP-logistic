@@ -119,29 +119,34 @@ if ($array_d->num_rows==0) {
       <table border="1" width="100%">
         <tr>
           <td><b>DOCKET #: </b>&nbsp;'.$datos_i['codigo_docket'].'</td>
+          <td><b>DATE DOCKET #: </b>&nbsp;'.$datos_i['fecha_docket'].'</td>
           <td><b>INVOICE #: </b>&nbsp;'.$varCode.'</td>
           <td><b>DATE: </b>&nbsp;'.$fecha_formateada.'</td>
-          <td><b>BILL TO: </b>&nbsp;'.ucwords($datos_i['cliente']).'</td>
         </tr>
         <tr>
+          <td colspan="2"><b>BILL TO: </b>&nbsp;'.ucwords($datos_i['cliente']).'</td>
           <td><b>ORIGIN: </b>&nbsp;'.$datos_i['pais_origen'].', '.ucfirst($datos_i['lugar_origen']).'</td>
           <td><b>DESTINATION: </b>&nbsp;'.$datos_i['pais_destino'].', '.ucfirst($datos_i['lugar_destino']).'</td>
-          <td><b>PIECES: </b>&nbsp;'.$datos_i['pieza'].' '.ucfirst($datos_i['tipo_pieza']).'</td>
-          <td><b>WEIGHT: </b>&nbsp;'.$datos_i['peso'].' '.ucfirst($datos_i['tipo_peso']).'</td>
         </tr>
         <tr>
+          <td><b>PIECES: </b>&nbsp;'.$datos_i['pieza'].' '.ucfirst($datos_i['tipo_pieza']).'</td>
+          <td><b>WEIGHT: </b>&nbsp;'.$datos_i['peso'].' '.ucfirst($datos_i['tipo_peso']).'</td>
           <td colspan="2">
             <b>DIMENSIONS:</b> &nbsp;'.$datos_i['alto'].' X '.$datos_i['ancho'].' X '.$datos_i['largo'].'  '.ucfirst($datos_i['tipo_dimension']).'
           </td>
-          <td colspan="2">
+        </tr>
+        <tr>
+          <td colspan="4">
             <b>NOTE:</b> &nbsp;'.ucfirst($datos_i['descripcion']).'</td>
         </tr>
         <tr>
-          <td colspan="2">
+          <td colspan="4">
             <b>PAYMENTS:</b>
             <br>'.$datos_i['pagos'].'
           </td>
-          <td colspan="2">
+        </tr>
+        <tr>
+          <td colspan="4">
             <b>COMMENTS:</b>
                <br>'.$datos_i['comentarios'].'
           </td>

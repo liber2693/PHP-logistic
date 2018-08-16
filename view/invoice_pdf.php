@@ -67,29 +67,34 @@ if ($array->num_rows==0) {
       <table border="1" width="100%">
         <tr>
           <td><b>DOCKET #: </b>&nbsp;'.$datos['codigo_docket'].'</td>
+          <td><b>DATE DOCKET #: </b>&nbsp;'.$datos['fecha_docket'].'</td>
           <td><b>INVOICE #: </b>&nbsp;'.$varCode.'</td>
           <td><b>DATE: </b>&nbsp;'.$fecha_formateada.'</td>
-          <td><b>BILL TO: </b>&nbsp;'.ucwords($datos['cliente']).'</td>
         </tr>
         <tr>
+          <td colspan="2"><b>BILL TO: </b>&nbsp;'.ucwords($datos['cliente']).'</td>
           <td><b>ORIGIN: </b>&nbsp;'.$datos['pais_origen'].', '.ucfirst($datos['lugar_origen']).'</td>
           <td><b>DESTINATION: </b>&nbsp;'.$datos['pais_destino'].', '.ucfirst($datos['lugar_destino']).'</td>
+        </tr>
+        <tr>
           <td><b>PIECES: </b>&nbsp;'.$datos['pieza'].' '.ucfirst($datos['tipo_pieza']).'</td>
           <td><b>WEIGHT: </b>&nbsp;'.$datos['peso'].' '.ucfirst($datos['tipo_peso']).'</td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <b>DIMENSIONS:</b> &nbsp;'.$datos['alto'].' X '.$datos['ancho'].' X '.$datos['largo'].'  '.ucfirst($datos['tipo_dimension']).'
+          <td colspan="2"><b>DIMENSIONS:</b> &nbsp;'.$datos['alto'].' X '.$datos['ancho'].' X '.$datos['largo'].'  '.ucfirst($datos['tipo_dimension']).'
           </td>
-          <td colspan="2">
-            <b>NOTE:</b> &nbsp;'.ucfirst($datos['descripcion']).'</td>
         </tr>
         <tr>
-          <td colspan="2">
+          <td colspan="4">
+            <b>NOTE:</b> &nbsp;'.ucfirst($datos['descripcion']).'
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
             <b>PAYMENTS:</b>
             <br>'.$datos['pagos'].'
           </td>
-          <td colspan="2">
+        </tr>
+        <tr>
+          <td colspan="4">
             <b>COMMENTS:</b>
                <br>'.$datos['comentarios'].'
           </td>
