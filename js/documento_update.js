@@ -91,13 +91,15 @@ function listar_archivos_update(codigo_d){
 }
 
 $("#nuevo_archivo").click(function(){
-    console.log("nueva imagem");
+    //console.log("nueva imagem");
     $("#codigo_documento").val($("#codigo_docu").val());
 })
 
 //confirmar para subir imagen
 $("#boton_registrar").click(function(){
-    console.log("subir iamgen");
+    //console.log("subir iamgen");
+
+    $("#boton_registrar").attr('disabled', true);
 
     var codigo_d = $("#codigo_documento").val();
     var inputArchivo = document.getElementById('imagen');
@@ -116,6 +118,7 @@ $("#boton_registrar").click(function(){
 
     if (archivo == '') {
         $("#imagen").css({"border":"2px solid #ff3333"});
+        $("#boton_registrar").attr('disabled', false);
         event.preventDefault();
     }
 
@@ -129,11 +132,12 @@ $("#boton_registrar").click(function(){
         processData: false,
         success: function(data){
             if(data==1){
-                console.log("se subio y guardo con existo");
+                //console.log("se subio y guardo con existo");
                 $("#myModal").modal("hide");
                 limpiar_campos();
                 //$("#boton_registrar").attr("data-dismiss","modal");
                 listar_archivos_update(codigo_d);
+                $("#boton_registrar").attr('disabled', false);
             }
         }
     })
@@ -146,7 +150,7 @@ function limpiar_campos(){
 }
 
 function eliminar_archivo(id){
-	console.log("este archivo se va a eliminar: "+id)
+	//console.log("este archivo se va a eliminar: "+id)
 	var codigo_d = $("#codigo_docu").val()
 	$.ajax({
         type: "POST",
