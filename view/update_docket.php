@@ -190,7 +190,7 @@ if(empty($_SESSION['user']))
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>NAME ARCHIVE</th>
+											<th>FILE NAME</th>
 											<th>ACTION</th>
 										</tr>
 									</thead>
@@ -199,7 +199,7 @@ if(empty($_SESSION['user']))
 								</table>
 							</div>
 							<center><button type="button" data-toggle="modal" data-target="#myModal" name="nuevo_archivo" id="nuevo_archivo" class="btn btn-primary">
-								<i class="fa fa-plus"></i><b>NEW ARCHIVE</b>
+								<i class="fa fa-plus"></i><b> NEW ATTACHMENT</b>
 							</button></center>
 						</section>
 		          	</div>

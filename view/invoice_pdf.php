@@ -62,12 +62,13 @@ if ($array->num_rows==0) {
         $fecha_formateada = "Not registered";
       }
       $varCode = ($datos['codigo_usuario']) ? $datos['codigo_usuario'] : "Not registered" ;
+      $fecha_docket = explode('-', $datos['fecha_docket']);
       $html.='
       <h3><br>INVOICE</h3>
       <table border="1" width="100%">
         <tr>
           <td><b>DOCKET #: </b>&nbsp;'.$datos['codigo_docket'].'</td>
-          <td><b>DATE DOCKET #: </b>&nbsp;'.$datos['fecha_docket'].'</td>
+          <td><b>DATE DOCKET #: </b>&nbsp;'.$fecha_docket[1] .'-' .$fecha_docket[2] .'-' .$fecha_docket[0].'</td>
           <td><b>INVOICE #: </b>&nbsp;'.$varCode.'</td>
           <td><b>DATE: </b>&nbsp;'.$fecha_formateada.'</td>
         </tr>

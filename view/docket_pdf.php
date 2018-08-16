@@ -115,11 +115,12 @@ if ($array_d->num_rows==0) {
         $fecha_formateada = "Not registered";
       }
       $varCode = ($datos_i['codigo_usuario']) ? $datos_i['codigo_usuario'] : "Not registered" ;
+      $fecha_docket = explode('-', $datos_i['fecha_docket']);
       $paginas.$con='<br><br>
       <table border="1" width="100%">
         <tr>
           <td><b>DOCKET #: </b>&nbsp;'.$datos_i['codigo_docket'].'</td>
-          <td><b>DATE DOCKET #: </b>&nbsp;'.$datos_i['fecha_docket'].'</td>
+          <td><b>DATE DOCKET #: </b>&nbsp;'.$fecha_docket[1] .'-' .$fecha_docket[2] .'-' .$fecha_docket[0].'</td>
           <td><b>INVOICE #: </b>&nbsp;'.$varCode.'</td>
           <td><b>DATE: </b>&nbsp;'.$fecha_formateada.'</td>
         </tr>
