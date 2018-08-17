@@ -3,6 +3,7 @@ $(document).ready(function() {
 	listar_archivos_update($("#codigo_docu").val());
 
 
+
 	$("#enviar_actualizacion").submit(function(event){
 		//console.log("hola");
 
@@ -60,6 +61,7 @@ function llenar_paises(idO,idD){
 }
 //*********ACTUALZIAR IMAGEN********//
 
+
 function listar_archivos_update(codigo_d){
 	$("#lista_archivo > tbody:last").children().remove();
 	i=0;
@@ -82,13 +84,15 @@ function listar_archivos_update(codigo_d){
                     '<tr>'+
                     '<td><b>'+i+'</b></td>'+
                     '<td><a href="'+data.url_ubicacion+'" target="_blank"><b>'+data.nombre_archivo+'</b></a></td>'+
-                    '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminar_archivo('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
+                    '<td><button type="button" class="btn btn-danger" title="Eliminar" data-toggle="modal" data-target="#myModalDelete"  onclick="modal_confirmar('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                     '</tr>');
                 });
             }
         }
     })
 }
+
+
 
 $("#nuevo_archivo").click(function(){
     //console.log("nueva imagem");
@@ -110,7 +114,7 @@ $("#boton_registrar").click(function(){
     data.append('codigo_docket',codigo_d);
 
     var archivo = $("#imagen").val();
-    console.log(archivo);
+    //console.log(archivo);
 
    //variable para validar
 
@@ -152,10 +156,18 @@ function limpiar_campos(){
     $(".limpiar").val("");
     $("#imagen").val("");
 }
-
+function modal_confirmar(id){
+    //console.log(id);
+    id_registro = id;
+}
+$("#boton_confimar_eliminar").click(function(){
+    eliminar_archivo(id_registro);
+    $("#boton_confimar_eliminar").attr('disabled', true);
+})
 function eliminar_archivo(id){
 	//console.log("este archivo se va a eliminar: "+id)
 	var codigo_d = $("#codigo_docu").val()
+    //console.log(codigo_d)
 	$.ajax({
         type: "POST",
         dataType: "json",
@@ -163,8 +175,10 @@ function eliminar_archivo(id){
         data: { 'id_archivo' : id},
         success: function(data){
         	if(data==1){
-                console.log("elimino registro");
+                //console.log("elimino registro");
                 listar_archivos_update(codigo_d);
+                $("#myModalDelete").modal("hide");
+                $("#boton_confimar_eliminar").attr('disabled', false);
             }
         }
     })

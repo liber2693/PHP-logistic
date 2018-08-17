@@ -199,9 +199,11 @@ if(empty($_SESSION['user']))
 									</tbody>
 								</table>
 							</div>
-							<center><button type="button" data-toggle="modal" data-target="#myModal" name="nuevo_archivo" id="nuevo_archivo" class="btn btn-primary">
+							<center>
+								<button type="button" data-toggle="modal" data-target="#myModal" name="nuevo_archivo" id="nuevo_archivo" class="btn btn-primary">
 								<i class="fa fa-plus"></i><b> NEW ATTACHMENT</b>
-							</button></center>
+								</button>
+							</center>
 						</section>
 		          	</div>
 		    </div>
@@ -219,6 +221,7 @@ if(empty($_SESSION['user']))
     </section>
     <!--main content end-->
   </section>
+  <!-- Modal para subir ARCHIVO AL SERVIDOR por un DOCKET-->
   <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
     <!-- Modal content-->
@@ -235,6 +238,28 @@ if(empty($_SESSION['user']))
           </div>
           <div class="modal-footer">
             <button type="button" name="boton_registrar" id="boton_registrar" class="btn btn-success"><b>Confirm</b></button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><b>Cancel</b></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Modal para confirmar elimnar un ARCHIVO-->
+  <div id="myModalDelete" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+    <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><center><b>DELETE ATTACHMENT</b></center></h4>
+        </div>
+        <br>
+        <form class="form-inline" role="form">
+          <div class="modal-body text-center">
+            <h3><b>¿Do you want to delete this file??</b></h3>
+          </div>
+          <div class="modal-footer">
+            <button type="button" name="boton_confimar_eliminar" id="boton_confimar_eliminar" class="btn btn-success"><b>Confirm</b></button>
             <button type="button" class="btn btn-danger" data-dismiss="modal"><b>Cancel</b></button>
           </div>
         </form>
