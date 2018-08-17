@@ -7,9 +7,14 @@ include '../funciones/funciones.php';
 session_start();
 date_default_timezone_set("America/Caracas");
 $fecha_registro=date("Y-m-d");
+$mes=date("m"); //CUANDO SEA  NOVIEMBRE, EL AÑO PASARA A 19
 $date=substr(date("Y"),2);
 
-//print_r($_POST);die();
+if ($mes == '11' or $mes =='12'){
+  $date=substr(date("Y"),2) + 1;
+}
+
+//print_r($date);die();
 if(isset($_POST['tipoDocumento'])){
     $tipoDocumento=$_POST['tipoDocumento'];
     $shipper=post('shipper');
@@ -192,12 +197,12 @@ if (isset($_POST['boton_regresar'])) {
 if (isset($_POST['codigo_docket']) && !empty($_FILES['archivo'])) {
     //echo "empezar coño";
     $codigo_d = $_POST['codigo_docket'];
-    
+
     $maximo = ArchivoAdjuntos::soloCodigo($codigo_d);
     $array = $maximo->SelectMax();
     $cantidad = $array->fetch_assoc();
     $array->free();
-    
+
     $i = $cantidad['max'] + 1;
 
     //echo "<pre>";print_r($_FILES);die();
@@ -215,7 +220,7 @@ if (isset($_POST['codigo_docket']) && !empty($_FILES['archivo'])) {
 
         $archivos = new ArchivoAdjuntos($codigo_d,$rutaArchivo,'',$nombreArchivo,$i,'');
         $archivos->insertArchivoDocumento();
-    }    
+    }
 
     echo json_encode(1);
 }
@@ -252,7 +257,7 @@ if(isset($_POST['id_archivo'])){
         unlink($url);
     }
     $archivo_eliminar = ArchivoAdjuntos::soloId($id_archivo);
-    $archivo_eliminar->DeleteArchivo(); 
+    $archivo_eliminar->DeleteArchivo();
     echo json_encode(1);
 }
 ?>

@@ -204,7 +204,6 @@ if(empty($_SESSION['user']))
 							</button></center>
 						</section>
 		          	</div>
-		        </div>
 		    </div>
 	    </section>
         <div class="col-lg-offset-5 col-lg-9">
@@ -212,6 +211,7 @@ if(empty($_SESSION['user']))
 	        <a href="docket_list.php">
 	          <button type="button" class="btn btn-danger"><strong>GO BACK</strong></button>
 	        </a>
+          <br><br><br><br><br>
 	    </div>
 	    </form>
          <!--tab nav start-->

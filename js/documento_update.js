@@ -73,7 +73,7 @@ function listar_archivos_update(codigo_d){
             if(lista==0){
                 $("#lista_archivo").append(
                 '<tr>'+
-                '<td colspan="4" class="text-center"><b>This docket not have attachments</b></td>'+
+                '<td colspan="4" style="font-size:120%"class="text-center"><b><br>No Attachments</b></td>'+
                 '</tr>');
             }else{
                 lista.forEach( function(data, indice, array) {

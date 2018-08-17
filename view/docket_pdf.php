@@ -113,7 +113,7 @@ if ($array_d->num_rows==0) {
               </td>
           </tr>
           <tr>
-            <td colspan="3"><b>NOTE: </b>&nbsp;'.ucfirst($datos_d['descripcion']).'</td>
+            <td colspan="3"><b>DESCRIPTION: </b>&nbsp;'.ucfirst($datos_d['descripcion']).'</td>
           </tr>
         </table>';
 
@@ -165,14 +165,14 @@ if ($array_d->num_rows==0) {
         </tr>
         <tr>
           <td colspan="4">
-            <b>PAYMENTS:</b>
-            <br>'.$datos_i['pagos'].'
+            <b>PAYMENTS: </b>
+            '.ucfirst($datos_i['pagos']).'
           </td>
         </tr>
         <tr>
           <td colspan="4">
-            <b>COMMENTS:</b>
-               <br>'.$datos_i['comentarios'].'
+            <b>COMMENTS: </b>
+               '.ucfirst($datos_i['comentarios']).'
           </td>
         </tr>
       </table>';

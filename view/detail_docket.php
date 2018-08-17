@@ -111,7 +111,7 @@ if(empty($_SESSION['user']))
                           <strong>WEIGHT: <?php echo $datos['peso'] ." " .ucfirst($datos['tipo_peso']);?></strong>
                         </td>
                         <td class="text-center">
-                          <strong>DIMENS: 
+                          <strong>DIMENS:
                             <?php
                             $varI=null;
                             if (!empty($datos['alto']) && empty($datos['ancho']) && empty($datos['largo'])) {
@@ -139,7 +139,7 @@ if(empty($_SESSION['user']))
                       </tr>
                       <tr>
                         <td colspan="4" class="text-center">
-                          <strong>NOTES: <?php echo ucfirst($datos['descripcion']) ."</strong>";?>
+                          <strong>DESCRIPTION: <?php echo ucfirst($datos['descripcion']) ."</strong>";?>
                         </td>
                       </tr>
                     </tbody>

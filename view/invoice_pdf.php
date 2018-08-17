@@ -90,14 +90,14 @@ if ($array->num_rows==0) {
         </tr>
         <tr>
           <td colspan="4">
-            <b>PAYMENTS:</b>
-            <br>'.$datos['pagos'].'
+            <b>PAYMENTS: </b>
+            '.ucfirst($datos['pagos']).'
           </td>
         </tr>
         <tr>
           <td colspan="4">
-            <b>COMMENTS:</b>
-               <br>'.$datos['comentarios'].'
+            <b>COMMENTS: </b>
+               '.ucfirst($datos['comentarios']).'
           </td>
         </tr>
       </table>';
