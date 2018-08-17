@@ -179,7 +179,15 @@ if(empty($_SESSION['user']))
 									<textarea name="descripcion" class="form-control round-input" placeholder="Description"><?php echo $datos['descripcion'];?></textarea>
 								</div>
 							</div>
-
+							<div class="col-lg-offset-2 col-lg-10">
+		                      	<button type="submit"  name="actualizar_documento" id="actualizar_documento" class="btn btn-primary">
+			                    	<strong>UPDATE</strong>
+			                    </button>
+							    <a href="docket_list.php" class="btn btn-danger">
+							          <strong>GO BACK</strong>
+							    </a>
+		                    </div>
+						</form>
 			        </div>
 		          	<div id="about" class="tab-pane">
 		          		<section class="panel">
@@ -208,14 +216,6 @@ if(empty($_SESSION['user']))
 		          	</div>
 		    </div>
 	    </section>
-        <div class="col-lg-offset-5 col-lg-9">
-	        <button type="submit"  name="actualizar_documento" id="actualizar_documento" class="btn btn-primary"><strong>UPDATE</strong></button>
-	        <a href="docket_list.php">
-	          <button type="button" class="btn btn-danger"><strong>GO BACK</strong></button>
-	        </a>
-          <br><br><br><br><br>
-	    </div>
-	    </form>
          <!--tab nav start-->
       </div>
     </section>
