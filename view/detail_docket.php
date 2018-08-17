@@ -283,7 +283,7 @@ if(empty($_SESSION['user']))
                 </a>
                 <a href="docket_list.php" class="btn btn-danger">
                   <strong>GO BACK</strong>
-                </a>
+                </a><br><br><br><br>
               </center>
             </div>
           </div>
