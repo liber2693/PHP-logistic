@@ -26,7 +26,17 @@
           </li>
           <?php
             }
-            ?>
+            if ($_SESSION['tipo_usuario'] == 1){
+             ?>
+            <li class="active">
+              <a class="" href="usuarios_admin.php">
+                <i class="fa fa-users"></i>
+                <span>Manage Users</span>
+              </a>
+            </li>
+            <?php
+              }
+              ?>
         </ul>
       </div>
     </aside>
