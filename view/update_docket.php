@@ -256,7 +256,7 @@ if(empty($_SESSION['user']))
         <br>
         <form class="form-inline" role="form">
           <div class="modal-body text-center">
-            <h3><b>¿Do you want to delete this file??</b></h3>
+            <h4><b><center>Do you want to delete this attachment?</center></b></h4>
           </div>
           <div class="modal-footer">
             <button type="button" name="boton_confimar_eliminar" id="boton_confimar_eliminar" class="btn btn-success"><b>Confirm</b></button>
