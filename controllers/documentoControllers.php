@@ -56,7 +56,7 @@ if(isset($_POST['tipoDocumento'])){
         $actualizar->UpdateCorrelativo();
     }
 
-    $documento = new Docket($codigo,$shipper,$telefono,$po,$cc,$consignee,$fecha,$pais_origen,$lugar_origen,$pais_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$tipo_dimension,$descripcion,$tipoDocumento,$fecha_registro,'',$usuario,'','');
+    $documento = new Docket($codigo,$shipper,$telefono,$po,$cc,$consignee,$fecha,$pais_origen,$lugar_origen,$pais_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$tipo_dimension,$descripcion,'',$tipoDocumento,$fecha_registro,'',$usuario,'','');
     $documento->crearDocumento();
 
     if(!empty($_FILES['archivo'])){
@@ -107,7 +107,7 @@ if(isset($_POST['codigo_docu'])){
 
     $usuario=$_SESSION['id_usuario'];
 
-    $documento = new Docket($codigo_docu,$expedidor,$telefono,$cc,$consignee,$po,$fecha,$id_origen,$lugar_origen,$id_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$medida,$descripcion,'','',$fecha_registro,$usuario,'','');
+    $documento = new Docket($codigo_docu,$expedidor,$telefono,$cc,$consignee,$po,$fecha,$id_origen,$lugar_origen,$id_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$medida,$descripcion,'','','',$fecha_registro,$usuario,'','');
     $documento->UpdateDocumento();
 
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_docket.php?docket=".base64_encode($codigo_docu)."'>";
@@ -129,7 +129,7 @@ if(isset($_POST['boton_eliminar'])){
             $codigo_usuario_eliminar = $dato['codigo_usuario'];
             $tipo_factura = 'F';
 
-            $delete_invoice_d = new Docket($codigo_factura_eliminar,'','','','','','','','','','','','','','','','','','','','','',$fecha_registro,'','','');
+            $delete_invoice_d = new Docket($codigo_factura_eliminar,'','','','','','','','','','','','','','','','','','','','','','',$fecha_registro,'','','');
             $delete_invoice_d->DeleteInvoiceDocket();
 
             //guardar regsitros de las facturas eliminadas
@@ -140,7 +140,7 @@ if(isset($_POST['boton_eliminar'])){
         $result->free();
     }
     //eliminar el registro del documento
-    $delete_docket = new Docket($codigo_documento,'','','','','','','','','','','','','','','','','','','','','',$fecha_registro,$usuario,'');
+    $delete_docket = new Docket($codigo_documento,'','','','','','','','','','','','','','','','','','','','','','','',$fecha_registro,$usuario,'');
     $delete_docket->DeleteDocket();
     //eliminar el documento ponerlo en la tabla eliminados
     $delete_register_d = new DocketInvoiceDelete($codigo_documento,'','',$tipo_documento,$descripcion,$usuario,$fecha_registro,'','');
@@ -259,5 +259,16 @@ if(isset($_POST['id_archivo'])){
     $archivo_eliminar = ArchivoAdjuntos::soloId($id_archivo);
     $archivo_eliminar->DeleteArchivo();
     echo json_encode(1);
+}
+//comentario para el docket desde la lista
+if(isset($_POST['boton_comentario'])){
+    $codigo_docket_comentario = $_POST['codigo_docket_comentario'];
+    $campo_comentario = post('campo_comentario');
+
+    $comentario = new Docket($codigo_docket_comentario,'','','','','','','','','','','','','','','','','','','',$campo_comentario,'','','','','','');
+    $comentario->InsertCommentsDocket();
+    //echo "<pre>";print_r($comentario);die();
+    echo"<meta http-equiv='refresh' content='0;URL=../view/docket_list.php'>";
+
 }
 ?>

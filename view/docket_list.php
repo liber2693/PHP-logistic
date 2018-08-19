@@ -79,6 +79,7 @@ if(empty($_SESSION['user']))
                         <?php $tipo = ($datos['tipo']=='E') ? "<b>EXPORT</b>" : "<b>IMPORT</b>" ; echo $tipo;?>
                         <input type="hidden" name="tipo_documento" id="tipo_documento<?php echo $i;?>" value="<?php echo $datos['tipo'];?>">
                         <input type="hidden" name="codigo_documento" id="codigo_documento<?php echo $i;?>" value="<?php echo $datos['codigo'];?>">
+                        <input type="hidden" id="comentarios<?php echo $datos['codigo'];?>" value="<?php echo $datos['comentarios'];?>">
                       </td>
                       <td><?php echo "<b>" .$datos['codigo'] ."</b>";?></td>
                       <td><?php echo "<b>" .ucwords($datos['shipper']) ."</b>";?></td>
@@ -102,9 +103,10 @@ if(empty($_SESSION['user']))
                           ?>
                           <a class="btn btn-danger" style="font-size:16px" onclick="eliminar_documento(document.getElementById('codigo_documento<?php echo $i;?>').value,document.getElementById('tipo_documento<?php echo $i;?>').value)"
                             data-toggle="modal" data-target="#myModal" title="Void Docket"><i class="fa fa-times-circle"></i></a>
-                        <?php
-                        }
-                        ?>
+                          <?php
+                          }
+                          ?>
+                          <a class="btn btn-success" style="font-size:16px" onclick="comentario(document.getElementById('codigo_documento<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModalComentario" title="Comments & Payments"><i class="fa fa-comment-o"></i></a>
                         </div>
                       </td>
                     </tr>
@@ -146,6 +148,29 @@ if(empty($_SESSION['user']))
       </div>
     </div>
   </div>
+  <!-- Comentario -->
+  <div id="myModalComentario" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+    <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><center><b>Add Comments</b></center></h4>
+        </div>
+        <form class="form-inline" role="form" method="post" id="formulario_comentario" action="../controllers/documentoControllers.php">
+          <div class="modal-body">
+            <input type="text"  class="form-control"  name="codigo_docket_comentario" id="codigo_docket_comentario">
+            <label for="Comments"><b><br>Comments:</b></label>
+            <textarea class="form-control round-input" id="campo_comentario" placeholder="Comments" name="campo_comentario" ></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" name="boton_comentario" class="btn btn-success"><b>Confirm</b></button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><b>Cancel</b></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <!-- container section start -->
   <!-- javascripts -->
@@ -177,6 +202,11 @@ if(empty($_SESSION['user']))
             $("#descripcion_eliminar").css({"border":"0"});
         }
       });
+    }
+    function comentario(cod_docket){
+      //console.log(cod_docket);
+      $("#codigo_docket_comentario").val(cod_docket);
+      $("#campo_comentario").val($("#comentarios"+cod_docket).val());
     }
   </script>
 </body>

@@ -383,7 +383,7 @@ if(empty($_SESSION['user']))
       });
     }
     function comentario(cod_invoice){
-      console.log(cod_invoice);
+      //console.log(cod_invoice);
       $("#codigo_invoice_comentario").val(cod_invoice);
       $("#codigo_docket_comentario").val($("#id_codigo_docket").val());
       $("#compo_pagos").val($("#pagos"+cod_invoice).val());

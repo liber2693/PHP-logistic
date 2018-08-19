@@ -56,7 +56,7 @@ function calcularEdad($fecha_nacimiento){
        if($key)
        {
            //return isset($_POST[$key]) ? addslashes(trim($_POST[$key]," \t\r\0\x0B")) : null;
-           return isset($_POST[$key]) ? addslashes($_POST[$key]) : null;
+           return isset($_POST[$key]) ? addslashes(trim($_POST[$key]," ")) : null;
        }
    }
 

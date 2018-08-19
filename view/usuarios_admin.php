@@ -170,7 +170,7 @@ if(empty($_SESSION['user']))
   <!-- javascripts -->
   <?php include('pie.php');?>
 
-  <script src="../js/documento.js" type="text/javascript"></script>
+  <!--<script src="../js/documento.js" type="text/javascript"></script>-->
 
 
 </body>

@@ -25,13 +25,14 @@ class Docket{
 	protected $largo;
 	protected $tipo_dimension;
 	protected $descripcion;
+	protected $comentarios;
 	protected $tipo;
 	protected $fecha_creacion;
 	protected $fecha_modificacion;
 	protected $usuario;
 	protected $estatus;
 
-	public function __construct($codigo,$shipper,$telefono,$cc,$consignee,$po,$fecha,$id_origen_pais,$lugar_origen,$id_destino_pais,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$tipo_dimension,$descripcion,$tipo,$fecha_creacion,$fecha_modificacion,$usuario,$estatus,$id = ''){
+	public function __construct($codigo,$shipper,$telefono,$cc,$consignee,$po,$fecha,$id_origen_pais,$lugar_origen,$id_destino_pais,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$tipo_dimension,$descripcion,$comentarios,$tipo,$fecha_creacion,$fecha_modificacion,$usuario,$estatus,$id = ''){
 
 		$db = new Conexion();
 
@@ -56,6 +57,7 @@ class Docket{
 		$this->largo = $largo;
 		$this->tipo_dimension = $tipo_dimension;
 		$this->descripcion = $descripcion;
+		$this->comentarios = $comentarios;
 		$this->tipo = $tipo;
 		$this->fecha_creacion = $fecha_creacion;
 		$this->fecha_modificacion = $fecha_modificacion;
@@ -67,11 +69,11 @@ class Docket{
 	}
 
 	static function contar(){
-		return new self('','','','','','','','','','','','','','','','','','','','','','','','','','');
+		return new self('','','','','','','','','','','','','','','','','','','','','','','','','','','');
 	}
 
 	static function soloCodigo($codigo){
-		return new self($codigo,'','','','','','','','','','','','','','','','','','','','','','','','','');
+		return new self($codigo,'','','','','','','','','','','','','','','','','','','','','','','','','','');
 	}
 	public function selectContar(){
 		$db = new Conexion();
@@ -113,7 +115,7 @@ class Docket{
 
 	public function selectDocketAll(){
 		$db = new Conexion();
-		$sql="SELECT a.id,a.codigo,a.shipper,a.fecha, a.lugar_origen, a.lugar_destino, b.pais AS origen, c.pais AS destino,a.tipo FROM docket a
+		$sql="SELECT a.id,a.codigo,a.shipper,a.fecha, a.lugar_origen, a.lugar_destino, b.pais AS origen, c.pais AS destino,a.tipo,a.comentarios FROM docket a
 				JOIN  paises b ON b.codigo=a.id_origen_pais
 				JOIN  paises c ON c.codigo=a.id_destino_pais
 				WHERE a.estatus='1'";
@@ -209,5 +211,14 @@ class Docket{
 
 		return $result;
 	}
+	//
+	//agragar comentario a un documento
+	public function InsertCommentsDocket(){
+		$db = new Conexion();
+		$sql = "UPDATE docket SET comentarios='$this->comentarios' WHERE codigo = '$this->codigo'";
+		$db->query($sql);
+
+		$db->close();
+	} 
 }
 ?>
