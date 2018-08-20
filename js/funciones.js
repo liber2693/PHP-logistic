@@ -1,6 +1,6 @@
-function vermMensajeAlert(tipo, texto, target){
-
-    var temp = '<div class="alert alert-{{tipo}} ocultar  text-center" role="alert">{{texto}}</div>';
+function verMensajeAlert(tipo, texto, target){
+    
+    var temp = '<div class="alert alert-{{tipo}} oculto  text-center" role="alert">{{texto}}</div>';
 
     temp = temp.replace("{{tipo}}", tipo);
     temp = temp.replace("{{texto}}", texto);
@@ -9,12 +9,13 @@ function vermMensajeAlert(tipo, texto, target){
     $temp.on("show",function(){
         $(this).fadeIn().delay(3000).fadeOut("slow", function(){
             this.remove();
-        });
+        },3000);
     });
 
     target.html($temp);
 
     return $temp;
+
 }
 $('.solo-numero').on("keyup",function (){
     this.value = (this.value + '').replace(/[^0-9]/g, '');
