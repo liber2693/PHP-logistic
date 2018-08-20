@@ -142,6 +142,17 @@ if(empty($_SESSION['user']))
                           <strong>DESCRIPTION: <?php echo ucfirst($datos['descripcion']) ."</strong>";?>
                         </td>
                       </tr>
+                      <?php
+                      if (!empty($datos['comentarios'])){
+                      ?>
+                      <tr>
+                        <td colspan="4" class="text-center">
+                          <strong>DOCKET COMMENTS: <?php echo ucfirst($datos['comentarios']) ."</strong>";?>
+                        </td>
+                      </tr>
+                      <?php
+                      }
+                      ?>
                     </tbody>
                   </table>
                 </div>

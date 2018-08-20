@@ -183,8 +183,8 @@ if (isset($_POST['boton_regresar'])) {
                 $retornarDocumento->ReturnDocket();
     //echo "<pre>";print_r($retornarDocumento);die();
             }
-            $array2->free();
         }
+        $array2->free();
         //cambiarle los estatus para retornarla
         //eliminarla de la tabla eliminados
         $retornandoFactura = new DocketInvoiceDelete('',$codigoF,'','','','','','','');

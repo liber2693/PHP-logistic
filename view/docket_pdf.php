@@ -115,6 +115,9 @@ if ($array_d->num_rows==0) {
           <tr>
             <td colspan="3"><b>DESCRIPTION: </b>&nbsp;'.ucfirst($datos_d['descripcion']).'</td>
           </tr>
+          <tr>
+            <td colspan="3"><b>DOCKET COMMENTS: </b>&nbsp;'.ucfirst($datos_d['comentarios']).'</td>
+          </tr>
         </table>';
 
   $mpdf->AddPage('L','','','','',10,10,10,10,16,13);
