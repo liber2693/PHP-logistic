@@ -11,7 +11,7 @@ if(empty($_SESSION['user']))
 <html lang="en">
 <head>
   <title>NETEX GLOBAL</title>
-  
+
   <?php include('cabecera.php');?>
 </head>
 <body>
@@ -40,53 +40,57 @@ if(empty($_SESSION['user']))
           	<div class="col-lg-12">
             	<section class="panel">
               		<header class="panel-heading">
-                		Crear Usuario
+                		<b>CREATE USERS</b>
               		</header>
               		<div class="panel-body form-horizontal">
               			<div id="mensaje_usuario"></div>
 		                <!--<form class="">-->
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Nombre</label>
+								<label class="col-sm-4 control-label"><b>NAME</b></label>
 								<div class="col-sm-4" id="nombre_div">
 									<input type="text" class="form-control user_campus" id="nombre" name="nombre">
 								</div>
-								<label class="col-sm-2 control-label">Apellido</label>
+              </div>
+              <div class="form-group">
+								<label class="col-sm-4 control-label"><b>SURNAME</b></label>
 								<div class="col-sm-4" id="apellido_div">
-									<input type="text" class="form-control user_campus" id="apellido" name="apellido">
+								  <input type="text" class="form-control user_campus" id="apellido" name="apellido">
 								</div>
 							</div>
 							<div class="form-group">
-			                    <label class="col-sm-2 control-label">Usuario</label>
-			                    <div class="col-sm-4" id="usuario_div">
-			                    	<input type="text" id="usuario" name="usuario" maxlength="100" class="form-control user_campus">
-			                    </div>
-			                    <span class="help-block" id="ya_existe" style="color: red;">Usuario Ya existe</span>
+                <label class="col-sm-4 control-label"><b>USERNAME</b></label>
+                <div class="col-sm-4" id="usuario_div">
+                	<input type="text" id="usuario" name="usuario" maxlength="100" class="form-control user_campus">
+                </div>
+                <span class="help-block ocultar" id="ya_existe" style="color: red;"><b>Usuario Ya existe</b></span>
 							</div>
 							<div class="form-group">
-			                    <label class="col-sm-2 control-label">Rol</label>
-			                    <div class="col-sm-4" id="rol_div">
-			                      <select class="form-control" id="rol" name="rol">
-			                      	<option value="0" selected>SELECT</option>
-			                      	<option value="1">ADMINISTRADOR</option>
-			                      	<option value="2">USARIO</option>
-			                      </select>
-			                    </div>
-                    		</div>
+                  <label class="col-sm-4 control-label"><b>ROLE</b></label>
+                    <div class="col-sm-4" id="rol_div">
+                      <select class="form-control" id="rol" name="rol">
+                      	<option value="0" selected>SELECT</option>
+                      	<option value="1">ADMIN</option>
+                      	<option value="2">EMPLOYEE</option>
+                      </select>
+                    </div>
+          		</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Password</label>
-			                    <div class="col-sm-4" id="password1_div">
-			                     	<input type="password" id="password1" autocomplete="off" name="password1" class="form-control user_campus">
-			                     	<span class="help-block" id="campo_password1" style="color: red;"></span>
-								</div>
-								<label class="col-sm-2 control-label"> Repetir Password</label>
-			                    <div class="col-sm-4" id="password2_div">
-			                     	<input type="password" id="password2" autocomplete="off" name="password2" class="form-control user_campus">
-			                     	<span class="help-block" id="campo_password2" style="color: red;"></span>
-								</div>
+								<label class="col-sm-4 control-label"><b>PASSWORD</b></label>
+                  <div class="col-sm-4" id="password1_div">
+                   	<input type="password" id="password1" autocomplete="off" name="password1" class="form-control user_campus">
+                   	<span class="help-block" id="campo_password1" style="color: red;"></span>
+				          </div>
+              </div>
+              <div class="form-group">
+								<label class="col-sm-4 control-label"><b>RE-PASSWORD</b></label>
+                <div class="col-sm-4" id="password2_div">
+                   	<input type="password" id="password2" autocomplete="off" name="password2" class="form-control user_campus">
+                   	<span class="help-block" id="campo_password2" style="color: red;"></span>
+			          </div>
 							</div>
 							<div class="form-group">
-								<div class="col-lg-offset-2 col-lg-10">
-									<button type="button" id="guardar" name="guardar" class="btn btn-danger">Craer usuario</button>
+								<div class="col-lg-offset-5 col-lg-4">
+									<button type="button" id="guardar" name="guardar" class="btn btn-primary fa fa-plus"><b> CREATE USER</b></button>
 								</div>
 							</div>
 		                <!--</form>-->
@@ -101,7 +105,7 @@ if(empty($_SESSION['user']))
 		                <table class="table display" id="table_id">
 							<thead>
 								<tr>
-									<th><i class="fa fa-archive"></i> User</th>
+									<th><i class="fa fa-archive"></i>User</th>
 									<th><i class="fa fa-list"></i> Nombre</th>
 									<th><i class="icon_profile"></i> Apellido</th>
 									<th><i class="icon_calendar"></i> Role</th>
@@ -111,7 +115,7 @@ if(empty($_SESSION['user']))
 								</tr>
 							</thead>
 							<tbody>
-								
+
 							</tbody>
 		                </table>
               		</div>
@@ -128,56 +132,56 @@ if(empty($_SESSION['user']))
     	<div class="modal-content">
 	    	<div class="modal-header">
 	        	<button type="button" class="close" data-dismiss="modal">&times;</button>
-	        	<h4 class="modal-title"><b>Actualziar DATOS</b></h4>
+	        	<h4 class="modal-title"><b>UPDATE USER</b></h4>
 	     	</div>
 			<form role="form">
 				<div class="modal-body">
 					<div id="mensaje_usuario_update"></div>
 					<input type="hidden" name="id_usuario" id="id_usuario">
 					<div class="form-group">
-                    	<label>Nombre</label>
+          	<label><b>NAME</b></label>
 						<div id="Actualizar_nombre_div">
 							<input type="text" class="form-control user_campus upt" id="Actualizar_nombre" name="Actualizar_nombre">
 						</div>
 					</div>
 					<div class="form-group">
-						<label>Apellido</label>
+						<label><b>SURNAME</b></label>
 						<div id="Actualizar_apellido_div">
 							<input type="text" class="form-control user_campus upt" id="Actualizar_apellido" name="Actualizar_apellido">
 						</div>
 					</div>
 					<div class="form-group">
-	                    <label>Usuario</label>
-	                    <div id="Actualziar_usuario_div">
-	                    	<input type="text" id="Actualizar_usuario" name="Actualizar_usuario" maxlength="100" class="form-control user_campus upt">
-	                    	<span class="help-block ocultar" id="ya_existe_actualizar" style="color: red;"></span>
-	                    </div>
-	                </div>
-	                <div class="form-group">
-	                    <label>Rol</label>
-	                    <div id="Actualziar_rol_div">
-							<select class="form-control upt" id="Actualizar_rol" name="Actualizar_rol">
-								<option value="1">ADMINISTRADOR</option>
-								<option value="2">USARIO</option>
-							</select>
-	                    </div>
-					</div>
+          <label><b>USERNAME</b></label>
+          <div id="Actualziar_usuario_div">
+          	<input type="text" id="Actualizar_usuario" name="Actualizar_usuario" maxlength="100" class="form-control user_campus upt">
+          	<span class="help-block ocultar" id="ya_existe_actualizar" style="color: red;"></span>
+          </div>
+          </div>
+          <div class="form-group">
+              <label><b>ROLE</b></label>
+              <div id="Actualziar_rol_div">
+			             <select class="form-control upt" id="Actualizar_rol" name="Actualizar_rol">
+				                 <option value="1">ADMIN</option>
+				                 <option value="2">EMPLOYEE</option>
+                  </select>
+              </div>
+         </div>
 					<div class="form-group">
-						<label>Password</label>
-	                    <div id="Actualziar_password1_div">
-	                     	<input type="password" id="Actualizar_password1" autocomplete="off" name="Actualizar_password1" class="form-control user_campus upt">
-	                     	<span class="help-block" id="Actualziar_campo_password1" style="color: red;"></span>
+						<label><b>PASSWORD</b></label>
+            <div id="Actualziar_password1_div">
+             	<input type="password" id="Actualizar_password1" autocomplete="off" name="Actualizar_password1" class="form-control user_campus upt">
+             	<span class="help-block" id="Actualziar_campo_password1" style="color: red;"></span>
 						</div>
 					</div>
 					<div class="form-group">
-						<label> Repetir Password</label>
-	                    <div id="Actualziar_password2_div">
-	                     	<input type="password" id="Actualizar_password2" autocomplete="off" name="Actualizar_password2" class="form-control user_campus upt">
-	                     	<span class="help-block" id="Actualziar_campo_password2" style="color: red;"></span>
+						<label><b>RE-PASSWORD</b></label>
+            <div id="Actualziar_password2_div">
+           	  <input type="password" id="Actualizar_password2" autocomplete="off" name="Actualizar_password2" class="form-control user_campus upt">
+             	<span class="help-block" id="Actualziar_campo_password2" style="color: red;"></span>
 						</div>
 					</div>
 					<div class="form-group">
-	                    <label>Status User</label>
+                    <label>Status User</label>
 	                    <div>
 	                      	<label class="checkbox-inline">
 	                            <input type="checkbox" id="Actualizar_estatus" value="1"> Status
@@ -217,12 +221,12 @@ if(empty($_SESSION['user']))
   </div>
 </div>
 </div>
-     
+
 <!-- container section start -->
 
   <!-- javascripts -->
   <?php include('pie.php');?>
-	
+
   	<script src="../js/usuario_admin.js" type="text/javascript"></script>
 
 
