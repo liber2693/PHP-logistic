@@ -159,7 +159,7 @@ if(empty($_SESSION['user']))
         </div>
         <form class="form-inline" role="form" method="post" id="formulario_comentario" action="../controllers/documentoControllers.php">
           <div class="modal-body">
-            <input type="text"  class="form-control"  name="codigo_docket_comentario" id="codigo_docket_comentario">
+            <input type="hidden"  class="form-control"  name="codigo_docket_comentario" id="codigo_docket_comentario">
             <label for="Comments"><b><br>Comments:</b></label>
             <textarea class="form-control round-input" id="campo_comentario" placeholder="Comments" name="campo_comentario" ></textarea>
           </div>

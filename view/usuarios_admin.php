@@ -11,11 +11,12 @@ if(empty($_SESSION['user']))
 <html lang="en">
 <head>
   <title>NETEX GLOBAL</title>
+  
   <?php include('cabecera.php');?>
 </head>
 <body>
   <!-- container section start -->
-  <section id="container" class="">
+<section id="container" class="">
   <?php include('encabezado.php');?>
     <!--header end-->
     <!--sidebar start-->
@@ -24,153 +25,172 @@ if(empty($_SESSION['user']))
 
     <!--main content start-->
     <section id="main-content">
-      <section class="wrapper">
-        <!--overview start-->
+    	<div  align="center"  class="loader" style="display: none;" id="loader_imagen"></div>
+    	<section class="wrapper">
         <div class="row">
-          <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-laptop"></i><b>Manage Users</b></h3>
-            <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="index.php"><b>Home</b></a></li>
-              <li><i class="fa fa-folder-open"></i><b>Manage Users</b></li>
-            </ol>
-          </div>
+			<div class="col-lg-12">
+				<h3 class="page-header"><i class="fa fa-laptop"></i><b>Manage Users</b></h3>
+				<ol class="breadcrumb">
+				  <li><i class="fa fa-home"></i><a href="index.php"><b>Home</b></a></li>
+				  <li><i class="fa fa-folder-open"></i><b>Manage Users</b></li>
+				</ol>
+			</div>
         </div>
-      </section>
-      <section class="panel">
-        <div class="panel-group">
-          <div class="panel-group">
-            <div class="panel panel-link">
-              <div class="panel-body">
-                <center>
-                  <a href="#myModal" data-toggle="modal" class="btn btn-primary btn-lg fa fa-plus"><b> Create User</b></a><br><br>
-                </center>
-                  <!--  Comeinza Tabla de usuarios -->
-                <div class="row">
-                  <div class="col-lg-12">
-                    <section class="panel">
-                      <header class="panel-heading">
-                        Manage Users
-                      </header>
-
-                      <table class="table table-striped table-advance table-hover">
-                        <tbody>
-                          <tr>
-                            <th><i class="fa fa-list"></i> #</th>
-                            <th><i class="icon_profile"></i> Username</th>
-                            <th><i class="fa fa-address-book-o"></i> Name</th>
-                            <th><i class="icon_pin_alt"></i> Role</th>
-                            <th><i class="icon_cogs"></i> Action</th>
-                          </tr>
-                          <tr>
-                            <td><b>1</b></td>
-                            <td><b>liber2693</b></td>
-                            <td><b>Liber Lenin</b></td>
-                            <td><b>Admin</b></td>
-                            <td>
-                              <div class="btn-group">
-                                <a class="btn btn-warning" style="font-size:16px" href="#" data-toggle="tooltip" title="Add Invoice"><i class="fa fa-pencil"></i></a>
-                                <a class="btn btn-danger" style="font-size:16px" href="#" data-toggle="tooltip" title="Docket Details"><i class="fa fa-times"></i></a>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td><b>2</b></td>
-                            <td><b>renford</b></td>
-                            <td><b>Renford Jansen</b></td>
-                            <td><b>Admin</b></td>
-                            <td>
-                              <div class="btn-group">
-                                <a class="btn btn-warning" style="font-size:16px" href="#" data-toggle="tooltip" title="Add Invoice"><i class="fa fa-pencil"></i></a>
-                                <a class="btn btn-danger" style="font-size:16px" href="#" data-toggle="tooltip" title="Docket Details"><i class="fa fa-times"></i></a>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td><b>3</b></td>
-                            <td><b>glenys</b></td>
-                            <td><b>Glenys Alvarez</b></td>
-                            <td><b>Employee</b></td>
-                            <td>
-                              <div class="btn-group">
-                                <a class="btn btn-warning" style="font-size:16px" href="#" data-toggle="tooltip" title="Add Invoice"><i class="fa fa-pencil"></i></a>
-                                <a class="btn btn-danger" style="font-size:16px" href="#" data-toggle="tooltip" title="Docket Details"><i class="fa fa-times"></i></a>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </section>
-                  </div>
-                </div>
-                <!-- TERMINA TABLA DE USUARIOS-->
-
-              </div>
-            </div><!--Link, succes, warning, danger, info-->
-          </div>
-          <!-- INICIO Formulario Importacion de documento -->
-          <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                  <h4 class="modal-title"><b>Create User Form</b></h4>
-                </div>
-                <div class="modal-body">
-                  <form role="form" name="importacion" id="importacion" action="../controllers/documentoControllers.php" enctype="multipart/form-data" method='post'>
-                    <input type="hidden" value="I" name="tipoDocumento">
-                    <div class="form-group">
-                      <label for="shipper">Username <b style="color: red">*</b></label>
-                      <input name="shipper" type="text" class="form-control round-input" id="shipper" placeholder="Username" >
-                    </div>
-                    <!--<div class="form-group">
-                      <label for="fecha">Date <b style="color: red;">*</b></label>
-                      <input name="fecha" type="text" class="form-control round-input fecha" id="fecha"  placeholder="Enter Date" readonly="true">
-                    </div> -->
-                    <div class="form-group">
-                      <label for="origin">Name <b style="color: red">*</b></label>
-                      <input name="telefono" type="text" class="form-control round-input" placeholder="Your Name"  autocomplete='off'>
-                    </div>
-                    <div class="form-group">
-                      <label for="cc">Surname <b style="color: red">*</b></label>
-                      <input name="cc" id="cc" type="text" class="form-control round-input" placeholder="Your Surname" autocomplete='off'>
-                    </div>
-                    <div class="form-group">
-                      <label for="consignee">Password <b style="color: red">*</b></label>
-                      <input name="consignee" id="consignee" type="text" class="form-control round-input" placeholder="Password" autocomplete='off'>
-                    </div>
-                    <div class="form-group">
-                      <label for="po">Re-Password <b style="color: red">*</b></label>
-                      <input name="po" id="po" type="text" class="form-control round-input" placeholder="Rewrite-Password" autocomplete='off'>
-                    </div>
-                    <div class="form-group">
-                      <label for="origin">Role<b style="color: red;">*</b></label>
-                      <select name="" class="form-control round-input" autocomplete='off' id="">
-                        <option value="1" selected="selected">ADMIN</option>
-                        <option value="2">EMPLOYEE</option>
-                      </select><br>
-                          <center><button type="submit" id="enviar_documento_import" name="enviar_documento" class="btn btn-primary"><b>Create</b></button>
-                          <button type="reset" class="btn btn-info"><b>Reset</b></button></center>
-                      </center>
-                  </form>
-                </div>
-              </div>
+        <div class="row">
+          	<div class="col-lg-12">
+            	<section class="panel">
+              		<header class="panel-heading">
+                		Crear Usuario
+              		</header>
+              		<div class="panel-body form-horizontal">
+              			<div id="mensaje_usuario"></div>
+		                <!--<form class="">-->
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Nombre</label>
+								<div class="col-sm-4" id="nombre_div">
+									<input type="text" class="form-control user_campus" id="nombre" name="nombre">
+								</div>
+								<label class="col-sm-2 control-label">Apellido</label>
+								<div class="col-sm-4" id="apellido_div">
+									<input type="text" class="form-control user_campus" id="apellido" name="apellido">
+								</div>
+							</div>
+							<div class="form-group">
+			                    <label class="col-sm-2 control-label">Usuario</label>
+			                    <div class="col-sm-4" id="usuario_div">
+			                    	<input type="text" id="usuario" name="usuario" maxlength="100" class="form-control user_campus">
+			                    </div>
+			                    <span class="help-block" id="ya_existe" style="color: red;">Usuario Ya existe</span>
+							</div>
+							<div class="form-group">
+			                    <label class="col-sm-2 control-label">Rol</label>
+			                    <div class="col-sm-4" id="rol_div">
+			                      <select class="form-control" id="rol" name="rol">
+			                      	<option value="0" selected>SELECT</option>
+			                      	<option value="1">ADMINISTRADOR</option>
+			                      	<option value="2">USARIO</option>
+			                      </select>
+			                    </div>
+                    		</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Password</label>
+			                    <div class="col-sm-4" id="password1_div">
+			                     	<input type="password" id="password1" autocomplete="off" name="password1" class="form-control user_campus">
+			                     	<span class="help-block" id="campo_password1" style="color: red;"></span>
+								</div>
+								<label class="col-sm-2 control-label"> Repetir Password</label>
+			                    <div class="col-sm-4" id="password2_div">
+			                     	<input type="password" id="password2" autocomplete="off" name="password2" class="form-control user_campus">
+			                     	<span class="help-block" id="campo_password2" style="color: red;"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-offset-2 col-lg-10">
+									<button type="button" id="guardar" name="guardar" class="btn btn-danger">Craer usuario</button>
+								</div>
+							</div>
+		                <!--</form>-->
+              		</div>
+            	</section>
             </div>
-          </div>
-          <!-- FIN Formulario Usuarios -->
         </div>
-
-      </div>
-
-    </div>
+		<div class="row">
+          	<div class="col-lg-12">
+            	<section class="panel">
+              		<div class="table-responsive">
+		                <table class="table display" id="table_id">
+							<thead>
+								<tr>
+									<th><i class="fa fa-archive"></i> User</th>
+									<th><i class="fa fa-list"></i> Nombre</th>
+									<th><i class="icon_profile"></i> Apellido</th>
+									<th><i class="icon_calendar"></i> Role</th>
+									<th><i class="fa fa-location-arrow"></i> Actividad</th>
+									<th><i class="icon_cogs"></i> Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+							</tbody>
+		                </table>
+              		</div>
+            	</section>
+          	</div>
+        </div>
     </section>
-    <!--main content end-->
-  </section>
-  <!-- container section start -->
+</section>
+
+<!-- Modal Actualziar Usuario-->
+<div id="myModalActualziar" class="modal fade" role="dialog">
+ 	<div class="modal-dialog">
+  		<!-- Modal content-->
+    	<div class="modal-content">
+	    	<div class="modal-header">
+	        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	        	<h4 class="modal-title"><b>Actualziar DATOS</b></h4>
+	     	</div>
+			<form role="form">
+				<div class="modal-body">
+					<div id="mensaje_usuario_update"></div>
+					<input type="hidden" name="id_usuario" id="id_usuario">
+					<div class="form-group">
+                    	<label>Nombre</label>
+						<div id="Actualizar_nombre_div">
+							<input type="text" class="form-control user_campus upt" id="Actualizar_nombre" name="Actualizar_nombre">
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Apellido</label>
+						<div id="Actualizar_apellido_div">
+							<input type="text" class="form-control user_campus upt" id="Actualizar_apellido" name="Actualizar_apellido">
+						</div>
+					</div>
+					<div class="form-group">
+	                    <label>Usuario</label>
+	                    <div id="Actualziar_usuario_div">
+	                    	<input type="text" id="Actuaalizar_usuario" name="Actuaalizar_usuario" maxlength="100" class="form-control user_campus upt">
+	                    	<span class="help-block" id="ya_existe" style="color: red;">Usuario Ya existe</span>
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <label>Rol</label>
+	                    <div id="Actualziar_rol_div">
+							<select class="form-control upt" id="Actuaalizar_rol" name="Actuaalizar_rol">
+								<option value="1">ADMINISTRADOR</option>
+								<option value="2">USARIO</option>
+							</select>
+	                    </div>
+					</div>
+					<div class="form-group">
+						<label>Password</label>
+	                    <div id="Actualziar_password1_div">
+	                     	<input type="password" id="Actuaalizar_password1" autocomplete="off" name="password1" class="form-control user_campus upt">
+	                     	<span class="help-block" id="Actualziar_campo_password1" style="color: red;"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label> Repetir Password</label>
+	                    <div id="Actualziar_password2_div">
+	                     	<input type="password" id="Actuaalizar_password2" autocomplete="off" name="password2" class="form-control user_campus upt">
+	                     	<span class="help-block" id="Actualziar_campo_password2" style="color: red;"></span>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" name="boton_actualizar" id="boton_actualizar" class="btn btn-success"><b>Confirm</b></button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal"><b>Close</b></button>
+				</div>
+			</form>
+    	</div>
+  	</div>
+</div>
+     
+<!-- container section start -->
 
   <!-- javascripts -->
   <?php include('pie.php');?>
-
-  <!--<script src="../js/documento.js" type="text/javascript"></script>-->
+	
+  	<script src="../js/usuario_admin.js" type="text/javascript"></script>
 
 
 </body>
