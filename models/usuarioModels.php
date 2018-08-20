@@ -64,7 +64,7 @@ class User{
 	public function ListUser(){
 		$db = new Conexion();
 
-		$sql = "SELECT id_usuario,usuario,nombre,apellido,rol,actividad FROM usuarios ORDER BY id_usuario DESC";
+		$sql = "SELECT id_usuario,usuario,nombre,apellido,rol,actividad,estatus_logico FROM usuarios WHERE id_usuario <> $this->id_usuario  ORDER BY id_usuario DESC";
 
 		$result = $db->query($sql);
 
@@ -75,7 +75,7 @@ class User{
 	public function idUser(){
 		$db = new Conexion();
 
-		$sql = "SELECT id_usuario,usuario,nombre,apellido,rol,actividad FROM usuarios WHERE id_usuario=$this->id_usuario";
+		$sql = "SELECT id_usuario,usuario,nombre,apellido,rol,actividad,estatus_logico FROM usuarios WHERE id_usuario=$this->id_usuario";
 
 		$result = $db->query($sql);
 
@@ -83,22 +83,32 @@ class User{
 
 		return $result;	
 	}
-	public function actualizarDatos(){
+	public function UpdateUser(){
 
 		$db = new Conexion();
-		$sql = "UPDATE usuarios SET fecha_ultima_conexion='$this->fecha_ultima_conexion',
-									hora_ultima_conexion='$this->hora_ultima_conexion',
-									actividad = 1,
-									ip_equipo_conexion = '$this->ip_equipo_conexion'
-								WHERE id_usuario=$this->id_usuario";
-		$db->query($sql);
+		$usuario_nuevo = $this->usuario;
 
+		$sql = "SELECT id_usuario, usuario FROM usuarios WHERE usuario = '$usuario_nuevo' AND id_usuario <> $this->id_usuario ";
+		$result = $db->query($sql);
+
+		if ($result->num_rows==0) {
+			$password = (!empty($this->password)) ? ", password = md5('$this->password')" : null ;
+			$sql1 = "UPDATE usuarios SET usuario = '$this->usuario', nombre = '$this->nombre', apellido = '$this->apellido', rol = '$this->rol', estatus_logico = '$this->estatus_logico' $password
+				WHERE id_usuario=$this->id_usuario";
+			$db->query($sql1);
+
+			return 1;
+		}
+		else{
+			return 0;
+		}
 		$db->close();
 	}
-	public function cerrarSesion(){
+	public function DeleteUser(){
 
 		$db = new Conexion();
-		$sql = "UPDATE usuarios SET actividad = 0 WHERE id_usuario=$this->id_usuario";
+		$sql = "DELETE FROM usuarios WHERE id_usuario=$this->id_usuario";
+		
 		$db->query($sql);
 
 		$db->close();

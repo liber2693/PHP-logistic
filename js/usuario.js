@@ -1,10 +1,8 @@
 $(document).ready(function() {
-	$( "#login" ).submit(function(event) {
+	$("#login").submit(function(event) {
 		event.preventDefault();
 		var usuario = $('#usuario').val(); 
 		var password = btoa($('#password').val());
-		
-    	//alert(password);
 		
 		if (usuario=='') {
     		$('#error').fadeIn();
@@ -35,7 +33,10 @@ $(document).ready(function() {
 	    type: 'POST',                 
 	    url: "controllers/sesionControllers.php", 
 	    dataType: "json",                    
-	    //data: ('')
+	    /*data: {
+	    	"usuario" : usuario,
+			"password" : password
+	    }*/
 	    data: $("#login").serialize(),
     		beforeSend: function(){
 	    		$('#enviar').val('Connecting..'); 

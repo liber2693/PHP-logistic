@@ -106,6 +106,7 @@ if(empty($_SESSION['user']))
 									<th><i class="icon_profile"></i> Apellido</th>
 									<th><i class="icon_calendar"></i> Role</th>
 									<th><i class="fa fa-location-arrow"></i> Actividad</th>
+									<th><i class="fa fa-location-arrow"></i> Estatus</th>
 									<th><i class="icon_cogs"></i> Action</th>
 								</tr>
 							</thead>
@@ -148,14 +149,14 @@ if(empty($_SESSION['user']))
 					<div class="form-group">
 	                    <label>Usuario</label>
 	                    <div id="Actualziar_usuario_div">
-	                    	<input type="text" id="Actuaalizar_usuario" name="Actuaalizar_usuario" maxlength="100" class="form-control user_campus upt">
-	                    	<span class="help-block" id="ya_existe" style="color: red;">Usuario Ya existe</span>
+	                    	<input type="text" id="Actualizar_usuario" name="Actualizar_usuario" maxlength="100" class="form-control user_campus upt">
+	                    	<span class="help-block ocultar" id="ya_existe_actualizar" style="color: red;"></span>
 	                    </div>
 	                </div>
 	                <div class="form-group">
 	                    <label>Rol</label>
 	                    <div id="Actualziar_rol_div">
-							<select class="form-control upt" id="Actuaalizar_rol" name="Actuaalizar_rol">
+							<select class="form-control upt" id="Actualizar_rol" name="Actualizar_rol">
 								<option value="1">ADMINISTRADOR</option>
 								<option value="2">USARIO</option>
 							</select>
@@ -164,25 +165,57 @@ if(empty($_SESSION['user']))
 					<div class="form-group">
 						<label>Password</label>
 	                    <div id="Actualziar_password1_div">
-	                     	<input type="password" id="Actuaalizar_password1" autocomplete="off" name="password1" class="form-control user_campus upt">
+	                     	<input type="password" id="Actualizar_password1" autocomplete="off" name="Actualizar_password1" class="form-control user_campus upt">
 	                     	<span class="help-block" id="Actualziar_campo_password1" style="color: red;"></span>
 						</div>
 					</div>
 					<div class="form-group">
 						<label> Repetir Password</label>
 	                    <div id="Actualziar_password2_div">
-	                     	<input type="password" id="Actuaalizar_password2" autocomplete="off" name="password2" class="form-control user_campus upt">
+	                     	<input type="password" id="Actualizar_password2" autocomplete="off" name="Actualizar_password2" class="form-control user_campus upt">
 	                     	<span class="help-block" id="Actualziar_campo_password2" style="color: red;"></span>
 						</div>
 					</div>
+					<div class="form-group">
+	                    <label>Status User</label>
+	                    <div>
+	                      	<label class="checkbox-inline">
+	                            <input type="checkbox" id="Actualizar_estatus" value="1"> Status
+	                        </label>
+	                    </div>
+	                </div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" name="boton_actualizar" id="boton_actualizar" class="btn btn-success"><b>Confirm</b></button>
+					<button type="button" name="boton_actualizar" id="boton_actualizar" class="btn btn-success"><b>Update User</b></button>
 					<button type="button" class="btn btn-primary" data-dismiss="modal"><b>Close</b></button>
 				</div>
 			</form>
     	</div>
   	</div>
+</div>
+
+<!-- Modal para confirmar elimnar un Usuario-->
+<div id="myModalEliminar" class="modal fade" role="dialog">
+<div class="modal-dialog">
+<!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title"><center><b>DELETE USER</b></center></h4>
+    </div>
+    <br>
+    <form class="form-inline" role="form">
+      <div class="modal-body text-center">
+        <h4><b><center>Do you want to delete this user?</center></b></h4>
+        <input type="hidden" class="user_campus" id="id_registro" name="id_registro">
+      </div>
+      <div class="modal-footer">
+        <button type="button" name="boton_confimar_eliminar" id="boton_confimar_eliminar" class="btn btn-success"><b>Confirm</b></button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><b>Cancel</b></button>
+      </div>
+    </form>
+  </div>
+</div>
 </div>
      
 <!-- container section start -->

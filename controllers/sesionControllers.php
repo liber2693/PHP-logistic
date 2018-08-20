@@ -4,12 +4,12 @@ include '../funciones/funciones.php';
 date_default_timezone_set('America/Caracas');
 $fecha=date("Y-m-d");
 $hora=date("H:m:s");
-if(!empty(post("usuario")) && !empty(post("password")))
+if(!empty($_POST['usuario']) && !empty($_POST['password']))
 {
-	$usuario=post("usuario");
-	$password=md5(post("password"));
+	$usuario=$_POST['usuario'];
+	$password=md5(base64_encode($_POST['password']));
 
-
+	
 	$consulta_usuario = Sesion::soloUsuario($usuario);
 	$array1 = $consulta_usuario->selectUsuario();
 	if ($array1->num_rows!=0) {

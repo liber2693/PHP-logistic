@@ -2,6 +2,9 @@
 include '../models/usuarioModels.php';
 include '../funciones/funciones.php';
 session_start();
+$id_session = $_SESSION['id_usuario'];
+$user_session = $_SESSION['user'];
+
 if (isset($_POST['usuario'])) {
 	
 	$nombre = post('nombre');
@@ -19,7 +22,7 @@ if (isset($_POST['usuario'])) {
 }
 if(isset($_GET['tabla']) && $_GET['tabla']==1){
 
-	$lista_usuarios = User::ningunDato();
+	$lista_usuarios = User::soloId($id_session);
 	$array = $lista_usuarios->ListUser();
 
 	if($array->num_rows!=0){
@@ -30,6 +33,7 @@ if(isset($_GET['tabla']) && $_GET['tabla']==1){
                           'apellido' => $resultado['apellido'],
                           'rol' => $resultado['rol'],
                           'actividad' => $resultado['actividad'],
+                          'estatus' => $resultado['estatus_logico'],
                         );
         }
 	    $array->free();
@@ -49,16 +53,34 @@ if(isset($_GET['id'])){
 
 	echo json_encode($array); 
 }
-if (isset($_POST['id'])) {
+if (isset($_POST['id']) && !empty($_POST['id'])) {
 	
 	$id = $_POST['id'];
     $nombre = post('nombre');
     $apellido = post('apellido');
-    $usuario = post('usuario');
+    $usuario = post('usuario_actualizar');
     $rol = $_POST['rol'];
-    $password1 = md5($_POST['password1']);
-    $password2 = md5($_POST['password2']);
+    $password1 = $_POST['password1'];
+    $password2 = $_POST['password2'];
+
+    $estatus = $_POST['estatus'];
+
+    $actualizar_user = new User($usuario,$password2,$nombre,$apellido,$rol,'','','','',$estatus,$id);
+    $respuesta = $actualizar_user->UpdateUser();
+    //echo "<pre>";print_r($respuesta);die();
+    
+    echo json_encode($respuesta);
 	
+}
+if(isset($_POST['id_registro'])){
+
+	$id_registro = $_POST['id_registro'];
+
+	$elimnar_usuario = User::soloId($id_registro);
+	$result = $elimnar_usuario->DeleteUser();
+	
+	echo json_encode(1);
+	//echo "<pre>";print_r($_POST);die();	
 }
 
 ?>
