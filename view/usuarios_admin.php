@@ -199,7 +199,7 @@ if(empty($_SESSION['user']))
     	</div>
   	</div>
 </div>
-
+</div>
 <!-- Modal para confirmar elimnar un Usuario-->
 <div id="myModalEliminar" class="modal fade" role="dialog">
   <div class="modal-dialog">
