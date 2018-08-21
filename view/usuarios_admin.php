@@ -62,7 +62,7 @@ if(empty($_SESSION['user']))
                 <div class="col-sm-4" id="usuario_div">
                 	<input type="text" id="usuario" name="usuario" maxlength="100" class="form-control user_campus">
                 </div>
-                <span class="help-block ocultar" id="ya_existe" style="color: red;"><b>Usuario Ya existe</b></span>
+                <span class="help-block" id="ya_existe" style="color: red;"></span>
 							</div>
 							<div class="form-group">
                   <label class="col-sm-4 control-label"><b>ROLE</b></label>
@@ -90,7 +90,7 @@ if(empty($_SESSION['user']))
 							</div>
 							<div class="form-group">
 								<div class="col-lg-offset-5 col-lg-4">
-									<button type="button" id="guardar" name="guardar" class="btn btn-primary fa fa-plus"><b> CREATE USER</b></button>
+									<button type="button" id="guardar"  name="guardar" class="btn btn-primary fa fa-plus"><b> CREATE USER</b></button>
 								</div>
 							</div>
 		                <!--</form>-->
@@ -191,7 +191,7 @@ if(empty($_SESSION['user']))
 				</div>
 				<div class="modal-footer">
 					<button type="button" name="boton_actualizar" id="boton_actualizar" class="btn btn-success"><b>Update User</b></button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal"><b>Close</b></button>
+					<button type="button" id="cancelar_actualizar" class="btn btn-primary" data-dismiss="modal"><b>Close</b></button>
 				</div>
 			</form>
     	</div>
@@ -200,26 +200,26 @@ if(empty($_SESSION['user']))
 
 <!-- Modal para confirmar elimnar un Usuario-->
 <div id="myModalEliminar" class="modal fade" role="dialog">
-<div class="modal-dialog">
-<!-- Modal content-->
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <h4 class="modal-title"><center><b>DELETE USER</b></center></h4>
+  <div class="modal-dialog">
+  <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><center><b>DELETE USER</b></center></h4>
+      </div>
+      <br>
+      <form class="form-inline" role="form">
+        <div class="modal-body text-center">
+          <h4><b><center>Do you want to delete this user?</center></b></h4>
+          <input type="hidden" class="user_campus" id="id_registro" name="id_registro">
+        </div>
+        <div class="modal-footer">
+          <button type="button" name="boton_confimar_eliminar" id="boton_confimar_eliminar" class="btn btn-success"><b>Confirm</b></button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><b>Cancel</b></button>
+        </div>
+      </form>
     </div>
-    <br>
-    <form class="form-inline" role="form">
-      <div class="modal-body text-center">
-        <h4><b><center>Do you want to delete this user?</center></b></h4>
-        <input type="hidden" class="user_campus" id="id_registro" name="id_registro">
-      </div>
-      <div class="modal-footer">
-        <button type="button" name="boton_confimar_eliminar" id="boton_confimar_eliminar" class="btn btn-success"><b>Confirm</b></button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal"><b>Cancel</b></button>
-      </div>
-    </form>
   </div>
-</div>
 </div>
 
 <!-- container section start -->

@@ -19,12 +19,36 @@ $(function(){
 		eliminar_usuario();
 	})
 
+	$("#cancelar_actualizar").on("click", function(){
+		$("#mensaje_usuario_update").empty();
+		$("#ya_existe_actualizar").addClass('ocultar');
+	})
+
 })
 
 
 function buscar_usuario(text){
 	console.log(text);
 
+	$.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "../controllers/usuarioControllers.php",
+        data: { 'text' : text},
+        success: function(data){
+
+        	if(data == 1){
+        		$("#ya_existe").html("<b>Usuario Ya existe</b>");
+        		$("#guardar").attr("disabled", true);
+        	}
+        	else if(data == 0)
+        	{
+        		$("#ya_existe").empty();
+        		$("#guardar").attr("disabled", false);
+        	}
+        	
+		}
+    })
 	//ya_existe //	
 }
 

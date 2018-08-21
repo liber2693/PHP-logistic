@@ -7,16 +7,16 @@ $user_session = $_SESSION['user'];
 
 if (isset($_POST['usuario'])) {
 	
-	$nombre = post('nombre');
-    $apellido = post('apellido');
-    $usuario = $_POST['usuario'];
-    $rol = $_POST['rol'];
-    $password1 = md5($_POST['password1']);
-    $password2 = md5($_POST['password2']);
-	
+  $nombre = post('nombre');
+  $apellido = post('apellido');
+  $usuario = $_POST['usuario'];
+  $rol = $_POST['rol'];
+  $password1 = md5($_POST['password1']);
+  $password2 = md5($_POST['password2']);
 
-    $crear_user = new User($usuario,$password2,$nombre,$apellido,$rol,'','','','','','');
-    $respuesta = $crear_user->InsertUser();
+
+  $crear_user = new User($usuario,$password2,$nombre,$apellido,$rol,'','','','','','');
+  $respuesta = $crear_user->InsertUser();
 	
 	echo json_encode($respuesta);
 }
@@ -80,7 +80,16 @@ if(isset($_POST['id_registro'])){
 	$result = $elimnar_usuario->DeleteUser();
 	
 	echo json_encode(1);
-	//echo "<pre>";print_r($_POST);die();	
 }
 
+if(isset($_GET['text'])){
+	
+  $text = $_GET['text'];
+
+  $buscar_user = new User($text,'','','','','','','','','','');
+  $respuesta = $buscar_user->SelectUser();
+  
+  echo json_encode($respuesta);
+  //echo "<pre>";print_r($respuesta);die();	
+}
 ?>

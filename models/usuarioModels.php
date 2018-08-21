@@ -113,6 +113,20 @@ class User{
 
 		$db->close();
 	}
+
+	public function SelectUser(){
+		$db = new Conexion();
+
+		$sql = "SELECT usuario FROM usuarios WHERE usuario='$this->usuario'";
+		$result = $db->query($sql);
+		if($result->num_rows==0){
+			return 0;
+		}else{
+			return 1;
+		}
+
+		$db->close();
+	}
 }
 
 ?>
