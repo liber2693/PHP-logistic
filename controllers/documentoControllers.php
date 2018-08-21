@@ -140,7 +140,7 @@ if(isset($_POST['boton_eliminar'])){
         $result->free();
     }
     //eliminar el registro del documento
-    $delete_docket = new Docket($codigo_documento,'','','','','','','','','','','','','','','','','','','','','','','',$fecha_registro,$usuario,'');
+    $delete_docket = new Docket($codigo_documento,'','','','','','','','','','','','','','','','','','','','','','',$fecha_registro,$usuario,'');
     $delete_docket->DeleteDocket();
     //eliminar el documento ponerlo en la tabla eliminados
     $delete_register_d = new DocketInvoiceDelete($codigo_documento,'','',$tipo_documento,$descripcion,$usuario,$fecha_registro,'','');
