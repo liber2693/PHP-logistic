@@ -1,5 +1,6 @@
 $(function(){
-	lista_usuarios()
+	var idusuario = $("#idusuario").val();
+	lista_usuarios(idusuario)
 
 	$("#usuario").on("blur",function() {
 		buscar_usuario(this.value);
@@ -120,7 +121,7 @@ function guardar_usuario(){
 				if (data == 1) {
 	        		verMensajeAlert("success","<strong>User registered successfully</strong>", $("#mensaje_usuario"));
 					limpiar_campos()
-					lista_usuarios()
+					lista_usuarios($("#idusuario").val())
 				}
 				else{
 					verMensajeAlert("warning","<strong>User is already registered</strong>", $("#mensaje_usuario"));
@@ -134,8 +135,8 @@ function guardar_usuario(){
 	}
 }
 
-function lista_usuarios(){
-	//console.log("listar");
+function lista_usuarios(idusuario){
+	console.log(idusuario);
 	$("#table_id > tbody:last").children().remove();
 
     $.ajax({
@@ -154,7 +155,8 @@ function lista_usuarios(){
                 lista.forEach( function(data, indice, array) {
                 	estatus = data.estatus == 1 ? "ACTIVE":"INACTIVE";
                 	actividad = data.actividad == 1 ? "i_verde.png":"i_rojo.png";
-									rol = data.rol == 1 ? "ADMIN":"EMPLOYEE";
+					rol = data.rol == 1 ? "ADMIN":"EMPLOYEE";
+					boton = data.id != idusuario ? '<button class="btn btn-danger" style="font-size:16px"  title="Delete User" onclick="delete_user('+data.id+')" data-toggle="modal" data-target="#myModalEliminar"><i class="fa fa-times"></i></button>' : "";
 
                 	$("#table_id").append(
                     '<tr>'+
@@ -166,7 +168,7 @@ function lista_usuarios(){
 	                    '<td>'+
 							'<div class="btn-group">'+
 								'<button class="btn btn-warning" style="font-size:16px" title="Edit User" onclick="editar_user('+data.id+')" data-toggle="modal" data-target="#myModalActualziar"><i class="fa fa-pencil"></i></button>'+
-								'<button class="btn btn-danger" style="font-size:16px"  title="Delete User" onclick="delete_user('+data.id+')" data-toggle="modal" data-target="#myModalEliminar"><i class="fa fa-times"></i></button>'+
+								boton+
 							'</div>'+
 						'</td>'+
                     '</tr>');
@@ -278,7 +280,7 @@ function actualizar_usuario(){
 	        		verMensajeAlert("success","<strong>User registered successfully</strong>", $("#mensaje_usuario"));
 					$("#myModalActualziar").modal("hide");
 					limpiar_campos()
-					lista_usuarios()
+					lista_usuarios($("#idusuario").val())
 					$("#mensaje_usuario_update").empty();
 				}
 				else{
@@ -320,7 +322,7 @@ function eliminar_usuario(){
         		verMensajeAlert("success","<strong>User delete successfully</strong>", $("#mensaje_usuario"));
 				$("#myModalEliminar").modal("hide");
 				limpiar_campos()
-				lista_usuarios()
+				lista_usuarios($("#idusuario").val())
 			}
 			else{
 				verMensajeAlert("warning","<strong>User can't be delete</strong>", $("#mensaje_usuario"));

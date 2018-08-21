@@ -22,17 +22,19 @@ if(empty($_SESSION['user']))
     <!--sidebar start-->
      <?php include('menu.php');?>
     <!--sidebar end-->
-
+    
     <!--main content start-->
     <section id="main-content">
     	<div  align="center"  class="loader" style="display: none;" id="loader_imagen"></div>
     	<section class="wrapper">
         <div class="row">
+          <input type="hidden" id="idusuario" name="idusuario" value="<?php echo $_SESSION['id_usuario'];?>">
 			<div class="col-lg-12">
 				<h3 class="page-header"><i class="fa fa-laptop"></i><b>Manage Users</b></h3>
 				<ol class="breadcrumb">
 				  <li><i class="fa fa-home"></i><a href="index.php"><b>Home</b></a></li>
 				  <li><i class="fa fa-folder-open"></i><b>Manage Users</b></li>
+
 				</ol>
 			</div>
         </div>
@@ -41,6 +43,7 @@ if(empty($_SESSION['user']))
             	<section class="panel">
               		<header class="panel-heading">
                 		<b>CREATE USERS</b>
+
               		</header>
               		<div class="panel-body form-horizontal">
               			<div id="mensaje_usuario"></div>
