@@ -1,5 +1,5 @@
 function verMensajeAlert(tipo, texto, target){
-    
+
     var temp = '<div class="alert alert-{{tipo}} oculto  text-center" role="alert">{{texto}}</div>';
 
     temp = temp.replace("{{tipo}}", tipo);
@@ -9,7 +9,7 @@ function verMensajeAlert(tipo, texto, target){
     $temp.on("show",function(){
         $(this).fadeIn().delay(3000).fadeOut("slow", function(){
             this.remove();
-        },3000);
+        });
     });
 
     target.html($temp);
@@ -96,4 +96,8 @@ function NUM(s, dec) {
   } else {
     return num;
   }
+}
+
+function ucFirst(string){
+ return string.substr(0,1).toUpperCase()+string.substr(1,string.length).toLowerCase();
 }

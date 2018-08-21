@@ -1,8 +1,6 @@
 $(function(){
-	console.log("entrando modulo de adminstracion de usuario");
-	
 	lista_usuarios()
-	
+
 	$("#usuario").on("blur",function() {
 		buscar_usuario(this.value);
 	})
@@ -28,7 +26,7 @@ $(function(){
 
 
 function buscar_usuario(text){
-	console.log(text);
+	//console.log(text);
 
 	$.ajax({
         type: "GET",
@@ -38,7 +36,7 @@ function buscar_usuario(text){
         success: function(data){
 
         	if(data == 1){
-        		$("#ya_existe").html("<b>Usuario Ya existe</b>");
+        		$("#ya_existe").html("<b>User already exist</b>");
         		$("#guardar").attr("disabled", true);
         	}
         	else if(data == 0)
@@ -46,14 +44,14 @@ function buscar_usuario(text){
         		$("#ya_existe").empty();
         		$("#guardar").attr("disabled", false);
         	}
-        	
+
 		}
     })
-	//ya_existe //	
+	//ya_existe //
 }
 
 function guardar_usuario(){
-	console.log("registrando un usuario");
+	//console.log("registrando un usuario");
 
 	var nombre = $("#nombre").val().trim();
 	var apellido = $("#apellido").val().trim();
@@ -94,19 +92,19 @@ function guardar_usuario(){
 	if(password1 != password2){
 		$("#password1_div").addClass("has-error");
 		$("#password2_div").addClass("has-error");
-		$("#campo_password1").html("Password no coinciden");
-		$("#campo_password2").html("Password no coinciden");
+		$("#campo_password1").html("Passwords do not match");
+		$("#campo_password2").html("Passwords do not match");
 		return;
 	}
 
 	if(nombre.length > 0 && apellido.length > 0 && usuario.length > 0 && rol != 0 && password1.length > 0 && password2.length > 0)
 	{
-		$.ajax({                        
-		    type: 'POST',                 
-		    url: "../controllers/usuarioControllers.php", 
-		    dataType: "json",                    
+		$.ajax({
+		    type: 'POST',
+		    url: "../controllers/usuarioControllers.php",
+		    dataType: "json",
 		    data: {
-		    	"nombre" : nombre,
+		    "nombre" : nombre,
 				"apellido" : apellido,
 				"usuario" : usuario,
 				"rol" : rol,
@@ -117,29 +115,29 @@ function guardar_usuario(){
 	           $('#loader_imagen').show();
 	        },
 	    	success: function(data){
-	        	$('#loader_imagen').hide();	
-				
+	        	$('#loader_imagen').hide();
+
 				if (data == 1) {
-	        		verMensajeAlert("success","<strong>User!</strong> registrado con exito.", $("#mensaje_usuario"));
+	        		verMensajeAlert("success","<strong>User registered successfully</strong>", $("#mensaje_usuario"));
 					limpiar_campos()
 					lista_usuarios()
-				}  
+				}
 				else{
-					verMensajeAlert("warning","<strong>User!</strong> Ya esta registrado.", $("#mensaje_usuario"));
-				}    	
+					verMensajeAlert("warning","<strong>User is already registered</strong>", $("#mensaje_usuario"));
+				}
 	        }
 	    })
 	}
 	else
 	{
-		verMensajeAlert("danger","<strong>Campo vacio!</strong> Todos los campos son requeridos.", $("#mensaje_usuario"));
+		verMensajeAlert("danger","<strong>Empty Field. All fields are required</strong>", $("#mensaje_usuario"));
 	}
 }
 
 function lista_usuarios(){
-	console.log("listar");
+	//console.log("listar");
 	$("#table_id > tbody:last").children().remove();
-	
+
     $.ajax({
         type: "GET",
         dataType: "json",
@@ -150,21 +148,21 @@ function lista_usuarios(){
             if(lista==0){
                 $("#table_id").append(
                 '<tr>'+
-                '<td colspan="7" style="font-size:120%"class="text-center"><b><br>No User</b></td>'+
+                '<td colspan="6" style="font-size:120%"class="text-center"><b><br>No User</b></td>'+
                 '</tr>');
             }else{
                 lista.forEach( function(data, indice, array) {
                 	estatus = data.estatus == 1 ? "ACTIVE":"INACTIVE";
                 	actividad = data.actividad == 1 ? "i_verde.png":"i_rojo.png";
+									rol = data.rol == 1 ? "ADMIN":"EMPLOYEE";
 
                 	$("#table_id").append(
                     '<tr>'+
-	                    '<td>'+data.usuario+'</td>'+
-	                    '<td>'+data.nombre+'</td>'+
-	                    '<td>'+data.apellido+'</td>'+
-	                    '<td>'+data.rol+'</td>'+
-	                    '<td><img src="../images/'+actividad+'"></td>'+
-	                    '<td>'+estatus+'</td>'+
+	                    '<td><b>'+data.usuario+'</b></td>'+
+	                    '<td><b>'+ucFirst(data.nombre)+' '+ucFirst(data.apellido)+'</b></td>'+
+	                    '<td><b>'+rol+'</b></td>'+
+	                    '<td><b><img src="../images/'+actividad+'"></b></td>'+
+	                    '<td><b>'+estatus+'</b></td>'+
 	                    '<td>'+
 							'<div class="btn-group">'+
 								'<button class="btn btn-warning" style="font-size:16px" title="Edit User" onclick="editar_user('+data.id+')" data-toggle="modal" data-target="#myModalActualziar"><i class="fa fa-pencil"></i></button>'+
@@ -179,7 +177,7 @@ function lista_usuarios(){
 }
 
 function editar_user(id){
-	console.log("actualizar datos del usuario: "+id);
+	//console.log("actualizar datos del usuario: "+id);
 
 	$.ajax({
         type: "GET",
@@ -200,7 +198,7 @@ function editar_user(id){
 }
 
 function actualizar_usuario(){
-	console.log("actualziar usuario");
+	//console.log("actualziar usuario");
 
 	var id = $("#id_usuario").val();
 	var nombre = $("#Actualizar_nombre").val().trim();
@@ -211,7 +209,7 @@ function actualizar_usuario(){
 	var password2 = $("#Actualizar_password2").val();
 	campo1 = password1.length > 0 ? btoa(password1) : null;
 	campo2 = password2.length > 0 ? btoa(password2) : null;
-	
+
 
 	var estatus = $("#Actualizar_estatus").prop('checked');
 	if (estatus == true) {
@@ -219,7 +217,7 @@ function actualizar_usuario(){
 	}else{
 		estatus = 0
 	}
-	
+
 	$(".upt").css({"border":"1px solid #c7c7cc"});
 	$("#Actualziar_campo_password1").empty();
 	$("#Actualziar_campo_password2").empty();
@@ -248,18 +246,18 @@ function actualizar_usuario(){
 	if(password1 != password2){
 		$("#Actualizar_password1").css({"border":"2px solid #ff3333"});
 		$("#Actualizar_password2").css({"border":"2px solid #ff3333"});
-		$("#Actualziar_campo_password1").html("Password no coinciden");
-		$("#Actualziar_campo_password2").html("Password no coinciden");
+		$("#Actualziar_campo_password1").html("Passwords do not match");
+		$("#Actualziar_campo_password2").html("Passwords do not match");
 		return;
 	}
 
 	//if(nombre.length > 0 && apellido.length > 0 && usuario.length > 0 && rol !=0 && password1.length > 0 && password2.length > 0)
 	if(nombre.length > 0 && apellido.length > 0 && usuario.length > 0 && rol !=0)
 	{
-		$.ajax({                        
-		    type: 'POST',                 
-		    url: "../controllers/usuarioControllers.php", 
-		    dataType: "json",                    
+		$.ajax({
+		    type: 'POST',
+		    url: "../controllers/usuarioControllers.php",
+		    dataType: "json",
 		    data: {
 		    	"id" : id,
 		    	"nombre" : nombre,
@@ -274,41 +272,41 @@ function actualizar_usuario(){
 	           $('#loader_imagen').show();
 	        },
 	    	success: function(data){
-	        	$('#loader_imagen').hide();	
-				
+	        	$('#loader_imagen').hide();
+
 				if (data == 1) {
-	        		verMensajeAlert("success","<strong>User!</strong> Actualziado con exito.", $("#mensaje_usuario"));
+	        		verMensajeAlert("success","<strong>User registered successfully</strong>", $("#mensaje_usuario"));
 					$("#myModalActualziar").modal("hide");
 					limpiar_campos()
 					lista_usuarios()
 					$("#mensaje_usuario_update").empty();
-				}  
+				}
 				else{
-					verMensajeAlert("warning","<strong>User!</strong> Ya esta registrado.", $("#mensaje_usuario_update"));
+					verMensajeAlert("warning","<strong>User is already registered</strong>", $("#mensaje_usuario_update"));
 					$("#ya_existe_actualizar").removeClass('ocultar').html("Usuario Ya existe");
-				}  	
+				}
 	        }
 	    })
 	}
 	else
 	{
-		verMensajeAlert("danger","<strong>Campo vacio!</strong> Todos los campos son requeridos.", $("#mensaje_usuario_update"));
+		verMensajeAlert("danger","<strong>Empty Field. All fields are required</strong>", $("#mensaje_usuario_update"));
 	}
 }
 
 function delete_user(id){
-	console.log("modal para elimnar el registro: "+id);
+	//console.log("modal para elimnar el registro: "+id);
 	$("#id_registro").val(id);
 }
 
 function eliminar_usuario(){
-	console.log("eliminar")
+	//console.log("eliminar")
 	var id_registro = $("#id_registro").val();
 
-	$.ajax({                        
-	    type: 'POST',                 
-	    url: "../controllers/usuarioControllers.php", 
-	    dataType: "json",                    
+	$.ajax({
+	    type: 'POST',
+	    url: "../controllers/usuarioControllers.php",
+	    dataType: "json",
 	    data: {
 	    	"id_registro" : id_registro,
 	    },
@@ -316,18 +314,18 @@ function eliminar_usuario(){
            $('#loader_imagen').show();
         },*/
     	success: function(data){
-        	//$('#loader_imagen').hide();	
-			
+        	//$('#loader_imagen').hide();
+
 			if (data == 1) {
-        		verMensajeAlert("success","<strong>User!</strong> Eliminado con exito.", $("#mensaje_usuario"));
+        		verMensajeAlert("success","<strong>User delete successfully</strong>", $("#mensaje_usuario"));
 				$("#myModalEliminar").modal("hide");
 				limpiar_campos()
 				lista_usuarios()
-			}  
+			}
 			else{
-				verMensajeAlert("warning","<strong>User!</strong> No pudo eliminarse.", $("#mensaje_usuario"));
-				
-			} 	
+				verMensajeAlert("warning","<strong>User can't be delete</strong>", $("#mensaje_usuario"));
+
+			}
         }
     })
 }

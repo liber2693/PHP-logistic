@@ -106,12 +106,11 @@ if(empty($_SESSION['user']))
 							<thead>
 								<tr>
 									<th><i class="fa fa-archive"></i>User</th>
-									<th><i class="fa fa-list"></i> Nombre</th>
-									<th><i class="icon_profile"></i> Apellido</th>
+									<th><i class="fa fa-list"></i> Name</th>
 									<th><i class="icon_calendar"></i> Role</th>
-									<th><i class="fa fa-location-arrow"></i> Actividad</th>
-									<th><i class="fa fa-location-arrow"></i> Estatus</th>
-									<th><i class="icon_cogs"></i> Action</th>
+									<th><i class="fa fa-location-arrow"></i>Activity</th>
+									<th><i class="fa fa-location-arrow"></i>Status</th>
+									<th><i class="icon_cogs"></i>Action</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -180,19 +179,22 @@ if(empty($_SESSION['user']))
              	<span class="help-block" id="Actualziar_campo_password2" style="color: red;"></span>
 						</div>
 					</div>
-					<div class="form-group">
-                    <label>Status User</label>
+          <center>
+            <div class="form-group">
+                    <label><b>STATUS USER</b></label>
 	                    <div>
 	                      	<label class="checkbox-inline">
-	                            <input type="checkbox" id="Actualizar_estatus" value="1"> Status
+	                            <input type="checkbox" id="Actualizar_estatus" value="1"> STATUS
 	                        </label>
 	                    </div>
-	                </div>
+            </div>
+          </center>
+      <center>
+				<div class="">
+					<button type="button" name="boton_actualizar" id="boton_actualizar" class="btn btn-success"><b>UPDATE USER</b></button>
+					<button type="button" id="cancelar_actualizar" class="btn btn-primary" data-dismiss="modal"><b>CLOSE</b></button>
 				</div>
-				<div class="modal-footer">
-					<button type="button" name="boton_actualizar" id="boton_actualizar" class="btn btn-success"><b>Update User</b></button>
-					<button type="button" id="cancelar_actualizar" class="btn btn-primary" data-dismiss="modal"><b>Close</b></button>
-				</div>
+      </center>
 			</form>
     	</div>
   	</div>
