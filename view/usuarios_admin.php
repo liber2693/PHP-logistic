@@ -55,18 +55,6 @@ if(empty($_SESSION['user']))
 									<input type="text" class="form-control user_campus" id="nombre" name="nombre">
 								</div>
               </div>
-              <div class="form-group">
-								<label class="col-sm-4 control-label"><b>SURNAME</b></label>
-								<div class="col-sm-4" id="apellido_div">
-								  <input type="text" class="form-control user_campus" id="apellido" name="apellido">
-								</div>
-							</div>
-							<div class="form-group">
-                <label class="col-sm-4 control-label"><b>USERNAME</b></label>
-                <div class="col-sm-4" id="usuario_div">
-                	<input type="text" id="usuario" name="usuario" maxlength="100" class="form-control user_campus">
->>>>>>> 66a64254458b6f9f49a64f0e5c5da40640273011
-                </div>
                 <div class="form-group">
   								<label class="col-sm-4 control-label"><b>SURNAME</b></label>
   								<div class="col-sm-4" id="apellido_div">
@@ -113,26 +101,7 @@ if(empty($_SESSION['user']))
               </div>
           </section>
         </div>
-<<<<<<< HEAD
       </div>
-	    <div class="row">
-      	<div class="col-lg-12">
-        	<section class="panel">
-        		<div class="table-responsive">
-              <table class="table display" id="table_id">
-      					<thead>
-      						<tr>
-      							<th><i class="fa fa-archive"></i>User</th>
-      							<th><i class="fa fa-list"></i> Nombre</th>
-      							<th><i class="icon_profile"></i> Apellido</th>
-      							<th><i class="icon_calendar"></i> Role</th>
-      							<th><i class="fa fa-location-arrow"></i> Actividad</th>
-      							<th><i class="fa fa-location-arrow"></i> Estatus</th>
-      							<th><i class="icon_cogs"></i> Action</th>
-      						</tr>
-      					</thead>
-      					<tbody>
-=======
 		<div class="row">
           	<div class="col-lg-12">
             	<section class="panel">
@@ -149,8 +118,6 @@ if(empty($_SESSION['user']))
 								</tr>
 							</thead>
 							<tbody>
->>>>>>> 66a64254458b6f9f49a64f0e5c5da40640273011
-
       					</tbody>
               </table>
           	</div>
@@ -216,7 +183,7 @@ if(empty($_SESSION['user']))
 						</div>
 					</div>
           <center>
-            <div class="form-group">
+            <div class="form-group" id="liberlindo">
                     <label><b>STATUS USER</b></label>
 	                    <div>
 	                      	<label class="checkbox-inline">

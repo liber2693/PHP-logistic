@@ -195,6 +195,11 @@ function editar_user(id){
 			if(data.estatus_logico == 1){
 				$("#Actualizar_estatus").attr('checked', true);
 			}
+			console.log(id+' '+data.id_usuario)
+			/*if(id == data.id_usuario){
+				$("#liberlindo").addClass("ocultar");
+			}*/
+			
 		}
     })
 }
