@@ -231,11 +231,15 @@ if(isset($_GET['codigo_docket_lista'])){
     $array2 = $archivos->SelectArchivoAdjunto();
     if($array2->num_rows!=0){
         while($resultado = $array2->fetch_assoc()) {
-          $data []= array('id' => $resultado['id'],
-                          'url_ubicacion' => $resultado['url_ubicacion'],
-                          'nombre_archivo' => $resultado['nombre_archivo'],
+            $archivo = (file_exists($resultado['url_ubicacion'])) ? 1 : 0 ;
+            $data []= array('id' => $resultado['id'],
+                            'archivo' => $archivo,
+                            'url_ubicacion' => $resultado['url_ubicacion'],
+                            'nombre_archivo' => $resultado['nombre_archivo'],
                         );
+            
         }
+        
         $array2->free();
     }else{
         $data=0;

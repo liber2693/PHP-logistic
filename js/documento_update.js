@@ -80,10 +80,11 @@ function listar_archivos_update(codigo_d){
             }else{
                 lista.forEach( function(data, indice, array) {
                 	i++
+                    url = data.archivo == 1 ? '<a href="'+data.url_ubicacion+'" target="_blank"><b>'+data.nombre_archivo+'</b></a>' : '<b>'+data.nombre_archivo+' <br> could not upload file</b>';
                     $("#lista_archivo").append(
                     '<tr>'+
                     '<td><b>'+i+'</b></td>'+
-                    '<td><a href="'+data.url_ubicacion+'" target="_blank"><b>'+data.nombre_archivo+'</b></a></td>'+
+                    '<td>'+url+'</td>'+
                     '<td><button type="button" class="btn btn-danger" title="Eliminar" data-toggle="modal" data-target="#myModalDelete"  onclick="modal_confirmar('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                     '</tr>');
                 });
