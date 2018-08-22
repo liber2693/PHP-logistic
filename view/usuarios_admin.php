@@ -28,6 +28,7 @@ if(empty($_SESSION['user']))
     	<div  align="center"  class="loader" style="display: none;" id="loader_imagen"></div>
     	<section class="wrapper">
         <div class="row">
+
           <input type="hidden" id="idusuario" name="idusuario" value="<?php echo $_SESSION['id_usuario'];?>">
 			<div class="col-lg-12">
 				<h3 class="page-header"><i class="fa fa-laptop"></i><b>Manage Users</b></h3>
@@ -64,43 +65,74 @@ if(empty($_SESSION['user']))
                 <label class="col-sm-4 control-label"><b>USERNAME</b></label>
                 <div class="col-sm-4" id="usuario_div">
                 	<input type="text" id="usuario" name="usuario" maxlength="100" class="form-control user_campus">
+>>>>>>> 66a64254458b6f9f49a64f0e5c5da40640273011
                 </div>
-                <span class="help-block" id="ya_existe" style="color: red;"></span>
-							</div>
-							<div class="form-group">
+                <div class="form-group">
+  								<label class="col-sm-4 control-label"><b>SURNAME</b></label>
+  								<div class="col-sm-4" id="apellido_div">
+  								  <input type="text" class="form-control user_campus" id="apellido" name="apellido">
+  								</div>
+  							</div>
+  							<div class="form-group">
+                  <label class="col-sm-4 control-label"><b>USERNAME</b></label>
+                  <div class="col-sm-4" id="usuario_div">
+                  	<input type="text" id="usuario" name="usuario" maxlength="100" class="form-control user_campus">
+                  </div>
+                  <span class="help-block" id="ya_existe" style="color: red;"></span>
+  							</div>
+  							<div class="form-group">
                   <label class="col-sm-4 control-label"><b>ROLE</b></label>
-                    <div class="col-sm-4" id="rol_div">
-                      <select class="form-control" id="rol" name="rol">
-                      	<option value="0" selected>SELECT</option>
-                      	<option value="1">ADMIN</option>
-                      	<option value="2">EMPLOYEE</option>
-                      </select>
-                    </div>
-          		</div>
-							<div class="form-group">
-								<label class="col-sm-4 control-label"><b>PASSWORD</b></label>
-                  <div class="col-sm-4" id="password1_div">
-                   	<input type="password" id="password1" autocomplete="off" name="password1" class="form-control user_campus">
-                   	<span class="help-block" id="campo_password1" style="color: red;"></span>
-				          </div>
-              </div>
-              <div class="form-group">
-								<label class="col-sm-4 control-label"><b>RE-PASSWORD</b></label>
-                <div class="col-sm-4" id="password2_div">
-                   	<input type="password" id="password2" autocomplete="off" name="password2" class="form-control user_campus">
-                   	<span class="help-block" id="campo_password2" style="color: red;"></span>
-			          </div>
-							</div>
-							<div class="form-group">
-								<div class="col-lg-offset-5 col-lg-4">
-									<button type="button" id="guardar"  name="guardar" class="btn btn-primary fa fa-plus"><b> CREATE USER</b></button>
-								</div>
-							</div>
+                  <div class="col-sm-4" id="rol_div">
+                    <select class="form-control" id="rol" name="rol">
+                    	<option value="0" selected>SELECT</option>
+                    	<option value="1">ADMIN</option>
+                    	<option value="2">EMPLOYEE</option>
+                    </select>
+                  </div>
+            		</div>
+  							<div class="form-group">
+  								<label class="col-sm-4 control-label"><b>PASSWORD</b></label>
+                    <div class="col-sm-4" id="password1_div">
+                     	<input type="password" id="password1" autocomplete="off" name="password1" class="form-control user_campus">
+                     	<span class="help-block" id="campo_password1" style="color: red;"></span>
+  				          </div>
+                </div>
+                <div class="form-group">
+  								<label class="col-sm-4 control-label"><b>RE-PASSWORD</b></label>
+                  <div class="col-sm-4" id="password2_div">
+                     	<input type="password" id="password2" autocomplete="off" name="password2" class="form-control user_campus">
+                     	<span class="help-block" id="campo_password2" style="color: red;"></span>
+  			          </div>
+  							</div>
+  							<div class="form-group">
+  								<div class="col-lg-offset-5 col-lg-4">
+  									<button type="button" id="guardar"  name="guardar" class="btn btn-primary fa fa-plus"><b> CREATE USER</b></button>
+  								</div>
+  							</div>
 		                <!--</form>-->
-              		</div>
-            	</section>
-            </div>
+              </div>
+          </section>
         </div>
+<<<<<<< HEAD
+      </div>
+	    <div class="row">
+      	<div class="col-lg-12">
+        	<section class="panel">
+        		<div class="table-responsive">
+              <table class="table display" id="table_id">
+      					<thead>
+      						<tr>
+      							<th><i class="fa fa-archive"></i>User</th>
+      							<th><i class="fa fa-list"></i> Nombre</th>
+      							<th><i class="icon_profile"></i> Apellido</th>
+      							<th><i class="icon_calendar"></i> Role</th>
+      							<th><i class="fa fa-location-arrow"></i> Actividad</th>
+      							<th><i class="fa fa-location-arrow"></i> Estatus</th>
+      							<th><i class="icon_cogs"></i> Action</th>
+      						</tr>
+      					</thead>
+      					<tbody>
+=======
 		<div class="row">
           	<div class="col-lg-12">
             	<section class="panel">
@@ -117,13 +149,14 @@ if(empty($_SESSION['user']))
 								</tr>
 							</thead>
 							<tbody>
+>>>>>>> 66a64254458b6f9f49a64f0e5c5da40640273011
 
-							</tbody>
-		                </table>
-              		</div>
-            	</section>
+      					</tbody>
+              </table>
           	</div>
-        </div>
+          </section>
+      	</div>
+      </div>
     </section>
 </section>
 
