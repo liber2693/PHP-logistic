@@ -22,34 +22,50 @@ if(empty($_SESSION['user']))
     <!--sidebar start-->
      <?php include('menu.php');?>
     <!--sidebar end-->
-
+    
     <!--main content start-->
     <section id="main-content">
     	<div  align="center"  class="loader" style="display: none;" id="loader_imagen"></div>
     	<section class="wrapper">
         <div class="row">
-    			<div class="col-lg-12">
-    				<h3 class="page-header"><i class="fa fa-laptop"></i><b>Manage Users</b></h3>
-    				<ol class="breadcrumb">
-    				  <li><i class="fa fa-home"></i><a href="index.php"><b>Home</b></a></li>
-    				  <li><i class="fa fa-folder-open"></i><b>Manage Users</b></li>
-    				</ol>
-    			</div>
+
+          <input type="hidden" id="idusuario" name="idusuario" value="<?php echo $_SESSION['id_usuario'];?>">
+			<div class="col-lg-12">
+				<h3 class="page-header"><i class="fa fa-laptop"></i><b>Manage Users</b></h3>
+				<ol class="breadcrumb">
+				  <li><i class="fa fa-home"></i><a href="index.php"><b>Home</b></a></li>
+				  <li><i class="fa fa-folder-open"></i><b>Manage Users</b></li>
+
+				</ol>
+			</div>
         </div>
         <div class="row">
-          <div class="col-lg-12">
-           	<section class="panel">
-           		<header class="panel-heading">
-             		<b>CREATE USERS</b>
-           		</header>
-           		<div class="panel-body form-horizontal">
-           			<div id="mensaje_usuario"></div>
-	              <!--<form class="">-->
-  							<div class="form-group">
-  								<label class="col-sm-4 control-label"><b>NAME</b></label>
-  								<div class="col-sm-4" id="nombre_div">
-  									<input type="text" class="form-control user_campus" id="nombre" name="nombre">
-  								</div>
+          	<div class="col-lg-12">
+            	<section class="panel">
+              		<header class="panel-heading">
+                		<b>CREATE USERS</b>
+
+              		</header>
+              		<div class="panel-body form-horizontal">
+              			<div id="mensaje_usuario"></div>
+		                <!--<form class="">-->
+							<div class="form-group">
+								<label class="col-sm-4 control-label"><b>NAME</b></label>
+								<div class="col-sm-4" id="nombre_div">
+									<input type="text" class="form-control user_campus" id="nombre" name="nombre">
+								</div>
+              </div>
+              <div class="form-group">
+								<label class="col-sm-4 control-label"><b>SURNAME</b></label>
+								<div class="col-sm-4" id="apellido_div">
+								  <input type="text" class="form-control user_campus" id="apellido" name="apellido">
+								</div>
+							</div>
+							<div class="form-group">
+                <label class="col-sm-4 control-label"><b>USERNAME</b></label>
+                <div class="col-sm-4" id="usuario_div">
+                	<input type="text" id="usuario" name="usuario" maxlength="100" class="form-control user_campus">
+>>>>>>> 66a64254458b6f9f49a64f0e5c5da40640273011
                 </div>
                 <div class="form-group">
   								<label class="col-sm-4 control-label"><b>SURNAME</b></label>
@@ -97,6 +113,7 @@ if(empty($_SESSION['user']))
               </div>
           </section>
         </div>
+<<<<<<< HEAD
       </div>
 	    <div class="row">
       	<div class="col-lg-12">
@@ -115,6 +132,24 @@ if(empty($_SESSION['user']))
       						</tr>
       					</thead>
       					<tbody>
+=======
+		<div class="row">
+          	<div class="col-lg-12">
+            	<section class="panel">
+              		<div class="table-responsive">
+		                <table class="table display" id="table_id">
+							<thead>
+								<tr>
+									<th><i class="fa fa-archive"></i>User</th>
+									<th><i class="fa fa-list"></i> Name</th>
+									<th><i class="icon_calendar"></i> Role</th>
+									<th><i class="fa fa-location-arrow"></i>Activity</th>
+									<th><i class="fa fa-location-arrow"></i>Status</th>
+									<th><i class="icon_cogs"></i>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+>>>>>>> 66a64254458b6f9f49a64f0e5c5da40640273011
 
       					</tbody>
               </table>
@@ -180,24 +215,27 @@ if(empty($_SESSION['user']))
              	<span class="help-block" id="Actualziar_campo_password2" style="color: red;"></span>
 						</div>
 					</div>
-					<div class="form-group">
-                    <label>Status User</label>
+          <center>
+            <div class="form-group">
+                    <label><b>STATUS USER</b></label>
 	                    <div>
 	                      	<label class="checkbox-inline">
-	                            <input type="checkbox" id="Actualizar_estatus" value="1"> Status
+	                            <input type="checkbox" id="Actualizar_estatus" value="1"> STATUS
 	                        </label>
 	                    </div>
-	                </div>
+            </div>
+          </center>
+      <center>
+				<div class="">
+					<button type="button" name="boton_actualizar" id="boton_actualizar" class="btn btn-success"><b>UPDATE USER</b></button>
+					<button type="button" id="cancelar_actualizar" class="btn btn-primary" data-dismiss="modal"><b>CLOSE</b></button>
 				</div>
-				<div class="modal-footer">
-					<button type="button" name="boton_actualizar" id="boton_actualizar" class="btn btn-success"><b>Update User</b></button>
-					<button type="button" id="cancelar_actualizar" class="btn btn-primary" data-dismiss="modal"><b>Close</b></button>
-				</div>
+      </center>
 			</form>
     	</div>
   	</div>
 </div>
-
+</div>
 <!-- Modal para confirmar elimnar un Usuario-->
 <div id="myModalEliminar" class="modal fade" role="dialog">
   <div class="modal-dialog">

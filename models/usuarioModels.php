@@ -64,7 +64,8 @@ class User{
 	public function ListUser(){
 		$db = new Conexion();
 
-		$sql = "SELECT id_usuario,usuario,nombre,apellido,rol,actividad,estatus_logico FROM usuarios WHERE id_usuario <> $this->id_usuario  ORDER BY id_usuario DESC";
+		$sql = "SELECT id_usuario,usuario,nombre,apellido,rol,actividad,estatus_logico FROM usuarios ORDER BY id_usuario DESC";
+		//$sql = "SELECT id_usuario,usuario,nombre,apellido,rol,actividad,estatus_logico FROM usuarios WHERE id_usuario <> $this->id_usuario  ORDER BY id_usuario DESC";
 
 		$result = $db->query($sql);
 
