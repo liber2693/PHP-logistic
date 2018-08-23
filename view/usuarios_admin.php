@@ -182,15 +182,17 @@ if(empty($_SESSION['user']))
              	<span class="help-block" id="Actualziar_campo_password2" style="color: red;"></span>
 						</div>
 					</div>
-          <center>
-            <div class="form-group" id="liberlindo">
-                    <label><b>STATUS USER</b></label>
-	                    <div>
-	                      	<label class="checkbox-inline">
-	                            <input type="checkbox" id="Actualizar_estatus" value="1"> STATUS
-	                        </label>
-	                    </div>
-            </div>
+          <center id="liberlindo">
+                      
+            <!-- nuevo -->
+            <label><b>STATUS USER</b></label>
+            <div class="form-group onoffswitch">
+              <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" value="1">
+              <label class="onoffswitch-label" for="myonoffswitch">
+                  <span class="onoffswitch-inner"></span>
+                  <span class="onoffswitch-switch"></span>
+              </label>
+          </div>
           </center>
       <center>
 				<div class="">

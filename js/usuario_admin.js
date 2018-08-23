@@ -180,7 +180,7 @@ function lista_usuarios(idusuario){
 
 function editar_user(id){
 	//console.log("actualizar datos del usuario: "+id);
-
+	var id_usuario_sesion = $("#idusuario").val();
 	$.ajax({
         type: "GET",
         dataType: "json",
@@ -193,12 +193,14 @@ function editar_user(id){
 			$("#Actualizar_usuario").val(data.usuario);
 			$("#Actualizar_rol").val(data.rol);
 			if(data.estatus_logico == 1){
-				$("#Actualizar_estatus").attr('checked', true);
+				$("#myonoffswitch").attr('checked', true);
 			}
-			console.log(id+' '+data.id_usuario)
-			/*if(id == data.id_usuario){
+			console.log(id_usuario_sesion+' '+data.id_usuario)
+			if(id_usuario_sesion == data.id_usuario){
 				$("#liberlindo").addClass("ocultar");
-			}*/
+			}else{
+				$("#liberlindo").removeClass("ocultar");
+			}
 			
 		}
     })
@@ -218,7 +220,7 @@ function actualizar_usuario(){
 	campo2 = password2.length > 0 ? btoa(password2) : null;
 
 
-	var estatus = $("#Actualizar_estatus").prop('checked');
+	var estatus = $("#myonoffswitch").prop('checked');
 	if (estatus == true) {
 		estatus = 1;
 	}else{
