@@ -108,10 +108,10 @@ if(empty($_SESSION['user']))
                   <div>
                     <div class="form-group col-lg-6">
                       <label for="pieces">Pieces</label>
-                      <input name="pieza" type="text" class="form-control round-input solo-numero" autocomplete='tel-country-code' placeholder="Enter Pieces">
+                      <input name="pieza" type="text" class="form-control round-input" autocomplete='tel-country-code' placeholder="Enter Pieces">
                     </div>
                     <div class="form-group col-lg-6">
-                      <label class="control-label col-lg-6" for="inputSuccess">Type</label>
+                      <label class="control-label col-lg-6" for="inputSuccess">Units</label>
                       <div class="col-lg-12">
                         <input name="tipo_pieza" type="text" class="form-control round-input" placeholder="Enter type of piece">
                         <!--<select class="form-control m-bot15 round-input" id="tipo_pieza" name="tipo_pieza">
@@ -124,10 +124,10 @@ if(empty($_SESSION['user']))
                     <div>
                       <div class="form-group col-lg-6">
                         <label for="weight">Weight</label>
-                        <input name="peso" type="text" class="form-control round-input solo-numero" placeholder="Enter Weight">
+                        <input name="peso" type="text" class="form-control round-input" placeholder="Enter Weight">
                       </div>
                       <div class="form-group col-lg-6">
-                        <label class="control-label col-lg-6" for="inputSuccess">Type</label>
+                        <label class="control-label col-lg-6" for="inputSuccess">Units</label>
                         <div class="col-lg-12">
                           <input name="tipo_peso" type="text" class="form-control round-input" placeholder="Enter type of weight">
                           <!--<select class="form-control m-bot15 round-input" id="tipo_peso" name="tipo_peso">
@@ -140,15 +140,15 @@ if(empty($_SESSION['user']))
                       <div>
                         <div class="form-group col-lg-3">
                           <label for="height">Height</label>
-                          <input name="alto" type="text" class="form-control round-input solo-numero" placeholder="Enter Height">
+                          <input name="alto" type="text" class="form-control round-input" placeholder="Enter Height">
                         </div>
                         <div class="form-group col-lg-3">
                           <label for="width">Width</label>
-                          <input name="ancho" type="text" class="form-control round-input solo-numero" placeholder="Enter Width">
+                          <input name="ancho" type="text" class="form-control round-input" placeholder="Enter Width">
                         </div>
                         <div class="form-group col-lg-3">
                           <label for="long">Long</label>
-                          <input name="largo" type="text" class="form-control round-input solo-numero" placeholder="Enter Long">
+                          <input name="largo" type="text" class="form-control round-input" placeholder="Enter Long">
                         </div>
                         <div class="form-group col-lg-3">
                           <label class="control-label col-lg-6" for="inputSuccess">Type</label>
@@ -163,7 +163,7 @@ if(empty($_SESSION['user']))
                         </div>
                         <div class="form-group">
                           <label for="origin">Description</label>
-                          <textarea name="descripcion" class="form-control round-input" placeholder="Description"></textarea>
+                          <textarea name="descripcion" class="form-control resize" placeholder="Description" rows="4"></textarea>
                         </div>
                       </div>
                       <center>
@@ -241,7 +241,7 @@ if(empty($_SESSION['user']))
                     <input name="pieza" type="text" class="form-control round-input solo-numero" autocomplete='tel-country-code' placeholder="Enter Pieces">
                   </div>
                   <div class="form-group col-lg-6">
-                    <label class="control-label col-lg-6" for="inputSuccess">Type</label>
+                    <label class="control-label col-lg-6" for="inputSuccess">Units</label>
                     <div class="col-lg-12">
                       <input name="tipo_pieza" type="text" class="form-control round-input" placeholder="Enter type of piece">
                       <!--<select class="form-control m-bot15 round-input" id="tipo_pieza" name="tipo_pieza">
@@ -257,7 +257,7 @@ if(empty($_SESSION['user']))
                       <input name="peso" type="text" class="form-control round-input solo-numero" placeholder="Enter Weight">
                     </div>
                     <div class="form-group col-lg-6">
-                      <label class="control-label col-lg-6" for="inputSuccess">Type</label>
+                      <label class="control-label col-lg-6" for="inputSuccess">Units</label>
                       <div class="col-lg-12">
                         <input name="tipo_peso" type="text" class="form-control round-input" placeholder="Enter type of weight">
                         <!--<select class="form-control m-bot15 round-input" id="tipo_peso" name="tipo_peso">
@@ -293,7 +293,7 @@ if(empty($_SESSION['user']))
                       </div>
                       <div class="form-group">
                         <label for="origin">Description</label>
-                        <textarea name="descripcion" class="form-control round-input" placeholder="Description"></textarea>
+                        <textarea name="descripcion" class="form-control resize" placeholder="Description" rows="4"></textarea>
                       </div>
                     </div>
                     <center>

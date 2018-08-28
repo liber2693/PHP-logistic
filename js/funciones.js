@@ -17,6 +17,7 @@ function verMensajeAlert(tipo, texto, target){
     return $temp;
 
 }
+
 $('.solo-numero').on("keyup",function (){
     this.value = (this.value + '').replace(/[^0-9]/g, '');
 });

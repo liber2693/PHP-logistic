@@ -153,7 +153,7 @@ else
                   <div class="form-group">
                     <label class="col-sm-2 control-label"><b>Note</b></label>
                     <div class="col-sm-8">
-                      <textarea name="nota" id="nota" class="form-control round-input limpiar" placeholder="Note"></textarea>
+                      <textarea name="nota" id="nota" class="form-control resize limpiar" placeholder="Note" rows="4"></textarea>
                     </div>
                   </div>
                   <center>

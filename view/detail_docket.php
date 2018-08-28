@@ -111,7 +111,7 @@ if(empty($_SESSION['user']))
                           <strong>WEIGHT: <?php echo $datos['peso'] ." " .ucfirst($datos['tipo_peso']);?></strong>
                         </td>
                         <td class="text-center">
-                          <strong>DIMENS:
+                          <strong>DM'S:
                             <?php
                             $varI=null;
                             if (!empty($datos['alto']) && empty($datos['ancho']) && empty($datos['largo'])) {
@@ -326,7 +326,7 @@ if(empty($_SESSION['user']))
                 <input type="hidden"  class="form-control m-bot15 round-input"  name="codigo_factura_documento" id="codigo_factura_documento">
                 <input type="hidden"  class="form-control m-bot15 round-input"  name="codigo_factura_usuario" id="codigo_factura_usuario">
                 <label for="origin"><b>Reason:</b></label>
-                <textarea class="form-control round-input" id="descripcion_eliminar" name="descripcion_eliminar" ></textarea>
+                <textarea class="form-control resize" id="descripcion_eliminar" name="descripcion_eliminar" rows="3"></textarea>
               </div>
               <div class="modal-footer">
                 <button type="submit" name="boton_eliminar" id="boton_eliminar" class="btn btn-success"><b>Confirm</b></button>
@@ -350,9 +350,9 @@ if(empty($_SESSION['user']))
                 <input type="hidden"  class="form-control"  name="codigo_invoice_comentario" id="codigo_invoice_comentario">
                 <input type="hidden"  class="form-control"  name="codigo_docket_comentario" id="codigo_docket_comentario">
                 <label for="Payments"><b>Payments:</b></label>
-                <textarea class="form-control round-input" id="compo_pagos" placeholder="Payments" name="compo_pagos" ></textarea>
+                <textarea class="form-control resize" id="compo_pagos" placeholder="Payments" name="compo_pagos" rows="3"></textarea>
                 <label for="Comments"><b><br>Comments:</b></label>
-                <textarea class="form-control round-input" id="campo_comentario" placeholder="Comments" name="campo_comentario" ></textarea>
+                <textarea class="form-control resize" id="campo_comentario" placeholder="Comments" name="campo_comentario" rows="3"></textarea>
               </div>
               <div class="modal-footer">
                 <button type="submit" name="boton_comentario" class="btn btn-success"><b>Confirm</b></button>

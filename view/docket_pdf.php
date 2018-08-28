@@ -18,6 +18,7 @@ if ($array_d->num_rows==0) {
   $array_d->free();
   $fecha1 = explode('-', $datos_d['fecha']);
   $fecha_formateada1 = $fecha1[1] .'-' .$fecha1[2] .'-' .$fecha1[0];
+  $a="'";
   $html = '<style>
 
       h3{
@@ -78,7 +79,7 @@ if ($array_d->num_rows==0) {
           </tr>
           <tr>
             <td colspan="1">
-              <b>PIECES / WEIGHT / DIMENSIONS: </b>&nbsp;
+              <b>PIECES / WEIGHT / DM '.$a.'S: </b>&nbsp;
               '.$datos_d['pieza'].' '.ucfirst($datos_d['tipo_pieza']).' &nbsp;
               '.$datos_d['peso'].' '.ucfirst($datos_d['tipo_peso']).' &nbsp;';
 

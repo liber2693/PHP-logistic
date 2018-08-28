@@ -161,7 +161,7 @@ if(empty($_SESSION['user']))
           <div class="modal-body">
             <input type="hidden"  class="form-control"  name="codigo_docket_comentario" id="codigo_docket_comentario">
             <label for="Comments"><b><br>Comments:</b></label>
-            <textarea class="form-control round-input" id="campo_comentario" placeholder="Comments" name="campo_comentario" ></textarea>
+            <textarea class="form-control resize" id="campo_comentario" placeholder="Comments" name="campo_comentario" rows="4" ></textarea>
           </div>
           <div class="modal-footer">
             <button type="submit" name="boton_comentario" class="btn btn-success"><b>Confirm</b></button>

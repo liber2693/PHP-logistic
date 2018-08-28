@@ -132,20 +132,20 @@ if(empty($_SESSION['user']))
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label"><strong>PIECES</strong></label>
-								<div class="col-sm-1">
+								<div class="col-sm-3">
 									<input type="text" name="pieza" value="<?php echo $datos['pieza'];?>" class="form-control round-input">
 								</div>
-								<label class="col-sm-1 control-label"><strong>TYPE</strong></label>
+								<label class="col-sm-1 control-label"><strong>UNITS</strong></label>
 								<div class="col-sm-3">
 									<input type="text" name="tipo_pieza" value="<?php echo $datos['tipo_pieza'];?>" class="form-control round-input">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label"><strong>WEIGHT</strong></label>
-								<div class="col-sm-1">
+								<div class="col-sm-3">
 									<input type="text" name="peso" value="<?php echo $datos['peso'];?>" class="form-control round-input">
 								</div>
-								<label class="col-sm-1 control-label"><strong>TYPE</strong></label>
+								<label class="col-sm-1 control-label"><strong>UNITS</strong></label>
 								<div class="col-sm-3">
 									<input type="text" name="tipo_peso" value="<?php echo $datos['tipo_peso'];?>" class="form-control round-input">
 								</div>
@@ -176,7 +176,7 @@ if(empty($_SESSION['user']))
 							<div class="form-group">
 								<label class="col-sm-2 control-label"><strong>DESCRIPTION</strong></label>
 								<div class="col-sm-8">
-									<textarea name="descripcion" class="form-control round-input" placeholder="Description"><?php echo $datos['descripcion'];?></textarea>
+									<textarea name="descripcion" class="form-control resize" placeholder="Description" rows="4"><?php echo $datos['descripcion'];?></textarea>
 								</div>
 							</div>
 							<div class="col-lg-offset-2 col-lg-10">
