@@ -80,7 +80,7 @@ if(empty($_SESSION['user']))
                           <strong>PHONE #: <?php echo $datos['telefono'];?></strong>
                         </td>
                         <td class="text-center">
-                          <strong>CC #: <?php echo ucwords($datos['consignee']);?></strong>
+                          <strong>CC #: <?php echo ucwords($datos['cc']);?></strong>
                         </td>
                       </tr>
                       <tr>
@@ -88,7 +88,7 @@ if(empty($_SESSION['user']))
                           <strong>ORIGIN: <?php echo ucfirst($datos['origen']) .", " .ucwords($datos['lugar_origen']);?></strong>
                         </td>
                         <td class="text-center">
-                          <strong>PO #: <?php echo $datos['cc'];?></strong>
+                          <strong>PO #: <?php echo $datos['po'];?></strong>
                         </td>
                         <td class="text-center">
                           <strong>DATE: <?php
@@ -97,7 +97,7 @@ if(empty($_SESSION['user']))
                           ?></strong>
                         </td>
                         <td class="text-center">
-                          <strong>CONSIGNEE : <?php echo ucfirst($datos['po']);?></strong>
+                          <strong>CONSIGNEE : <?php echo ucfirst($datos['consignee']);?></strong>
                         </td>
                       </tr>
                       <tr>

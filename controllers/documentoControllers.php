@@ -14,7 +14,6 @@ if ($mes == '11' or $mes =='12'){
   $date=substr(date("Y"),2) + 1;
 }
 
-//print_r($date);die();
 if(isset($_POST['tipoDocumento'])){
     $tipoDocumento=$_POST['tipoDocumento'];
     $shipper=post('shipper');
@@ -56,9 +55,9 @@ if(isset($_POST['tipoDocumento'])){
         $actualizar->UpdateCorrelativo();
     }
 
-    $documento = new Docket($codigo,$shipper,$telefono,$po,$cc,$consignee,$fecha,$pais_origen,$lugar_origen,$pais_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$tipo_dimension,$descripcion,'',$tipoDocumento,$fecha_registro,'',$usuario,'','');
+    $documento = new Docket($codigo,$shipper,$telefono,$cc,$consignee,$po,$fecha,$pais_origen,$lugar_origen,$pais_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$tipo_dimension,$descripcion,'',$tipoDocumento,$fecha_registro,'',$usuario,'','');
     $documento->crearDocumento();
-
+    
     if(!empty($_FILES['archivo'])){
         $cantidad=count($_FILES['archivo']['tmp_name']);
         for ($i=0; $i < $cantidad; $i++) {
