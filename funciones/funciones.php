@@ -51,14 +51,37 @@ function calcularEdad($fecha_nacimiento){
 }
 
 
-   function post($key)
+function post($key)
+{
+   if($key)
    {
-       if($key)
-       {
-           //return isset($_POST[$key]) ? addslashes(trim($_POST[$key]," \t\r\0\x0B")) : null;
-           return isset($_POST[$key]) ? addslashes(trim($_POST[$key]," ")) : null;
-       }
+       //return isset($_POST[$key]) ? addslashes(trim($_POST[$key]," \t\r\0\x0B")) : null;
+       return isset($_POST[$key]) ? addslashes(trim($_POST[$key]," ")) : null;
    }
+}
+
+//tipo de archivo
+function tipo_archivo($tipo){
+//echo "<pre>";print_r($tipo);die();
+  switch ($tipo) {
+    case 'application/pdf':
+      $resul = '.pdf';   
+    break;
+    case 'image/jpeg':
+      $resul = '.jpg';   
+    break;
+    case 'image/png':
+      $resul = '.png';   
+    break;
+
+     
+    default:
+      $resul = null;
+    break;
+  }
+  return $resul;
+  
+}
 
    //$nombre = post("nombre");
 

@@ -69,7 +69,7 @@ if ($array_d->num_rows==0) {
         <table border="1" width="100%">
           <tr>
             <td><b>SHIPPER: </b> &nbsp;'.ucwords($datos_d['shipper']).'</td>
-            <td><b>CC#: </b>&nbsp;'.ucwords($datos_d['consignee']).'</td>
+            <td><b>CC#: </b>&nbsp;'.ucwords($datos_d['cc']).'</td>
             <td><b>DOCKET #: </b>&nbsp;'.$datos_d['codigo'].'</td>
           </tr>
           <tr>
@@ -107,10 +107,10 @@ if ($array_d->num_rows==0) {
             $html.=$varI." ".ucfirst($datos_d['tipo_dimension']).'
             </td>
             <td>
-              <b>PO #:</b>&nbsp;'.ucwords($datos_d['cc']).'
+              <b>PO #:</b>&nbsp;'.ucwords($datos_d['po']).'
               </td>
             <td>
-              <b>CONSIGNEE:</b>&nbsp;'.ucwords($datos_d['po']).'
+              <b>CONSIGNEE:</b>&nbsp;'.ucwords($datos_d['consignee']).'
               </td>
           </tr>
           <tr>

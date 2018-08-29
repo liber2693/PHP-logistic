@@ -15,6 +15,7 @@ if ($mes == '11' or $mes =='12'){
 }
 
 if(isset($_POST['tipoDocumento'])){
+    //print_r($_SERVER['DOCUMENT_ROOT']);die();
     $tipoDocumento=$_POST['tipoDocumento'];
     $shipper=post('shipper');
     $telefono=post('telefono');
@@ -60,10 +61,12 @@ if(isset($_POST['tipoDocumento'])){
     
     if(!empty($_FILES['archivo'])){
         $cantidad=count($_FILES['archivo']['tmp_name']);
+       //echo "<pre>";print_r($_FILES);die();
         for ($i=0; $i < $cantidad; $i++) {
-
             $nombreArchivo=str_replace(" ","_",$_FILES['archivo']['name'][$i]);
-            $rutaArchivo="../img/documentos/".$codigo."_".$i."_".$nombreArchivo;
+            //$rutaArchivo="../img/documentos/".$codigo."_".$i."_".$nombreArchivo;
+            $tipo = $_FILES['archivo']['type'][$i]; 
+            $rutaArchivo="../img/documentos/".$codigo."_".$i.tipo_archivo($tipo);
             $foto=$_FILES['archivo']['tmp_name'][$i];
 
             if (is_uploaded_file($foto)) {
@@ -207,7 +210,9 @@ if (isset($_POST['codigo_docket']) && !empty($_FILES['archivo'])) {
     //echo "<pre>";print_r($_FILES);die();
 
     $nombreArchivo=str_replace(" ","_",$_FILES['archivo']['name']);
-    $rutaArchivo="../img/documentos/".$codigo_d."_".$i."_".$nombreArchivo;
+    //$rutaArchivo="../img/documentos/".$codigo_d."_".$i."_".$nombreArchivo;
+    $tipo = $_FILES['archivo']['type']; 
+    $rutaArchivo="../img/documentos/".$codigo_d."_".$i.tipo_archivo($tipo);
     $foto=$_FILES['archivo']['tmp_name'];
 
     if (is_uploaded_file($foto)) {
