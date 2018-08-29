@@ -106,7 +106,7 @@ if(empty($_SESSION['user']))
                           <?php
                           }
                           ?>
-                          <a class="btn btn-success" style="font-size:16px" onclick="comentario(document.getElementById('codigo_documento<?php echo $i;?>').value)" data-toggle="modal" data-target="#myModalComentario" title="Docket Comments"><i class="fa fa-comment-o"></i></a>
+                          <!--<a class="btn btn-success" style="font-size:16px" onclick="comentario(document.getElementById('codigo_documento<?php /*echo $i;*/?>').value)" data-toggle="modal" data-target="#myModalComentario" title="Docket Comments"><i class="fa fa-comment-o"></i></a>-->
                         </div>
                       </td>
                     </tr>

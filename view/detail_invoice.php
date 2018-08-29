@@ -139,9 +139,6 @@ else
                       ?>
                     </tbody>
                   </table>
-
-
-
                 </div>
               </div>
             </section>
@@ -163,6 +160,7 @@ else
                     <th>#</th>
                     <th>Supplier</th>
                     <th>Cost US$</th>
+                    <th>Service</th>
                   </tr>
                 </thead>
                 <?php
@@ -170,7 +168,7 @@ else
                 ?>
                 <tbody>
                   <tr>
-                    <td colspan='5' class="text-center">NO SERVICES</td>
+                    <td colspan='4' class="text-center">NO SUPPLEIR</td>
                   </tr>
                 </tbody>
                 <tbody>
@@ -184,6 +182,7 @@ else
                     <td><?php echo "<b>" .$i ."</b>";?></td>
                     <td><?php echo "<b>" .ucwords($datos_supli['supplier']) ."</b>";?></td>
                     <td><?php echo "<b>$ " .$datos_supli['dinero'] ."</b>";?></td>
+                    <td><b><?php echo $datos_supli['descripcion'];?></b></td>
                   </tr>
                 <?php
                   }

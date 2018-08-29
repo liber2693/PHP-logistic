@@ -7,12 +7,13 @@ class SupplierInvoice{
 	protected $codigo_invoice; //clave UNIQUE
 	protected $supplier;
 	protected $dinero;
+	protected $id_servicio;
 	protected $usuario;
 	protected $fecha_creacion;
 	protected $estatus;
 
 
-	public function __construct($codigo_invoice,$supplier,$dinero,$usuario,$fecha_creacion,$estatus,$id = ''){
+	public function __construct($codigo_invoice,$supplier,$dinero,$id_servicio,$usuario,$fecha_creacion,$estatus,$id = ''){
 
 		$db = new Conexion();
 
@@ -20,6 +21,7 @@ class SupplierInvoice{
 		$this->codigo_invoice = $codigo_invoice;
 		$this->supplier = $supplier;
 		$this->dinero = $dinero;
+		$this->id_servicio = $id_servicio;
 		$this->usuario = $usuario;
 		$this->fecha_creacion = $fecha_creacion;
 		$this->estatus = $estatus;
@@ -29,21 +31,25 @@ class SupplierInvoice{
 	}
 
 	static function ningundato(){
-		return new self('','','','','','','');
+		return new self('','','','','','','','');
 	}
 	static function soloCodigo($codigo_invoice){
-		return new self($codigo_invoice,'','','','','','','','','');
+		return new self($codigo_invoice,'','','','','','','','','','');
 	}
 	public function InsertProvedorInvoice(){
 		$db = new Conexion();
-		$sql="INSERT INTO supplier_invoice(codigo_invoice,supplier,dinero,usuario,fecha_creacion,estatus) VALUES ('$this->codigo_invoice','$this->supplier','$this->dinero','$this->usuario','$this->fecha_creacion','1')";
+		$sql="INSERT INTO supplier_invoice(codigo_invoice,supplier,dinero,id_servicio,usuario,fecha_creacion,estatus) VALUES ('$this->codigo_invoice','$this->supplier','$this->dinero','$this->id_servicio','$this->usuario','$this->fecha_creacion','1')";
 		$db->query($sql);
 
 		$db->close();
 	}
 	public function SelectProvedorInvoice(){
 		$db = new Conexion();
-		$sql="SELECT * FROM `supplier_invoice` WHERE codigo_invoice = '$this->codigo_invoice' AND  estatus IN (1,2)";
+		$sql="SELECT a.id,a.codigo_invoice,a.supplier,a.dinero,b.descripcion 
+			  FROM supplier_invoice a
+			  JOIN servicios_catalogo b ON b.id = a.id_servicio
+			  WHERE a.codigo_invoice = '$this->codigo_invoice'
+			  AND  a.estatus IN (1,2)";
 		$result = $db->query($sql);
 
 		$db->close();

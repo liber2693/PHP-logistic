@@ -82,15 +82,20 @@ else
                   <div id="mensaje_actulaizacion_invoice_supplier">
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-3 control-label"><b>New Supplier</b></label>
+                    <label class="col-sm-2 control-label"><b>New Supplier</b></label>
                     <div class="col-sm-3">
-                      <input type="text" id="supplierActualizar" placeholder="New Supplier"  class="form-control round-input limpiar">
+                      <input type="text" id="supplierActualizar" placeholder="New Supplier"  class="form-control limpiar">
                     </div>
-                    <div class="col-sm-3">
-                      <input type="text" id="pago_supplier" name="pago_supplier" placeholder="Cost" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control round-input limpiar">
+                    <div class="col-sm-2">
+                      <input type="text" id="pago_supplier" name="pago_supplier" placeholder="Cost" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control limpiar">
                       <!--<input type="text" id="pago_supplier" placeholder="Cost" data-thousands="," data-decimal="." data-prefix="$. " name="pago_supplier" class="form-control round-input limpiar">-->
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
+                      <select name="select_servicio" class="form-control" id="select_servicio">
+                        <option value="0">Select Service</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-2">
                       <button type="button" id="masActualizar" class="btn btn-primary" title="New Supplier" onclick="registrarSupplier()"><i class="fa fa-plus" aria-hidden="true"></i></button>
                     </div>
                   </div>
@@ -103,6 +108,7 @@ else
                         <tr>
                           <th>Supplier</th>
                           <th>Price</th>
+                          <th>Service</th>
                           <th>Action</th>
                         </tr>
                       </thead>

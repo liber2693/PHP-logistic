@@ -179,6 +179,12 @@ if(empty($_SESSION['user']))
 									<textarea name="descripcion" class="form-control resize" placeholder="Description" rows="4"><?php echo $datos['descripcion'];?></textarea>
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label"><strong>COMMENTS</strong></label>
+								<div class="col-sm-8">
+									<textarea name="comentario" class="form-control resize" placeholder="Comments" rows="4"><?php echo $datos['comentarios'];?></textarea>
+								</div>
+							</div>
 							<div class="col-lg-offset-2 col-lg-10">
 		                      	<button type="submit"  name="actualizar_documento" id="actualizar_documento" class="btn btn-primary">
 			                    	<strong>UPDATE</strong>

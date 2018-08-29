@@ -37,6 +37,8 @@ if(isset($_POST['tipoDocumento'])){
     $tipo_dimension=post("medida");
     $descripcion=post("descripcion");
 
+    $comentario_docket=post("campo_comentario");
+
     $usuario=$_SESSION['id_usuario'];
 
     $correlativo = new Catalogo('','',$tipoDocumento,'','');
@@ -56,7 +58,7 @@ if(isset($_POST['tipoDocumento'])){
         $actualizar->UpdateCorrelativo();
     }
 
-    $documento = new Docket($codigo,$shipper,$telefono,$cc,$consignee,$po,$fecha,$pais_origen,$lugar_origen,$pais_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$tipo_dimension,$descripcion,'',$tipoDocumento,$fecha_registro,'',$usuario,'','');
+    $documento = new Docket($codigo,$shipper,$telefono,$cc,$consignee,$po,$fecha,$pais_origen,$lugar_origen,$pais_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$tipo_dimension,$descripcion,$comentario_docket,$tipoDocumento,$fecha_registro,'',$usuario,'','');
     $documento->crearDocumento();
     
     if(!empty($_FILES['archivo'])){
@@ -106,10 +108,11 @@ if(isset($_POST['codigo_docu'])){
     $largo = post("largo");
     $medida = post("medida");
     $descripcion = post("descripcion");
+    $comentario = post("comentario");
 
     $usuario=$_SESSION['id_usuario'];
 
-    $documento = new Docket($codigo_docu,$expedidor,$telefono,$cc,$consignee,$po,$fecha,$id_origen,$lugar_origen,$id_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$medida,$descripcion,'','','',$fecha_registro,$usuario,'','');
+    $documento = new Docket($codigo_docu,$expedidor,$telefono,$cc,$consignee,$po,$fecha,$id_origen,$lugar_origen,$id_destino,$lugar_destino,$pieza,$tipo_pieza,$peso,$tipo_peso,$alto,$ancho,$largo,$medida,$descripcion,$comentario,'','',$fecha_registro,$usuario,'','');
     $documento->UpdateDocumento();
 
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_docket.php?docket=".base64_encode($codigo_docu)."'>";

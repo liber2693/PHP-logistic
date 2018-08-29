@@ -165,6 +165,10 @@ if(empty($_SESSION['user']))
                           <label for="origin">Description</label>
                           <textarea name="descripcion" class="form-control resize" placeholder="Description" rows="4"></textarea>
                         </div>
+                        <div class="form-group">
+                          <label for="origin">Comments</label>
+                          <textarea name="campo_comentario" class="form-control resize" placeholder="Comments" rows="4"></textarea>
+                        </div>
                       </div>
                       <center>
                         <div class="form-group">
@@ -294,6 +298,10 @@ if(empty($_SESSION['user']))
                       <div class="form-group">
                         <label for="origin">Description</label>
                         <textarea name="descripcion" class="form-control resize" placeholder="Description" rows="4"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="origin">Comments</label>
+                        <textarea name="campo_comentario" class="form-control resize" placeholder="Comments" rows="4"></textarea>
                       </div>
                     </div>
                     <center>

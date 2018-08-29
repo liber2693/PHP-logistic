@@ -155,13 +155,14 @@ if ($array->num_rows==0) {
         <td align="center"><b>#</b></td>
         <td align="center"><b>Supplier</b></td>
         <td align="center"><b>Cost US$</b></td>
+        <td align="center"><b>Service</b></td>
       </tr>
     </thead>';
     if($array3->num_rows==0){
       $html.='
     <tbody>
       <tr>
-        <td colspan="3" align="center">No supplier</td>
+        <td colspan="4" align="center">No supplier</td>
       </tr>
     </tbody>';
     }else{
@@ -174,6 +175,7 @@ if ($array->num_rows==0) {
           <td>'.$i.'</td>
           <td>'.ucwords($datos_supli['supplier']).'</td>
           <td>$ '.$datos_supli['dinero'].'</td>
+          <td>$ '.$datos_supli['descripcion'].'</td>
         </tr>
       </tbody>';
       }

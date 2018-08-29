@@ -63,7 +63,6 @@ if(empty($_SESSION['user']))
               <header class="panel-heading">
               <b>DOCKET</b>
               </header>
-
               <div class="panel-body">
                 <div class="checkboxes">
                   <table class="table table-bordered">
@@ -138,7 +137,7 @@ if(empty($_SESSION['user']))
                         </td>
                       </tr>
                       <tr>
-                        <td colspan="4" class="text-center">
+                        <td colspan="4">
                           <strong>DESCRIPTION: <?php echo ucfirst($datos['descripcion']) ."</strong>";?>
                         </td>
                       </tr>
@@ -146,7 +145,7 @@ if(empty($_SESSION['user']))
                       if (!empty($datos['comentarios'])){
                       ?>
                       <tr>
-                        <td colspan="4" class="text-center">
+                        <td colspan="4">
                           <strong>DOCKET COMMENTS: <?php echo ucfirst($datos['comentarios']) ."</strong>";?>
                         </td>
                       </tr>
@@ -289,6 +288,9 @@ if(empty($_SESSION['user']))
               </section>
               <center>
                 <!-- Trigger the modal with a button -->
+                <a href="update_docket.php?docket=<?php echo base64_encode($codigo);?>" class="btn btn-success">
+                  <strong>UPDATE INVOICE </strong>
+                </a>
                 <a href="create_invoice.php?docket=<?php echo base64_encode($codigo);?>" class="btn btn-primary">
                   <strong>ADD INVOICE </strong>
                 </a>

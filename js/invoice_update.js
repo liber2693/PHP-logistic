@@ -20,7 +20,7 @@ $(document).ready(function() {
         var lista = response;
         lista.forEach( function(data, indice, array) {
           $("#lista_servicios").append("<option value="+data.id+">"+data.descripcion+"</option> ")
-          //$("#Actualizar_benf_tipo_articulo").append("<option value="+data.id+">"+data.business_name+"</option> ")
+          $("#select_servicio").append("<option value="+data.id+">"+data.descripcion+"</option> ")
         });
     });
 
@@ -222,6 +222,7 @@ function registrarSupplier(){
     var codigo_invoice = $("#codigo_invoice").val();
     var usuario_documento = $("#usuario_documento").val();
     var pago_supplier = $("#pago_supplier").val();
+    var servicio_suppl = $("#select_servicio").val();
 
     if (supplier.length==0) {
         $("#supplierActualizar").css({"border":"2px solid #ff3333"});
@@ -252,13 +253,14 @@ function registrarSupplier(){
                    'supplier' : supplier,
                    'codigo_invoice' : codigo_invoice,
                    'usuario_documento' : usuario_documento,
-                   'pago_supplier' : pago_supplier },
+                   'pago_supplier' : pago_supplier,
+                   'servicio_suppl' : servicio_suppl },
             success: function(data){
                 var lista = data;
                 if(lista==0){
                     $("#seleccion_supplier").append(
                     '<tr>'+
-                    '<td colspan="3" class="text-center"><b>Supplier are not available yet</b></td>'+
+                    '<td colspan="4" class="text-center"><b>Supplier are not available yet</b></td>'+
                     '</tr>');
                     $('#enviar_update_invoice').attr("disabled", true);
                 }else{
@@ -267,6 +269,7 @@ function registrarSupplier(){
                         '<tr>'+
                         '<td><b>'+data.supplier+'</b></td>'+
                         '<td><b>'+(data.dinero ? "$ "+data.dinero : "")+'</b></td>'+
+                        '<td><b>'+data.servicio+'</b></td>'+
                         '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminarSupplier('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                         '</tr>');
                         $('#enviar_update_invoice').attr("disabled", false);
@@ -314,6 +317,7 @@ function listaSupplier(){
                     '<tr>'+
                     '<td><b>'+data.supplier+'</b></td>'+
                     '<td><b>'+(data.dinero ? "$ "+data.dinero : "")+'</b></td>'+
+                    '<td><b>'+data.servicio+'</b></td>'+
                     '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminarSupplier('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                     '</tr>');
                     $('#enviar_update_invoice').attr("disabled", false);
@@ -348,4 +352,5 @@ function limpiar_campos(){
 
     $(".limpiar").val("");
     $("#lista_servicios").val("0");
+    $("#select_servicio").val("0");
 }

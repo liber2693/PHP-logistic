@@ -28,8 +28,10 @@ $(document).ready(function() {
                  $("#lista_servicios").append("<option value='0'>No service available</option>");
             }else{
                 option.forEach( function(data, indice, array) {
-                  $("#lista_servicios").append("<option value="+data.id+">"+data.descripcion+"</option>");
-                        //$("#Actualizar_benf_tipo_articulo").append("<option value="+data.id+">"+data.business_name+"</option> ")
+                    $("#lista_servicios").append("<option value="+data.id+">"+data.descripcion+"</option>");
+                    for (var i = 1; i <= 6; i++) {
+                        $("#select_servicio"+i).append("<option value="+data.id+">"+data.descripcion+"</option>");
+                    }
                 });
             }
         }
