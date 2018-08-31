@@ -138,7 +138,7 @@ if(empty($_SESSION['user']))
                       </tr>
                       <tr>
                         <td colspan="4">
-                          <strong>DESCRIPTION: <?php echo ucfirst($datos['descripcion']) ."</strong>";?>
+                          <center><strong>DESCRIPTION: <?php echo ucfirst($datos['descripcion']) ."</strong></center>";?>
                         </td>
                       </tr>
                       <?php
@@ -146,7 +146,7 @@ if(empty($_SESSION['user']))
                       ?>
                       <tr>
                         <td colspan="4">
-                          <strong>DOCKET COMMENTS: <?php echo ucfirst($datos['comentarios']) ."</strong>";?>
+                          <center><strong>DOCKET COMMENTS: <?php echo ucfirst($datos['comentarios']) ."</strong></center>";?>
                         </td>
                       </tr>
                       <?php
@@ -289,7 +289,7 @@ if(empty($_SESSION['user']))
               <center>
                 <!-- Trigger the modal with a button -->
                 <a href="update_docket.php?docket=<?php echo base64_encode($codigo);?>" class="btn btn-success">
-                  <strong>UPDATE INVOICE </strong>
+                  <strong>UPDATE DOCKET </strong>
                 </a>
                 <a href="create_invoice.php?docket=<?php echo base64_encode($codigo);?>" class="btn btn-primary">
                   <strong>ADD INVOICE </strong>

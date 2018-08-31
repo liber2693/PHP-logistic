@@ -80,8 +80,8 @@ if ($array->num_rows==0) {
         <tr>
           <td><b>PIECES: </b>&nbsp;'.$datos['pieza'].' '.ucfirst($datos['tipo_pieza']).'</td>
           <td><b>WEIGHT: </b>&nbsp;'.$datos['peso'].' '.ucfirst($datos['tipo_peso']).'</td>
-          <td colspan="2"><b>DIMENSIONS:</b> &nbsp;'.$datos['alto'].' X '.$datos['ancho'].' X '.$datos['largo'].'  '.ucfirst($datos['tipo_dimension']).'
-          </td>
+          <!-- <td colspan="2"><b>DIMENSIONS:</b> &nbsp;'.$datos['alto'].' X '.$datos['ancho'].' X '.$datos['largo'].'  '.ucfirst($datos['tipo_dimension']).'
+          </td> -->
         </tr>
         <tr>
           <td colspan="4">
@@ -154,8 +154,8 @@ if ($array->num_rows==0) {
       <tr>
         <td align="center"><b>#</b></td>
         <td align="center"><b>Supplier</b></td>
-        <td align="center"><b>Cost US$</b></td>
         <td align="center"><b>Service</b></td>
+        <td align="center"><b>Cost US$</b></td>
       </tr>
     </thead>';
     if($array3->num_rows==0){
@@ -174,8 +174,8 @@ if ($array->num_rows==0) {
         <tr>
           <td>'.$i.'</td>
           <td>'.ucwords($datos_supli['supplier']).'</td>
-          <td>$ '.$datos_supli['dinero'].'</td>
           <td>$ '.$datos_supli['descripcion'].'</td>
+          <td>$ '.$datos_supli['dinero'].'</td>
         </tr>
       </tbody>';
       }

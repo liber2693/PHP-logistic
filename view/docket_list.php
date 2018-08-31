@@ -82,7 +82,7 @@ if(empty($_SESSION['user']))
                         <input type="hidden" id="comentarios<?php echo $datos['codigo'];?>" value="<?php echo $datos['comentarios'];?>">
                       </td>
                       <td><?php echo "<b>" .$datos['codigo'] ."</b>";?></td>
-                      <td><?php echo "<b>" .ucwords($datos['shipper']) ."</b>";?></td>
+                      <td><?php echo "<b>" .ucwords(strtolower($datos['shipper'])) ."</b>";?></td>
                       <td>
                         <?php
                         $fecha = explode('-', $datos['fecha']);

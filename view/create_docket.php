@@ -138,7 +138,7 @@ if(empty($_SESSION['user']))
                         </div>
                       </div>
                       <div>
-                        <div class="form-group col-lg-3">
+                        <!-- <div class="form-group col-lg-3">
                           <label for="height">Height</label>
                           <input name="alto" type="text" class="form-control round-input" placeholder="Enter Height">
                         </div>
@@ -149,25 +149,25 @@ if(empty($_SESSION['user']))
                         <div class="form-group col-lg-3">
                           <label for="long">Long</label>
                           <input name="largo" type="text" class="form-control round-input" placeholder="Enter Long">
-                        </div>
-                        <div class="form-group col-lg-3">
+                        </div> -->
+                        <!-- <div class="form-group col-lg-3">
                           <label class="control-label col-lg-6" for="inputSuccess">Type</label>
                           <div class="col-lg-14">
                             <input type="text"  class="form-control m-bot15 round-input" autocomplete='tel-country-code' name="medida" placeholder="Type Measure">
-                            <!--<select class="form-control m-bot15 round-input" autocomplete='tel-country-code' id="medida" name="medida">
+                            <select class="form-control m-bot15 round-input" autocomplete='tel-country-code' id="medida" name="medida">
                               <option value="0" selected="selected">SELECT</option>
                               <option value="CENTIMETERS">CENTIMETERS</option>
                               <option value="INCHES">INCHES</option>
-                            </select>-->
+                            </select>
                           </div>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                           <label for="origin">Description</label>
-                          <textarea name="descripcion" class="form-control resize" placeholder="Description" rows="4"></textarea>
+                          <textarea name="descripcion" class="form-control resize" placeholder="Description" rows="5"></textarea>
                         </div>
                         <div class="form-group">
                           <label for="origin">Comments</label>
-                          <textarea name="campo_comentario" class="form-control resize" placeholder="Comments" rows="4"></textarea>
+                          <textarea name="campo_comentario" class="form-control resize" placeholder="Comments" rows="5"></textarea>
                         </div>
                       </div>
                       <center>
@@ -272,7 +272,7 @@ if(empty($_SESSION['user']))
                       </div>
                     </div>
                     <div>
-                      <div class="form-group col-lg-3">
+                      <!-- <div class="form-group col-lg-3">
                         <label for="height">Height</label>
                         <input name="alto" type="text" class="form-control round-input solo-numero" placeholder="Enter Height">
                       </div>
@@ -288,20 +288,20 @@ if(empty($_SESSION['user']))
                         <label class="control-label col-lg-6" for="inputSuccess">Type</label>
                         <div class="col-lg-14">
                           <input type="text"  class="form-control m-bot15 round-input" autocomplete='tel-country-code' name="medida" placeholder="Type Measure">
-                          <!--<select class="form-control m-bot15 round-input" autocomplete='tel-country-code' name="medida">
+                          <select class="form-control m-bot15 round-input" autocomplete='tel-country-code' name="medida">
                             <option value=" " selected="selected">SELECT</option>
                             <option value="CENTIMETERS">CENTIMETERS</option>
                             <option value="INCHES">INCHES</option>
-                          </select>-->
+                          </select>
                         </div>
-                      </div>
+                      </div> -->
                       <div class="form-group">
                         <label for="origin">Description</label>
-                        <textarea name="descripcion" class="form-control resize" placeholder="Description" rows="4"></textarea>
+                        <textarea name="descripcion" class="form-control resize" placeholder="Description" rows="5"></textarea>
                       </div>
                       <div class="form-group">
                         <label for="origin">Comments</label>
-                        <textarea name="campo_comentario" class="form-control resize" placeholder="Comments" rows="4"></textarea>
+                        <textarea name="campo_comentario" class="form-control resize" placeholder="Comments" rows="5"></textarea>
                       </div>
                     </div>
                     <center>

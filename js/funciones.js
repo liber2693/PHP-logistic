@@ -19,7 +19,7 @@ function verMensajeAlert(tipo, texto, target){
 }
 
 $('.solo-numero').on("keyup",function (){
-    this.value = (this.value + '').replace(/[^0-9]/g, '');
+    this.value = (this.value + '').replace(/[^0-9,.]/g, '');
 });
 
 // formatea un numero según una mascara dada ej: "-$###,###,##0.00"

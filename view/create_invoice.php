@@ -81,17 +81,17 @@ else
         						# code...
         					?>
         					<div class="form-group <?php if($i!=1){echo"ocultar";}?>" id='campoSupplier<?php echo $i;?>'>
-        						<label class="col-sm-2 control-label"><?php echo("<b>" ."#".$i ."</b>"); ?></label>
+        						<label class="col-sm-1 control-label"><?php echo("<b>" ."#".$i ."</b>"); ?></label>
         						<div class="col-sm-2">
         							<input type="text" id="supplier<?php echo $i;?>" name="supplier[<?php echo $i;?>]" placeholder="Supplier <?php echo "#".$i;?>"  class="form-control">
         						</div>
-                    <div class="col-sm-2">
-                      <input type="text" id="dinero<?php echo $i;?>" name="dinero[<?php echo $i;?>]" placeholder="Cost <?php echo "#".$i;?>" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control">
-                    </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                       <select name="select_servicio[<?php echo $i;?>]" class="form-control" id="select_servicio<?php echo $i;?>">
                         <option value="0">Select Service</option>
                       </select>
+                    </div>
+                    <div class="col-sm-2">
+                      <input type="text" id="dinero<?php echo $i;?>" name="dinero[<?php echo $i;?>]" placeholder="Cost <?php echo "#".$i;?>" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control">
                     </div>
                     <!--<input type="text" id="dinero<?php //echo $i;?>" name="dinero[<?php //echo $i;?>]" placeholder="Cost <?php //echo "#".$i;?>" data-thousands="," data-decimal="." data-prefix="$. "  class="form-control"> -->
                     <div class="col-sm-4">

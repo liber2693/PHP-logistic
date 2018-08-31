@@ -159,9 +159,9 @@ if ($array_d->num_rows==0) {
         <tr>
           <td><b>PIECES: </b>&nbsp;'.$datos_i['pieza'].' '.ucfirst($datos_i['tipo_pieza']).'</td>
           <td><b>WEIGHT: </b>&nbsp;'.$datos_i['peso'].' '.ucfirst($datos_i['tipo_peso']).'</td>
-          <td colspan="2">
+          <!-- <td colspan="2">
             <b>DIMENSIONS:</b> &nbsp;'.$datos_i['alto'].' X '.$datos_i['ancho'].' X '.$datos_i['largo'].'  '.ucfirst($datos_i['tipo_dimension']).'
-          </td>
+          </td> -->
         </tr>
         <tr>
           <td colspan="4">
@@ -232,6 +232,7 @@ if ($array_d->num_rows==0) {
           <tr>
             <td align="center"><b>#</b></td>
             <td align="center"><b>Supplier</b></td>
+            <td align="center"><b>Service</b></td>
             <td align="center"><b>Cost US$</b></td>
           </tr>
         </thead>';
@@ -251,6 +252,7 @@ if ($array_d->num_rows==0) {
             <tr>
               <td>'.$i.'</td>
               <td>'.ucwords($datos_supli['supplier']).'</td>
+              <td>$ '.$datos_supli['descripcion'].'</td>
               <td>$ '.$datos_supli['dinero'].'</td>
             </tr>
           </tbody>';

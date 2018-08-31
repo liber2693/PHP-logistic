@@ -133,7 +133,7 @@ if(empty($_SESSION['user']))
 							<div class="form-group">
 								<label class="col-sm-2 control-label"><strong>PIECES</strong></label>
 								<div class="col-sm-3">
-									<input type="text" name="pieza" value="<?php echo $datos['pieza'];?>" class="form-control round-input">
+									<input type="text" name="pieza" value="<?php echo $datos['pieza'];?>" class="form-control round-input solo-numero">
 								</div>
 								<label class="col-sm-1 control-label"><strong>UNITS</strong></label>
 								<div class="col-sm-3">
@@ -143,14 +143,14 @@ if(empty($_SESSION['user']))
 							<div class="form-group">
 								<label class="col-sm-2 control-label"><strong>WEIGHT</strong></label>
 								<div class="col-sm-3">
-									<input type="text" name="peso" value="<?php echo $datos['peso'];?>" class="form-control round-input">
+									<input type="text" name="peso" value="<?php echo $datos['peso'];?>" class="form-control round-input solo-numero">
 								</div>
 								<label class="col-sm-1 control-label"><strong>UNITS</strong></label>
 								<div class="col-sm-3">
 									<input type="text" name="tipo_peso" value="<?php echo $datos['tipo_peso'];?>" class="form-control round-input">
 								</div>
 							</div>
-							<div class="form-group">
+						<!--<div class="form-group">
 								<label class="col-sm-2 control-label"><strong>HEIGHT</strong></label>
 								<div class="col-sm-1">
 							  		<input type="text" name="alto" value="<?php echo $datos['alto'];?>" class="form-control round-input">
@@ -166,13 +166,13 @@ if(empty($_SESSION['user']))
 								<label class="col-sm-1 control-label"><strong>TYPE</strong></label>
 								<div class="col-sm-2">
 									<input type="text" name="medida" value="<?php echo $datos['tipo_dimension'];?>" class="form-control round-input">
-									<!--<select class="form-control m-bot15 round-input" autocomplete='tel-country-code' name="medida">
+									<select class="form-control m-bot15 round-input" autocomplete='tel-country-code' name="medida">
 									<option value=" ">SELECT</option>
 									<option value="CENTIMETERS" <?php //if ($datos['tipo_dimension']=='CENTIMETERS') { echo 'selected="selected"';}?> >CENTIMETERS</option>
 									<option value="INCHES" <?php //if ($datos['tipo_dimension']=='INCHES') { echo 'selected="selected"';}?> >INCHES</option>
-									</select>-->
+									</select>
 								</div>
-							</div>
+							</div>-->
 							<div class="form-group">
 								<label class="col-sm-2 control-label"><strong>DESCRIPTION</strong></label>
 								<div class="col-sm-8">

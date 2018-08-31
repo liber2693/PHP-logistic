@@ -68,10 +68,10 @@ else
                           <strong>DOCKET #: <?php echo $datos['codigo_docket'];?></strong>
                         </td>
                         <td class="text-center">
-                          <strong>DATE DOCKET #: 
+                          <strong>DATE DOCKET #:
                             <?php
                               $fecha_docket = explode('-', $datos['fecha_docket']);
-                              echo $fecha_docket[1] .'-' .$fecha_docket[2] .'-' .$fecha_docket[0]; 
+                              echo $fecha_docket[1] .'-' .$fecha_docket[2] .'-' .$fecha_docket[0];
                             ?>
                           </strong>
                         </td>
@@ -159,8 +159,8 @@ else
                   <tr>
                     <th>#</th>
                     <th>Supplier</th>
-                    <th>Cost US$</th>
                     <th>Service</th>
+                    <th>Cost US$</th>
                   </tr>
                 </thead>
                 <?php
@@ -181,8 +181,8 @@ else
                   <tr>
                     <td><?php echo "<b>" .$i ."</b>";?></td>
                     <td><?php echo "<b>" .ucwords($datos_supli['supplier']) ."</b>";?></td>
-                    <td><?php echo "<b>$ " .$datos_supli['dinero'] ."</b>";?></td>
                     <td><b><?php echo $datos_supli['descripcion'];?></b></td>
+                    <td><?php echo "<b>$ " .$datos_supli['dinero'] ."</b>";?></td>
                   </tr>
                 <?php
                   }
