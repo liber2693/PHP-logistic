@@ -133,7 +133,7 @@ if ($array_d->num_rows==0) {
     while ($datos_i = $array_i->fetch_array()) {
       $con++;
       $codigo_factura = $datos_i['codigo_invoice'];
-      if (!empty($datos['fecha'])) {
+      if (!empty($datos_i['fecha'])) {
         $fecha = explode('-', $datos_i['fecha']);
         $fecha_formateada = $fecha[1] .'-' .$fecha[2] .'-' .$fecha[0];
 
