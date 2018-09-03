@@ -3,6 +3,7 @@
 include '../models/invoiceModels.php';
 include '../models/catalogoModels.php';
 include '../models/supplierInvoiceModels.php';
+include '../models/supplierInvoiceTempModels.php';
 include '../models/shippingInvoiceModels.php';
 include '../models/invoicesServicesTempModels.php';
 include '../models/invoicesServicesModels.php';
@@ -355,5 +356,73 @@ if (isset($_POST['boton_comentario'])) {
     echo"<meta http-equiv='refresh' content='0;URL=../view/detail_docket.php?docket=".base64_encode($_POST['codigo_docket_comentario'])."'>";
 
 }
+
+/****03-09-2018 nueva funcion para el registro de supplier de invoice****/
+if(isset($_POST['supplier']) && $_POST['registro_sup']==1){
+    
+    $supplier = $_POST['supplier'];
+    $id_servicio = $_POST['select_servicio'];
+    $dinero = substr($_POST['dinero'],1);
+    $nota = $_POST['nota_supplier'];
+    $codigo = $_POST['codigo'];
+    //Usuario que se encuentra en sesion
+    $usuario=$_SESSION['id_usuario'];
+
+    //guardar supplier nuevos en la tabla temporar
+    $new_register = new supplierInvoiceTemp($codigo,$supplier,$dinero,$id_servicio,$nota,$usuario,$fecha_registro,'','');
+    $new_register->InsertTablaTempSupplier();
+
+    //consulta
+    $consulta = new supplierInvoiceTemp($codigo,'','','','',$usuario,'','','');
+    $array=$consulta->SelectSupplierTablaTemp();
+    //print_r($array);die();
+    if($array->num_rows!=0){
+        while($resultado = $array->fetch_assoc()) {
+          $data []= array('codigo_ser' => $resultado['codigo_ser'],
+                          'id' => $resultado['id'],
+                          'descripcion' => $resultado['descripcion'],
+                          'nota' => $resultado['nota'],
+                          'supplier' => $resultado['supplier'],
+                          'dinero' => $resultado['dinero'],
+                        );
+        }
+        $array->free();
+    }else{
+        $data=0;
+    }
+    echo json_encode($data);
+}
+//llama la lista de supplier de un invoice nuevo cuando se habre la pagina
+if(isset($_GET['tabla']) && $_GET['tabla']==5){
+    $codigo = $_GET['codigo'];
+    $usuario = $_GET['usuario'];
+    $consulta = new supplierInvoiceTemp($codigo,'','','','',$usuario,'','','');
+    $array=$consulta->SelectSupplierTablaTemp();
+    if($array->num_rows!=0){
+        while($resultado = $array->fetch_assoc()) {
+          $data []= array('codigo_ser' => $resultado['codigo_ser'],
+                          'id' => $resultado['id'],
+                          'descripcion' => $resultado['descripcion'],
+                          'nota' => $resultado['nota'],
+                          'supplier' => $resultado['supplier'],
+                          'dinero' => $resultado['dinero'],
+                        );
+        }
+        $array->free();
+    }else{
+        $data=0;
+    }
+    echo json_encode($data);
+}
+//eliminar registro de un supplier en crear un invioice
+if(isset($_POST['id_supplier']) && $_POST['eliminar_supplier'] == 7){
+    $id=$_POST['id_supplier'];
+    $eliminar = new supplierInvoiceTemp('','','','','','','',$id);
+    $array=$eliminar->EliminarSupplierTablaTemp();
+
+    echo json_encode(3);
+}
+
+
 
 ?>

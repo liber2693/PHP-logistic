@@ -74,44 +74,81 @@ else
                       </div>
                     </div>
           					<div class="form-group">
-          						<label class="col-sm-2 control-label"><b>Supplier</b></label>
-          					</div>
-        					<?php
-        					for ($i=1; $i<7; $i++) {
-        						# code...
-        					?>
-        					<div class="form-group <?php if($i!=1){echo"ocultar";}?>" id='campoSupplier<?php echo $i;?>'>
-        						<label class="col-sm-1 control-label"><?php echo("<b>" ."#".$i ."</b>"); ?></label>
+                      <div id="mensaje_suppleir"></div>
+                      <label class="col-sm-2 control-label"><b>Supplier</b></label>
+                      <div class="col-sm-2">
+                        <input type="text" id="supplier" name="supplier" placeholder="Supplier"  class="form-control limpiar">
+                      </div>
+                      <div class="col-sm-3">
+                        <select name="select_servicio" class="form-control" id="select_servicio">
+                          <option value="0">Select Service</option>
+                        </select>
+                      </div>
+                      <div class="col-sm-2">
+                        <input type="text" id="dinero" name="dinero" placeholder="Cost" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control limpiar">
+                      </div>
+                      <div class="col-sm-2">
+                        <button type="button" id="guardar_supplier" name="guardar_supplier" class="btn btn-primary" title="New Supplier"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label"><b>Note</b></label>
+                      <div class="col-sm-8">
+                        <textarea name="nota_supplier" id="nota_supplier" class="form-control resize limpiar" placeholder="Note Supplier" rows="4"></textarea>
+                      </div>
+                    </div>
+                    <section class="panel">
+                      <header class="panel-heading">
+                        <b>SELECTED SUPPLIER</b>
+                      </header>
+                      <table class="table table-condensed"  id="lista_supplier_tabla">
+                        <thead>
+                          <tr>
+                            <th>Code</th>
+                            <th>Supplier</th>
+                            <th>Service</th>
+                            <th>Notes</th>
+                            <th>US$ AMT</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                      </table>
+                    </section>
+                  <!--viejo registro de los supplier 03-09-2018 --> 
+        					<!--<div class="form-group <?php //if($i!=1){echo"ocultar";}?>" id='campoSupplier<?php //echo $i;?>'>
+        						<label class="col-sm-1 control-label"><?php //echo("<b>" ."#".$i ."</b>"); ?></label>
         						<div class="col-sm-2">
-        							<input type="text" id="supplier<?php echo $i;?>" name="supplier[<?php echo $i;?>]" placeholder="Supplier <?php echo "#".$i;?>"  class="form-control">
+        							<input type="text" id="supplier<?php //echo $i;?>" name="supplier[<?php //echo $i;?>]" placeholder="Supplier <?php //echo "#".$i;?>"  class="form-control">
         						</div>
                     <div class="col-sm-3">
-                      <select name="select_servicio[<?php echo $i;?>]" class="form-control" id="select_servicio<?php echo $i;?>">
+                      <select name="select_servicio[<?php //echo $i;?>]" class="form-control" id="select_servicio<?php //echo $i;?>">
                         <option value="0">Select Service</option>
                       </select>
                     </div>
                     <div class="col-sm-2">
-                      <input type="text" id="dinero<?php echo $i;?>" name="dinero[<?php echo $i;?>]" placeholder="Cost <?php echo "#".$i;?>" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control">
-                    </div>
+                      <input type="text" id="dinero<?php //echo $i;?>" name="dinero[<?php //echo $i;?>]" placeholder="Cost <?php //echo "#".$i;?>" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control">
+                    </div>-->
                     <!--<input type="text" id="dinero<?php //echo $i;?>" name="dinero[<?php //echo $i;?>]" placeholder="Cost <?php //echo "#".$i;?>" data-thousands="," data-decimal="." data-prefix="$. "  class="form-control"> -->
-                    <div class="col-sm-4">
+                    <!--<div class="col-sm-4">
         							<?php
-        							if($i!=6){
+        							//if($i!=6){
         							?>
-        							<button type="button" id="mas[<?php echo $i;?>]" name="mas[<?php echo $i;?>]" class="btn btn-primary" title="Bootstrap 3 themes generator" onclick="visible(<?php echo $i;?>)"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        							<button type="button" id="mas[<?php //echo $i;?>]" name="mas[<?php //echo $i;?>]" class="btn btn-primary" title="Bootstrap 3 themes generator" onclick="visible(<?php //echo $i;?>)"><i class="fa fa-plus" aria-hidden="true"></i></button>
         							<?php
-        							}
+        							/*}
         							if ($i!=1) {
-        								# code...
+        								# code...*/
         							?>
-        							<button type="button" id="menos[<?php echo $i;?>]" name="menos[<?php echo $i;?>]" class="btn btn-danger" title="Bootstrap 3 themes generator" onclick="invisible(<?php echo $i;?>)"><i class="fa fa-minus" aria-hidden="true"></i></button>
+        							<button type="button" id="menos[<?php //echo $i;?>]" name="menos[<?php //echo $i;?>]" class="btn btn-danger" title="Bootstrap 3 themes generator" onclick="invisible(<?php //echo $i;?>)"><i class="fa fa-minus" aria-hidden="true"></i></button>
         							<?php
-        							}
+        							//}
         							?>
         						</div>
-        					</div>
+        					</div>-->
         					<?php
-        					}
+        					//}
         					?>
                   <div class="form-group">
                     <label class="col-sm-2 control-label"><b>Bill to</b></label>

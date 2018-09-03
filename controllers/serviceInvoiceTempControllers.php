@@ -5,8 +5,8 @@ include '../funciones/funciones.php';
 date_default_timezone_set("America/Caracas");
 $fecha_registro=date("Y-m-d");
 
-if((post("servicio"))){
-	$servicio = post("servicio");
+if($_POST["servicio"]){
+	$servicio = $_POST['servicio'];
 	$dinero_us = post("dinero_us");
 	$dinero_cad = post("dinero_cad");
 	$nota = post("nota");
