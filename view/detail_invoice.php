@@ -197,7 +197,7 @@ else
       </div>
         <?php
         $buscarServInvoice = invoicesServices::soloCodigo($codigo_factura);
-        $array1 = $buscarServInvoice->SelectServicosInvoice();
+        $array1 = $buscarServInvoice->SelectServiciosInvoice();
         ?>
         <div class="row">
           <div class="col-sm-12">

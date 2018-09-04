@@ -197,7 +197,7 @@ if ($array_d->num_rows==0) {
       </table>';
 
       $buscarServInvoice = invoicesServices::soloCodigo($codigo_factura);
-      $array1 = $buscarServInvoice->SelectServicosInvoice();
+      $array1 = $buscarServInvoice->SelectServiciosInvoice();
 
       $paginas.$con.='
       <h3>Services</h3>

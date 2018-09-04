@@ -395,7 +395,7 @@ function eliminar_supplier(id){
         }
     })
 }
-//limpia los campos al momento de agregar un servico
+//limpia los campos al momento de agregar un servicio
 function limpiar_campos_servicios(){
 
     $(".limpiar").val("");

@@ -72,18 +72,18 @@ if(isset($_POST['codigo_documento']) && isset($_POST['usuario_documento'])){
     /*Se guardan los proveedores de esta factura*/
     /*buscar en la tabla invoices_services_temp para verificar si tiene servicios el documento de la factura para transladarlos a la tabla de servicos por facturas*/
     $consulta_serv = new invoicesServicesTemp($codigo_documento,'','','','',$usuario,'','');
-    $array1=$consulta_serv->SelectServicosTablaTemp();
+    $array1=$consulta_serv->SelectServiciosTablaTemp();
     while ($resServi=$array1->fetch_assoc()) 
     {
         $id_tabla = $resServi['id'];
-        $id_servico = $resServi['id_servico'];
+        $id_servicio = $resServi['id_servicio'];
         $pago_us = $resServi['pago_us'];
         $pago_can = $resServi['pago_can'];
         $fecha_registro = $resServi['fecha_registro'];
         $nota = $resServi['nota'];
         # code...
         //guardar los registros guardados de la tabla temporal
-        $insert_servicios = new invoicesServices($codigo,$id_servico,$pago_us,$pago_can,$nota,$usuario,$fecha_registro,'','');
+        $insert_servicios = new invoicesServices($codigo,$id_servicio,$pago_us,$pago_can,$nota,$usuario,$fecha_registro,'','');
         $insert_servicios->InsertServiceInvoice();
         //elinarlos de la tabla temporal
         $eliminar = new invoicesServicesTemp('','','','','','','',$id_tabla);
@@ -121,7 +121,7 @@ if(isset($_POST['servicio'])){
     $insert->InsertTablaTempServi();
     //llamar al monmento de resgistar
     $consulta = new invoicesServicesTemp($codigo,'','','','',$usuario,'','');
-    $array=$consulta->SelectServicosTablaTemp();
+    $array=$consulta->SelectServiciosTablaTemp();
     if($array->num_rows!=0){
         while($resultado = $array->fetch_assoc()) {
           $data []= array('id' => $resultado['id'],
@@ -143,7 +143,7 @@ if(isset($_GET['tabla']) && $_GET['tabla']==1){
     $codigo = $_GET['codigo'];
     $usuario = $_GET['usuario'];
     $consulta = new invoicesServicesTemp($codigo,'','','','',$usuario,'','');
-    $array=$consulta->SelectServicosTablaTemp();
+    $array=$consulta->SelectServiciosTablaTemp();
     if($array->num_rows!=0){
         while($resultado = $array->fetch_assoc()) {
           $data []= array('id' => $resultado['id'],
@@ -240,11 +240,11 @@ if(isset($_GET['tabla']) && $_GET['tabla']==4){
     $codigo_invoice = $_GET['codigo_invoice'];
     //llama los servicos adquirodos por el usuario cuando se registro
     $consulta = new invoicesServices($codigo_invoice,'','','','','','','','');
-    $array=$consulta->SelectServicosInvoice();
+    $array=$consulta->SelectServiciosInvoice();
     if($array->num_rows!=0){
         while($resultado = $array->fetch_assoc()) {
           $data []= array('codigo_ser' => $resultado['codigo_ser'],
-                          'id' => $resultado['id_servico'],
+                          'id' => $resultado['id_servicio'],
                           'descripcion' => $resultado['descripcion'],
                           'nota' => $resultado['nota'],
                           'precio_us' => $resultado['precio_us'],
@@ -281,11 +281,11 @@ if(isset($_POST['codigo_factura']) && !empty($_POST['codigo_factura'])){
 
     //llamar al monmento de resgistar para mostrar en la tabla
     $consulta = new invoicesServices($codigo_invoice,'','','','','','','','');
-    $array=$consulta->SelectServicosInvoice();
+    $array=$consulta->SelectServiciosInvoice();
     if($array->num_rows!=0){
         while($resultado = $array->fetch_assoc()) {
           $data []= array('codigo_ser' => $resultado['codigo_ser'],
-                          'id' => $resultado['id_servico'],
+                          'id' => $resultado['id_servicio'],
                           'descripcion' => $resultado['descripcion'],
                           'nota' => $resultado['nota'],
                           'precio_us' => $resultado['precio_us'],
