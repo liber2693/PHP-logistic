@@ -131,7 +131,7 @@ if ($array_d->num_rows==0) {
   if ($array_i->num_rows!=0) {
 
     $con=0;
-    while ($datos_i = $array_i->fetch_array()) {
+    while ($datos_i = $array_i->fetch_assoc()) {
       $con++;
       //echo "<pre>";print_r($datos_i);die;
       $codigo_factura = $datos_i['codigo_invoice'];
@@ -161,37 +161,43 @@ if ($array_d->num_rows==0) {
         <tr>
           <td><b>PIECES: </b>&nbsp;'.$datos_i['pieza'].' '.ucfirst($datos_i['tipo_pieza']).'</td>
           <td><b>WEIGHT: </b>&nbsp;'.$datos_i['peso'].' '.ucfirst($datos_i['tipo_peso']).'</td>
-        <td colspan="1">
-            <b>CC #:</b> &nbsp;'.ucfirst($datos_i['cc']).'
-        </td>
-        <td colspan="1">
-            <b>SHIPPER:</b> &nbsp;'.ucfirst($datos_i['shipper']).'
-        </td>
+          <td colspan="1">
+              <b>PO #:</b> &nbsp;'.ucfirst($datos_d['po']).'
+          </td>
+          <td colspan="1">
+              <b>CONSIGNEE:</b> &nbsp;'.ucfirst($datos_d['consignee']).'
+          </td>
         </tr>
         <tr>
         <td colspan="2">
           <b>NOTE:</b> &nbsp;'.ucfirst($datos_i['descripcion']).'
         </td>
-        <td colspan="2">
-          <b>DOCKET DESCRIPTION: </b>
-          '.ucfirst($datos_d['descripcion']).'
+        <td colspan="1">
+            <b>CC #:</b> &nbsp;'.ucfirst($datos_d['cc']).'
         </td>
-
+        <td colspan="1">
+            <b>SHIPPER:</b> &nbsp;'.ucfirst($datos_i['shipper']).'
+        </td>
         </tr>
+
         <tr>
         <td colspan="2">
           <b>PAYMENTS: </b>
           '.ucfirst($datos_i['pagos']).'
         </td>
         <td colspan="2">
-          <b>INVOICE COMMENTS: </b>
-              '.ucfirst($datos_i['comentarios']).'
+          <b>DOCKET DESCRIPTION: </b>
+          '.ucfirst($datos_d['descripcion']).'
         </td>
         </tr>
         <tr>
-        <td colspan="4">
+        <td colspan="2">
           <b>DOCKET COMMENTS: </b>
              '.ucfirst($datos_d['comentarios']).'
+        </td>
+        <td colspan="2">
+          <b>INVOICE COMMENTS: </b>
+              '.ucfirst($datos_i['comentarios']).'
         </td>
         </tr>
       </table>';
