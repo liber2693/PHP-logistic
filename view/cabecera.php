@@ -2,7 +2,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="../theme/img/icono1.png">
   <!--<title>System Dockets</title>-->
-
   <!-- Bootstrap CSS -->
   <link href="../theme/css/bootstrap.min.css" rel="stylesheet">
   <!-- bootstrap theme -->
