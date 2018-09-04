@@ -121,7 +121,7 @@ else
                       if(!empty($datos['pagos'])){
                       ?>
                         <tr>
-                          <td colspan="2" class="text-center">
+                          <td colspan="2">
                             <b>PAYMENTS: &nbsp;<?php echo $datos['pagos'];?></b>
                           </td>
                         </tr>
@@ -130,7 +130,7 @@ else
                       if(!empty($datos['comentarios'])){
                       ?>
                       <tr>
-                        <td colspan="5" class="text-center">
+                        <td colspan="5">
                           <b>COMMENTS: &nbsp;<?php echo $datos['comentarios'];?></b>
                         </td>
                       </tr>
@@ -182,7 +182,7 @@ else
                     <td><?php echo "<b>" .$i ."</b>";?></td>
                     <td><?php echo "<b>" .ucwords($datos_supli['supplier']) ."</b>";?></td>
                     <td><b><?php echo $datos_supli['descripcion'];?></b></td>
-                    <td><?php echo "<b>$ " .$datos_supli['dinero'] ."</b>";?></td>
+                    <td><?php echo $retVal = ($datos_supli['dinero']) ? "<b>$ ".$datos_supli['dinero']."</b>" : "";?></td>
                   </tr>
                 <?php
                   }

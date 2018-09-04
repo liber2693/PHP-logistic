@@ -78,11 +78,41 @@ if ($array->num_rows==0) {
           <td><b>DESTINATION: </b>&nbsp;'.$datos['pais_destino'].', '.ucfirst($datos['lugar_destino']).'</td>
         </tr>
         <tr>
-          <td><b>PIECES: </b>&nbsp;'.$datos['pieza'].' '.ucfirst($datos['tipo_pieza']).'</td>
-          <td><b>WEIGHT: </b>&nbsp;'.$datos['peso'].' '.ucfirst($datos['tipo_peso']).'</td>
-          <!-- <td colspan="2"><b>DIMENSIONS:</b> &nbsp;'.$datos['alto'].' X '.$datos['ancho'].' X '.$datos['largo'].'  '.ucfirst($datos['tipo_dimension']).'
-          </td> -->
-        </tr>
+            <td colspan="2">
+              <b>PIECES / WEIGHT / DM '.$a.'S: </b>&nbsp;
+              '.$datos['pieza'].' '.ucfirst($datos['tipo_pieza']).' &nbsp;
+              '.$datos['peso'].' '.ucfirst($datos['tipo_peso']).' &nbsp;';
+
+              $varI=null;
+              if (!empty($datos['alto']) && empty($datos['ancho']) && empty($datos['largo'])) {
+                $varI=$datos['alto'];
+              }
+              if (!empty($datos['alto']) && !empty($datos['ancho']) && empty($datos['largo'])) {
+                $varI=$datos['alto']." X ".$datos['ancho'];
+              }
+              if (!empty($datos['alto']) && !empty($datos['ancho']) && !empty($datos['largo'])) {
+                $varI=$datos['alto']." X ".$datos['ancho']." X ".$datos['largo'];
+              }
+              if (empty($datos['alto']) && !empty($datos['ancho']) && empty($datos['largo'])) {
+                $varI=$datos['ancho'];
+              }
+              if (empty($datos['alto']) && !empty($datos['ancho']) && !empty($datos['largo'])) {
+                $varI=$datos['ancho']." X ".$datos['largo'];
+              }
+              if (empty($datos['alto']) && empty($datos['ancho']) && !empty($datos['largo'])) {
+                $varI=$datos['largo'];
+              }
+              //echo $varI." ".ucfirst($datos['tipo_dimension']);
+
+            $html.=$varI." ".ucfirst($datos['tipo_dimension']).'
+            </td>
+            <td>
+              <b>PO #:</b>&nbsp;'.ucwords($datos['po']).'
+              </td>
+            <td>
+              <b>CONSIGNEE:</b>&nbsp;'.ucwords($datos['consignee']).'
+              </td>
+          </tr>
         <tr>
           <td colspan="4">
             <b>NOTE:</b> &nbsp;'.ucfirst($datos['descripcion']).'

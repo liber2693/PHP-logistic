@@ -151,43 +151,27 @@ $(document).ready(function() {
             $("#select_servicio").css({"border":"2px solid #ff3333"});
             event.preventDefault();
         }
-        if (dinero.length === 0) {
+        /*if (dinero.length === 0) {
             $("#dinero").css({"border":"2px solid #ff3333"});
             event.preventDefault();
-        }
-        if((supplier.length>0) && (select_servicio!=0) &&  (dinero.length>0)){
+        }*/
+        if(supplier.length>0 && select_servicio!=0){
             $("#lista_supplier_tabla > tbody:last").children().remove();
             $.ajax({
                 type: "POST",
                 dataType: "json",
                 url: "../controllers/invoiceControllers.php",
                 data: {'registro_sup' : 1,
-                       'supplier' : supplier,
+                       'supplier_regis' : supplier,
                        'select_servicio' : select_servicio,
                        'dinero': dinero,
                        'nota_supplier' : nota_supplier,
                        'codigo' : codigo},
                 success: function(data){
                     var lista = data;
-                    if(lista==0){
-                        $("#lista_supplier_tabla").append(
-                        '<tr>'+
-                        '<td colspan="6" class="text-center"><b>Services are not available yet</b></td>'+
-                        '</tr>');
-                        //$('#enviar_invoice').attr("disabled", true);
-                    }else{
-                        lista.forEach( function(data, indice, array) {
-                            $("#lista_supplier_tabla").append(
-                            '<tr>'+
-                            '<td><b>'+data.codigo_ser+'</b></td>'+
-                            '<td><b>'+data.supplier+'</b></td>'+
-                            '<td><b>'+data.descripcion+'</b></td>'+
-                            '<td><b>'+data.nota+'</b>'+'</td>'+
-                            '<td><b>$. '+data.dinero+'</b>'+'</td>'+
-                            '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminar_supplier('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
-                            '</tr>');
-                            $('#enviar_invoice').attr("disabled", false);
-                        });
+                    if(data==1)
+                    {
+                        mostarLista_supplier()
                     }
                     limpiar_campos_servicios();
                 }
@@ -312,7 +296,7 @@ function mostarLista_supplier(){
             if(lista==0){
                 $("#lista_supplier_tabla").append(
                 '<tr>'+
-                '<td colspan="5" class="text-center"><b>Services are not available yet</b></td>'+
+                '<td colspan="6" class="text-center"><b>Services are not available yet</b></td>'+
                 '</tr>');
                 //$('#enviar_invoice').attr("disabled", true);
             }else{
@@ -320,10 +304,10 @@ function mostarLista_supplier(){
                     $("#lista_supplier_tabla").append(
                     '<tr>'+
                     '<td><b>'+data.codigo_ser+'</b></td>'+
+                    '<td><b>'+data.supplier+'</b></td>'+
                     '<td><b>'+data.descripcion+'</b></td>'+
                     '<td><b>'+data.nota+'</b>'+'</td>'+
-                    '<td><b>'+(data.dolar_us ? "$ "+data.dolar_us : "")+'</b></td>'+
-                    '<td><b>'+(data.dolar_cad ? "$ "+data.dolar_cad : "")+'</b></td>'+
+                    '<td><b>'+(data.dinero ? "$ "+data.dinero : "")+'</b>'+'</td>'+
                     '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminar_supplier('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                     '</tr>');
                     //$('#enviar_invoice').attr("disabled", false);
@@ -383,7 +367,7 @@ function eliminar(id){
         success: function(data){
             var lista = data;
             if(lista==3){
-                mostarLista_supplier()
+                mostarLista()
             }else{
                 console.log(id)
             }
@@ -404,7 +388,7 @@ function eliminar_supplier(id){
         success: function(data){
             var lista = data;
             if(lista==3){
-                mostarLista()
+                mostarLista_supplier()
             }else{
                 console.log(id)
             }

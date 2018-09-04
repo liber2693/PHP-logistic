@@ -45,7 +45,7 @@ class SupplierInvoice{
 	}
 	public function SelectProvedorInvoice(){
 		$db = new Conexion();
-		$sql="SELECT a.id,a.codigo_invoice,a.supplier,a.dinero,b.descripcion 
+		$sql="SELECT a.id,a.codigo_invoice,a.supplier,a.dinero,b.descripcion,a.nota
 			  FROM supplier_invoice a
 			  JOIN servicios_catalogo b ON b.id = a.id_servicio
 			  WHERE a.codigo_invoice = '$this->codigo_invoice'

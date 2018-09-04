@@ -138,7 +138,7 @@ if(empty($_SESSION['user']))
                       </tr>
                       <tr>
                         <td colspan="4">
-                          <center><strong>DESCRIPTION: <?php echo ucfirst($datos['descripcion']) ."</strong></center>";?>
+                        <strong>DESCRIPTION: <?php echo ucfirst($datos['descripcion']);?></strong>
                         </td>
                       </tr>
                       <?php
@@ -146,7 +146,7 @@ if(empty($_SESSION['user']))
                       ?>
                       <tr>
                         <td colspan="4">
-                          <center><strong>DOCKET COMMENTS: <?php echo ucfirst($datos['comentarios']) ."</strong></center>";?>
+                          <strong>DOCKET COMMENTS: <?php echo ucfirst($datos['comentarios']);?></strong>
                         </td>
                       </tr>
                       <?php

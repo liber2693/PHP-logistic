@@ -58,6 +58,7 @@ class supplierInvoiceTemp{
 
 		return $result;
 	}
+
 	public function EliminarSupplierTablaTemp(){
 		$db = new Conexion();
 		$sql="DELETE FROM supplier_invoice_temp WHERE id=$this->id";
@@ -65,6 +66,19 @@ class supplierInvoiceTemp{
 
 		$db->close();
 		
+	}
+
+	public function SelectAllSupplier(){
+		$db = new Conexion();
+		$sql="SELECT *
+			  FROM supplier_invoice_temp  
+			  WHERE codigo_documento='$this->codigo_documento'
+			  AND usuario='$this->usuario'";
+		$result = $db->query($sql);
+
+		$db->close();
+
+		return $result;
 	}
 }
 ?>
