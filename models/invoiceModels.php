@@ -67,7 +67,7 @@ class Invoice{
 	public function SelectInvoice(){
 		$db = new Conexion();
 		//$sql="SELECT * FROM invoice WHERE codigo_invoice = '$this->codigo_invoice' AND estatus IN (1,2)";
-		$sql = "SELECT a.tipo_documento,a.codigo_invoice,a.codigo_docket,a.codigo_usuario,a.fecha,a.cliente,a.pagos,a.comentarios,a.estatus,b.fecha AS fecha_docket FROM invoice a JOIN docket b ON b.codigo=a.codigo_docket WHERE a.codigo_invoice = 
+		$sql = "SELECT a.tipo_documento,a.codigo_invoice,a.codigo_docket,a.codigo_usuario,a.fecha,a.cliente,a.pagos,a.comentarios,a.estatus,b.fecha AS fecha_docket FROM invoice a JOIN docket b ON b.codigo=a.codigo_docket WHERE a.codigo_invoice =
 		'$this->codigo_invoice' AND a.estatus IN (1,2)";
 		$result = $db->query($sql);
 
@@ -89,7 +89,8 @@ class Invoice{
 
 	public function SelectInvoiceDocket(){
 		$db = new Conexion();
-		$sql="SELECT a.codigo_invoice,a.codigo_docket,a.codigo_usuario,a.fecha,a.cliente,a.fecha_creacion,b.shipper,b.telefono,
+		$sql="SELECT a.codigo_invoice,a.codigo_docket,a.codigo_usuario,a.fecha,a.cliente,a.fecha_creacion,b.shipper,a.comentarios as invoice_comments,
+					b.telefono,b.comentarios,b.descripcion,b.cc,b.po,b.consignee,
 					 b.lugar_origen,b.lugar_destino,b.pieza,b.tipo_pieza,b.peso,b.tipo_peso,b.alto,b.ancho,
 					 b.largo,b.tipo_dimension,b.descripcion,c.pais AS pais_origen,d.pais AS pais_destino, a.pagos,a.comentarios,b.fecha AS fecha_docket
 					 FROM invoice a

@@ -9,7 +9,7 @@ if(!empty($_POST['usuario']) && !empty($_POST['password']))
 	$usuario=$_POST['usuario'];
 	$password=md5(base64_encode($_POST['password']));
 
-	
+
 	$consulta_usuario = Sesion::soloUsuario($usuario);
 	$array1 = $consulta_usuario->selectUsuario();
 	if ($array1->num_rows!=0) {
@@ -36,7 +36,7 @@ if(!empty($_POST['usuario']) && !empty($_POST['password']))
 			$_SESSION['user']=$user;
 			$_SESSION['tipo_usuario']=$tipo_usuario;
 			$_SESSION['acceso']='loco1234';
-			
+
 			echo json_encode(3); //LOGEADO con exito
 			//	echo "<meta http-equiv='refresh' content='0;URL=../inicio.php'>";
 		}

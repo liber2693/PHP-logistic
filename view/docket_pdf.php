@@ -14,7 +14,8 @@ $array_d = $buscardocumento->selectDocket();
 if ($array_d->num_rows==0) {
   echo "NO EXIST";
 }else{
-  $datos_d = $array_d->fetch_array();
+  $datos_d = $array_d->fetch_assoc();
+  //echo "<pre>";print_r($datos_d);exit;
   $array_d->free();
   $fecha1 = explode('-', $datos_d['fecha']);
   $fecha_formateada1 = $fecha1[1] .'-' .$fecha1[2] .'-' .$fecha1[0];
@@ -132,6 +133,7 @@ if ($array_d->num_rows==0) {
     $con=0;
     while ($datos_i = $array_i->fetch_array()) {
       $con++;
+      //echo "<pre>";print_r($datos_i);die;
       $codigo_factura = $datos_i['codigo_invoice'];
       if (!empty($datos_i['fecha'])) {
         $fecha = explode('-', $datos_i['fecha']);
@@ -159,25 +161,38 @@ if ($array_d->num_rows==0) {
         <tr>
           <td><b>PIECES: </b>&nbsp;'.$datos_i['pieza'].' '.ucfirst($datos_i['tipo_pieza']).'</td>
           <td><b>WEIGHT: </b>&nbsp;'.$datos_i['peso'].' '.ucfirst($datos_i['tipo_peso']).'</td>
-           <td colspan="2">
-            <b>DIMENSIONS:</b> &nbsp;'.$datos_i['alto'].' X '.$datos_i['ancho'].' X '.$datos_i['largo'].'  '.ucfirst($datos_i['tipo_dimension']).'
-          </td>
+        <td colspan="1">
+            <b>CC #:</b> &nbsp;'.ucfirst($datos_i['cc']).'
+        </td>
+        <td colspan="1">
+            <b>SHIPPER:</b> &nbsp;'.ucfirst($datos_i['shipper']).'
+        </td>
         </tr>
         <tr>
-          <td colspan="4">
-            <b>NOTE:</b> &nbsp;'.ucfirst($datos_i['descripcion']).'</td>
+        <td colspan="2">
+          <b>NOTE:</b> &nbsp;'.ucfirst($datos_i['descripcion']).'
+        </td>
+        <td colspan="2">
+          <b>DOCKET DESCRIPTION: </b>
+          '.ucfirst($datos_d['descripcion']).'
+        </td>
+
         </tr>
         <tr>
-          <td colspan="4">
-            <b>PAYMENTS: </b>
-            '.ucfirst($datos_i['pagos']).'
-          </td>
+        <td colspan="2">
+          <b>PAYMENTS: </b>
+          '.ucfirst($datos_i['pagos']).'
+        </td>
+        <td colspan="2">
+          <b>INVOICE COMMENTS: </b>
+              '.ucfirst($datos_i['comentarios']).'
+        </td>
         </tr>
         <tr>
-          <td colspan="4">
-            <b>COMMENTS: </b>
-               '.ucfirst($datos_i['comentarios']).'
-          </td>
+        <td colspan="4">
+          <b>DOCKET COMMENTS: </b>
+             '.ucfirst($datos_d['comentarios']).'
+        </td>
         </tr>
       </table>';
 

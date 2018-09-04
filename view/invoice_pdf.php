@@ -12,7 +12,7 @@ $array = $buscarInvoice->SelectInvoiceDocket();
 if ($array->num_rows==0) {
   echo "NO EXIST";
 }else{
-  $datos = $array->fetch_array();
+  $datos = $array->fetch_assoc();
   //echo "<pre>";print_r($datos);die;
 
   $html = '<style>
@@ -63,6 +63,7 @@ if ($array->num_rows==0) {
       }
       $varCode = ($datos['codigo_usuario']) ? $datos['codigo_usuario'] : "Not registered" ;
       $fecha_docket = explode('-', $datos['fecha_docket']);
+      //echo "<pre>";print_r($datos);exit;
       $html.='
       <h3><br>INVOICE</h3>
       <table border="1" width="100%">
@@ -114,20 +115,34 @@ if ($array->num_rows==0) {
               </td>
           </tr>
         <tr>
-          <td colspan="4">
+          <td colspan="2">
             <b>NOTE:</b> &nbsp;'.ucfirst($datos['descripcion']).'
+          </td>
+          <td colspan="1">
+            <b>CC #:</b> &nbsp;'.ucfirst($datos['cc']).'
+          </td>
+          <td colspan="1">
+            <b>SHIPPER:</b> &nbsp;'.ucfirst($datos['shipper']).'
           </td>
         </tr>
         <tr>
-          <td colspan="4">
+          <td colspan="2">
             <b>PAYMENTS: </b>
             '.ucfirst($datos['pagos']).'
           </td>
+          <td colspan="2">
+            <b>DOCKET DESCRIPTION: </b>
+            '.ucfirst($datos['descripcion']).'
+          </td>
         </tr>
         <tr>
-          <td colspan="4">
-            <b>COMMENTS: </b>
-               '.ucfirst($datos['comentarios']).'
+        <td colspan="2">
+          <b>DOCKET COMMENTS: </b>
+             '.ucfirst($datos['comentarios']).'
+        </td>
+          <td colspan="2">
+            <b>INVOICE COMMENTS: </b>
+                '.ucfirst($datos['invoice_comments']).'
           </td>
         </tr>
       </table>';
@@ -204,7 +219,7 @@ if ($array->num_rows==0) {
         <tr>
           <td>'.$i.'</td>
           <td>'.ucwords($datos_supli['supplier']).'</td>
-          <td>$ '.$datos_supli['descripcion'].'</td>
+          <td>'.$datos_supli['descripcion'].'</td>
           <td>$ '.$datos_supli['dinero'].'</td>
         </tr>
       </tbody>';
