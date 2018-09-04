@@ -61,7 +61,7 @@ if(isset($_POST['codigo_documento']) && isset($_POST['usuario_documento'])){
         $fecha_creacion = $resSupplier['fecha_creacion'];
         # code...
         //guardar los registros guardados de la tabla temporal
-        $insert_supl = new SupplierInvoice($codigo,$supplier,$dinero,$idservicio_sup,$usuario,$fecha_registro,'','');
+        $insert_supl = new SupplierInvoice($codigo,$supplier,$dinero,$idservicio_sup,$nota,$usuario,$fecha_registro,'','');
         $insert_supl->InsertProvedorInvoice();
         //print_r($insert_supl);exit;
         //elinarlos de la tabla temporal
