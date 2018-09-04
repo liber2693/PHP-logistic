@@ -130,8 +130,8 @@ $(document).ready(function() {
     });
 
     $("#guardar_supplier").click(function(){
-        console.log("guardar supplier en la tabla temp");
-        
+        //console.log("guardar supplier en la tabla temp");
+
         var supplier = $("#supplier").val();
         var select_servicio = $("#select_servicio").val();
         var dinero = $("#dinero").val();
@@ -191,7 +191,7 @@ $(document).ready(function() {
     //mostrar el campo otro caundo selecciona el 6
     $('input[type=checkbox]').on('change', function() {
         var valor = $(this).val();
-        //console.log(valor);
+        //g(valor);
         if ($(this).is(':checked') && valor==6) {
             $("#campo_otro").removeClass("ocultar");
         } else if(valor ==6)  {
@@ -356,7 +356,7 @@ function mostarLista(){
 }
 
 function eliminar(id){
-    console.log(id);
+    //console.log(id);
     $("#seleccion_servicios_tabla > tbody:last").children().remove();
     //llenar la tabla si existen servicios por este documento
     $.ajax({
@@ -369,14 +369,14 @@ function eliminar(id){
             if(lista==3){
                 mostarLista()
             }else{
-                console.log(id)
+                //console.log(id)
             }
         }
     })
 }
 //eliminar supplier
 function eliminar_supplier(id){
-    console.log("eliminar supplier: "+id);
+    //console.log("eliminar supplier: "+id);
     $("#lista_supplier_tabla > tbody:last").children().remove();
     //llenar la tabla si existen servicios por este documento
     $.ajax({
@@ -390,7 +390,7 @@ function eliminar_supplier(id){
             if(lista==3){
                 mostarLista_supplier()
             }else{
-                console.log(id)
+                //console.log(id)
             }
         }
     })

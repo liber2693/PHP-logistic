@@ -47,11 +47,11 @@ class supplierInvoiceTemp{
 	public function SelectSupplierTablaTemp(){
 		$db = new Conexion();
 		$sql="SELECT b.id as codigo_ser, a.id as id, a.id_servicio,a.supplier,a.dinero,a.nota,b.descripcion
-			  FROM supplier_invoice_temp a 
-			  JOIN servicios_catalogo b ON b.id=a.id_servicio 
+			  FROM supplier_invoice_temp a
+			  JOIN servicios_catalogo b ON b.id=a.id_servicio
 			  WHERE a.codigo_documento='$this->codigo_documento'
 			  AND a.usuario='$this->usuario'";
-		
+
 		$result = $db->query($sql);
 
 		$db->close();
@@ -65,13 +65,13 @@ class supplierInvoiceTemp{
 		$result = $db->query($sql);
 
 		$db->close();
-		
+
 	}
 
 	public function SelectAllSupplier(){
 		$db = new Conexion();
 		$sql="SELECT *
-			  FROM supplier_invoice_temp  
+			  FROM supplier_invoice_temp
 			  WHERE codigo_documento='$this->codigo_documento'
 			  AND usuario='$this->usuario'";
 		$result = $db->query($sql);

@@ -40,7 +40,9 @@ class SupplierInvoice{
 	}
 	public function InsertProvedorInvoice(){
 		$db = new Conexion();
-		$sql="INSERT INTO supplier_invoice(codigo_invoice,supplier,dinero,id_servicio,nota,usuario,fecha_creacion,estatus) VALUES ('$this->codigo_invoice','$this->supplier','$this->dinero','$this->id_servicio','$this->nota','$this->usuario','$this->fecha_creacion','1')";
+		$sql="INSERT INTO supplier_invoice(codigo_invoice,supplier,dinero,id_servicio,nota,usuario,fecha_creacion,estatus)
+				  VALUES ('$this->codigo_invoice','$this->supplier','$this->dinero','$this->id_servicio','$this->nota','$this->usuario','$this->fecha_creacion','1')";
+		//print_r($sql);exit;
 		$db->query($sql);
 
 		$db->close();

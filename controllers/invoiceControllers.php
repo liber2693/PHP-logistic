@@ -51,7 +51,7 @@ if(isset($_POST['codigo_documento']) && isset($_POST['usuario_documento'])){
     }*/
     $consulta_supplier = new supplierInvoiceTemp($codigo_documento,'','','','',$usuario,'','','');
     $array1=$consulta_supplier->SelectAllSupplier();
-    while ($resSupplier=$array1->fetch_assoc()) 
+    while ($resSupplier=$array1->fetch_assoc())
     {
         $id_tabla = $resSupplier['id'];
         $supplier = $resSupplier['supplier'];
@@ -63,6 +63,7 @@ if(isset($_POST['codigo_documento']) && isset($_POST['usuario_documento'])){
         //guardar los registros guardados de la tabla temporal
         $insert_supl = new SupplierInvoice($codigo,$supplier,$dinero,$idservicio_sup,$usuario,$fecha_registro,'','');
         $insert_supl->InsertProvedorInvoice();
+        //print_r($insert_supl);exit;
         //elinarlos de la tabla temporal
         $eliminar = new supplierInvoiceTemp('','','','','','','','',$id_tabla);
         $array=$eliminar->EliminarSupplierTablaTemp();
@@ -73,7 +74,7 @@ if(isset($_POST['codigo_documento']) && isset($_POST['usuario_documento'])){
     /*buscar en la tabla invoices_services_temp para verificar si tiene servicios el documento de la factura para transladarlos a la tabla de servicos por facturas*/
     $consulta_serv = new invoicesServicesTemp($codigo_documento,'','','','',$usuario,'','');
     $array1=$consulta_serv->SelectServiciosTablaTemp();
-    while ($resServi=$array1->fetch_assoc()) 
+    while ($resServi=$array1->fetch_assoc())
     {
         $id_tabla = $resServi['id'];
         $id_servicio = $resServi['id_servicio'];
@@ -383,7 +384,7 @@ if (isset($_POST['boton_comentario'])) {
 
 /****03-09-2018 nueva funcion para el registro de supplier de invoice****/
 if(isset($_POST['supplier_regis']) && $_POST['registro_sup']==1){
-    
+
     $supplier = $_POST['supplier_regis'];
     $id_servicio = $_POST['select_servicio'];
     $dinero = substr($_POST['dinero'],1);
@@ -394,6 +395,7 @@ if(isset($_POST['supplier_regis']) && $_POST['registro_sup']==1){
 
     //guardar supplier nuevos en la tabla temporar
     $new_register = new supplierInvoiceTemp($codigo,$supplier,$dinero,$id_servicio,$nota,$usuario,$fecha_registro,'','');
+
     $new_register->InsertTablaTempSupplier();
 
     echo json_encode(1);
