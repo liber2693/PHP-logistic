@@ -176,14 +176,15 @@ if(isset($_GET['tabla']) && $_GET['tabla']==2){
     $usuario = $_GET['usuario_documento'];
     $pago_supplier = substr($_GET['pago_supplier'],1);
     $servicio_suppl = $_GET['servicio_suppl'];
+    $nota_supplier = $_GET['nota_supplier'];
     //echo "<pre>";print_r($_GET);die();
 
     //registro nuevo en el proceso de actualizar un INVOICE en supplier
-    $actualizarRegistro = new SupplierInvoice($codigo_invoice,$supplier,$pago_supplier,$servicio_suppl,$usuario,$fecha_registro,'','');
+    $actualizarRegistro = new SupplierInvoice($codigo_invoice,$supplier,$pago_supplier,$servicio_suppl,$nota_supplier,$usuario,$fecha_registro,'','');
     $actualizarRegistro->InsertProvedorInvoice();
 
     //llamar al monmento los registros para mostrarlos
-    $consulta = new SupplierInvoice($codigo_invoice,'','','','','','','');
+    $consulta = new SupplierInvoice($codigo_invoice,'','','','','','','','');
     $array=$consulta->SelectProvedorInvoice();
 
     if($array->num_rows!=0){
@@ -192,7 +193,8 @@ if(isset($_GET['tabla']) && $_GET['tabla']==2){
                           'codigo_invoice' => $resultado['codigo_invoice'],
                           'supplier' => $resultado['supplier'],
                           'dinero' => $resultado['dinero'],
-                          'servicio' => $resultado['descripcion']
+                          'servicio' => $resultado['descripcion'],
+                          'nota' => $resultado['nota']
                         );
         }
         $array->free();
@@ -205,7 +207,7 @@ if(isset($_GET['tabla']) && $_GET['tabla']==2){
 if(isset($_GET['tabla']) && $_GET['tabla']==3){
     $codigo_invoice = $_GET['codigo_invoice'];
     //llamar al monmento los registros para mostrarlos
-    $consulta = new SupplierInvoice($codigo_invoice,'','','','','','','');
+    $consulta = new SupplierInvoice($codigo_invoice,'','','','','','','','');
     $array=$consulta->SelectProvedorInvoice();
 
 
@@ -216,6 +218,7 @@ if(isset($_GET['tabla']) && $_GET['tabla']==3){
                           'supplier' => $resultado['supplier'],
                           'dinero' => $resultado['dinero'],
                           'servicio' => $resultado['descripcion'],
+                          'nota' => $resultado['nota']
                         );
         }
         $array->free();
@@ -227,9 +230,9 @@ if(isset($_GET['tabla']) && $_GET['tabla']==3){
 //eliminar registro
 if(isset($_GET['id_supplier'])){
     $id=$_GET['id_supplier'];
-    $eliminar = new SupplierInvoice('','','','','','','',$id);
-    $eliminar->DeleteProvedorInvoice();
+    $eliminar = new SupplierInvoice('','','','','','','','',$id);
     //echo "<pre>";print_r($eliminar);die();
+    $eliminar->DeleteProvedorInvoice();
         echo json_encode(4);
 }
 //buscar los supplier que tiene un invoice

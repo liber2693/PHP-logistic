@@ -99,6 +99,12 @@ else
                       <button type="button" id="masActualizar" class="btn btn-primary" title="New Supplier" onclick="registrarSupplier()"><i class="fa fa-plus" aria-hidden="true"></i></button>
                     </div>
                   </div>
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label"><b>Note</b></label>
+                      <div class="col-sm-8">
+                        <textarea name="nota_supplier" id="nota_supplier" class="form-control resize limpiar" placeholder="Note Supplier" rows="4"></textarea>
+                      </div>
+                    </div>
                   <section class="panel">
                     <header class="panel-heading">
                       <b>SUPPLIER</b>
@@ -109,6 +115,7 @@ else
                           <th>Supplier</th>
                           <th>Price</th>
                           <th>Service</th>
+                          <th>Note</th>
                           <th>Action</th>
                         </tr>
                       </thead>

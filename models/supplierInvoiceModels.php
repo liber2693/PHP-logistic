@@ -8,12 +8,13 @@ class SupplierInvoice{
 	protected $supplier;
 	protected $dinero;
 	protected $id_servicio;
+	protected $nota;
 	protected $usuario;
 	protected $fecha_creacion;
 	protected $estatus;
 
 
-	public function __construct($codigo_invoice,$supplier,$dinero,$id_servicio,$usuario,$fecha_creacion,$estatus,$id = ''){
+	public function __construct($codigo_invoice,$supplier,$dinero,$id_servicio,$nota,$usuario,$fecha_creacion,$estatus,$id = ''){
 
 		$db = new Conexion();
 
@@ -22,6 +23,7 @@ class SupplierInvoice{
 		$this->supplier = $supplier;
 		$this->dinero = $dinero;
 		$this->id_servicio = $id_servicio;
+		$this->nota = $nota;
 		$this->usuario = $usuario;
 		$this->fecha_creacion = $fecha_creacion;
 		$this->estatus = $estatus;
@@ -31,14 +33,14 @@ class SupplierInvoice{
 	}
 
 	static function ningundato(){
-		return new self('','','','','','','','');
+		return new self('','','','','','','','','');
 	}
 	static function soloCodigo($codigo_invoice){
-		return new self($codigo_invoice,'','','','','','','','','','');
+		return new self($codigo_invoice,'','','','','','','','','','','');
 	}
 	public function InsertProvedorInvoice(){
 		$db = new Conexion();
-		$sql="INSERT INTO supplier_invoice(codigo_invoice,supplier,dinero,id_servicio,usuario,fecha_creacion,estatus) VALUES ('$this->codigo_invoice','$this->supplier','$this->dinero','$this->id_servicio','$this->usuario','$this->fecha_creacion','1')";
+		$sql="INSERT INTO supplier_invoice(codigo_invoice,supplier,dinero,id_servicio,nota,usuario,fecha_creacion,estatus) VALUES ('$this->codigo_invoice','$this->supplier','$this->dinero','$this->id_servicio','$this->nota','$this->usuario','$this->fecha_creacion','1')";
 		$db->query($sql);
 
 		$db->close();

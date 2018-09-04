@@ -223,6 +223,7 @@ function registrarSupplier(){
     var usuario_documento = $("#usuario_documento").val();
     var pago_supplier = $("#pago_supplier").val();
     var servicio_suppl = $("#select_servicio").val();
+    var nota_supplier = $("#nota_supplier").val();
 
     if (supplier.length==0) {
         $("#supplierActualizar").css({"border":"2px solid #ff3333"});
@@ -254,13 +255,14 @@ function registrarSupplier(){
                    'codigo_invoice' : codigo_invoice,
                    'usuario_documento' : usuario_documento,
                    'pago_supplier' : pago_supplier,
-                   'servicio_suppl' : servicio_suppl },
+                   'servicio_suppl' : servicio_suppl,
+                   'nota_supplier' : nota_supplier },
             success: function(data){
                 var lista = data;
                 if(lista==0){
                     $("#seleccion_supplier").append(
                     '<tr>'+
-                    '<td colspan="4" class="text-center"><b>Supplier are not available yet</b></td>'+
+                    '<td colspan="5" class="text-center"><b>Supplier are not available yet</b></td>'+
                     '</tr>');
                     $('#enviar_update_invoice').attr("disabled", true);
                 }else{
@@ -270,6 +272,7 @@ function registrarSupplier(){
                         '<td><b>'+data.supplier+'</b></td>'+
                         '<td><b>'+(data.dinero ? "$ "+data.dinero : "")+'</b></td>'+
                         '<td><b>'+data.servicio+'</b></td>'+
+                        '<td><b>'+data.nota+'</b></td>'+
                         '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminarSupplier('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                         '</tr>');
                         $('#enviar_update_invoice').attr("disabled", false);
@@ -318,6 +321,7 @@ function listaSupplier(){
                     '<td><b>'+data.supplier+'</b></td>'+
                     '<td><b>'+(data.dinero ? "$ "+data.dinero : "")+'</b></td>'+
                     '<td><b>'+data.servicio+'</b></td>'+
+                    '<td><b>'+data.nota+'</b></td>'+
                     '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminarSupplier('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                     '</tr>');
                     $('#enviar_update_invoice').attr("disabled", false);
