@@ -90,7 +90,7 @@ class Invoice{
 	public function SelectInvoiceDocket(){
 		$db = new Conexion();
 		$sql="SELECT a.codigo_invoice,a.codigo_docket,a.codigo_usuario,a.fecha,a.cliente,a.fecha_creacion,b.shipper,a.comentarios as invoice_comments,
-					b.telefono,b.comentarios,b.descripcion,b.cc,b.po,b.consignee,
+					b.telefono,b.comentarios as docket_comentario,b.descripcion,b.cc,b.po,b.consignee,
 					 b.lugar_origen,b.lugar_destino,b.pieza,b.tipo_pieza,b.peso,b.tipo_peso,b.alto,b.ancho,
 					 b.largo,b.tipo_dimension,b.descripcion,c.pais AS pais_origen,d.pais AS pais_destino, a.pagos,a.comentarios,b.fecha AS fecha_docket
 					 FROM invoice a

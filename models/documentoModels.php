@@ -115,10 +115,11 @@ class Docket{
 
 	public function selectDocketAll(){
 		$db = new Conexion();
-		$sql="SELECT a.id,a.codigo,a.shipper,a.fecha, a.lugar_origen, a.lugar_destino, b.pais AS origen, c.pais AS destino,a.tipo,a.comentarios FROM docket a
-				JOIN  paises b ON b.codigo=a.id_origen_pais
-				JOIN  paises c ON c.codigo=a.id_destino_pais
-				WHERE a.estatus='1'";
+		$sql="SELECT a.id,a.codigo,a.shipper,a.cc,a.consignee,a.po,a.pieza,a.tipo_pieza,a.peso,a.tipo_peso,a.fecha,
+					a.lugar_origen, a.lugar_destino, b.pais AS origen, c.pais AS destino,a.descripcion,a.tipo,a.comentarios FROM docket a
+					JOIN  paises b ON b.codigo=a.id_origen_pais
+					JOIN  paises c ON c.codigo=a.id_destino_pais
+					WHERE a.estatus='1'";
 		$resultado = $db->query($sql);
 
 		$db->close();

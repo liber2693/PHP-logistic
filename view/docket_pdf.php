@@ -182,8 +182,8 @@ if ($array_d->num_rows==0) {
 
         <tr>
         <td colspan="2">
-          <b>PAYMENTS: </b>
-          '.ucfirst($datos_i['pagos']).'
+          <b>DOCKET COMMENTS: </b>
+             '.ucfirst($datos_d['comentarios']).'
         </td>
         <td colspan="2">
           <b>DOCKET DESCRIPTION: </b>
@@ -192,8 +192,8 @@ if ($array_d->num_rows==0) {
         </tr>
         <tr>
         <td colspan="2">
-          <b>DOCKET COMMENTS: </b>
-             '.ucfirst($datos_d['comentarios']).'
+          <b>PAYMENTS: </b>
+          '.ucfirst($datos_i['pagos']).'
         </td>
         <td colspan="2">
           <b>INVOICE COMMENTS: </b>
@@ -212,9 +212,9 @@ if ($array_d->num_rows==0) {
             <tr>
               <td align="center"><b>#</b></td>
               <td align="center"><b>Description</b></td>
+              <td align="center"><b>Notes</b></td>
               <td align="center"><b>US$</b></td>
               <td align="center"><b>CAD$</b></td>
-              <td align="center"><b>Notes</b></td>
             </tr>
           </thead>';
       if($array1->num_rows==0){
@@ -233,11 +233,11 @@ if ($array_d->num_rows==0) {
         $paginas.$con.='
           <tbody>
             <tr>
-              <td>'.$i.'</td>
-              <td>'.$datos_servi['descripcion'].'</td>
-              <td>'.$precio_us.'</td>
-              <td>'.$precio_ca.'</td>
-              <td>'.$datos_servi['nota'].'</td>
+              <td width="10%">'.$i.'</td>
+              <td width="30%">'.$datos_servi['descripcion'].'</td>
+              <td width="30%">'.$datos_servi['nota'].'</td>
+              <td width="15%">'.$precio_us.'</td>
+              <td width="15%">'.$precio_ca.'</td>
             </tr>
           </tbody>';
         }
@@ -262,7 +262,7 @@ if ($array_d->num_rows==0) {
           $paginas.$con.='
           <tbody>
             <tr>
-              <td colspan="3" align="center">No supplier</td>
+              <td colspan="5" align="center">No supplier</td>
             </tr>
           </tbody>';
         }else{

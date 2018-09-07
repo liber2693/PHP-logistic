@@ -63,6 +63,7 @@ if ($array->num_rows==0) {
       }
       $varCode = ($datos['codigo_usuario']) ? $datos['codigo_usuario'] : "Not registered" ;
       $fecha_docket = explode('-', $datos['fecha_docket']);
+
       //echo "<pre>";print_r($datos);exit;
       $html.='
       <h3><br>INVOICE</h3>
@@ -126,10 +127,11 @@ if ($array->num_rows==0) {
           </td>
         </tr>
         <tr>
-          <td colspan="2">
-            <b>PAYMENTS: </b>
-            '.ucfirst($datos['pagos']).'
-          </td>
+        <td colspan="2">
+          <b>DOCKET COMMENTS: </b>
+             '.ucfirst($datos['docket_comentario']).'
+        </td>
+
           <td colspan="2">
             <b>DOCKET DESCRIPTION: </b>
             '.ucfirst($datos['descripcion']).'
@@ -137,8 +139,8 @@ if ($array->num_rows==0) {
         </tr>
         <tr>
         <td colspan="2">
-          <b>DOCKET COMMENTS: </b>
-             '.ucfirst($datos['comentarios']).'
+          <b>PAYMENTS: </b>
+          '.ucfirst($datos['pagos']).'
         </td>
           <td colspan="2">
             <b>INVOICE COMMENTS: </b>
@@ -158,9 +160,9 @@ if ($array->num_rows==0) {
       <tr>
         <td align="center"><b>#</b></td>
         <td align="center"><b>Description</b></td>
+        <td align="center"><b>Notes</b></td>
         <td align="center"><b>US$</b></td>
         <td align="center"><b>CAD$</b></td>
-        <td align="center"><b>Notes</b></td>
       </tr>
     </thead>';
   if($array1->num_rows==0){
@@ -181,9 +183,9 @@ if ($array->num_rows==0) {
         <tr>
           <td>'.$i.'</td>
           <td>'.$datos_servi['descripcion'].'</td>
+          <td>'.$datos_servi['nota'].'</td>
           <td>'.$precio_us.'</td>
           <td>'.$precio_ca.'</td>
-          <td>'.$datos_servi['nota'].'</td>
         </tr>
       </tbody>';
     }

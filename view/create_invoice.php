@@ -73,6 +73,12 @@ else
                         <input type="text" id="codigo_usuario" name="codigo_usuario" class="form-control round-input">
                       </div>
                     </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label"><b>Date</b></label>
+                      <div class="col-sm-4">
+                        <input type="text" id="fecha" name="fecha" class="form-control round-input fecha" placeholder="Enter Date" readonly="true">
+                      </div>
+                    </div>
           					<div class="form-group">
                       <div id="mensaje_suppleir"></div>
                       <label class="col-sm-2 control-label"><b>Supplier</b></label>
@@ -116,7 +122,7 @@ else
                         </tbody>
                       </table>
                     </section>
-                  <!--viejo registro de los supplier 03-09-2018 --> 
+                  <!--viejo registro de los supplier 03-09-2018 -->
         					<!--<div class="form-group <?php //if($i!=1){echo"ocultar";}?>" id='campoSupplier<?php //echo $i;?>'>
         						<label class="col-sm-1 control-label"><?php //echo("<b>" ."#".$i ."</b>"); ?></label>
         						<div class="col-sm-2">
@@ -156,12 +162,7 @@ else
                       <input type="text" id="quien_paga" name="quien_paga" class="form-control round-input">
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label"><b>Date</b></label>
-                    <div class="col-sm-4">
-                      <input type="text" id="fecha" name="fecha" class="form-control round-input fecha" placeholder="Enter Date" readonly="true">
-                    </div>
-                  </div>
+                  
                   <!-- probando -->
                   <header class="panel-heading">
                     <b>ADD SERVICE</b>
