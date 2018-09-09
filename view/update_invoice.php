@@ -91,9 +91,6 @@ else
                         <option value="0">Select Service</option>
                       </select>
                     </div>
-                    <div class="col-sm-2">
-                      <button type="button" id="masActualizar" class="btn btn-primary" title="New Supplier" onclick="registrarSupplier()"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                    </div>
                   </div>
                     <div class="form-group" id="radio3">
                       <label class="col-sm-2 control-label"><b>$ US</b></label>
@@ -114,7 +111,10 @@ else
                       <div class="col-sm-8">
                         <textarea name="nota_supplier" id="nota_supplier" class="form-control resize limpiar" placeholder="Note Supplier" rows="4"></textarea>
                       </div>
-                    </div>
+                  </div>
+                  <center>
+                    <button type="button" id="masActualizar" class="btn btn-primary" title="New Supplier" onclick="registrarSupplier()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                  </center>
                   <section class="panel">
                     <header class="panel-heading">
                       <b>SUPPLIER</b>
@@ -123,10 +123,10 @@ else
                       <thead>
                         <tr>
                           <th>Supplier</th>
-                          <th>Price $ US</th>
-                          <th>Price $ CAD</th>
                           <th>Service</th>
                           <th>Note</th>
+                          <th>$US</th>
+                          <th>$CAD</th>
                           <th>Action</th>
                         </tr>
                       </thead>

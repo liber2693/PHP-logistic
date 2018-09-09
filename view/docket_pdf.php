@@ -254,8 +254,9 @@ if ($array_d->num_rows==0) {
             <td align="center"><b>#</b></td>
             <td align="center"><b>Supplier</b></td>
             <td align="center"><b>Service</b></td>
-            <td align="center"><b>Cost US$</b></td>
             <td align="center"><b>Note</b></td>
+            <td align="center"><b>US$</b></td>
+            <td align="center"><b>CAD$</b></td>
           </tr>
         </thead>';
         if($array3->num_rows==0){
@@ -268,16 +269,18 @@ if ($array_d->num_rows==0) {
         }else{
           $i=0;
           while($datos_supli=$array3->fetch_assoc()){
+            //echo "<pre>";print_r($datos_supli);die;
           $i++;
           $paginas.$con.='
           <tbody>
             <tr>
               <td>'.$i.'</td>
-              <td>'.ucwords($datos_supli['supplier']).'</td>
-              <td>'.$datos_supli['descripcion'].'</td>
-              <td>$ '.$datos_supli['dinero'].'</td>
-              <td>'.$datos_supli['nota'].'</td>
-              nota
+              <td width=25%>'.ucwords($datos_supli['supplier']).'</td>
+              <td width=20%>'.$datos_supli['descripcion'].'</td>
+              <td width=20%>'.$datos_supli['nota'].'</td>
+              <td width=15%>'.$datos_supli['dinero'].'</td>
+              <td width=15%>'.$datos_supli['dinero'].'</td>
+
             </tr>
           </tbody>';
           }

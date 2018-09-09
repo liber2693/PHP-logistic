@@ -44,7 +44,7 @@ class SupplierInvoice{
 		$db = new Conexion();
 		$sql="INSERT INTO supplier_invoice(codigo_invoice,supplier,dinero_us,dinero_cad,id_servicio,nota,usuario,fecha_creacion,estatus)
 				  VALUES ('$this->codigo_invoice','$this->supplier','$this->dinero_us','$this->dinero_cad','$this->id_servicio','$this->nota','$this->usuario','$this->fecha_creacion','1')";
-		
+
 		$db->query($sql);
 
 		$db->close();

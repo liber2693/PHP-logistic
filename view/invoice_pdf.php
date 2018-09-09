@@ -202,9 +202,9 @@ if ($array->num_rows==0) {
         <td align="center"><b>#</b></td>
         <td align="center"><b>Supplier</b></td>
         <td align="center"><b>Service</b></td>
-        <td align="center"><b>Cost US$</b></td>
-        <td align="center"><b>Cost CAD$</b></td>
         <td align="center"><b>Note</b></td>
+        <td align="center"><b>US$</b></td>
+        <td align="center"><b>CAD$</b></td>
       </tr>
     </thead>';
     if($array3->num_rows==0){
@@ -226,9 +226,9 @@ if ($array->num_rows==0) {
           <td>'.$i.'</td>
           <td>'.ucwords($datos_supli['supplier']).'</td>
           <td>'.$datos_supli['descripcion'].'</td>
+          <td>'.$datos_supli['nota'].'</td>
           <td>'.$precio_us_s.'</td>
           <td>'.$precio_ca_s.'</td>
-          <td>'.$datos_supli['nota'].'</td>
         </tr>
       </tbody>';
       }
