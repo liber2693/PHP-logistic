@@ -269,7 +269,9 @@ if ($array_d->num_rows==0) {
         }else{
           $i=0;
           while($datos_supli=$array3->fetch_assoc()){
-            //echo "<pre>";print_r($datos_supli);die;
+          //echo "<pre>";print_r($datos_supli);die;
+          $precio_us = ($datos_supli['dinero_us']) ? "$ ".$datos_supli['dinero_us'] : "" ;
+          $precio_ca = ($datos_supli['dinero_cad']) ? "$ ".$datos_supli['dinero_cad'] : "" ;
           $i++;
           $paginas.$con.='
           <tbody>
@@ -278,8 +280,8 @@ if ($array_d->num_rows==0) {
               <td width=25%>'.ucwords($datos_supli['supplier']).'</td>
               <td width=20%>'.$datos_supli['descripcion'].'</td>
               <td width=20%>'.$datos_supli['nota'].'</td>
-              <td width=15%>'.$datos_supli['dinero'].'</td>
-              <td width=15%>'.$datos_supli['dinero'].'</td>
+              <td width=15%>'.$precio_us.'</td>
+              <td width=15%>'.$precio_ca.'</td>
 
             </tr>
           </tbody>';

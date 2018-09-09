@@ -162,6 +162,7 @@ else
                     <th>Service</th>
                     <th>Cost US$</th>
                     <th>Cost CAD$</th>
+                    <th>Notes</th>
                   </tr>
                 </thead>
                 <?php
@@ -169,7 +170,7 @@ else
                 ?>
                 <tbody>
                   <tr>
-                    <td colspan='4' class="text-center">NO SUPPLEIR</td>
+                    <td colspan='5' class="text-center">NO SUPPLEIR</td>
                   </tr>
                 </tbody>
                 <tbody>
@@ -185,6 +186,7 @@ else
                     <td><b><?php echo $datos_supli['descripcion'];?></b></td>
                     <td><?php echo $retVal = ($datos_supli['dinero_us']) ? "<b>$ ".$datos_supli['dinero_us']."</b>" : "";?></td>
                     <td><?php echo $retVal = ($datos_supli['dinero_cad']) ? "<b>$ ".$datos_supli['dinero_cad']."</b>" : "";?></td>
+                    <td><?php echo $datos_supli['nota'];?></td>
                   </tr>
                 <?php
                   }
