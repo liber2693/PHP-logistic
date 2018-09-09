@@ -92,12 +92,22 @@ else
                       </select>
                     </div>
                     <div class="col-sm-2">
-                      <input type="text" id="pago_supplier" name="pago_supplier" placeholder="Cost" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control limpiar">
-                      <!--<input type="text" id="pago_supplier" placeholder="Cost" data-thousands="," data-decimal="." data-prefix="$. " name="pago_supplier" class="form-control round-input limpiar">-->
-                    </div>
-                    <div class="col-sm-2">
                       <button type="button" id="masActualizar" class="btn btn-primary" title="New Supplier" onclick="registrarSupplier()"><i class="fa fa-plus" aria-hidden="true"></i></button>
                     </div>
+                  </div>
+                    <div class="form-group" id="radio3">
+                      <label class="col-sm-2 control-label"><b>$ US</b></label>
+                      <input type="radio" id="us_dolar_supplier" name="bill_to_supplier" >
+                      <div class="col-sm-4 ocultar" id="campo_us_supplier">
+                      <input type="text" id="dinero_suppli_us" name="dinero_suppli_us" placeholder="Cost" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control limpiar">
+                      </div>
+                    </div>
+                    <div class="form-group" id="radio4">
+                      <label class="col-sm-2 control-label"><b>$ CAD</b></label>
+                      <input type="radio" id="cad_dolar_supplier" name="bill_to_supplier" >
+                      <div class="col-sm-4 ocultar" id="campo_cad_supplier">
+                        <input type="text" id="dinero_suppli_cad" name="dinero_suppli_cad" class="form-control round-input limpiar" onchange="MASK(this,this.value,'-$##,###,##0.00',1)">
+                      </div>
                   </div>
                   <div class="form-group">
                       <label class="col-sm-2 control-label"><b>Note</b></label>
@@ -113,7 +123,8 @@ else
                       <thead>
                         <tr>
                           <th>Supplier</th>
-                          <th>Price</th>
+                          <th>Price $ US</th>
+                          <th>Price $ CAD</th>
                           <th>Service</th>
                           <th>Note</th>
                           <th>Action</th>

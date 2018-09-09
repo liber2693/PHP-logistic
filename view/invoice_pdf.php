@@ -203,26 +203,32 @@ if ($array->num_rows==0) {
         <td align="center"><b>Supplier</b></td>
         <td align="center"><b>Service</b></td>
         <td align="center"><b>Cost US$</b></td>
+        <td align="center"><b>Cost CAD$</b></td>
+        <td align="center"><b>Note</b></td>
       </tr>
     </thead>';
     if($array3->num_rows==0){
       $html.='
     <tbody>
       <tr>
-        <td colspan="4" align="center">No supplier</td>
+        <td colspan="6" align="center">No supplier</td>
       </tr>
     </tbody>';
     }else{
       $i=0;
       while($datos_supli=$array3->fetch_assoc()){
       $i++;
+      $precio_us_s = ($datos_supli['dinero_us']) ? "$ ".$datos_supli['dinero_us'] : "" ;
+      $precio_ca_s = ($datos_supli['dinero_cad']) ? "$ ".$datos_supli['dinero_cad'] : "" ;
       $html.='
       <tbody>
         <tr>
           <td>'.$i.'</td>
           <td>'.ucwords($datos_supli['supplier']).'</td>
           <td>'.$datos_supli['descripcion'].'</td>
-          <td>$ '.$datos_supli['dinero'].'</td>
+          <td>'.$precio_us_s.'</td>
+          <td>'.$precio_ca_s.'</td>
+          <td>'.$datos_supli['nota'].'</td>
         </tr>
       </tbody>';
       }

@@ -79,7 +79,7 @@ else
                         <input type="text" id="fecha" name="fecha" class="form-control round-input fecha" placeholder="Enter Date" readonly="true">
                       </div>
                     </div>
-          					<div class="form-group">
+          			<div class="form-group">
                       <div id="mensaje_suppleir"></div>
                       <label class="col-sm-2 control-label"><b>Supplier</b></label>
                       <div class="col-sm-2">
@@ -91,12 +91,24 @@ else
                         </select>
                       </div>
                       <div class="col-sm-2">
-                        <input type="text" id="dinero" name="dinero" placeholder="Cost" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control limpiar">
-                      </div>
-                      <div class="col-sm-2">
                         <button type="button" id="guardar_supplier" name="guardar_supplier" class="btn btn-primary" title="New Supplier"><i class="fa fa-plus" aria-hidden="true"></i></button>
                       </div>
                     </div>
+                   	<div class="form-group" id="radio3">
+	                    <label class="col-sm-2 control-label"><b>$ US</b></label>
+	                    <input type="radio" id="us_dolar_supplier" name="bill_to_supplier" >
+	                    <div class="col-sm-4 ocultar" id="campo_us_supplier">
+	                		<input type="text" id="dinero_suppli_us" name="dinero_suppli_us" placeholder="Cost" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control limpiar">
+	                    </div>
+	                  </div>
+	                  <div class="form-group" id="radio4">
+	                    <label class="col-sm-2 control-label"><b>$ CAD</b></label>
+	                    <input type="radio" id="cad_dolar_supplier" name="bill_to_supplier" >
+	                    <div class="col-sm-4 ocultar" id="campo_cad_supplier">
+	                     	<input type="text" id="dinero_suppli_cad" name="dinero_suppli_cad" class="form-control round-input limpiar" onchange="MASK(this,this.value,'-$##,###,##0.00',1)">
+	                    </div>
+	                </div>
+
                     <div class="form-group">
                       <label class="col-sm-2 control-label"><b>Note</b></label>
                       <div class="col-sm-8">
@@ -115,6 +127,7 @@ else
                             <th>Service</th>
                             <th>Notes</th>
                             <th>US$ AMT</th>
+                          	<th>CAD$ AMT</th>
                             <th>Action</th>
                           </tr>
                         </thead>

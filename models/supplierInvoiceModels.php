@@ -6,7 +6,8 @@ class SupplierInvoice{
 	protected $id;
 	protected $codigo_invoice; //clave UNIQUE
 	protected $supplier;
-	protected $dinero;
+	protected $dinero_us;
+	protected $dinero_cad;
 	protected $id_servicio;
 	protected $nota;
 	protected $usuario;
@@ -14,14 +15,15 @@ class SupplierInvoice{
 	protected $estatus;
 
 
-	public function __construct($codigo_invoice,$supplier,$dinero,$id_servicio,$nota,$usuario,$fecha_creacion,$estatus,$id = ''){
+	public function __construct($codigo_invoice,$supplier,$dinero_us,$dinero_cad,$id_servicio,$nota,$usuario,$fecha_creacion,$estatus,$id = ''){
 
 		$db = new Conexion();
 
 		$this->id = $id;
 		$this->codigo_invoice = $codigo_invoice;
 		$this->supplier = $supplier;
-		$this->dinero = $dinero;
+		$this->dinero_us = $dinero_us;
+		$this->dinero_cad = $dinero_cad;
 		$this->id_servicio = $id_servicio;
 		$this->nota = $nota;
 		$this->usuario = $usuario;
@@ -33,23 +35,23 @@ class SupplierInvoice{
 	}
 
 	static function ningundato(){
-		return new self('','','','','','','','','');
+		return new self('','','','','','','','','','');
 	}
 	static function soloCodigo($codigo_invoice){
-		return new self($codigo_invoice,'','','','','','','','','','','');
+		return new self($codigo_invoice,'','','','','','','','','','','','');
 	}
 	public function InsertProvedorInvoice(){
 		$db = new Conexion();
-		$sql="INSERT INTO supplier_invoice(codigo_invoice,supplier,dinero,id_servicio,nota,usuario,fecha_creacion,estatus)
-				  VALUES ('$this->codigo_invoice','$this->supplier','$this->dinero','$this->id_servicio','$this->nota','$this->usuario','$this->fecha_creacion','1')";
-		//print_r($sql);exit;
+		$sql="INSERT INTO supplier_invoice(codigo_invoice,supplier,dinero_us,dinero_cad,id_servicio,nota,usuario,fecha_creacion,estatus)
+				  VALUES ('$this->codigo_invoice','$this->supplier','$this->dinero_us','$this->dinero_cad','$this->id_servicio','$this->nota','$this->usuario','$this->fecha_creacion','1')";
+		
 		$db->query($sql);
 
 		$db->close();
 	}
 	public function SelectProvedorInvoice(){
 		$db = new Conexion();
-		$sql="SELECT a.id,a.codigo_invoice,a.supplier,a.dinero,b.descripcion,a.nota
+		$sql="SELECT a.id,a.codigo_invoice,a.supplier,a.dinero_us,a.dinero_cad,b.descripcion,a.nota
 			  FROM supplier_invoice a
 			  JOIN servicios_catalogo b ON b.id = a.id_servicio
 			  WHERE a.codigo_invoice = '$this->codigo_invoice'

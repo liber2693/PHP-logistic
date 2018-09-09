@@ -161,6 +161,7 @@ else
                     <th>Supplier</th>
                     <th>Service</th>
                     <th>Cost US$</th>
+                    <th>Cost CAD$</th>
                   </tr>
                 </thead>
                 <?php
@@ -182,7 +183,8 @@ else
                     <td><?php echo "<b>" .$i ."</b>";?></td>
                     <td><?php echo "<b>" .ucwords($datos_supli['supplier']) ."</b>";?></td>
                     <td><b><?php echo $datos_supli['descripcion'];?></b></td>
-                    <td><?php echo $retVal = ($datos_supli['dinero']) ? "<b>$ ".$datos_supli['dinero']."</b>" : "";?></td>
+                    <td><?php echo $retVal = ($datos_supli['dinero_us']) ? "<b>$ ".$datos_supli['dinero_us']."</b>" : "";?></td>
+                    <td><?php echo $retVal = ($datos_supli['dinero_cad']) ? "<b>$ ".$datos_supli['dinero_cad']."</b>" : "";?></td>
                   </tr>
                 <?php
                   }
