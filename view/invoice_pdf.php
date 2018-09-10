@@ -160,8 +160,8 @@ if ($array->num_rows==0) {
       <tr>
         <td align="center"><b>#</b></td>
         <td align="center"><b>Description</b></td>
-        <td align="center"><b>Notes</b></td>
-        <td align="center"><b>US$</b></td>
+        <td align="center"><b>Note</b></td>
+        <td align="center"><b>USD$</b></td>
         <td align="center"><b>CAD$</b></td>
       </tr>
     </thead>';
@@ -183,7 +183,7 @@ if ($array->num_rows==0) {
         <tr>
           <td>'.$i.'</td>
           <td>'.$datos_servi['descripcion'].'</td>
-          <td>'.$datos_servi['nota'].'</td>
+          <td>'.ucfirst($datos_servi['nota']).'</td>
           <td>'.$precio_us.'</td>
           <td>'.$precio_ca.'</td>
         </tr>
@@ -199,12 +199,12 @@ if ($array->num_rows==0) {
   <table border="1" width="100%">
     <thead>
       <tr>
-        <td align="center"><b>#</b></td>
-        <td align="center"><b>Supplier</b></td>
-        <td align="center"><b>Service</b></td>
-        <td align="center"><b>Note</b></td>
-        <td align="center"><b>US$</b></td>
-        <td align="center"><b>CAD$</b></td>
+        <td width=5% align="center"><b>#</b></td>
+        <td width=25% align="center"><b>Supplier</b></td>
+        <td width=25% align="center"><b>Service</b></td>
+        <td width=20% align="center"><b>Note</b></td>
+        <td width=13% align="center"><b>USD$</b></td>
+        <td width=13% align="center"><b>CAD$</b></td>
       </tr>
     </thead>';
     if($array3->num_rows==0){
@@ -226,7 +226,7 @@ if ($array->num_rows==0) {
           <td>'.$i.'</td>
           <td>'.ucwords($datos_supli['supplier']).'</td>
           <td>'.$datos_supli['descripcion'].'</td>
-          <td>'.$datos_supli['nota'].'</td>
+          <td>'.ucfirst($datos_supli['nota']).'</td>
           <td>'.$precio_us_s.'</td>
           <td>'.$precio_ca_s.'</td>
         </tr>

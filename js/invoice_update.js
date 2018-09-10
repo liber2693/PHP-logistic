@@ -288,10 +288,10 @@ function registrarSupplier(){
                         $("#seleccion_supplier").append(
                         '<tr>'+
                         '<td><b>'+data.supplier+'</b></td>'+
+												'<td><b>'+data.servicio+'</b></td>'+
+												'<td><b>'+data.nota+'</b></td>'+
                         '<td><b>'+(data.dinero_us ? "$ "+data.dinero_us : "")+'</b></td>'+
                         '<td><b>'+(data.dinero_cad ? "$ "+data.dinero_cad : "")+'</b></td>'+
-                        '<td><b>'+data.servicio+'</b></td>'+
-                        '<td><b>'+data.nota+'</b></td>'+
                         '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminarSupplier('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                         '</tr>');
                         $('#enviar_update_invoice').attr("disabled", false);

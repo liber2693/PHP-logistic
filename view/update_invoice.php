@@ -71,10 +71,6 @@ else
                       <input type="hidden" name="usuario_documento" id="usuario_documento" value="<?php echo $_SESSION['id_usuario'];?>">
                       <input type="hidden" name="tipo" id="tipo" value="<?php echo $datos['tipo_documento'];?>">
                     </div>
-                    <label class="col-sm-2 control-label"><br><br><strong>Date</strong></label>
-                    <div class="col-sm-4">
-                      <br><br><input name="fecha" type="text" class="form-control round-input fecha" readonly  placeholder="Enter Date" value="<?php echo $datos['fecha'];?>"><br>
-                    </div>
                   </div>
                   <div class="form-group">
         						<label class="col-sm-2 control-label"><strong>Supplier</strong></label>
@@ -96,14 +92,14 @@ else
                       <label class="col-sm-2 control-label"><b>$ US</b></label>
                       <input type="radio" id="us_dolar_supplier" name="bill_to_supplier" >
                       <div class="col-sm-4 ocultar" id="campo_us_supplier">
-                      <input type="text" id="dinero_suppli_us" name="dinero_suppli_us" placeholder="Cost" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control limpiar">
+                      <input type="text" id="dinero_suppli_us" name="dinero_suppli_us" placeholder="Cost USD$" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control round-input limpiar">
                       </div>
                     </div>
                     <div class="form-group" id="radio4">
                       <label class="col-sm-2 control-label"><b>$ CAD</b></label>
                       <input type="radio" id="cad_dolar_supplier" name="bill_to_supplier" >
                       <div class="col-sm-4 ocultar" id="campo_cad_supplier">
-                        <input type="text" id="dinero_suppli_cad" name="dinero_suppli_cad" class="form-control round-input limpiar" onchange="MASK(this,this.value,'-$##,###,##0.00',1)">
+                        <input type="text" id="dinero_suppli_cad" name="dinero_suppli_cad" placeholder="Cost CAD$" class="form-control round-input limpiar" onchange="MASK(this,this.value,'-$##,###,##0.00',1)">
                       </div>
                   </div>
                   <div class="form-group">
@@ -125,8 +121,8 @@ else
                           <th>Supplier</th>
                           <th>Service</th>
                           <th>Note</th>
-                          <th>$US</th>
-                          <th>$CAD</th>
+                          <th>US$</th>
+                          <th>CAD$</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -136,10 +132,16 @@ else
                   </section>
                   <div class="form-group">
                     <label class="col-sm-2 control-label"><b>Bill to</b></label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                       <input type="text" id="quien_paga" value="<?php echo $datos['cliente'];?>" name="quien_paga" class="form-control round-input">
                     </div>
                   </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label"><br><br><strong>Date</strong></label>
+                  <div class="col-sm-4">
+                    <br><br><input name="fecha" type="text" class="form-control round-input fecha" readonly  placeholder="Enter Date" value="<?php echo $datos['fecha'];?>"><br>
+                  </div>
+                </div>
                   <!-- probando -->
                   <header class="panel-heading">
                     <b>ADD SERVICE</b>
@@ -159,7 +161,7 @@ else
                     <label class="col-sm-2 control-label"><b>$ US</b></label>
                     <input type="radio" id="us_dolar" name="bill_to" >
                     <div class="col-sm-4 ocultar" id="campo_us">
-                      <input type="text" id="dinero_us" name="dinero_us" placeholder="$" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control round-input limpiar">
+                      <input type="text" id="dinero_us" name="dinero_us" placeholder="USD$" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control round-input limpiar">
 
                       <!--<input type="text" id="dinero_us" data-thousands="." data-decimal="," data-prefix="$. " name="dinero_us" class="form-control round-input limpiar">-->
                     </div>
@@ -169,7 +171,7 @@ else
                     <input type="radio" id="cad_dolar" name="bill_to" >
                     <div class="col-sm-4 ocultar" id="campo_cad">
 
-                      <input type="text" id="dinero_cad" name="dinero_cad" placeholder="$" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control round-input limpiar">
+                      <input type="text" id="dinero_cad" name="dinero_cad" placeholder="CAD$" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control round-input limpiar">
 
                       <!--<input type="text" id="dinero_cad" data-thousands="." data-decimal="," data-prefix="$. " name="dinero_cad" class="form-control round-input limpiar">-->
                     </div>
@@ -182,7 +184,7 @@ else
                   </div>
                   <center>
                     <button type="button" id="guardar_servicio" name="guardar_servicio" class="btn btn-primary fa fa-plus"></button>
-                  </center>
+                  </center><br>
                   <section class="panel">
                     <header class="panel-heading">
                       <b>SERVICES SELECTED</b>
@@ -192,9 +194,9 @@ else
                         <tr>
                           <th>Code</th>
                           <th>Description</th>
-                          <th>Notes</th>
-                          <th>US$ AMT</th>
-                          <th>CAD$ AMT</th>
+                          <th>Note</th>
+                          <th>US$</th>
+                          <th>CAD$</th>
                           <th>Action</th>
                         </tr>
                       </thead>

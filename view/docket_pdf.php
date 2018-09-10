@@ -212,8 +212,8 @@ if ($array_d->num_rows==0) {
             <tr>
               <td align="center"><b>#</b></td>
               <td align="center"><b>Description</b></td>
-              <td align="center"><b>Notes</b></td>
-              <td align="center"><b>US$</b></td>
+              <td align="center"><b>Note</b></td>
+              <td align="center"><b>USD$</b></td>
               <td align="center"><b>CAD$</b></td>
             </tr>
           </thead>';
@@ -255,7 +255,7 @@ if ($array_d->num_rows==0) {
             <td align="center"><b>Supplier</b></td>
             <td align="center"><b>Service</b></td>
             <td align="center"><b>Note</b></td>
-            <td align="center"><b>US$</b></td>
+            <td align="center"><b>USD$</b></td>
             <td align="center"><b>CAD$</b></td>
           </tr>
         </thead>';
