@@ -84,8 +84,21 @@ else
                           <option value="0">Select Service</option>
                         </select>
                       </div>
-                      <div class="col-sm-2">
-                        <input type="text" id="dinero" name="dinero" placeholder="Cost" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control limpiar">
+                    </div>
+
+
+                      <div class="form-group" id="radio3">
+                      <label class="col-sm-2 control-label"><b>$ US</b></label>
+                      <input type="radio" id="us_dolar_supplier" name="bill_to_supplier" >
+                      <div class="col-sm-4 ocultar" id="campo_us_supplier">
+                      <input type="text" id="dinero_suppli_us" name="dinero_suppli_us" placeholder="USD $" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control round-input limpiar">
+                      </div>
+                    </div>
+                    <div class="form-group" id="radio4">
+                      <label class="col-sm-2 control-label"><b>$ CAD</b></label>
+                      <input type="radio" id="cad_dolar_supplier" name="bill_to_supplier" >
+                      <div class="col-sm-4 ocultar" id="campo_cad_supplier">
+                        <input type="text" id="dinero_suppli_cad" name="dinero_suppli_cad" class="form-control round-input limpiar" placeholder="CAD $" onchange="MASK(this,this.value,'-$##,###,##0.00',1)">
                       </div>
                     </div>
                     <div class="form-group">
@@ -109,7 +122,8 @@ else
                             <th>Supplier</th>
                             <th>Service</th>
                             <th>Notes</th>
-                            <th>US$ AMT</th>
+                            <th>USD$</th>
+                            <th>CAD$</th>
                             <th>Action</th>
                           </tr>
                         </thead>
@@ -212,8 +226,8 @@ else
                           <th>Code</th>
                           <th>Description</th>
                           <th>Notes</th>
-                          <th>US$ AMT</th>
-                          <th>CAD$ AMT</th>
+                          <th>USD$</th>
+                          <th>CAD$</th>
                           <th>Action</th>
                         </tr>
                       </thead>
