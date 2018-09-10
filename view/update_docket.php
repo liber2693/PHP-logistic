@@ -237,7 +237,7 @@ if(empty($_SESSION['user']))
           <h4 class="modal-title"><center><b>NEW ATTACHMENT</b></center></h4>
         </div>
         <br>
-				
+
         <form class="form-inline" role="form">
           <div class="modal-body">
             <input type="hidden"  class="form-control m-bot15 round-input"  name="codigo_documento" id="codigo_documento">
@@ -278,6 +278,7 @@ if(empty($_SESSION['user']))
   <!-- javascripts -->
   <?php include('pie.php');?>
   <script src="../js/documento_update.js" type="text/javascript"></script>
+	<script src="../js/dropzone.js"></script>
 </body>
 </html>
 <?php
