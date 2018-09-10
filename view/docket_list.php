@@ -157,7 +157,6 @@ if(empty($_SESSION['user']))
                           <thead>
                             <tr>
                               <th><i class="fa fa-list"></i> Docket #</th>
-                              <th><i class="icon_calendar"></i> Date</th>
                               <th><i class="icon_profile"></i> CC #</th>
                               <th><i class="icon_calendar"></i> Consignee</th>
                               <th><i class="fa fa-location-arrow"></i> PO #</th>
@@ -184,19 +183,17 @@ if(empty($_SESSION['user']))
                             $count2 = $contarInvoice->SelectQuantityDocketInvoiceProcesadas();
                             $resul2=$count2->fetch_assoc();
                             $count2->free();
+                            $consignatario = ucwords(strtolower($datos['consignee']));
+                            $numeropo = ucwords(strtolower($datos['po']));
+                            $ccnumero = ucwords(strtolower($datos['cc']));
                             ?>
                             <tr>
 
                               <td><?php echo "<b>" .$datos['codigo'] ."</b>";?></td>
-                              <td>
-                                <?php
-                                $fecha = explode('-', $datos['fecha']);
-                                echo "<b>" .$fecha[1] .'-' .$fecha[2] .'-' .$fecha[0] ."</b>";
-                                ?>
-                              </td>
-                              <td><?php echo "<b>" .ucwords(strtolower($datos['cc'])) ."</b>";?></td>
-                              <td><?php echo "<b>" .ucwords(strtolower($datos['consignee'])) ."</b>";?></td>
-                              <td><?php echo "<b>" .ucwords(strtolower($datos['po'])) ."</b>";?></td>
+
+                              <td><?php echo "<b>" .wordwrap($ccnumero,25, "<br />\n") ."</b>";?></td>
+                              <td><?php echo "<b>" .wordwrap($consignatario,25, "<br />\n") ."</b>";?></td>
+                              <td><?php echo "<b>" .wordwrap($numeropo,25, "<br />\n") ."</b>";?></td>
                               <td><?php echo "<b>" .ucwords($datos['pieza'] ." " .ucfirst($datos['tipo_pieza'])) ."</b>";?></td>
                               <td><?php echo "<b>" .ucwords($datos['peso'] ." " .ucfirst($datos['tipo_peso'])) ."</b>";?></td>
                               <td><center><?php echo "<b>" .$resul2['total_pro'];?> of <?php echo $resul1['total'] ."</b>";?></center></td>
@@ -244,7 +241,6 @@ if(empty($_SESSION['user']))
                           <thead>
                             <tr>
                               <th><i class="fa fa-list"></i> Docket Number</th>
-                              <th><i class="icon_calendar"></i> Date</th>
                               <th><i class="fa fa-location-arrow"></i> Description</th>
                               <th><i class="fa fa-location-arrow"></i> Comments</th>
                               <th width="4%"><i class="fa fa-check"></i>Ready Invoices</th>
@@ -270,15 +266,10 @@ if(empty($_SESSION['user']))
                             ?>
                             <tr>
                               <td><?php echo "<b>" .$datos['codigo'] ."</b>";?></td>
-                              <td>
-                                <?php
-                                $fecha = explode('-', $datos['fecha']);
-                                echo "<b>" .$fecha[1] .'-' .$fecha[2] .'-' .$fecha[0] ."</b>";
-
+                              <?php
                                 $descripcion_docket = ucwords(strtolower($datos['descripcion']));
                                 $comentario_docket = ucwords(strtolower($datos['comentarios']));
-                                ?>
-                              </td>
+                              ?>
                               <td><?php echo "<b>" .wordwrap($descripcion_docket,50, "<br />\n") ."</b>";?></td>
                               <td><?php echo "<b>" .wordwrap($comentario_docket,50, "<br />\n") ."</b>";?></td>
                               <td><center><?php echo "<b>" .$resul2['total_pro'];?> of <?php echo $resul1['total'] ."</b>";?></center></td>
