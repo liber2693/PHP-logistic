@@ -1,19 +1,42 @@
+
 <aside>
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
           <li class="active">
             <a class="" href="create_docket.php">
-              <i class="icon_house_alt"></i>
+              <i class="fa fa-laptop fa "></i>
               <span>Create Docket</span>
             </a>
           </li>
           <li class="active">
             <a class="" href="docket_list.php">
-              <i class="icon_house_alt"></i>
+              <i class="fa fa-list-alt"></i>
               <span>Docket list</span>
             </a>
           </li>
+          <?php
+          if ($_SESSION['tipo_usuario'] == 1){
+           ?>
+          <li class="active">
+            <a class="" href="delete_list.php">
+              <i class="fa fa-trash-o"></i>
+              <span>Void Dockets</span>
+            </a>
+          </li>
+          <?php
+            }
+            if ($_SESSION['tipo_usuario'] == 1){
+             ?>
+            <li class="active">
+              <a class="" href="usuarios_admin.php">
+                <i class="fa fa-users"></i>
+                <span>Manage Users</span>
+              </a>
+            </li>
+            <?php
+              }
+              ?>
         </ul>
       </div>
     </aside>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 include '../config/conexion.php';
 /***usuarios***/
 class Sesion{
@@ -29,11 +29,13 @@ class Sesion{
 		$this->actividad = $actividad;
 		$this->ip_equipo_conexion = $ip_equipo_conexion;
 		$this->estatus_logico = $estatus_logico;
+
+		$db->close();
 	}
 
 	static function ningunDato(){
 		return new self('','','','','','','','','','','');
-	} 
+	}
 
 	static function soloUsuario($usuario){
 		return new self($usuario,'','','','','','','','','','');
@@ -49,6 +51,8 @@ class Sesion{
 
 		$result = $db->query($sql);
 
+		$db->close();
+
 		return $result;
 	}
 	public function validarUsuario(){
@@ -57,6 +61,8 @@ class Sesion{
 		$sql = "SELECT * FROM usuarios WHERE usuario='$this->usuario' AND password='$this->password' AND estatus_logico=1";
 
 		$result = $db->query($sql);
+
+		$db->close();
 
 		return $result;
 	}
@@ -69,12 +75,17 @@ class Sesion{
 									ip_equipo_conexion = '$this->ip_equipo_conexion'
 								WHERE id_usuario=$this->id_usuario";
 		$db->query($sql);
+
+		$db->close();
 	}
 	public function cerrarSesion(){
 
 		$db = new Conexion();
 		$sql = "UPDATE usuarios SET actividad = 0 WHERE id_usuario=$this->id_usuario";
 		$db->query($sql);
+
+		$db->close();
 	}
 }
+
 ?>

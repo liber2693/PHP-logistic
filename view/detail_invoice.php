@@ -12,12 +12,14 @@ else
 {
   if(isset($_GET['invoice'])){
     $codigo_factura = base64_decode($_GET['invoice']);
+    //print_r($codigo_factura);die();
     $buscarInvoice = Invoice::soloCodigo($codigo_factura);
     $array = $buscarInvoice->SelectInvoice();
     if ($array->num_rows==0) {
     echo "NO EXIST";
     }else{
     $datos = $array->fetch_array();
+    $array->free();
 
 ?>
 <!DOCTYPE html>
@@ -42,11 +44,11 @@ else
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-file-text-o"></i> INVOICE</h3>
+            <h3 class="page-header"><i class="fa fa-file-text-o"></i><b>INVOICE</b></h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="../index.php">Home</a></li>
+              <li><i class="fa fa-home"></i><a href="../index.php"><b>Home</b></a></li>
               <li><i class="fa fa-home"></i><a href="detail_docket.php?docket=<?php echo base64_encode($datos['codigo_docket']);?>"><?php echo $datos['codigo_docket'];?></a></li>
-              <li><i class="icon_document_alt"></i>Invoice Details </li>
+              <li><i class="icon_document_alt"></i><b>Invoice Details</b></li>
 
             </ol>
           </div>
@@ -55,22 +57,88 @@ else
           <div class="col-lg-12">
             <section class="panel">
               <header class="panel-heading">
-                INVOICE
+                <b>INVOICE</b>
               </header>
               <div class="panel-body">
                 <div class="checkboxes">
-                  <label class="label_check" for="checkbox-01">
-                    <strong>DOCKET #: <?php echo $datos['codigo_docket'];?></strong>
-                  </label>
-                  <label class="label_check" for="checkbox-02">
-                    <strong>INVOICE #: <?php echo $datos['codigo_invoice'];?></strong>
-                  </label>
-                  <label class="label_check" for="checkbox-02">
-                    <strong>DATE: <?php echo $datos['fecha_creacion'];?></strong>
-                  </label>
-                  <label class="label_check" for="checkbox-02">
-                    <strong>BILL TO: <?php echo ucwords($datos['cliente']);?></strong>
-                  </label>
+                  <table class="table table-bordered">
+                    <tbody>
+                      <tr>
+                        <td class="text-center">
+                          <strong>DOCKET #: <?php echo $datos['codigo_docket'];?></strong>
+                        </td>
+                        <td class="text-center">
+                          <strong>DATE DOCKET #:
+                            <?php
+                              $fecha_docket = explode('-', $datos['fecha_docket']);
+                              echo $fecha_docket[1] .'-' .$fecha_docket[2] .'-' .$fecha_docket[0];
+                            ?>
+                          </strong>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">
+                          <strong>INVOICE #: <?php echo $varCode = ($datos['codigo_usuario']) ? $datos['codigo_usuario'] : "Not registered";?></strong>
+                        </td>
+                        <td class="text-center">
+                          <strong>DATE:&nbsp;
+                            <?php
+                              if (!empty($datos['fecha'])) {
+                                $fecha = explode('-', $datos['fecha']);
+                                echo $fecha_formateada = $fecha[1] .'-' .$fecha[2] .'-' .$fecha[0];
+
+                              }
+                              else{
+                                echo $fecha_formateada = "Not registered";
+                              }
+                            ?>
+                          </strong>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text-center">
+                          <strong>BILL TO: <?php echo ucwords($datos['cliente']);?></strong>
+                        </td>
+                        <td class="text-center">
+                          <strong>STATUS:
+                          <?php
+                          if ($datos['estatus'] == 1)
+                          {
+                          echo "<b>PENDING</b> &nbsp;"; ?> <i class="fa fa-circle" style="color: red;"></i>
+                          <?php
+                          }
+                          if ($datos['estatus'] == 2)
+                          {
+                          echo "<b>READY TO BILL</b> &nbsp;"; ?><i class="fa fa-circle" style="color: green;"></i>
+                          <?php
+                          }
+                          ?>
+                        </strong>
+
+                        </td>
+                      </tr>
+                      <?php
+                      if(!empty($datos['pagos'])){
+                      ?>
+                        <tr>
+                          <td colspan="2">
+                            <b>PAYMENTS: &nbsp;<?php echo $datos['pagos'];?></b>
+                          </td>
+                        </tr>
+                      <?php
+                      }
+                      if(!empty($datos['comentarios'])){
+                      ?>
+                      <tr>
+                        <td colspan="5">
+                          <b>COMMENTS: &nbsp;<?php echo $datos['comentarios'];?></b>
+                        </td>
+                      </tr>
+                      <?php
+                      }
+                      ?>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </section>
@@ -91,6 +159,10 @@ else
                   <tr>
                     <th>#</th>
                     <th>Supplier</th>
+                    <th>Service</th>
+                    <th>Note</th>
+                    <th>US$</th>
+                    <th>CAD$</th>
                   </tr>
                 </thead>
                 <?php
@@ -98,7 +170,7 @@ else
                 ?>
                 <tbody>
                   <tr>
-                    <td colspan='5' class="text-center">NO SERVICES</td>
+                    <td colspan='5' class="text-center">NO SUPPLEIR</td>
                   </tr>
                 </tbody>
                 <tbody>
@@ -111,9 +183,14 @@ else
                   <tr>
                     <td><?php echo "<b>" .$i ."</b>";?></td>
                     <td><?php echo "<b>" .ucwords($datos_supli['supplier']) ."</b>";?></td>
+                    <td><b><?php echo $datos_supli['descripcion'];?></b></td>
+                    <td><?php echo "<b>" .$datos_supli['nota'] ."</b>";?></td>
+                    <td><?php echo $retVal = ($datos_supli['dinero_us']) ? "<b>$ ".$datos_supli['dinero_us']."</b>" : "";?></td>
+                    <td><?php echo $retVal = ($datos_supli['dinero_cad']) ? "<b>$ ".$datos_supli['dinero_cad']."</b>" : "";?></td>
                   </tr>
                 <?php
                   }
+                  $array3->free();
                 }
                 ?>
                 </tbody>
@@ -124,7 +201,7 @@ else
       </div>
         <?php
         $buscarServInvoice = invoicesServices::soloCodigo($codigo_factura);
-        $array1 = $buscarServInvoice->SelectServicosInvoice();
+        $array1 = $buscarServInvoice->SelectServiciosInvoice();
         ?>
         <div class="row">
           <div class="col-sm-12">
@@ -137,9 +214,9 @@ else
                   <tr>
                     <th>#</th>
                     <th>Description</th>
-                    <th>Notes</th>
-                    <th>US$ AMT</th>
-                    <th>CAD$ AMT</th>
+                    <th>Note</th>
+                    <th>US$</th>
+                    <th>CAD$</th>
                   </tr>
                 </thead>
                 <?php
@@ -156,16 +233,19 @@ else
                   $i=0;
                   while($datos_servi=$array1->fetch_assoc()){
                   $i++;
+                  $us = ($datos_servi['precio_us']) ? "$ ".$datos_servi['precio_us'] : "" ;
+                  $ca = ($datos_servi['precio_ca']) ? "$ ".$datos_servi['precio_ca'] : "" ;
                 ?>
                   <strong><tr>
                     <td><?php echo  "<b>" .$i ."</b>";?></td>
                     <td><?php echo "<b>" .$datos_servi['descripcion'] ."</b>";?></td>
                     <td><?php echo "<b>" .ucfirst($datos_servi['nota']) ."</b>";?></td>
-                    <td><?php echo "<b>" .$datos_servi['precio_us'] ."</b>";?></td>
-                    <td><?php echo "<b>" .$datos_servi['precio_ca'] ."</b>";?></td>
+                    <td><b><?php echo $us;?></b></td>
+                    <td><b><?php echo $ca;?></b></td>
                   </tr>
                 <?php
                   }
+                  $array1->free();
                 }
                 ?>
                 </tbody>
@@ -209,7 +289,7 @@ else
               </div>
             <?php
               }
-
+              $array2->free();
             }
             ?>
           </section>

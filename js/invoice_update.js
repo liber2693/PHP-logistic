@@ -1,9 +1,9 @@
 $(document).ready(function() {
 	//mascara de cifra con puntos(.) y comas(,)
-	$("#dinero_us").maskMoney();
-	$("#dinero_cad").maskMoney();
+	//$("#dinero_us").maskMoney();
+	//$("#dinero_cad").maskMoney();
     //campo de actualizar
-    $("#pago_supplier").maskMoney();
+    //$("#pago_supplier").maskMoney();
 	//busca los servicios
 	var tipo = $('#tipo').val();
 	var settings = {
@@ -14,18 +14,32 @@ $(document).ready(function() {
         "dataType" : "json",
         "data" : {
         	"tipo": tipo
-        } 
+        }
     }
     $.ajax(settings).done(function (response) {
         var lista = response;
         lista.forEach( function(data, indice, array) {
           $("#lista_servicios").append("<option value="+data.id+">"+data.descripcion+"</option> ")
-          //$("#Actualizar_benf_tipo_articulo").append("<option value="+data.id+">"+data.business_name+"</option> ")
+          $("#select_servicio").append("<option value="+data.id+">"+data.descripcion+"</option> ")
         });
     });
 
     mostarLista();
     listaSupplier();
+
+    //seleccion del tipo de moneda, como se va pagar supplier
+    $("#us_dolar_supplier").click(function(){
+        $("#campo_us_supplier").removeClass("ocultar");
+        $("#campo_cad_supplier").addClass("ocultar");
+        $("#dinero_suppli_us").focus();
+        $("#dinero_suppli_cad").val("");
+    });
+    $("#cad_dolar_supplier").click(function(){
+        $("#campo_cad_supplier").removeClass("ocultar");
+        $("#campo_us_supplier").addClass("ocultar");
+        $("#dinero_suppli_cad").focus();
+        $("#dinero_suppli_us").val("");
+    });
 
     //seleccion del tipo de moneda, como se va pagar
     $("#us_dolar").click(function(){
@@ -42,25 +56,25 @@ $(document).ready(function() {
     });
 
 	$("#guardar_servicio").click(function(){
-		//borrar los tr de la tabla menos la primera fila 
-		
+		//borrar los tr de la tabla menos la primera fila
+
 		//$('#seleccion_servicios_tabla').append('tr').not(':first').remove();
 		//validar campos del pequeño fomulario
-		var servicio = $("#lista_servicios").val();	
-		var dinero_us = $("#dinero_us").val();	
-		var dinero_cad = $("#dinero_cad").val();	
-		var nota = $("#nota").val();	
+		var servicio = $("#lista_servicios").val();
+		var dinero_us = $("#dinero_us").val();
+		var dinero_cad = $("#dinero_cad").val();
+		var nota = $("#nota").val();
 		var codigo_factura = $("#codigo_invoice").val();
 		var usuario_documento = $("#usuario_documento").val();
-		
-		
+
+
 		if (servicio==0) {
     		$("#lista_servicios").css({"border":"2px solid #ff3333"});
 	       event.preventDefault();
     	}else{
     		$("#lista_servicios").css({"border":"1px solid #c7c7cc"});
     	}
-		
+
 		if ($('input[name="bill_to"]').is(':checked')) {
 	     	$("#radio1").css({"border":"0"});
 	    	$("#radio2").css({"border":"0"});
@@ -88,28 +102,28 @@ $(document).ready(function() {
                 	if(lista==0){
                 		$("#seleccion_servicios_tabla").append(
                   		'<tr>'+
-                    	'<td colspan="5" class="text-center">tdere are no services available</td>'+
+                    	'<td colspan="5" class="text-center"><b>Services are not available yet</b></td>'+
                     	'</tr>');
                     	$('#enviar_update_invoice').attr("disabled", true);
                 	}else{
 	                	lista.forEach( function(data, indice, array) {
 				        	$("#seleccion_servicios_tabla").append(
 	                  		'<tr>'+
-	                    	'<td>'+data.codigo_ser+'</td>'+
-	                    	'<td>'+data.descripcion+'</td>'+
-	                    	'<td>'+data.nota+'</td>'+
-	                    	'<td>'+data.precio_us+'</td>'+
-	                    	'<td>'+data.precio_ca+'</td>'+
+	                    	'<td><b>'+data.codigo_ser+'</b></td>'+
+                            '<td><b>'+data.descripcion+'</b></td>'+
+                            '<td><b>'+data.nota+'</b>'+'</td>'+
+                            '<td><b>'+(data.precio_us ? "$ "+data.precio_us : "")+'</b></td>'+
+                            '<td><b>'+(data.precio_ca ? "$ "+data.precio_ca : "")+'</b></td>'+
 	                    	'<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminar('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
 	                  		'</tr>');
 	                  		$('#enviar_update_invoice').attr("disabled", false);
 				        });
                 	}
-                    limpiar_campos(); 
+                    limpiar_campos();
 				}
 	    	})
 	    }else{
-            $("#mensaje_actulaizacion_servicios").addClass("alert alert-block alert-danger fade in text-center").html("<strong>Disculpa!</strong> Debe llenar el campo");
+            $("#mensaje_actulaizacion_servicios").addClass("alert alert-block alert-danger fade in text-center").html("<strong>Sorry!</strong> You must fill in the required fields");
             setTimeout(function() {
             $("#mensaje_actulaizacion_servicios").removeClass().empty();
         },3000);
@@ -117,7 +131,7 @@ $(document).ready(function() {
 	});
 
 
-    //mostrar el campo otro caundo selecciona el 6 
+    //mostrar el campo otro caundo selecciona el 6
     $('input[type=checkbox]').on('change', function() {
         var valor = $(this).val();
 
@@ -130,35 +144,37 @@ $(document).ready(function() {
 
     //enviar el formulario para que actualize eñ registro del invoice
     $("#update_invoice").submit(function(event) {
-        
+        $('#enviar_update_invoice').attr("disabled", true);
         var quien_paga = $("#quien_paga").val();
 
         if (quien_paga=='') {
             $("#quien_paga").css({"border":"2px solid #ff3333"});
+            $('#enviar_update_invoice').attr("disabled", false);
             event.preventDefault();
         }else{
             $("#quien_paga").css({"border":"1px solid #c7c7cc"});
         }
-        
+
         //validare que el envio este seleccionado
         var check = $("input[type='checkbox']:checked").length;
         if(check == ""){
-            $("#mensaje_create_invoice").addClass("alert alert-block alert-danger fade in text-center").html("<strong>Disculpa!</strong> Debe seleccionar un tipo de envio");
+            $("#mensaje_create_invoice").addClass("alert alert-block alert-danger fade in text-center").html("<strong>Sorry!</strong> You must select at least one ship via");
             setTimeout(function() {
                 $("#mensaje_create_invoice").removeClass().empty();
             },3000);
             $("#via_envio").css({"border":"2px solid #ff3333"});
+            $('#enviar_update_invoice').attr("disabled", false);
            event.preventDefault();
         }else{
             $("#via_envio").css({"border":"0"});
         }
     });
-	  
+
 });
 
 function mostarLista(){
 	var codigo_invoice = $("#codigo_invoice").val();
-	//borrar los tr de la tabla menos la primera fila 
+	//borrar los tr de la tabla menos la primera fila
 	$("#seleccion_servicios_tabla > tbody:last").children().remove();
 	//llenar la tabla si existen servicios por este documento
     $.ajax({
@@ -166,25 +182,25 @@ function mostarLista(){
         dataType: "json",
         url: "../controllers/invoiceControllers.php",
         data: {'tabla' : 4,
-        	   'codigo_invoice' : codigo_invoice 
+        	   'codigo_invoice' : codigo_invoice
               },
         success: function(data){
         	var lista = data;
         	if(lista==0){
         		$("#seleccion_servicios_tabla").append(
           		'<tr>'+
-            	'<td colspan="5" class="text-center">tdere are no services available</td>'+
+            	'<td colspan="5" class="text-center"><b>Services are not available yet</b></td>'+
             	'</tr>');
             	$('#enviar_update_invoice').attr("disabled", true);
         	}else{
             	lista.forEach( function(data, indice, array) {
 		        	$("#seleccion_servicios_tabla").append(
               		'<tr>'+
-                	'<td>'+data.codigo_ser+'</td>'+
-                	'<td>'+data.descripcion+'</td>'+
-                	'<td>'+data.nota+'</td>'+
-                	'<td>'+data.precio_us+'</td>'+
-                	'<td>'+data.precio_ca+'</td>'+
+                	'<td><b>'+data.codigo_ser+'</b></td>'+
+                    '<td><b>'+data.descripcion+'</b></td>'+
+                    '<td><b>'+data.nota+'</b>'+'</td>'+
+                    '<td><b>'+(data.precio_us ? "$ "+data.precio_us : "")+'</b></td>'+
+                    '<td><b>'+(data.precio_ca ? "$ "+data.precio_ca : "")+'</b></td>'+
                 	'<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminar('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
               		'</tr>');
 		        	$('#enviar_update_invoice').attr("disabled", false);
@@ -192,7 +208,7 @@ function mostarLista(){
         	}
 		}
 	})
-} 
+}
 
 function eliminar(id){
 	console.log(id);
@@ -219,7 +235,12 @@ function registrarSupplier(){
     var supplier = $("#supplierActualizar").val().trim();
     var codigo_invoice = $("#codigo_invoice").val();
     var usuario_documento = $("#usuario_documento").val();
-    var pago_supplier = $("#pago_supplier").val();
+    var dinero_us = $("#dinero_suppli_us").val();
+    var dinero_cad = $("#dinero_suppli_cad").val();
+
+
+    var servicio_suppl = $("#select_servicio").val();
+    var nota_supplier = $("#nota_supplier").val();
 
     if (supplier.length==0) {
         $("#supplierActualizar").css({"border":"2px solid #ff3333"});
@@ -228,17 +249,18 @@ function registrarSupplier(){
         $("#supplierActualizar").css({"border":"1px solid #c7c7cc"});
     }
 
-    if (pago_supplier.length==0) {
+    /*if (pago_supplier.length==0) {
         $("#pago_supplier").css({"border":"2px solid #ff3333"});
         event.preventDefault();
     }else{
         $("#pago_supplier").css({"border":"1px solid #c7c7cc"});
-    }
+    }*/
 
-    if(supplier.length > 0 && pago_supplier.length > 0){
+    //if(supplier.length > 0 && pago_supplier.length > 0){
+    if(supplier.length > 0){
         //console.log(supplier,codigo_invoice,usuario_documento,pago_supplier);
         //return false;
-        //borrar los tr de la tabla menos la primera fila 
+        //borrar los tr de la tabla menos la primera fila
         $("#seleccion_supplier > tbody:last").children().remove();
         //llenar la tabla si existen servicios por este documento
         $.ajax({
@@ -249,21 +271,27 @@ function registrarSupplier(){
                    'supplier' : supplier,
                    'codigo_invoice' : codigo_invoice,
                    'usuario_documento' : usuario_documento,
-                   'pago_supplier' : pago_supplier },
+                   'dinero_us' : dinero_us,
+                   'dinero_cad' : dinero_cad,
+                   'servicio_suppl' : servicio_suppl,
+                   'nota_supplier' : nota_supplier },
             success: function(data){
                 var lista = data;
                 if(lista==0){
                     $("#seleccion_supplier").append(
                     '<tr>'+
-                    '<td colspan="3" class="text-center">tdere are no services available</td>'+
+                    '<td colspan="6" class="text-center"><b>Supplier are not available yet</b></td>'+
                     '</tr>');
                     $('#enviar_update_invoice').attr("disabled", true);
                 }else{
                     lista.forEach( function(data, indice, array) {
                         $("#seleccion_supplier").append(
                         '<tr>'+
-                        '<td>'+data.supplier+'</td>'+
-                        '<td>'+data.dinero+'</td>'+
+                        '<td><b>'+data.supplier+'</b></td>'+
+												'<td><b>'+data.servicio+'</b></td>'+
+												'<td><b>'+data.nota+'</b></td>'+
+                        '<td><b>'+(data.dinero_us ? "$ "+data.dinero_us : "")+'</b></td>'+
+                        '<td><b>'+(data.dinero_cad ? "$ "+data.dinero_cad : "")+'</b></td>'+
                         '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminarSupplier('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                         '</tr>');
                         $('#enviar_update_invoice').attr("disabled", false);
@@ -274,20 +302,20 @@ function registrarSupplier(){
             }
         })
     }else{
-        $("#mensaje_actulaizacion_invoice_supplier").addClass("alert alert-block alert-danger fade in text-center").html("<strong>Disculpa!</strong> Debe llenar el campo");
+        $("#mensaje_actulaizacion_invoice_supplier").addClass("alert alert-block alert-danger fade in text-center").html("<strong>Sorry!</strong> You must fill in the required fields");
         setTimeout(function() {
             $("#mensaje_actulaizacion_invoice_supplier").removeClass().empty();
         },3000);
     }
-    
-} 
+
+}
 
 //mostrar lista de supplier ya exitente
 
 function listaSupplier(){
-  
+
     var codigo_invoice = $("#codigo_invoice").val();
-    //borrar los tr de la tabla menos la primera fila 
+    //borrar los tr de la tabla menos la primera fila
     $("#seleccion_supplier > tbody:last").children().remove();
     //llenar la tabla si existen servicios por este documento
     $.ajax({
@@ -302,15 +330,18 @@ function listaSupplier(){
             if(lista==0){
                 $("#seleccion_supplier").append(
                 '<tr>'+
-                '<td colspan="3" class="text-center">tdere are no services available</td>'+
+                '<td colspan="6" class="text-center"><b>Supplier are not available yet<b></td>'+
                 '</tr>');
                 $('#enviar_update_invoice').attr("disabled", true);
             }else{
                 lista.forEach( function(data, indice, array) {
                     $("#seleccion_supplier").append(
                     '<tr>'+
-                    '<td>'+data.supplier+'</td>'+
-                    '<td>'+data.dinero+'</td>'+
+                    '<td><b>'+data.supplier+'</b></td>'+
+                    '<td><b>'+data.servicio+'</b></td>'+
+                    '<td><b>'+data.nota+'</b></td>'+
+                    '<td><b>'+(data.dinero_us ? "$ "+data.dinero_us : "")+'</b></td>'+
+                    '<td><b>'+(data.dinero_cad ? "$ "+data.dinero_cad : "")+'</b></td>'+
                     '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminarSupplier('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                     '</tr>');
                     $('#enviar_update_invoice').attr("disabled", false);
@@ -318,7 +349,7 @@ function listaSupplier(){
             }
         }
     })
-} 
+}
 //eliminar supplier de un invoice
 
 function eliminarSupplier(id){
@@ -344,6 +375,6 @@ function eliminarSupplier(id){
 function limpiar_campos(){
 
     $(".limpiar").val("");
+    $("#lista_servicios").val("0");
+    $("#select_servicio").val("0");
 }
-
-
