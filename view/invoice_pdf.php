@@ -116,9 +116,10 @@ if ($array->num_rows==0) {
               </td>
           </tr>
         <tr>
-          <td colspan="2">
-            <b>NOTE:</b> &nbsp;'.ucfirst($datos['descripcion']).'
-          </td>
+        <td colspan="2">
+          <b>INVOICE COMMENTS: </b>
+              '.ucfirst($datos['invoice_comments']).'
+        </td>
           <td colspan="1">
             <b>CC #:</b> &nbsp;'.ucfirst($datos['cc']).'
           </td>
@@ -142,14 +143,13 @@ if ($array->num_rows==0) {
           <b>PAYMENTS: </b>
           '.ucfirst($datos['pagos']).'
         </td>
-          <td colspan="2">
-            <b>INVOICE COMMENTS: </b>
-                '.ucfirst($datos['invoice_comments']).'
-          </td>
         </tr>
       </table>';
   $buscarServInvoice = invoicesServices::soloCodigo($codigo_factura);
   $array1 = $buscarServInvoice->SelectServiciosInvoice();
+  /*<td colspan="2">
+    <b>note:</b> &nbsp;'.ucfirst($datos['descripcion']).'
+  </td>*/
 
   //echo "<pre>";print_r($array1);die;
 

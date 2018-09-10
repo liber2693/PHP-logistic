@@ -73,6 +73,13 @@ else
                     </div>
                   </div>
                   <div class="form-group">
+                    <label class="col-sm-2 control-label"><br><br><strong>Date</strong></label>
+                    <div class="col-sm-4">
+                      <br><br><input name="fecha" type="text" class="form-control round-input fecha" readonly  placeholder="Enter Date" value="<?php echo $datos['fecha'];?>"><br>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
         						<label class="col-sm-2 control-label"><strong>Supplier</strong></label>
         					</div>
                   <div id="mensaje_actulaizacion_invoice_supplier">
@@ -136,13 +143,7 @@ else
                       <input type="text" id="quien_paga" value="<?php echo $datos['cliente'];?>" name="quien_paga" class="form-control round-input">
                     </div>
                   </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label"><br><br><strong>Date</strong></label>
-                  <div class="col-sm-4">
-                    <br><br><input name="fecha" type="text" class="form-control round-input fecha" readonly  placeholder="Enter Date" value="<?php echo $datos['fecha'];?>"><br>
-                  </div>
-                </div>
-                  <!-- probando -->
+                <!-- probando -->
                   <header class="panel-heading">
                     <b>ADD SERVICE</b>
                   </header>
