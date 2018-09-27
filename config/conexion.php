@@ -5,7 +5,7 @@ class Conexion extends mysqli{
 	private $DB_HOST = 'localhost';
 	private $DB_USUARIO = 'root';
 	private $DB_CONTRASENA = '';
-	private $DB_NOMRBE = 'proyecto_docket';
+	private $DB_NOMRBE = 'liber_bd';
 
 
 	public function __construct(){

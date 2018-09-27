@@ -27,6 +27,7 @@ $(document).ready(function() {
             if (option==0) {
                  $("#lista_servicios").append("<option value='0'>No service available</option>");
             }else{
+                    //console.log(data);
                 option.forEach( function(data, indice, array) {
                     $("#lista_servicios").append("<option value="+data.id+">"+data.descripcion+"</option>");
                     //for (var i = 1; i <= 6; i++) {
@@ -339,6 +340,7 @@ function mostarLista(){
                 $('#enviar_invoice').attr("disabled", true);
             }else{
                 lista.forEach( function(data, indice, array) {
+                    console.log("aqui")
                     $("#seleccion_servicios_tabla").append(
                     '<tr>'+
                     '<td><b>'+data.codigo_ser+'</b></td>'+
@@ -356,18 +358,23 @@ function mostarLista(){
 }
 
 function eliminar(id){
-    //console.log(id);
+    console.log(id);
+
     $("#seleccion_servicios_tabla > tbody:last").children().remove();
     //llenar la tabla si existen servicios por este documento
     $.ajax({
         type: "POST",
         dataType: "json",
         url: "../controllers/invoiceControllers.php",
-        data: {'id_supplier' : id},
+        data: {
+            'id' : id,
+            'tipo_proceso' : 8
+        },
         success: function(data){
             var lista = data;
+            console.log(lista)
             if(lista==3){
-                mostarLista()
+                mostarLista();
             }else{
                 //console.log(id)
             }

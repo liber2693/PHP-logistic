@@ -162,7 +162,8 @@ if(isset($_GET['tabla']) && $_GET['tabla']==1){
     echo json_encode($data);
 }
 //eliminar registro de la tabla temporal de servicos
-if(isset($_POST['id'])){
+if(isset($_POST['id']) && $_POST['tipo_proceso'] == 8){
+    
     $id=$_POST['id'];
     $eliminar = new invoicesServicesTemp('','','','','','','',$id);
     $array=$eliminar->EliminarServicioTablaTemp();
@@ -230,6 +231,7 @@ if(isset($_GET['tabla']) && $_GET['tabla']==3){
 }
 //eliminar registro
 if(isset($_GET['id_supplier'])){
+    
     $id=$_GET['id_supplier'];
     $eliminar = new SupplierInvoice('','','','','','','','',$id);
     //echo "<pre>";print_r($eliminar);die();
