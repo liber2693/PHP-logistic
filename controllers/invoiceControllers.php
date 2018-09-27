@@ -49,23 +49,24 @@ if(isset($_POST['codigo_documento']) && isset($_POST['usuario_documento'])){
             $insert_supl->InsertProvedorInvoice();
         }
     }*/
-    $consulta_supplier = new supplierInvoiceTemp($codigo_documento,'','','','',$usuario,'','','');
+    $consulta_supplier = new supplierInvoiceTemp($codigo_documento,'','','','','',$usuario,'','','');
     $array1=$consulta_supplier->SelectAllSupplier();
     while ($resSupplier=$array1->fetch_assoc())
     {
         $id_tabla = $resSupplier['id'];
         $supplier = $resSupplier['supplier'];
-        $dinero = $resSupplier['dinero'];
+        $dinero_us = $resSupplier['dinero_us'];
+        $dinero_cad = $resSupplier['dinero_cad'];
         $idservicio_sup = $resSupplier['id_servicio'];
         $nota = $resSupplier['nota'];
         $fecha_creacion = $resSupplier['fecha_creacion'];
         # code...
         //guardar los registros guardados de la tabla temporal
-        $insert_supl = new SupplierInvoice($codigo,$supplier,$dinero,$idservicio_sup,$usuario,$fecha_registro,'','');
+        $insert_supl = new SupplierInvoice($codigo,$supplier,$dinero_us,$dinero_cad,$idservicio_sup,$nota,$usuario,$fecha_registro,'','');
         $insert_supl->InsertProvedorInvoice();
         //print_r($insert_supl);exit;
         //elinarlos de la tabla temporal
-        $eliminar = new supplierInvoiceTemp('','','','','','','','',$id_tabla);
+        $eliminar = new supplierInvoiceTemp('','','','','','','','','',$id_tabla);
         $array=$eliminar->EliminarSupplierTablaTemp();
     //echo "<pre>";print_r($eliminar);die();
     }
@@ -145,6 +146,7 @@ if(isset($_GET['tabla']) && $_GET['tabla']==1){
     $usuario = $_GET['usuario'];
     $consulta = new invoicesServicesTemp($codigo,'','','','',$usuario,'','');
     $array=$consulta->SelectServiciosTablaTemp();
+
     if($array->num_rows!=0){
         while($resultado = $array->fetch_assoc()) {
           $data []= array('id' => $resultado['id'],
@@ -176,17 +178,18 @@ if(isset($_GET['tabla']) && $_GET['tabla']==2){
     $supplier = $_GET['supplier'];
     $codigo_invoice = $_GET['codigo_invoice'];
     $usuario = $_GET['usuario_documento'];
-    $pago_supplier = substr($_GET['pago_supplier'],1);
+    $dinero_us = substr($_GET['dinero_us'],1);
+    $dinero_cad = substr($_GET['dinero_cad'],1);
     $servicio_suppl = $_GET['servicio_suppl'];
     $nota_supplier = $_GET['nota_supplier'];
     //echo "<pre>";print_r($_GET);die();
 
     //registro nuevo en el proceso de actualizar un INVOICE en supplier
-    $actualizarRegistro = new SupplierInvoice($codigo_invoice,$supplier,$pago_supplier,$servicio_suppl,$nota_supplier,$usuario,$fecha_registro,'','');
+    $actualizarRegistro = new SupplierInvoice($codigo_invoice,$supplier,$dinero_us,$dinero_cad,$servicio_suppl,$nota_supplier,$usuario,$fecha_registro,'','');
     $actualizarRegistro->InsertProvedorInvoice();
 
     //llamar al monmento los registros para mostrarlos
-    $consulta = new SupplierInvoice($codigo_invoice,'','','','','','','','');
+    $consulta = new SupplierInvoice($codigo_invoice,'','','','','','','','','');
     $array=$consulta->SelectProvedorInvoice();
 
     if($array->num_rows!=0){
@@ -194,7 +197,8 @@ if(isset($_GET['tabla']) && $_GET['tabla']==2){
           $data []= array('id' => $resultado['id'],
                           'codigo_invoice' => $resultado['codigo_invoice'],
                           'supplier' => $resultado['supplier'],
-                          'dinero' => $resultado['dinero'],
+                          'dinero_us' => $resultado['dinero_us'],
+                          'dinero_cad' => $resultado['dinero_cad'],
                           'servicio' => $resultado['descripcion'],
                           'nota' => $resultado['nota']
                         );
@@ -218,7 +222,8 @@ if(isset($_GET['tabla']) && $_GET['tabla']==3){
           $data []= array('id' => $resultado['id'],
                           'codigo_invoice' => $resultado['codigo_invoice'],
                           'supplier' => $resultado['supplier'],
-                          'dinero' => $resultado['dinero'],
+                          'dinero_us' => $resultado['dinero_us'],
+                          'dinero_cad' => $resultado['dinero_cad'],
                           'servicio' => $resultado['descripcion'],
                           'nota' => $resultado['nota']
                         );
@@ -233,7 +238,7 @@ if(isset($_GET['tabla']) && $_GET['tabla']==3){
 if(isset($_GET['id_supplier'])){
     
     $id=$_GET['id_supplier'];
-    $eliminar = new SupplierInvoice('','','','','','','','',$id);
+    $eliminar = new SupplierInvoice('','','','','','','','','',$id);
     //echo "<pre>";print_r($eliminar);die();
     $eliminar->DeleteProvedorInvoice();
         echo json_encode(4);
@@ -389,14 +394,16 @@ if(isset($_POST['supplier_regis']) && $_POST['registro_sup']==1){
 
     $supplier = $_POST['supplier_regis'];
     $id_servicio = $_POST['select_servicio'];
-    $dinero = substr($_POST['dinero'],1);
+    $dinero_us = substr($_POST['dinero_us'],1);
+    $dinero_cad = substr($_POST['dinero_cad'],1);
+
     $nota = $_POST['nota_supplier'];
     $codigo = $_POST['codigo'];
     //Usuario que se encuentra en sesion
     $usuario=$_SESSION['id_usuario'];
-
+    
     //guardar supplier nuevos en la tabla temporar
-    $new_register = new supplierInvoiceTemp($codigo,$supplier,$dinero,$id_servicio,$nota,$usuario,$fecha_registro,'','');
+    $new_register = new supplierInvoiceTemp($codigo,$supplier,$dinero_us,$dinero_cad,$id_servicio,$nota,$usuario,$fecha_registro,'','');
 
     $new_register->InsertTablaTempSupplier();
 
@@ -406,7 +413,7 @@ if(isset($_POST['supplier_regis']) && $_POST['registro_sup']==1){
 if(isset($_GET['tabla']) && $_GET['tabla']==5){
     $codigo = $_GET['codigo'];
     $usuario = $_GET['usuario'];
-    $consulta = new supplierInvoiceTemp($codigo,'','','','',$usuario,'','','');
+    $consulta = new supplierInvoiceTemp($codigo,'','','','','',$usuario,'','','');
     $array=$consulta->SelectSupplierTablaTemp();
     if($array->num_rows!=0){
         while($resultado = $array->fetch_assoc()) {
@@ -415,7 +422,8 @@ if(isset($_GET['tabla']) && $_GET['tabla']==5){
                           'descripcion' => $resultado['descripcion'],
                           'nota' => $resultado['nota'],
                           'supplier' => $resultado['supplier'],
-                          'dinero' => $resultado['dinero'],
+                          'dinero_us' => $resultado['dinero_us'],
+                          'dinero_cad' => $resultado['dinero_cad'],
                         );
         }
         $array->free();
@@ -427,7 +435,7 @@ if(isset($_GET['tabla']) && $_GET['tabla']==5){
 //eliminar registro de un supplier en crear un invioice
 if(isset($_POST['id_supplier']) && $_POST['eliminar_supplier'] == 7){
     $id=$_POST['id_supplier'];
-    $eliminar = new supplierInvoiceTemp('','','','','','','','',$id);
+    $eliminar = new supplierInvoiceTemp('','','','','','','','','',$id);
     $eliminar->EliminarSupplierTablaTemp();
     //print_r($eliminar);die();
 

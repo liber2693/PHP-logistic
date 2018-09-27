@@ -131,7 +131,7 @@ if ($array_d->num_rows==0) {
   if ($array_i->num_rows!=0) {
 
     $con=0;
-    while ($datos_i = $array_i->fetch_array()) {
+    while ($datos_i = $array_i->fetch_assoc()) {
       $con++;
       //echo "<pre>";print_r($datos_i);die;
       $codigo_factura = $datos_i['codigo_invoice'];
@@ -161,43 +161,49 @@ if ($array_d->num_rows==0) {
         <tr>
           <td><b>PIECES: </b>&nbsp;'.$datos_i['pieza'].' '.ucfirst($datos_i['tipo_pieza']).'</td>
           <td><b>WEIGHT: </b>&nbsp;'.$datos_i['peso'].' '.ucfirst($datos_i['tipo_peso']).'</td>
+          <td colspan="1">
+              <b>PO #:</b> &nbsp;'.ucfirst($datos_d['po']).'
+          </td>
+          <td colspan="1">
+              <b>CONSIGNEE:</b> &nbsp;'.ucfirst($datos_d['consignee']).'
+          </td>
+        </tr>
+        <tr>
+        <td colspan="2">
+          <b>INVOICE COMMENTS: </b>
+              '.ucfirst($datos_i['comentarios']).'
+        </td>
         <td colspan="1">
-            <b>CC #:</b> &nbsp;'.ucfirst($datos_i['cc']).'
+            <b>CC #:</b> &nbsp;'.ucfirst($datos_d['cc']).'
         </td>
         <td colspan="1">
             <b>SHIPPER:</b> &nbsp;'.ucfirst($datos_i['shipper']).'
         </td>
         </tr>
+
         <tr>
         <td colspan="2">
-          <b>NOTE:</b> &nbsp;'.ucfirst($datos_i['descripcion']).'
+          <b>DOCKET COMMENTS: </b>
+             '.ucfirst($datos_d['comentarios']).'
         </td>
         <td colspan="2">
           <b>DOCKET DESCRIPTION: </b>
           '.ucfirst($datos_d['descripcion']).'
         </td>
-
         </tr>
         <tr>
         <td colspan="2">
           <b>PAYMENTS: </b>
           '.ucfirst($datos_i['pagos']).'
         </td>
-        <td colspan="2">
-          <b>INVOICE COMMENTS: </b>
-              '.ucfirst($datos_i['comentarios']).'
-        </td>
-        </tr>
-        <tr>
-        <td colspan="4">
-          <b>DOCKET COMMENTS: </b>
-             '.ucfirst($datos_d['comentarios']).'
-        </td>
         </tr>
       </table>';
 
       $buscarServInvoice = invoicesServices::soloCodigo($codigo_factura);
       $array1 = $buscarServInvoice->SelectServiciosInvoice();
+      /*<td colspan="2">
+        <b>note:</b> &nbsp;'.ucfirst($datos_i['descripcion']).'
+      </td>*/
 
       $paginas.$con.='
       <h3>Services</h3>
@@ -206,9 +212,9 @@ if ($array_d->num_rows==0) {
             <tr>
               <td align="center"><b>#</b></td>
               <td align="center"><b>Description</b></td>
-              <td align="center"><b>US$</b></td>
+              <td align="center"><b>Note</b></td>
+              <td align="center"><b>USD$</b></td>
               <td align="center"><b>CAD$</b></td>
-              <td align="center"><b>Notes</b></td>
             </tr>
           </thead>';
       if($array1->num_rows==0){
@@ -227,11 +233,11 @@ if ($array_d->num_rows==0) {
         $paginas.$con.='
           <tbody>
             <tr>
-              <td>'.$i.'</td>
-              <td>'.$datos_servi['descripcion'].'</td>
-              <td>'.$precio_us.'</td>
-              <td>'.$precio_ca.'</td>
-              <td>'.$datos_servi['nota'].'</td>
+              <td width="10%">'.$i.'</td>
+              <td width="30%">'.$datos_servi['descripcion'].'</td>
+              <td width="30%">'.$datos_servi['nota'].'</td>
+              <td width="15%">'.$precio_us.'</td>
+              <td width="15%">'.$precio_ca.'</td>
             </tr>
           </tbody>';
         }
@@ -248,30 +254,35 @@ if ($array_d->num_rows==0) {
             <td align="center"><b>#</b></td>
             <td align="center"><b>Supplier</b></td>
             <td align="center"><b>Service</b></td>
-            <td align="center"><b>Cost US$</b></td>
             <td align="center"><b>Note</b></td>
+            <td align="center"><b>USD$</b></td>
+            <td align="center"><b>CAD$</b></td>
           </tr>
         </thead>';
         if($array3->num_rows==0){
           $paginas.$con.='
           <tbody>
             <tr>
-              <td colspan="3" align="center">No supplier</td>
+              <td colspan="5" align="center">No supplier</td>
             </tr>
           </tbody>';
         }else{
           $i=0;
           while($datos_supli=$array3->fetch_assoc()){
+          //echo "<pre>";print_r($datos_supli);die;
+          $precio_us = ($datos_supli['dinero_us']) ? "$ ".$datos_supli['dinero_us'] : "" ;
+          $precio_ca = ($datos_supli['dinero_cad']) ? "$ ".$datos_supli['dinero_cad'] : "" ;
           $i++;
           $paginas.$con.='
           <tbody>
             <tr>
               <td>'.$i.'</td>
-              <td>'.ucwords($datos_supli['supplier']).'</td>
-              <td>'.$datos_supli['descripcion'].'</td>
-              <td>$ '.$datos_supli['dinero'].'</td>
-              <td>'.$datos_supli['nota'].'</td>
-              nota
+              <td width=25%>'.ucwords($datos_supli['supplier']).'</td>
+              <td width=20%>'.$datos_supli['descripcion'].'</td>
+              <td width=20%>'.$datos_supli['nota'].'</td>
+              <td width=15%>'.$precio_us.'</td>
+              <td width=15%>'.$precio_ca.'</td>
+
             </tr>
           </tbody>';
           }

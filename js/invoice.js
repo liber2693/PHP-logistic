@@ -42,6 +42,20 @@ $(document).ready(function() {
     mostarLista();
     mostarLista_supplier();
 
+    //seleccion del tipo de moneda, como se va pagar supplier
+    $("#us_dolar_supplier").click(function(){
+        $("#campo_us_supplier").removeClass("ocultar");
+        $("#campo_cad_supplier").addClass("ocultar");
+        $("#dinero_suppli_us").focus();
+        $("#dinero_suppli_cad").val("");
+    });
+    $("#cad_dolar_supplier").click(function(){
+        $("#campo_cad_supplier").removeClass("ocultar");
+        $("#campo_us_supplier").addClass("ocultar");
+        $("#dinero_suppli_cad").focus();
+        $("#dinero_suppli_us").val("");
+    });
+
     //seleccion del tipo de moneda, como se va pagar
     $("#us_dolar").click(function(){
         $("#campo_us").removeClass("ocultar");
@@ -135,10 +149,12 @@ $(document).ready(function() {
 
         var supplier = $("#supplier").val();
         var select_servicio = $("#select_servicio").val();
-        var dinero = $("#dinero").val();
+    
+        var dinero_us = $("#dinero_suppli_us").val();
+        var dinero_cad = $("#dinero_suppli_cad").val();
+
         var nota_supplier = $("#nota_supplier").val();
         var codigo = $("#codigo_documento").val();
-
 
         $("#supplier").css({"border":"1px solid #c7c7cc"});
         $("#select_servicio").css({"border":"1px solid #c7c7cc"});
@@ -152,10 +168,6 @@ $(document).ready(function() {
             $("#select_servicio").css({"border":"2px solid #ff3333"});
             event.preventDefault();
         }
-        /*if (dinero.length === 0) {
-            $("#dinero").css({"border":"2px solid #ff3333"});
-            event.preventDefault();
-        }*/
         if(supplier.length>0 && select_servicio!=0){
             $("#lista_supplier_tabla > tbody:last").children().remove();
             $.ajax({
@@ -165,7 +177,8 @@ $(document).ready(function() {
                 data: {'registro_sup' : 1,
                        'supplier_regis' : supplier,
                        'select_servicio' : select_servicio,
-                       'dinero': dinero,
+                       'dinero_us': dinero_us,
+                       'dinero_cad': dinero_cad,
                        'nota_supplier' : nota_supplier,
                        'codigo' : codigo},
                 success: function(data){
@@ -297,7 +310,7 @@ function mostarLista_supplier(){
             if(lista==0){
                 $("#lista_supplier_tabla").append(
                 '<tr>'+
-                '<td colspan="6" class="text-center"><b>Services are not available yet</b></td>'+
+                '<td colspan="7" class="text-center"><b>Services are not available yet</b></td>'+
                 '</tr>');
                 //$('#enviar_invoice').attr("disabled", true);
             }else{
@@ -308,7 +321,8 @@ function mostarLista_supplier(){
                     '<td><b>'+data.supplier+'</b></td>'+
                     '<td><b>'+data.descripcion+'</b></td>'+
                     '<td><b>'+data.nota+'</b>'+'</td>'+
-                    '<td><b>'+(data.dinero ? "$ "+data.dinero : "")+'</b>'+'</td>'+
+                    '<td><b>'+(data.dinero_us ? "$ "+data.dinero_us : "")+'</b>'+'</td>'+
+                    '<td><b>'+(data.dinero_cad ? "$ "+data.dinero_cad : "")+'</b>'+'</td>'+
                     '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminar_supplier('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                     '</tr>');
                     //$('#enviar_invoice').attr("disabled", false);

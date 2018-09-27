@@ -73,6 +73,12 @@ else
                         <input type="text" id="codigo_usuario" name="codigo_usuario" class="form-control round-input">
                       </div>
                     </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label"><b>Date</b></label>
+                      <div class="col-sm-4">
+                        <input type="text" id="fecha" name="fecha" class="form-control round-input fecha" placeholder="Enter Date" readonly="true">
+                      </div>
+                    </div>
           					<div class="form-group">
                       <div id="mensaje_suppleir"></div>
                       <label class="col-sm-2 control-label"><b>Supplier</b></label>
@@ -84,11 +90,21 @@ else
                           <option value="0">Select Service</option>
                         </select>
                       </div>
-                      <div class="col-sm-2">
-                        <input type="text" id="dinero" name="dinero" placeholder="Cost" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control limpiar">
+                    </div>
+
+
+                      <div class="form-group" id="radio3">
+                      <label class="col-sm-2 control-label"><b>$ US</b></label>
+                      <input type="radio" id="us_dolar_supplier" name="bill_to_supplier" >
+                      <div class="col-sm-4 ocultar" id="campo_us_supplier">
+                      <input type="text" id="dinero_suppli_us" name="dinero_suppli_us" placeholder="USD $" onchange="MASK(this,this.value,'-$##,###,##0.00',1)" class="form-control round-input limpiar">
                       </div>
-                      <div class="col-sm-2">
-                        <button type="button" id="guardar_supplier" name="guardar_supplier" class="btn btn-primary" title="New Supplier"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="form-group" id="radio4">
+                      <label class="col-sm-2 control-label"><b>$ CAD</b></label>
+                      <input type="radio" id="cad_dolar_supplier" name="bill_to_supplier" >
+                      <div class="col-sm-4 ocultar" id="campo_cad_supplier">
+                        <input type="text" id="dinero_suppli_cad" name="dinero_suppli_cad" class="form-control round-input limpiar" placeholder="CAD $" onchange="MASK(this,this.value,'-$##,###,##0.00',1)">
                       </div>
                     </div>
                     <div class="form-group">
@@ -97,6 +113,10 @@ else
                         <textarea name="nota_supplier" id="nota_supplier" class="form-control resize limpiar" placeholder="Note Supplier" rows="4"></textarea>
                       </div>
                     </div>
+                  <center>
+                    <button type="button" id="guardar_supplier" name="guardar_supplier" class="btn btn-primary" title="New Supplier">
+                        <i class="fa fa-plus" aria-hidden="true"></i></button>
+                  </center>  <br>
                     <section class="panel">
                       <header class="panel-heading">
                         <b>SELECTED SUPPLIER</b>
@@ -108,7 +128,8 @@ else
                             <th>Supplier</th>
                             <th>Service</th>
                             <th>Notes</th>
-                            <th>US$ AMT</th>
+                            <th>USD$</th>
+                            <th>CAD$</th>
                             <th>Action</th>
                           </tr>
                         </thead>
@@ -116,7 +137,7 @@ else
                         </tbody>
                       </table>
                     </section>
-                  <!--viejo registro de los supplier 03-09-2018 --> 
+                  <!--viejo registro de los supplier 03-09-2018 -->
         					<!--<div class="form-group <?php //if($i!=1){echo"ocultar";}?>" id='campoSupplier<?php //echo $i;?>'>
         						<label class="col-sm-1 control-label"><?php //echo("<b>" ."#".$i ."</b>"); ?></label>
         						<div class="col-sm-2">
@@ -156,12 +177,7 @@ else
                       <input type="text" id="quien_paga" name="quien_paga" class="form-control round-input">
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label"><b>Date</b></label>
-                    <div class="col-sm-4">
-                      <input type="text" id="fecha" name="fecha" class="form-control round-input fecha" placeholder="Enter Date" readonly="true">
-                    </div>
-                  </div>
+
                   <!-- probando -->
                   <header class="panel-heading">
                     <b>ADD SERVICE</b>
@@ -211,8 +227,8 @@ else
                           <th>Code</th>
                           <th>Description</th>
                           <th>Notes</th>
-                          <th>US$ AMT</th>
-                          <th>CAD$ AMT</th>
+                          <th>USD$</th>
+                          <th>CAD$</th>
                           <th>Action</th>
                         </tr>
                       </thead>

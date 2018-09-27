@@ -27,6 +27,20 @@ $(document).ready(function() {
     mostarLista();
     listaSupplier();
 
+    //seleccion del tipo de moneda, como se va pagar supplier
+    $("#us_dolar_supplier").click(function(){
+        $("#campo_us_supplier").removeClass("ocultar");
+        $("#campo_cad_supplier").addClass("ocultar");
+        $("#dinero_suppli_us").focus();
+        $("#dinero_suppli_cad").val("");
+    });
+    $("#cad_dolar_supplier").click(function(){
+        $("#campo_cad_supplier").removeClass("ocultar");
+        $("#campo_us_supplier").addClass("ocultar");
+        $("#dinero_suppli_cad").focus();
+        $("#dinero_suppli_us").val("");
+    });
+
     //seleccion del tipo de moneda, como se va pagar
     $("#us_dolar").click(function(){
     	$("#campo_us").removeClass("ocultar");
@@ -221,7 +235,10 @@ function registrarSupplier(){
     var supplier = $("#supplierActualizar").val().trim();
     var codigo_invoice = $("#codigo_invoice").val();
     var usuario_documento = $("#usuario_documento").val();
-    var pago_supplier = $("#pago_supplier").val();
+    var dinero_us = $("#dinero_suppli_us").val();
+    var dinero_cad = $("#dinero_suppli_cad").val();
+
+
     var servicio_suppl = $("#select_servicio").val();
     var nota_supplier = $("#nota_supplier").val();
 
@@ -254,7 +271,8 @@ function registrarSupplier(){
                    'supplier' : supplier,
                    'codigo_invoice' : codigo_invoice,
                    'usuario_documento' : usuario_documento,
-                   'pago_supplier' : pago_supplier,
+                   'dinero_us' : dinero_us,
+                   'dinero_cad' : dinero_cad,
                    'servicio_suppl' : servicio_suppl,
                    'nota_supplier' : nota_supplier },
             success: function(data){
@@ -262,7 +280,7 @@ function registrarSupplier(){
                 if(lista==0){
                     $("#seleccion_supplier").append(
                     '<tr>'+
-                    '<td colspan="5" class="text-center"><b>Supplier are not available yet</b></td>'+
+                    '<td colspan="6" class="text-center"><b>Supplier are not available yet</b></td>'+
                     '</tr>');
                     $('#enviar_update_invoice').attr("disabled", true);
                 }else{
@@ -270,9 +288,10 @@ function registrarSupplier(){
                         $("#seleccion_supplier").append(
                         '<tr>'+
                         '<td><b>'+data.supplier+'</b></td>'+
-                        '<td><b>'+(data.dinero ? "$ "+data.dinero : "")+'</b></td>'+
-                        '<td><b>'+data.servicio+'</b></td>'+
-                        '<td><b>'+data.nota+'</b></td>'+
+												'<td><b>'+data.servicio+'</b></td>'+
+												'<td><b>'+data.nota+'</b></td>'+
+                        '<td><b>'+(data.dinero_us ? "$ "+data.dinero_us : "")+'</b></td>'+
+                        '<td><b>'+(data.dinero_cad ? "$ "+data.dinero_cad : "")+'</b></td>'+
                         '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminarSupplier('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                         '</tr>');
                         $('#enviar_update_invoice').attr("disabled", false);
@@ -311,7 +330,7 @@ function listaSupplier(){
             if(lista==0){
                 $("#seleccion_supplier").append(
                 '<tr>'+
-                '<td colspan="3" class="text-center"><b>Supplier are not available yet<b></td>'+
+                '<td colspan="6" class="text-center"><b>Supplier are not available yet<b></td>'+
                 '</tr>');
                 $('#enviar_update_invoice').attr("disabled", true);
             }else{
@@ -319,9 +338,10 @@ function listaSupplier(){
                     $("#seleccion_supplier").append(
                     '<tr>'+
                     '<td><b>'+data.supplier+'</b></td>'+
-                    '<td><b>'+(data.dinero ? "$ "+data.dinero : "")+'</b></td>'+
                     '<td><b>'+data.servicio+'</b></td>'+
                     '<td><b>'+data.nota+'</b></td>'+
+                    '<td><b>'+(data.dinero_us ? "$ "+data.dinero_us : "")+'</b></td>'+
+                    '<td><b>'+(data.dinero_cad ? "$ "+data.dinero_cad : "")+'</b></td>'+
                     '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminarSupplier('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                     '</tr>');
                     $('#enviar_update_invoice').attr("disabled", false);
