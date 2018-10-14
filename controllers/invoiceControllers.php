@@ -318,23 +318,29 @@ if(isset($_POST['codigo_invoice']) && isset($_POST['update']) && !empty($_POST['
 
     $codigo_usuario = post("codigo_usuario");
     $fecha = $_POST['fecha'];
-
-    $cantidad_envios_regis = count($_POST['id_envio_seleccionado']);
-    for ($i=0; $i <$cantidad_envios_regis; $i++) {
-        if (!empty($_POST['id_envio_seleccionado'][$i])) {
-            $id_envio=$_POST['id_envio_seleccionado'][$i];
-            $eliminar_envio = new ShippingInvoice($codigo_invoice,'','','','','',$id_envio);
-            $eliminar_envio->DeleteViaEnvio();
+    
+    if(!empty($_POST['id_envio_seleccionado']))
+    {
+        $cantidad_envios_regis = count($_POST['id_envio_seleccionado']);
+        for ($i=0; $i <$cantidad_envios_regis; $i++) {
+            if (!empty($_POST['id_envio_seleccionado'][$i])) {
+                $id_envio=$_POST['id_envio_seleccionado'][$i];
+                $eliminar_envio = new ShippingInvoice($codigo_invoice,'','','','','',$id_envio);
+                $eliminar_envio->DeleteViaEnvio();
+            }
         }
     }
 
-    //ahora registrar lo que el usuario quiso
-    $cantidad_envio=count($_POST['envio']);
-    for ($i=0; $i <$cantidad_envio; $i++) {
-        $id_envio=$_POST['envio'][$i];
-        $otro = ($id_envio==6) ? post("otro") : null ;
-        $insert_envi = new ShippingInvoice($codigo_invoice,$id_envio,$otro,$usuario_documento,$fecha_registro,'','');
-        $insert_envi->InsertfactipoEnvio();
+    if(!empty($_POST['envio']))
+    {
+        //ahora registrar lo que el usuario quiso
+        $cantidad_envio=count($_POST['envio']);
+        for ($i=0; $i <$cantidad_envio; $i++) {
+            $id_envio=$_POST['envio'][$i];
+            $otro = ($id_envio==6) ? post("otro") : null ;
+            $insert_envi = new ShippingInvoice($codigo_invoice,$id_envio,$otro,$usuario_documento,$fecha_registro,'','');
+            $insert_envi->InsertfactipoEnvio();
+        }
     }
 
     $update_invoice = new Invoice($codigo_invoice,'',$codigo_usuario,$fecha,'',$quien_paga,'','','',$usuario_documento,'',$fecha_registro,'','');

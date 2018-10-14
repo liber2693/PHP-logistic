@@ -68,7 +68,7 @@ $(document).ready(function() {
 		var usuario_documento = $("#usuario_documento").val();
 
 
-		if (servicio==0) {
+		/*if (servicio==0) {
     		$("#lista_servicios").css({"border":"2px solid #ff3333"});
 	       event.preventDefault();
     	}else{
@@ -82,7 +82,7 @@ $(document).ready(function() {
 	        $("#radio1").css({"border":"2px solid #ff3333"});
 	        $("#radio2").css({"border":"2px solid #ff3333"});
 	        event.preventDefault();
-	    }
+	    }*/
 
 	    if((servicio!=0) && (dinero_us.length>0) || (dinero_cad.length>0)){
         	$("#seleccion_servicios_tabla > tbody:last").children().remove();
@@ -147,16 +147,16 @@ $(document).ready(function() {
         $('#enviar_update_invoice').attr("disabled", true);
         var quien_paga = $("#quien_paga").val();
 
-        if (quien_paga=='') {
+        /*if (quien_paga=='') {
             $("#quien_paga").css({"border":"2px solid #ff3333"});
             $('#enviar_update_invoice').attr("disabled", false);
             event.preventDefault();
         }else{
             $("#quien_paga").css({"border":"1px solid #c7c7cc"});
-        }
+        }*/
 
         //validare que el envio este seleccionado
-        var check = $("input[type='checkbox']:checked").length;
+       /* var check = $("input[type='checkbox']:checked").length;
         if(check == ""){
             $("#mensaje_create_invoice").addClass("alert alert-block alert-danger fade in text-center").html("<strong>Sorry!</strong> You must select at least one ship via");
             setTimeout(function() {
@@ -167,7 +167,7 @@ $(document).ready(function() {
            event.preventDefault();
         }else{
             $("#via_envio").css({"border":"0"});
-        }
+        }*/
     });
 
 });
