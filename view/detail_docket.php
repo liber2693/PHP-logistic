@@ -11,7 +11,6 @@ if(empty($_SESSION['user']))
   $array = $buscarDocket->selectDocket();
   $datos = $array->fetch_array();
   $array->free();
-  print_r($datos);
 ?>
 <!DOCTYPE html>
 <html lang="en">
