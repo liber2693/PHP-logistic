@@ -11,6 +11,7 @@ if(empty($_SESSION['user']))
   $array = $buscarDocket->selectDocket();
   $datos = $array->fetch_array();
   $array->free();
+  print_r($datos);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -294,7 +295,7 @@ if(empty($_SESSION['user']))
                 <a href="create_invoice.php?docket=<?php echo base64_encode($codigo);?>" class="btn btn-primary">
                   <strong>ADD INVOICE </strong>
                 </a>
-                <a class="btn btn-info" style="font-size:16px" href="docket_pdf.php?docket=<?php echo base64_encode($datos['codigo']);?>" target="_blank" data-toggle="tooltip" title="Docket Report">
+                <a class="btn btn-info" style="font-size:16px" href="docket_pdf.php?docket=<?php echo base64_encode($codigo);?>" target="_blank" data-toggle="tooltip" title="Docket Report">
                   <strong>DOCKET REPORT</strong>
                 </a>
                 <a href="docket_list.php" class="btn btn-danger">
