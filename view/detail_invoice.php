@@ -166,11 +166,11 @@ else
                   </tr>
                 </thead>
                 <?php
-                if($array3->num_rows==0){
+                if($array3->num_rows == 0){
                 ?>
                 <tbody>
                   <tr>
-                    <td colspan='5' class="text-center">NO SUPPLEIR</td>
+                    <td colspan='6' class="text-center">NO SUPPLEIR</td>
                   </tr>
                 </tbody>
                 <tbody>
