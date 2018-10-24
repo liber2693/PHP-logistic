@@ -104,7 +104,7 @@ $(document).ready(function() {
                   		'<tr>'+
                     	'<td colspan="5" class="text-center"><b>Services are not available yet</b></td>'+
                     	'</tr>');
-                    	$('#enviar_update_invoice').attr("disabled", true);
+                    	//$('#enviar_update_invoice').attr("disabled", true);
                 	}else{
 	                	lista.forEach( function(data, indice, array) {
 				        	$("#seleccion_servicios_tabla").append(
@@ -116,7 +116,7 @@ $(document).ready(function() {
                             '<td><b>'+(data.precio_ca ? "$ "+data.precio_ca : "")+'</b></td>'+
 	                    	'<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminar('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
 	                  		'</tr>');
-	                  		$('#enviar_update_invoice').attr("disabled", false);
+	                  		//$('#enviar_update_invoice').attr("disabled", false);
 				        });
                 	}
                     limpiar_campos();
@@ -144,7 +144,7 @@ $(document).ready(function() {
 
     //enviar el formulario para que actualize eñ registro del invoice
     $("#update_invoice").submit(function(event) {
-        $('#enviar_update_invoice').attr("disabled", true);
+        //$('#enviar_update_invoice').attr("disabled", true);
         var quien_paga = $("#quien_paga").val();
 
         /*if (quien_paga=='') {
@@ -191,7 +191,7 @@ function mostarLista(){
           		'<tr>'+
             	'<td colspan="5" class="text-center"><b>Services are not available yet</b></td>'+
             	'</tr>');
-            	$('#enviar_update_invoice').attr("disabled", true);
+            	//$('#enviar_update_invoice').attr("disabled", true);
         	}else{
             	lista.forEach( function(data, indice, array) {
 		        	$("#seleccion_servicios_tabla").append(
@@ -203,7 +203,7 @@ function mostarLista(){
                     '<td><b>'+(data.precio_ca ? "$ "+data.precio_ca : "")+'</b></td>'+
                 	'<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminar('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
               		'</tr>');
-		        	$('#enviar_update_invoice').attr("disabled", false);
+		        	//$('#enviar_update_invoice').attr("disabled", false);
             	});
         	}
 		}
@@ -282,7 +282,7 @@ function registrarSupplier(){
                     '<tr>'+
                     '<td colspan="6" class="text-center"><b>Supplier are not available yet</b></td>'+
                     '</tr>');
-                    $('#enviar_update_invoice').attr("disabled", true);
+                    //$('#enviar_update_invoice').attr("disabled", true);
                 }else{
                     lista.forEach( function(data, indice, array) {
                         $("#seleccion_supplier").append(
@@ -294,7 +294,7 @@ function registrarSupplier(){
                         '<td><b>'+(data.dinero_cad ? "$ "+data.dinero_cad : "")+'</b></td>'+
                         '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminarSupplier('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                         '</tr>');
-                        $('#enviar_update_invoice').attr("disabled", false);
+                        //$('#enviar_update_invoice').attr("disabled", false);
                     });
                 }
                 //limpiar_campo
@@ -332,7 +332,7 @@ function listaSupplier(){
                 '<tr>'+
                 '<td colspan="6" class="text-center"><b>Supplier are not available yet<b></td>'+
                 '</tr>');
-                $('#enviar_update_invoice').attr("disabled", true);
+                //$('#enviar_update_invoice').attr("disabled", true);
             }else{
                 lista.forEach( function(data, indice, array) {
                     $("#seleccion_supplier").append(
@@ -344,7 +344,7 @@ function listaSupplier(){
                     '<td><b>'+(data.dinero_cad ? "$ "+data.dinero_cad : "")+'</b></td>'+
                     '<td><button type="button" class="btn btn-danger" title="Eliminar" onclick="eliminarSupplier('+data.id+')"><i class="fa fa-minus" aria-hidden="true"></i></td>'+
                     '</tr>');
-                    $('#enviar_update_invoice').attr("disabled", false);
+                   // $('#enviar_update_invoice').attr("disabled", false);
                 });
             }
         }
